@@ -1,0 +1,3909 @@
+<!DOCTYPE html>
+
+
+<html lang="zh">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Pandas 速查 自用 |  梦</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-pandas-api-速查"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Pandas 速查 自用
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/05/pandas-api-%E9%80%9F%E6%9F%A5/" class="article-date">
+  <time datetime="2021-04-05T00:00:00.000Z" itemprop="datePublished">2021-04-05</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">7.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">45 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org49692b4">1. <span class="todo TODO">TODO</span> &#x6211;&#x5BF9;&#x6570;&#x636E;&#x7684;&#x7406;&#x89E3;</a>
+<ul>
+<li><a href="#orge65ebbd">1.1. &#x7EA6;&#x5B9A;</a>
+<ul>
+<li><a href="#orgbe35d90">1.1.1. <span class="done DONE">DONE</span> &#x540D;&#x8BCD;&#x7EA6;&#x5B9A;</a></li>
+<li><a href="#org5d74d8a">1.1.2. <span class="done DONE">DONE</span> &#x52A8;&#x8BCD;&#x7EA6;&#x5B9A;</a></li>
+<li><a href="#org111d1c2">1.1.3. <span class="done DONE">DONE</span> &#x5BF9; Pandas &#x7684;&#x7406;&#x89E3;</a></li>
+<li><a href="#orgc0c4771">1.1.4. <span class="done DONE">DONE</span> &#x540D;&#x8BCD;&#x533A;&#x5206;</a></li>
+<li><a href="#org016707a">1.1.5. <span class="done DONE">DONE</span> Misc</a></li>
+<li><a href="#org8d9deed">1.1.6. <span class="todo TODO">TODO</span> &#x8BB0;&#x53F7;&#xFF1A;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org682c1bb">2. <span class="todo TODO">TODO</span> Pandas-API</a>
+<ul>
+<li><a href="#org905c004">2.1. Series</a>
+<ul>
+<li><a href="#orgfb59941">2.1.1. <span class="todo TODO">TODO</span> Constructor</a></li>
+<li><a href="#org3234661">2.1.2. <span class="todo TODO">TODO</span> Attributes</a></li>
+<li><a href="#org9bc43e9">2.1.3. <span class="todo TODO">TODO</span> Conversion</a></li>
+<li><a href="#org91a6db1">2.1.4. <span class="done DONE">DONE</span> &#x7D22;&#x5F15;&#xFF0C;&#x8FED;&#x4EE3;</a></li>
+<li><a href="#org1fb01e4">2.1.5. <span class="done DONE">DONE</span> Binary operator functions</a></li>
+<li><a href="#org9a964e1">2.1.6. Apply &amp; GroupBy &amp; window</a></li>
+<li><a href="#orgd2402dc">2.1.7. <span class="todo TODO">TODO</span> &#x6570;&#x7406;/&#x63CF;&#x8FF0;&#x7EDF;&#x8BA1;&#x76F8;&#x5173;</a></li>
+<li><a href="#orga68f712">2.1.8. <span class="todo TODO">TODO</span> &#x91CD;&#x7D22;&#x5F15;/&#x9009;&#x62E9;/&#x6807;&#x8BB0;</a></li>
+<li><a href="#orgb51b57d">2.1.9. <span class="done DONE">DONE</span> &#x7F3A;&#x5931;&#x6570;&#x636E;&#x5904;&#x7406;</a></li>
+<li><a href="#org5f72926">2.1.10. <span class="todo TODO">TODO</span> &#x91CD;&#x5851;&#xFF0C;&#x6392;&#x5E8F;</a></li>
+<li><a href="#org914d63c">2.1.11. <span class="done DONE">DONE</span> &#x7EC4;&#x5408;</a></li>
+<li><a href="#org1513939">2.1.12. <span class="todo TODO">TODO</span> &#x63A5;&#x53E3;</a></li>
+</ul>
+</li>
+<li><a href="#org9a77343">2.2. Pandas</a>
+<ul>
+<li><a href="#org21f7e32">2.2.1. &#x6784;&#x9020;&#x5668; Constructor</a></li>
+<li><a href="#org6e00d20">2.2.2. <span class="done DONE">DONE</span> &#x5C5E;&#x6027; Attributes and underlying data</a></li>
+<li><a href="#orgd9d4f24">2.2.3. <span class="done DONE">DONE</span> &#x8F6C;&#x6362; Conversion</a></li>
+<li><a href="#org1d6a15f">2.2.4. <span class="done DONE">DONE</span> &#x7D22;&#x5F15;&#xFF0C;&#x8FED;&#x4EE3;</a></li>
+<li><a href="#orgf2208dd">2.2.5. <span class="todo TODO">TODO</span> &#x4E8C;&#x5143;&#x64CD;&#x4F5C;&#x51FD;&#x6570;</a></li>
+<li><a href="#orge7023a9">2.2.6. Apply &amp; GroupBy &amp; window</a></li>
+<li><a href="#orgd84805e">2.2.7. <span class="todo TODO">TODO</span> &#x7EDF;&#x8BA1;&#x76F8;&#x5173;</a></li>
+<li><a href="#org5828672">2.2.8. <span class="todo TODO">TODO</span> &#x91CD;&#x7D22;&#x5F15;&#xFF0C;&#x9009;&#x62E9;&#xFF0C;&#x6807;&#x8BB0;</a></li>
+<li><a href="#orgf2300bb">2.2.9. <span class="done DONE">DONE</span> &#x7F3A;&#x5931;&#x6570;&#x636E;&#x5904;&#x7406; NaN</a></li>
+<li><a href="#org59ea4b2">2.2.10. <span class="todo TODO">TODO</span> Misc&#xFF08;&#x91CD;&#x5851;&#xFF0C;&#x6392;&#x5E8F;&#xFF0C;&#x66FF;&#x6362;&#xFF0C;&#x538B;&#x7F29;&#xFF0C;&#x7194;&#x5316;&#xFF0C;&#x8F6C;&#x7F6E;&#x7B49;&#xFF09;</a></li>
+<li><a href="#org10a0d15">2.2.11. <span class="done DONE">DONE</span> &#x7EC4;&#x5408;/&#x6BD4;&#x8F83;                                                                                                                                            |                                                                                              |</a></li>
+<li><a href="#org746eb7e">2.2.12. <span class="todo TODO">TODO</span> &#x65F6;&#x95F4;&#x5E8F;&#x5217;&#x6570;&#x636E;</a></li>
+<li><a href="#orgbff64f1">2.2.13. <span class="todo TODO">TODO</span> &#x6807;&#x5FD7;</a></li>
+<li><a href="#orga312fdc">2.2.14. <span class="done DONE">DONE</span> &#x5143;&#x6570;&#x636E;</a></li>
+<li><a href="#orge84cf8e">2.2.15. <span class="done DONE">DONE</span> &#x7ED8;&#x56FE;</a></li>
+<li><a href="#org66f9133">2.2.16. <span class="todo TODO">TODO</span> &#x63A5;&#x53E3;</a></li>
+<li><a href="#orgdca9045">2.2.17. <span class="todo TODO">TODO</span> I/O &amp; &#x8F6C;&#x6362;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1b43ce6">3. <span class="todo TODO">TODO</span> Pandas &#x70F9;&#x996A;&#x6307;&#x5317;</a>
+<ul>
+<li><a href="#org4f923f5">3.1. &#x7B5B;&#x9009;&#x7B26;&#x5408;&#x67D0;&#x79CD;&#x6761;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x5E76;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;</a></li>
+<li><a href="#orgd97d03f">3.2. </a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org49692b4" class="outline-2">
+<h2 id="org49692b4"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> &#x6211;&#x5BF9;&#x6570;&#x636E;&#x7684;&#x7406;&#x89E3;</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+&#x4EE5;&#x4E0B;&#x6587;&#x6863;&#x6765;&#x6E90;&#x4E8E; pandas &#x5B98;&#x7F51;&#xFF0C;&#x7981;&#x8F6C;&#x3002;
+</p>
+</div>
+<div id="outline-container-orge65ebbd" class="outline-3">
+<h3 id="orge65ebbd"><span class="section-number-3">1.1</span> &#x7EA6;&#x5B9A;</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+&#x4EE5;&#x4E0B;&#x7EA6;&#x5B9A;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x6570;&#x5B66;&#x652F;&#x6491;&#xFF0C;&#x9664;&#x53BB;&#x4E00;&#x4E9B;&#x540D;&#x8BCD;&#x501F;&#x9274;&#xFF0C;&#x4F59;&#x4E0B;&#x7686;&#x4E3A;&#x4F5C;&#x8005;&#x81C6;&#x60F3;&#x3002;
+</p>
+</div>
+<div id="outline-container-orgbe35d90" class="outline-4">
+<h4 id="orgbe35d90"><span class="section-number-4">1.1.1</span> <span class="done DONE">DONE</span> &#x540D;&#x8BCD;&#x7EA6;&#x5B9A;</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li><p>
+&#x540D;&#x8BCD;&#xFF1A;label&#xFF0C;observation&#xFF0C;vector&#xFF0C;elements&#xFF0C;index&#xFF0C;key&#xFF0C;column&#xFF0C;axis
+</p>
+<div class="org-src-container">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data = {<span class="string">&apos;a&apos;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>], <span class="string">&apos;b&apos;</span>:[<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>], <span class="string">&apos;c&apos;</span>:[<span class="number">8</span>,<span class="number">0</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">8</span>]}</span><br><span class="line"></span><br><span class="line">index = pd.Index([<span class="string">&apos;q&apos;</span>,<span class="string">&apos;w&apos;</span>,<span class="string">&apos;e&apos;</span>,<span class="string">&apos;r&apos;</span>,<span class="string">&apos;t&apos;</span>])</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(data, index=index)</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+<a href="dataframe_noframe.png">&#x540D;&#x8BCD;&#x7EA6;&#x5B9A;</a>
+&#x4EE5;&#x4E0B;&#x7684;&#x53D9;&#x8FF0;&#x4E2D;&#x4F1A;&#x7ECF;&#x5E38;&#x7528;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x4F5C;&#x4E3A;&#x4F8B;&#x5B50;
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5d74d8a" class="outline-4">
+<h4 id="org5d74d8a"><span class="section-number-4">1.1.2</span> <span class="done DONE">DONE</span> &#x52A8;&#x8BCD;&#x7EA6;&#x5B9A;</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li>&#x52A8;&#x8BCD;&#xFF1A;apply&#xFF0C;transform&#xFF0C;groupby</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org111d1c2" class="outline-4">
+<h4 id="org111d1c2"><span class="section-number-4">1.1.3</span> <span class="done DONE">DONE</span> &#x5BF9; Pandas &#x7684;&#x7406;&#x89E3;</h4>
+<div class="outline-text-4" id="text-1-1-3">
+</div>
+<ol class="org-ol">
+<li><a id="org86bd3c5"></a>pandas &#x7684;&#x64CD;&#x4F5C;&#x53EA;&#x6709;&#x4E24;&#x7C7B;<br>
+<div class="outline-text-5" id="text-1-1-3-1">
+<ul class="org-ul">
+<li>&#x8FD4;&#x56DE;&#x6570;&#x636E;</li>
+<li>&#x66B4;&#x9732;&#x63A5;&#x53E3;</li>
+</ul>
+<p>
+pandas &#x4E0D;&#x4F1A;&#x5904;&#x7406;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x662F;&#x63D0;&#x4F9B;&#x4EE5;&#x4E0A;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x7531;&#x7528;&#x6237;&#x81EA;&#x5DF1;&#x6307;&#x5B9A;&#x5904;&#x7406;&#x3002;
+</p>
+</div>
+</li>
+<li><a id="org18b2576"></a>&#x89C6;&#x56FE; &#x4E0E; &#x62F7;&#x8D1D;<br>
+<div class="outline-text-5" id="text-1-1-3-2">
+<p>
+&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;pandas &#x4E2D;&#x7684;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x64CD;&#x4F5C;&#x5747;&#x6CA1;&#x6709;&#x526F;&#x4F5C;&#x7528;&#xFF0C;&#x5747;&#x4E0D;&#x4F1A;&#x5BF9;&#x539F;&#x6570;&#x636E;&#x6709;&#x6240;&#x5F71;&#x54CD;&#x3002;
+</p>
+<ul class="org-ul">
+<li>&#x89C6;&#x56FE;&#x610F;&#x5473;&#x7740;&#x8FD4;&#x56DE;&#x4E86;&#x5185;&#x5B58;&#x5207;&#x7247;</li>
+<li>&#x526F;&#x672C;&#x610F;&#x5473;&#x7740;&#x8FD4;&#x56DE;&#x4E86;&#x6570;&#x636E;&#x62F7;&#x8D1D;</li>
+</ul>
+</div>
+</li>
+<li><a id="org34a7c40"></a>&#x5728; pandas &#x91CC;&#xFF0C;&#x6570;&#x636E;&#x7684;&#x7ED3;&#x6784;&#x4E0E;&#x6570;&#x5B66;&#x4E2D;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x3002;<br>
+<div class="outline-text-5" id="text-1-1-3-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x6570;&#x5B66;</th>
+<th scope="col" class="org-left">pandas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#x6570;&#x636E;&#x77E9;&#x9635;&#x7531;&#x82E5;&#x5E72;&#x4E2A;&#x7EF4;&#x5EA6;&#x4E00;&#x6837;&#x7684;&#x5217;&#x5411;&#x91CF;&#x6784;&#x6210;</td>
+<td class="org-left">DataFrame &#x7531;&#x82E5;&#x5E72;&#x4E2A;&#x957F;&#x5EA6;&#x4E00;&#x6837;&#x7684; Series &#x6784;&#x6210;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x6570;&#x636E;&#x77E9;&#x9635;&#x7684;&#x884C;&#x8868;&#x793A;&#x89C2;&#x6D4B;&#xFF0C;&#x5217;&#x8868;&#x793A;&#x6570;&#x636E;&#x7EF4;&#x5EA6;</td>
+<td class="org-left">DataFrame &#x7684;&#x884C;&#x4E3A;&#x89C2;&#x6D4B;&#xFF0C;&#x5217;&#x4E3A;&#x7EF4;&#x5EA6;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="org4ea5562"></a>&#x5F53;&#x4ECE;&#x6570;&#x636E;&#x6846;&#x4E2D;&#x9009;&#x62E9;&#x6570;&#x636E;&#x65F6;&#xFF1A;<br>
+<div class="outline-text-5" id="text-1-1-3-4">
+<ul class="org-ul">
+<li>&#x82E5;&#x4E3A;&#x5411;&#x91CF;,&#x5219;&#x7EDF;&#x4E00;&#x4EE5; Series &#x5F62;&#x5F0F;&#x5448;&#x73B0;,&#x53EF;&#x4EE5;&#x8C03;&#x7528; Series &#x7684; API&#xFF1B;</li>
+<li>&#x82E5;&#x4E3A;&#x77E9;&#x9635;&#xFF0C;&#x5219;&#x7EDF;&#x4E00;&#x4EE5; Dataframe &#x5F62;&#x5F0F;&#x5448;&#x73B0;&#xFF0C;&#x53EF;&#x4EE5;&#x8C03;&#x7528; DataFrame &#x7684; API&#x3002;</li>
+</ul>
+</div>
+</li>
+<li><a id="org44644a7"></a>&#x7B5B;&#x9009;<br>
+<div class="outline-text-5" id="text-1-1-3-5">
+<p>
+&#x4E0D;&#x7BA1;&#x5E95;&#x5C42;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5728;&#x672C;&#x6587;&#x6863;&#x4E2D;&#xFF0C;&#x5747;&#x6309;&#x7167;
+</p>
+<ol class="org-ol">
+<li>&#x751F;&#x6210; bool &#x63A9;&#x7801;&#x3002;</li>
+<li>&#x6839;&#x636E; bool &#x63A9;&#x7801;&#x7B5B;&#x9009;&#x6570;&#x636E;</li>
+</ol>
+<p>
+&#x7684;&#x601D;&#x8DEF;&#x8FDB;&#x884C;
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgc0c4771" class="outline-4">
+<h4 id="orgc0c4771"><span class="section-number-4">1.1.4</span> <span class="done DONE">DONE</span> &#x540D;&#x8BCD;&#x533A;&#x5206;</h4>
+<div class="outline-text-4" id="text-1-1-4">
+</div>
+<ol class="org-ol">
+<li><a id="org9e87d57"></a>&#x7B5B;&#x9009; &#x4E0E; &#x9009;&#x62E9;<br>
+<div class="outline-text-5" id="text-1-1-4-1">
+<ul class="org-ul">
+<li>&#x7B5B;&#x9009;:&#x9009;&#x53D6;&#x6570;&#x636E;&#x6846;</li>
+<li>&#x9009;&#x62E9;&#xFF1A;&#x9009;&#x53D6;&#x89C2;&#x6D4B;&#x6216;&#x8005;&#x5411;&#x91CF;&#xFF08;&#x4E00;&#x7EF4;&#xFF09;</li>
+</ul>
+</div>
+</li>
+<li><a id="org8f16582"></a>&#x5411;&#x91CF; &#x4E0E; &#x89C2;&#x6D4B;<br>
+<div class="outline-text-5" id="text-1-1-4-2">
+<ul class="org-ul">
+<li>&#x5728;&#x524D;&#x9762;&#x7684;&#x7EA6;&#x5B9A;&#x4E2D;&#xFF0C;&#x5411;&#x91CF;&#x662F;&#x5217;&#xFF0C;&#x89C2;&#x6D4B;&#x662F;&#x884C;&#x3002;
+<ul class="org-ul">
+<li>&#x4ECE;&#x6570;&#x5B66;&#x4E0A;&#x770B;&#xFF0C;&#x89C2;&#x6D4B;&#x4E5F;&#x662F;&#x5411;&#x91CF;&#x3002;</li>
+<li>&#x5728; pandas &#x4E2D;&#xFF0C;&#x4E24;&#x8005;&#x90FD;&#x4EE5; Series &#x5F62;&#x5F0F;&#x5B9E;&#x73B0;&#x3002;</li>
+</ul></li>
+<li>&#x5411;&#x91CF;&#x4E00;&#x8BCD;&#x5F80;&#x5F80;&#x4F1A;&#x6839;&#x636E;&#x8BED;&#x5883;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;</li>
+</ul>
+</div>
+</li>
+<li><a id="org384d00d"></a>&#x66B4;&#x9732; &#x4E0E; &#x906E;&#x63A9;<br>
+<div class="outline-text-5" id="text-1-1-4-3">
+<p>
+&#x5728;&#x7B5B;&#x9009;&#x4E2D;&#xFF1A;
+</p>
+<ul class="org-ul">
+<li>&#x66B4;&#x9732;&#xFF1A;&#x88AB;&#x66B4;&#x9732;&#x5728;&#x7ED3;&#x679C;&#x4E2D;&#xFF0C;&#x4E0D;&#x4F1A;&#x88AB;&#x7B5B;&#x9009;&#x6389;&#xFF08;&#x6216;&#x88AB;&#x66FF;&#x6362;&#x6389;&#xFF09;</li>
+<li>&#x906E;&#x63A9;&#xFF1A;&#x88AB;&#x906E;&#x63A9;&#x6389;&#xFF0C;&#x4F59;&#x4E0B;&#x7684;&#x7A7A;&#x4F4D;&#x4F1A;&#x88AB;&#x7B5B;&#x9009;&#x6389;&#xFF08;&#x6216;&#x88AB;&#x66FF;&#x6362;&#x6389;&#xFF09;</li>
+</ul>
+<ul class="org-ul">
+<li>&#x5F53;&#x8BF4;&#x5230;&#x66B4;&#x9732;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x4F59;&#x4E0B;&#x90E8;&#x5206;&#x88AB;&#x906E;&#x63A9;&#xFF1B;&#x53CD;&#x4E4B;&#x4EA6;&#x7136;&#x3002;</li>
+</ul>
+</div>
+</li>
+<li><a id="org2db7c9d"></a>&#x66B4;&#x9732;&#x63A5;&#x53E3; &#x4E0E; &#x66B4;&#x9732;<br>
+<div class="outline-text-5" id="text-1-1-4-4">
+<ul class="org-ul">
+<li>&#x66B4;&#x9732;&#x63A5;&#x53E3;&#xFF1A;&#x64CD;&#x4F5C;&#x7684;&#x63A5;&#x53E3;&#x6307;&#x88AB;&#x66B4;&#x9732;&#x51FA;&#x6765;&#x4F5C;&#x4E3A;&#x53E5;&#x67C4;&#xFF08;&#x88AB;&#x62FF;&#x6765;&#x64CD;&#x4F5C;&#xFF09;</li>
+<li>&#x66B4;&#x9732;&#xFF1A;&#x66B4;&#x9732;&#x51FA;&#x6765;&#x4F5C;&#x4E3A;&#x7ED3;&#x679C;&#xFF08;&#x56E0;&#x6B64;&#x4E0D;&#x4F1A;&#x88AB;&#x6539;&#x53D8;&#xFF09;</li>
+</ul>
+</div>
+</li>
+<li><a id="org21fa356"></a>&#x6570;&#x636E;&#x7EF4;&#x5EA6; &#x4E0E; &#x7EF4;&#x5EA6;<br>
+<div class="outline-text-5" id="text-1-1-4-5">
+<ul class="org-ul">
+<li>&#x7EF4;&#x5EA6;&#xFF1A;&#x6307;&#x6570;&#x5B66;&#x610F;&#x4E49;&#x7684;&#x7EF4;&#x5EA6;</li>
+<li>&#x6570;&#x636E;&#x7EF4;&#x5EA6;&#xFF1A;&#x6307;&#x4E8C;&#x7EF4;&#x6570;&#x636E;&#x7684;&#x6570;&#x636E;&#x6846;&#x7684;&#x5217;&#x6570;</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org016707a" class="outline-4">
+<h4 id="org016707a"><span class="section-number-4">1.1.5</span> <span class="done DONE">DONE</span> Misc</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<ul class="org-ul">
+<li>&#x8FD4;&#x56DE;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x8FD4;&#x56DE;&#x4E0E;&#x539F;&#x5BF9;&#x8C61;&#x5F62;&#x72B6;&#xFF0C;&#x7EF4;&#x5EA6;&#x4E00;&#x81F4;&#x7684;&#x67D0;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>&#x540C;&#x4E0A;&#xFF1A;&#x662F;&#x6307;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#xFF0C;&#x4E92;&#x4E3A;&#x522B;&#x540D;&#x7684;&#x5173;&#x7CFB;</li>
+<li>&#x6CBF;&#x7740;&#x67D0;&#x4E2A;&#x65B9;&#x5411;&#xFF1A;&#x6307;&#x67D0;&#x4E2A;&#x65B9;&#x5411;&#x4E3A;&#x5F62;&#x6210;&#x7684;&#x5411;&#x91CF;&#x4E3A;&#x6574;&#x4F53;</li>
+<li>&#x4EE5;&#x4E0B;&#x53D9;&#x8FF0;&#x4E2D;&#x201C;&#x8FD4;&#x56DE;&#x201D;&#x4F1A;&#x51FA;&#x73B0;&#x5F88;&#x591A;&#x6B21;&#xFF0C;&#x5728;&#x4E0D;&#x5F15;&#x8D77;&#x8BEF;&#x89E3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F1A;&#x4F5C;&#x4EE5;&#x7701;&#x7565;</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8d9deed" class="outline-4">
+<h4 id="org8d9deed"><span class="section-number-4">1.1.6</span> <span class="todo TODO">TODO</span> &#x8BB0;&#x53F7;&#xFF1A;</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<ul class="org-ul">
+<li>[]&#xFF1A;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#x7684;&#x53C2;&#x6570;</li>
+<li>func&#xFF1A;&#x51FD;&#x6570;&#x5F15;&#x7528;</li>
+<li>axis&#xFF1A;&#x7EF4;&#x5EA6;&#x65B9;&#x5411;&#xFF1A; &#x4ECE; 0 &#x5230; n-1&#xFF1B; n &#x4E3A;&#x6570;&#x636E;&#x7684;&#x7EF4;&#x5EA6;&#xFF0C;&#x5728;&#x5E38;&#x89C1;&#x7684;&#x4E8C;&#x7EF4;&#x6570;&#x636E;&#x4E2D;&#xFF0C;0&#x662F;&#x6CBF;&#x7740;&#x5411;&#x91CF;&#x7684;&#x65B9;&#x5411;</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org682c1bb" class="outline-2">
+<h2 id="org682c1bb"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Pandas-API</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org905c004" class="outline-3">
+<h3 id="org905c004"><span class="section-number-3">2.1</span> Series</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orgfb59941" class="outline-4">
+<h4 id="orgfb59941"><span class="section-number-4">2.1.1</span> <span class="todo TODO">TODO</span> Constructor</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series([data, index, dtype, name, copy, &#x2026;])</td>
+<td class="org-left">&#x4E00;&#x7EF4;&#x5E26;&#x6709; label &#x7684;&#x6570;&#x7EC4;&#xFF08;&#x5305;&#x62EC;&#x65F6;&#x95F4;&#x5E8F;&#x5217;&#xFF09;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org3234661" class="outline-4">
+<h4 id="org3234661"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> Attributes</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.array</td>
+<td class="org-left">Series &#x5BF9;&#x8C61;&#x5E95;&#x5C42;&#x7684;&#x6570;&#x7EC4;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.values</td>
+<td class="org-left">Series &#x6570;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.dtype</td>
+<td class="org-left">&#x7C7B;&#x578B;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.shape</td>
+<td class="org-left">&#x5F62;&#x72B6;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.nbytes</td>
+<td class="org-left">&#x5360;&#x7528;&#x7A7A;&#x95F4;&#xFF08;&#x975E;&#x5E95;&#x5C42;&#x7A7A;&#x95F4;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.ndim</td>
+<td class="org-left">&#x7EF4;&#x5EA6;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.size</td>
+<td class="org-left">&#x5927;&#x5C0F;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.T</td>
+<td class="org-left">&#x8F6C;&#x7F6E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.memory<sub>usage</sub>([index, deep])</td>
+<td class="org-left">&#x5185;&#x5B58;&#x4F7F;&#x7528;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.hasnans</td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x662F;&#x5426;&#x6709; NaN &#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.empty</td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x662F;&#x5426;&#x4E3A;&#x7A7A;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.dtypes</td>
+<td class="org-left">&#x7C7B;&#x578B;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.name</td>
+<td class="org-left">&#x540D;&#x79F0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.flags</td>
+<td class="org-left">&#x5C5E;&#x6027;&#x6807;&#x5FD7;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.set<sub>flags</sub>(*[, copy, &#x2026;])</td>
+<td class="org-left">&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;&#x6807;&#x5FD7;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org9bc43e9" class="outline-4">
+<h4 id="org9bc43e9"><span class="section-number-4">2.1.3</span> <span class="todo TODO">TODO</span> Conversion</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+&#x4EE5;&#x4E0B;&#x7528;&#x5230;&#x4E86;&#x8F6C;&#x6362;&#x4E00;&#x6B21;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x6CA1;&#x6709;&#x5BF9;&#x539F;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8F6C;&#x6362;&#xFF0C;&#x53EA;&#x662F;&#x5C06;&#x5176;&#x526F;&#x672C;&#x8F6C;&#x6362;&#x5E76;&#x8FD4;&#x56DE;&#x3002;
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.astype(dtype[, copy, errors])</td>
+<td class="org-left">Cast a pandas object to a specified dtype dtype.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.convert<sub>dtypes</sub>([infer<sub>objects</sub>, &#x2026;])</td>
+<td class="org-left">Convert columns to best possible dtypes using dtypes supporting pd.NA.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.infer<sub>objects</sub>()</td>
+<td class="org-left">Attempt to infer better dtypes for object columns.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.copy([deep])</td>
+<td class="org-left">Make a copy of this object&#x2019;s indices and data.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.bool()</td>
+<td class="org-left">&#x5E03;&#x5C14; Series&#xFF08;&#x5FC5;&#x987B;&#x7531; False,True &#x8F6C;&#x6362;&#xFF1B;0,1 &#x4E5F;&#x4F1A;&#x51FA;&#x9519;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.to<sub>numpy</sub>([dtype, copy, na<sub>value</sub>])</td>
+<td class="org-left">&#x8F6C;&#x6362;&#x4E3A; numpy &#x6570;&#x7EC4;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.to<sub>period</sub>([freq, copy])</td>
+<td class="org-left">Convert Series from DatetimeIndex to PeriodIndex.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.to<sub>timestamp</sub>([freq, how, copy])</td>
+<td class="org-left">Cast to DatetimeIndex of Timestamps, at beginning of period.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.to<sub>list</sub>()</td>
+<td class="org-left">&#x8F6C;&#x6362;&#x4E3A; list</td>
+</tr>
+
+<tr>
+<td class="org-left">Series._<sub>array</sub>_<sub>([dtype])</sub></td>
+<td class="org-left">Return the values as a NumPy array.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org91a6db1" class="outline-4">
+<h4 id="org91a6db1"><span class="section-number-4">2.1.4</span> <span class="done DONE">DONE</span> &#x7D22;&#x5F15;&#xFF0C;&#x8FED;&#x4EE3;</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x540D;&#x79F0;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.get(key[, default])</td>
+<td class="org-left">&#x6839;&#x636E; key &#x7D22;&#x5F15;&#x6570;&#x636E;&#xFF0C;&#x597D;&#x5904;&#x5728;&#x4E8E;&#x4E0D;&#x4F1A;&#x629B;&#x51FA; KeyValue &#x5F02;&#x5E38;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.at</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x901A;&#x8FC7; label &#x7D22;&#x5F15;&#x4E00;&#x4E2A;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.iat</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x901A;&#x8FC7; int &#x9690;&#x5F0F;&#x7D22;&#x5F15;&#x4E00;&#x4E2A;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.loc</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x901A;&#x8FC7; index &#x7D22;&#x5F15;&#x4E00;&#x7EC4;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.iloc</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x901A;&#x8FC7; &#x6570;&#x7EC4; &#x9690;&#x5F0F;&#x7D22;&#x5F15;&#x4E00;&#x7EC4;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series._<sub>iter</sub>_<sub>()</sub></td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.items()</td>
+<td class="org-left">&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x4EE5;(key, value) &#x5F62;&#x5F0F;&#x8FED;&#x4EE3;&#x89C2;&#x6D4B;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.iteritems()</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.keys()</td>
+<td class="org-left">&#x8FD4;&#x56DE; Index</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.pop(item)</td>
+<td class="org-left">&#x629B;&#x51FA; &#x4E00;&#x4E2A;&#x5143;&#x7D20;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.item()</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x5143;&#x7D20;&#x4F5C;&#x4E3A;&#x6807;&#x91CF;&#xFF08;&#x53EA;&#x80FD;&#x7528;&#x4E8E;&#x53EA;&#x542B;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684; Series</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.xs(key[, axis, level, drop<sub>level</sub>])</td>
+<td class="org-left">&#x4EA4;&#x53C9;&#x7D22;&#x5F15;&#xFF08;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#xFF09;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1fb01e4" class="outline-4">
+<h4 id="org1fb01e4"><span class="section-number-4">2.1.5</span> <span class="done DONE">DONE</span> Binary operator functions</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.add(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s + o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.sub(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s - o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.mul(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s * o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.div(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s / o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.truediv(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s / o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.floordiv(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s / o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.mod(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s % o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.pow(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s ** o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.radd(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">o + s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rsub(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">o - s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rmul(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">o * s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rdiv(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">o / s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rtruediv(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">o / s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rfloordiv(other[, level, fill<sub>value</sub>, &#x2026;])</td>
+<td class="org-left">o / s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rmod(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">o % s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rpow(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">o ** s</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.combine(other, func[, fill<sub>value</sub>])</td>
+<td class="org-left">&#x878D;&#x5408;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; DataFrame &#x91CC;&#x7684; apply</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.combine<sub>first</sub>(other)</td>
+<td class="org-left">&#x6570;&#x636E;&#x6C99;&#x7B5B;&#xFF0C;&#x524D;&#x8005;&#x4E3A;&#x7B5B;&#xFF0C;&#x540E;&#x8005;&#x4E3A;&#x6C99;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.round([decimals])</td>
+<td class="org-left">&#x53D6;&#x5C0F;&#x6570;&#x4F4D;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.lt(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s &lt; o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.gt(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s &gt; o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.le(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s &lt;= o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.ge(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s &gt;= o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.ne(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s != o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.eq(other[, level, fill<sub>value</sub>, axis])</td>
+<td class="org-left">s == o</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.product([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8FDE;&#x4E58;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.dot(other)</td>
+<td class="org-left">&#x5167;&#x79EF;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org9a964e1" class="outline-4">
+<h4 id="org9a964e1"><span class="section-number-4">2.1.6</span> Apply &amp; GroupBy &amp; window</h4>
+<div class="outline-text-4" id="text-2-1-6">
+</div>
+<ol class="org-ol">
+<li><a id="org5fc5532"></a>Apply<br>
+<div class="outline-text-5" id="text-2-1-6-1">
+<p>
+transform &#x4E0E; apply &#x7684;&#x533A;&#x522B;&#xFF1A;
+</p>
+<ol class="org-ol">
+<li>transform &#x4E0D;&#x80FD;&#x7528;&#x4E8E;&#x805A;&#x5408;&#x6570;&#x636E;&#xFF1B;&#x800C; apply &#x53EF;&#x4EE5;
+transform &#x4F5C;&#x7528;&#x7684;&#x662F;&#x4F20;&#x5165;&#x6570;&#x636E;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x800C; apply &#x4F5C;&#x7528;&#x7684;&#x662F;&#x4F20;&#x5165;&#x6570;&#x636E;&#x7684;&#x6574;&#x4F53;</li>
+<li>transform &#x53EF;&#x4EE5;&#x4F20;&#x5165;&#x5355;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5B57;&#x7B26;&#x8868;&#x793A;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x7EC4;&#x6210;&#x7684;&#x5B57;&#x5178;&#xFF1B;&#x800C; apply &#x53EA;&#x80FD;&#x4F20;&#x5165;&#x5355;&#x4E2A;&#x51FD;&#x6570;&#xFF08;&#x800C;&#x4E14;&#x5FC5;&#x987B;&#x662F;&#x5F15;&#x7528;&#xFF09;</li>
+<li>transform &#x4E00;&#x6B21;&#x53EA;&#x80FD;&#x4F5C;&#x7528;&#x5728;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x4E4B;&#x4E0A;&#xFF1B;&#x800C; apply &#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x4F5C;&#x7528;&#x591A;&#x4E2A;&#x5411;&#x91CF;</li>
+</ol>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.apply(func[,convert<sub>dtype</sub>, args])</td>
+<td class="org-left">Apply</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.agg([func, axis])</td>
+<td class="org-left">&#x805A;&#x5408;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.aggregate([func, axis])</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.transform(func[, axis])</td>
+<td class="org-left">&#x8F6C;&#x6362;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.map(arg[, na<sub>action</sub>])</td>
+<td class="org-left">&#x5BF9; Series &#x6620;&#x5C04;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="orgbf44932"></a>GroupBy<br>
+<div class="outline-text-5" id="text-2-1-6-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.GroupBy([by, axis, level, as<sub>index</sub>,&#x2026;])</td>
+<td class="org-left">&#x6839;&#x636E;&#x67D0;&#x79CD;&#x6761;&#x4EF6;&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5206;&#x7EC4;&#x5BF9;&#x8C61;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="orgbcfe8ff"></a>window<br>
+<div class="outline-text-5" id="text-2-1-6-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.rolling(window[, min<sub>periods</sub>,&#x2026;])</td>
+<td class="org-left">&#x540C;&#x6B65;&#x7A97;&#x53E3;&#x8FD0;&#x7B97;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.expanding([min<sub>periods,center,axis</sub>])</td>
+<td class="org-left">&#x5F02;&#x6B65;&#x7A97;&#x53E3;&#x8FD0;&#x7B97;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.ewm([com, span, halflige, alpha,&#x2026;])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.pipe(func, *args, **kwaargs)</td>
+<td class="org-left">&#x7C7B;&#x4F3C; unix &#x4E0B;&#x7684; pipe</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgd2402dc" class="outline-4">
+<h4 id="orgd2402dc"><span class="section-number-4">2.1.7</span> <span class="todo TODO">TODO</span> &#x6570;&#x7406;/&#x63CF;&#x8FF0;&#x7EDF;&#x8BA1;&#x76F8;&#x5173;</h4>
+<div class="outline-text-4" id="text-2-1-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.abs()</td>
+<td class="org-left">&#x7EDD;&#x5BF9;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.all([axis, bool<sub>only</sub>, skipna, level])</td>
+<td class="org-left">all</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.any([axis, bool<sub>only</sub>, skipna, level])</td>
+<td class="org-left">any</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.autocorr([lag])</td>
+<td class="org-left">&#x81EA;&#x76F8;&#x5173;&#x7CFB;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.between(left, right[, inclusive])</td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x6570;&#x503C;&#x662F;&#x5426;&#x5728;&#x533A;&#x95F4;&#x5185;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.clip([lower, upper, axis, inplace])</td>
+<td class="org-left">Trim values at input threshold(s).</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.corr(other[, method, min<sub>periods</sub>])</td>
+<td class="org-left">&#x76F8;&#x5173;&#x7CFB;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.count([level])</td>
+<td class="org-left">&#x975E; NaN &#x6570;&#x636E;&#x7684;&#x4E2A;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.cov(other[, min<sub>periods</sub>, ddof])</td>
+<td class="org-left">&#x534F;&#x65B9;&#x5DEE;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.cummax([axis, skipna])</td>
+<td class="org-left">&#x6700;&#x5927;&#x503C;&#x7D2F;&#x8BA1;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.cummin([axis, skipna])</td>
+<td class="org-left">&#x6700;&#x5C0F;&#x503C;&#x7D2F;&#x8BA1;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.cumprod([axis, skipna])</td>
+<td class="org-left">&#x7D2F;&#x4E58;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.cumsum([axis, skipna])</td>
+<td class="org-left">&#x7D2F;&#x52A0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.describe([percentiles, include, &#x2026;])</td>
+<td class="org-left">&#x63CF;&#x8FF0;&#x6027;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.diff([periods])</td>
+<td class="org-left">&#x4F5C;&#x5DEE;&#x5206;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.factorize([sort, na<sub>sentinel</sub>])</td>
+<td class="org-left">&#x56E0;&#x5B50;&#x5316;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.kurt([axis, skipna, level, numeric<sub>only</sub>])</td>
+<td class="org-left">&#x65E0;&#x504F;&#x5CF0;&#x5EA6;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.mad([axis, skipna, level])</td>
+<td class="org-left">&#x5747;&#x503C;&#x7EDD;&#x5BF9;&#x504F;&#x5DEE;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.max([axis, skipna, level, numeric<sub>only</sub>])</td>
+<td class="org-left">&#x6700;&#x5927;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.mean([axis, skipna, level, numeric<sub>only</sub>])</td>
+<td class="org-left">&#x5E73;&#x5747;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.median([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x4E2D;&#x4F4D;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.min([axis, skipna, level, numeric<sub>only</sub>])</td>
+<td class="org-left">&#x6700;&#x5C0F;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.mode([dropna])</td>
+<td class="org-left">Return the mode(s) of the Series.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.nlargest([n, keep])</td>
+<td class="org-left">&#x6700;&#x5927;&#x7684; n &#x4E2A;&#x6570;&#x5B57;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.nsmallest([n, keep])</td>
+<td class="org-left">&#x6700;&#x5C0F;&#x7684; n &#x6570;&#x5B57;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.pct<sub>change</sub>([periods, fill<sub>method</sub>, &#x2026;])</td>
+<td class="org-left">Percentage change between the current and a prior element.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.prod([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8FDE;&#x4E58;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.quantile([q, interpolation])</td>
+<td class="org-left">&#x5206;&#x4F4D;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rank([axis, method, numeric<sub>only</sub>, &#x2026;])</td>
+<td class="org-left">&#x79E9;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.sem([axis, skipna, level, ddof, &#x2026;])</td>
+<td class="org-left">&#x6807;&#x51C6;&#x5DEE;&#x7684;&#x65E0;&#x504F;&#x4F30;&#x8BA1;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.skew([axis, skipna, level, numeric<sub>only</sub>])</td>
+<td class="org-left">&#x65E0;&#x504F;&#x504F;&#x5EA6;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.std([axis, skipna, level, ddof, &#x2026;])</td>
+<td class="org-left">&#x6837;&#x672C;&#x6807;&#x51C6;&#x5DEE;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.sum([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x603B;&#x548C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.var([axis, skipna, level, ddof, &#x2026;])</td>
+<td class="org-left">&#x65B9;&#x5DEE;&#x7684;&#x65E0;&#x504F;&#x4F30;&#x8BA1;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.kurtosis([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x5CF0;&#x5EA6;&#x65E0;&#x504F;&#x4F30;&#x8BA1;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.unique()</td>
+<td class="org-left">&#x8FD4;&#x56DE; unique &#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.nunique([dropna])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x975E; unique &#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.is<sub>unique</sub></td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x662F;&#x5426;&#x5168;&#x4E3A; unique &#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.is<sub>monotonic</sub></td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x662F;&#x5426;&#x5355;&#x589E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.is<sub>monotonic</sub><sub>increasing</sub></td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x662F;&#x5426;&#x5355;&#x589E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.is<sub>monotonic</sub><sub>decreasing</sub></td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x662F;&#x5426;&#x5355;&#x51CF;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.value<sub>counts</sub>([normalize, sort, &#x2026;])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; unique Series, &#x7EDF;&#x8BA1;&#x9891;&#x6570;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orga68f712" class="outline-4">
+<h4 id="orga68f712"><span class="section-number-4">2.1.8</span> <span class="todo TODO">TODO</span> &#x91CD;&#x7D22;&#x5F15;/&#x9009;&#x62E9;/&#x6807;&#x8BB0;</h4>
+<div class="outline-text-4" id="text-2-1-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.align(other[, join, axis, level, &#x2026;])</td>
+<td class="org-left">&#x5BF9;&#x9F50;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.drop([labels, axis, index, columns, &#x2026;])</td>
+<td class="org-left">&#x4E22;&#x5F03;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.droplevel(level[, axis])</td>
+<td class="org-left">&#x9488;&#x5BF9;&#x591A;&#x7D22;&#x5F15; Series &#x4E22;&#x5F03;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.drop<sub>duplicates</sub>([keep, inplace])</td>
+<td class="org-left">&#x4E22;&#x5F03;&#x91CD;&#x590D;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.duplicated([keep])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5E03;&#x5C14;&#x5411;&#x91CF;&#xFF0C;&#x7528;&#x4E8E;&#x8868;&#x793A;&#x91CD;&#x590D;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.equals(other)</td>
+<td class="org-left">&#x7528;&#x4E8E;&#x6BD4;&#x8F83;&#x4E24;&#x4E2A; Series &#x662F;&#x5426;&#x76F8;&#x7B49;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.first(offset)</td>
+<td class="org-left">&#x5BF9;&#x4E8E;&#x65F6;&#x5E8F;&#x6570;&#x636E;&#xFF0C;&#x9009;&#x62E9;&#x524D;&#x82E5;&#x5E72;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.head([n])</td>
+<td class="org-left">&#x9009;&#x62E9;&#x524D;&#x82E5;&#x5E72;&#x9879;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.idxmax([axis, skipna])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x6700;&#x5927;&#x503C;&#x7684; label</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.idxmin([axis, skipna])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x6700;&#x5C0F;&#x503C;&#x7684; label</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.isin(values)</td>
+<td class="org-left">&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5E03;&#x5C14;&#x5411;&#x91CF;&#xFF0C;&#x7528;&#x4E8E;&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5728;&#x5217;&#x8868;&#x91CC;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.last(offset)</td>
+<td class="org-left">&#x53C2;&#x8003; first</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.reindex([index])</td>
+<td class="org-left">&#x66F4;&#x6362; index&#xFF0C;&#x6570;&#x636E;&#x4F1A;&#x8DDF;&#x7740;&#x53D8;&#x52A8;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.reindex<sub>like</sub>(other[, method, copy, &#x2026;])</td>
+<td class="org-left">&#x8F93;&#x5165;&#x4E3A;&#x5176;&#x4ED6;&#x7C7B;&#x4F3C;&#x53EF;&#x4EE5;&#x8F6C;&#x6362;&#x4E3A; index &#x7684;&#x5BF9;&#x8C61;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rename([index, axis, copy, inplace, &#x2026;])</td>
+<td class="org-left">&#x8F93;&#x5165;&#x4E3A;&#x6807;&#x91CF;&#x65F6;&#xFF0C;&#x66F4;&#x6539; Series &#x7684;&#x540D;&#x79F0;&#xFF1B;&#x8F93;&#x5165;&#x4E3A;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x66F4;&#x6539; index&#xFF1B;&#x8F93;&#x5165;&#x4E3A;&#x6620;&#x5C04;&#x65F6;&#xFF0C;&#x66F4;&#x6539; index</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.rename<sub>axis</sub>([mapper, index, columns, &#x2026;])</td>
+<td class="org-left">&#x66F4;&#x6539;&#x5750;&#x6807;&#x8F74;&#x7684;&#x540D;&#x79F0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.reset<sub>index</sub>([level, drop, name, inplace])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.sample([n, frac, replace, weights, &#x2026;])</td>
+<td class="org-left">&#x62BD;&#x6837;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.set<sub>axis</sub>(labels[, axis, inplace])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.take(indices[, axis, is<sub>copy</sub>])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.tail([n])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; unix &#x4E0B;&#x7684; tail</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.truncate([before, after, axis, copy])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.where(cond[, other, inplace, axis, &#x2026;])</td>
+<td class="org-left">&#x7B5B;&#x9009;&#xFF0C;&#x5C06; True &#x90E8;&#x5206;&#x66B4;&#x9732;&#x51FA;&#x6765;&#xFF1B;&#x540E;&#x7EED;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x505A;&#x66FF;&#x6362;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.mask(cond[, other, inplace, axis, &#x2026;])</td>
+<td class="org-left">&#x7B5B;&#x9009;&#xFF0C;&#x5C06; True &#x90E8;&#x5206;&#x906E;&#x76D6;&#x6389;&#xFF1B;&#x540E;&#x7EED;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x66FF;&#x6362;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.add<sub>prefix</sub>(prefix)</td>
+<td class="org-left">&#x7ED9;&#x6807;&#x7B7E;&#x589E;&#x52A0;&#x524D;&#x7F00;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.add<sub>suffix</sub>(suffix)</td>
+<td class="org-left">&#x7ED9;&#x6807;&#x7B7E;&#x589E;&#x52A0;&#x540E;&#x7F00;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.filter([items, like, regex, axis])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgb51b57d" class="outline-4">
+<h4 id="orgb51b57d"><span class="section-number-4">2.1.9</span> <span class="done DONE">DONE</span> &#x7F3A;&#x5931;&#x6570;&#x636E;&#x5904;&#x7406;</h4>
+<div class="outline-text-4" id="text-2-1-9">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.backfill([axis, inplace, limit, downcast])</td>
+<td class="org-left">&#x5411;&#x540E;&#x586B;&#x8865;&#xFF0C;&#x53C2;&#x8003; DataFrame.fillna()</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.bfill([axis, inplace, limit, downcast])</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.dropna([axis, inplace, how])</td>
+<td class="org-left">&#x4E22;&#x5F03;&#x7F3A;&#x5931;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.ffill([axis, inplace, limit, downcast])</td>
+<td class="org-left">&#x5411;&#x524D;&#x586B;&#x8865;&#xFF0C;&#x53C2;&#x8003; DataFrame.fillna()</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.fillna([value, method, axis, &#x2026;])</td>
+<td class="org-left">&#x901A;&#x7528;&#x51FD;&#x6570;&#xFF0C;&#x6307;&#x5B9A;&#x65B9;&#x6CD5;&#xFF0C;&#x586B;&#x8865;&#x7F3A;&#x5931;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.interpolate([method, axis, limit, &#x2026;])</td>
+<td class="org-left">&#x4F7F;&#x7528;&#x63D2;&#x503C;&#x7684;&#x65B9;&#x6CD5;&#x586B;&#x8865;&#x4E22;&#x5931;&#x6570;&#x636E; TODO</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.isna()</td>
+<td class="org-left">bool &#x6570;&#x636E;&#x6846;&#xFF0C;&#x6307;&#x660E;&#x662F;&#x5426;&#x4E3A;&#x7F3A;&#x5931;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.isnull()</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.notna()</td>
+<td class="org-left">bool &#x6570;&#x636E;&#x6846;&#xFF0C;&#x6307;&#x660E;&#x662F;&#x5426;&#x4E0D;&#x4E3A;&#x7F3A;&#x5931;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.notnull()</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.pad([axis, inplace, limit, downcast])</td>
+<td class="org-left">&#x4E0E; DataFrame.fillna() &#x4F7F;&#x7528;&#x65B9;&#x6CD5; &apos;ffill&apos; &#x540C;&#x4E49;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.replace([to<sub>replace</sub>, value, inplace, &#x2026;])</td>
+<td class="org-left">&#x6570;&#x636E;&#x66FF;&#x6362;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org5f72926" class="outline-4">
+<h4 id="org5f72926"><span class="section-number-4">2.1.10</span> <span class="todo TODO">TODO</span> &#x91CD;&#x5851;&#xFF0C;&#x6392;&#x5E8F;</h4>
+<div class="outline-text-4" id="text-2-1-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.argsort([axis, kind, order])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.argmin([axis, skipna])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.argmax([axis, skipna])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.reorder<sub>levels</sub>(order)</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.sort<sub>values</sub>([axis, ascending, &#x2026;])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.sort<sub>index</sub>([axis, level, ascending, &#x2026;])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.swaplevel([i, j, copy])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.unstack([level, fill<sub>value</sub>])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.explode([ignore<sub>index</sub>])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.searchsorted(value[, side, sorter])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.ravel([order])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.repeat(repeats[, axis])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.squeeze([axis])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.view([dtype])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org914d63c" class="outline-4">
+<h4 id="org914d63c"><span class="section-number-4">2.1.11</span> <span class="done DONE">DONE</span> &#x7EC4;&#x5408;</h4>
+<div class="outline-text-4" id="text-2-1-11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.append(to<sub>append</sub>[, ignore<sub>index</sub>, &#x2026;])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; list</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.compare(other[, align<sub>axis</sub>, &#x2026;])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5408;&#x5E76;&#x7684;&#x6570;&#x636E;&#x6765;&#x6BD4;&#x8F83; self &#x4E0E; other</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.update(other)</td>
+<td class="org-left">&#x66F4;&#x65B0;&#x6570;&#x636E;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1513939" class="outline-4">
+<h4 id="org1513939"><span class="section-number-4">2.1.12</span> <span class="todo TODO">TODO</span> &#x63A5;&#x53E3;</h4>
+<div class="outline-text-4" id="text-2-1-12">
+</div>
+<ol class="org-ol">
+<li><a id="org489d347"></a>&#x65F6;&#x95F4;<br></li>
+<li><a id="orgad5600e"></a><span class="todo TODO">TODO</span> &#x5B57;&#x7B26;&#x4E32;<br>
+<div class="outline-text-5" id="text-2-1-12-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Series.str.capitalize()</td>
+<td class="org-left">Convert strings in the Series/Index to be capitalized.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.casefold()</td>
+<td class="org-left">Convert strings in the Series/Index to be casefolded.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.cat([others, sep, na<sub>rep</sub>, join])</td>
+<td class="org-left">Concatenate strings in the Series/Index with given separator.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.center(width[, fillchar])</td>
+<td class="org-left">Pad left and right side of strings in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.contains(pat[, case, flags, na, &#x2026;])</td>
+<td class="org-left">Test if pattern or regex is contained within a string of a Series or Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.count(pat[, flags])</td>
+<td class="org-left">Count occurrences of pattern in each string of the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.decode(encoding[, errors])</td>
+<td class="org-left">Decode character string in the Series/Index using indicated encoding.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.encode(encoding[, errors])</td>
+<td class="org-left">Encode character string in the Series/Index using indicated encoding.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.endswith(pat[, na])</td>
+<td class="org-left">Test if the end of each string element matches a pattern.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.extract(pat[, flags, expand])</td>
+<td class="org-left">Extract capture groups in the regex pat as columns in a DataFrame.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.extractall(pat[, flags])</td>
+<td class="org-left">Extract capture groups in the regex pat as columns in DataFrame.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.find(sub[, start, end])</td>
+<td class="org-left">Return lowest indexes in each strings in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.findall(pat[, flags])</td>
+<td class="org-left">Find all occurrences of pattern or regular expression in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.get(i)</td>
+<td class="org-left">Extract element from each component at specified position.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.index(sub[, start, end])</td>
+<td class="org-left">Return lowest indexes in each string in Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.join(sep)</td>
+<td class="org-left">Join lists contained as elements in the Series/Index with passed delimiter.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.len()</td>
+<td class="org-left">Compute the length of each element in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.ljust(width[, fillchar])</td>
+<td class="org-left">Pad right side of strings in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.lower()</td>
+<td class="org-left">Convert strings in the Series/Index to lowercase.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.lstrip([to<sub>strip</sub>])</td>
+<td class="org-left">Remove leading characters.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.match(pat[, case, flags, na])</td>
+<td class="org-left">Determine if each string starts with a match of a regular expression.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.normalize(form)</td>
+<td class="org-left">Return the Unicode normal form for the strings in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.pad(width[, side, fillchar])</td>
+<td class="org-left">Pad strings in the Series/Index up to width.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.partition([sep, expand])</td>
+<td class="org-left">Split the string at the first occurrence of sep.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.repeat(repeats)</td>
+<td class="org-left">Duplicate each string in the Series or Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.replace(pat, repl[, n, case, &#x2026;])</td>
+<td class="org-left">Replace each occurrence of pattern/regex in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.rfind(sub[, start, end])</td>
+<td class="org-left">Return highest indexes in each strings in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.rindex(sub[, start, end])</td>
+<td class="org-left">Return highest indexes in each string in Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.rjust(width[, fillchar])</td>
+<td class="org-left">Pad left side of strings in the Series/Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.rpartition([sep, expand])</td>
+<td class="org-left">Split the string at the last occurrence of sep.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.rstrip([to<sub>strip</sub>])</td>
+<td class="org-left">Remove trailing characters.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.slice([start, stop, step])</td>
+<td class="org-left">Slice substrings from each element in the Series or Index.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.slice<sub>replace</sub>([start, stop, repl])</td>
+<td class="org-left">Replace a positional slice of a string with another value.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.split([pat, n, expand])</td>
+<td class="org-left">Split strings around given separator/delimiter.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.rsplit([pat, n, expand])</td>
+<td class="org-left">Split strings around given separator/delimiter.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.startswith(pat[, na])</td>
+<td class="org-left">Test if the start of each string element matches a pattern.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.strip([to<sub>strip</sub>])</td>
+<td class="org-left">Remove leading and trailing characters.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.swapcase()</td>
+<td class="org-left">Convert strings in the Series/Index to be swapcased.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.title()</td>
+<td class="org-left">Convert strings in the Series/Index to titlecase.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.translate(table)</td>
+<td class="org-left">Map all characters in the string through the given mapping table.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.upper()</td>
+<td class="org-left">Convert strings in the Series/Index to uppercase.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.wrap(width, **kwargs)</td>
+<td class="org-left">Wrap strings in Series/Index at specified line width.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.zfill(width)</td>
+<td class="org-left">Pad strings in the Series/Index by prepending &#x2018;0&#x2019; characters.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.isalnum()</td>
+<td class="org-left">Check whether all characters in each string are alphanumeric.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.isalpha()</td>
+<td class="org-left">Check whether all characters in each string are alphabetic.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.isdigit()</td>
+<td class="org-left">Check whether all characters in each string are digits.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.isspace()</td>
+<td class="org-left">Check whether all characters in each string are alphanumeric.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.islower()</td>
+<td class="org-left">Check whether all characters in each string are lowercase.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.isupper()</td>
+<td class="org-left">Check whether all characters in each string are uppercase.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.istitle()</td>
+<td class="org-left">Check whether all characters in each string are titlecase.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.isnumeric()</td>
+<td class="org-left">Check whether all characters in each string are numeric.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.isdecimal()</td>
+<td class="org-left">Check whether all characters in each string are decimal.</td>
+</tr>
+
+<tr>
+<td class="org-left">Series.str.get<sub>dummies</sub>([sep])</td>
+<td class="org-left">Return DataFrame of dummy/indicator variables for Series.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="orgb01c623"></a>&#x7C7B;&#x522B;<br></li>
+<li><a id="orgaf87dc2"></a>&#x5206;&#x9694;&#x7B26;&#xFF1F;<br></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org9a77343" class="outline-3">
+<h3 id="org9a77343"><span class="section-number-3">2.2</span> Pandas</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org21f7e32" class="outline-4">
+<h4 id="org21f7e32"><span class="section-number-4">2.2.1</span> &#x6784;&#x9020;&#x5668; Constructor</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame([data, index, columns, dtype, copy])</td>
+<td class="org-left">Two-dimensional, size-mutable, potentially heterogeneous tabular data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org6e00d20" class="outline-4">
+<h4 id="org6e00d20"><span class="section-number-4">2.2.2</span> <span class="done DONE">DONE</span> &#x5C5E;&#x6027; Attributes and underlying data</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.index</td>
+<td class="org-left">index</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.columns</td>
+<td class="org-left">columns</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.dtypes</td>
+<td class="org-left">&#x7C7B;&#x578B;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.info([verbose, buf, max<sub>cols</sub>, &#x2026;])</td>
+<td class="org-left">&#x4FE1;&#x606F;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.select<sub>dtypes</sub>([include, exclude])</td>
+<td class="org-left">&#x4F20;&#x5165;&#x7C7B;&#x578B;&#xFF0C;&#x8FD4;&#x56DE; columns &#x4E2D;&#x548C;&#x4F20;&#x5165;&#x7C7B;&#x578B;&#x4E00;&#x81F4;&#x7684;&#x5B50;&#x96C6;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.values</td>
+<td class="org-left">&#x6570;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.axes</td>
+<td class="org-left">&#x5750;&#x6807;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.ndim</td>
+<td class="org-left">&#x7EF4;&#x5EA6;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.size</td>
+<td class="org-left">&#x5927;&#x5C0F;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.shape</td>
+<td class="org-left">&#x5F62;&#x72B6;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.memory<sub>usage</sub>([index, deep])</td>
+<td class="org-left">&#x5185;&#x5B58;&#x4F7F;&#x7528;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.empty</td>
+<td class="org-left">&#x5E03;&#x5C14;&#xFF0C;&#x662F;&#x5426;&#x4E3A;&#x7A7A;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.set<sub>flags</sub>(*[, copy, &#x2026;])</td>
+<td class="org-left">&#x8BBE;&#x7F6E;&#x6570;&#x636E;&#x8868;&#x7684;&#x5143;&#x6570;&#x636E;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgd9d4f24" class="outline-4">
+<h4 id="orgd9d4f24"><span class="section-number-4">2.2.3</span> <span class="done DONE">DONE</span> &#x8F6C;&#x6362; Conversion</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.astype(dtype[, copy, errors])</td>
+<td class="org-left">&#x624B;&#x52A8;&#x66F4;&#x6539;&#x6570;&#x636E;&#x7C7B;&#x578B;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.convert<sub>dtypes</sub>([infer<sub>objects</sub>, &#x2026;])</td>
+<td class="org-left">&#x81EA;&#x52A8;&#x8C03;&#x6574;&#x6BCF;&#x5217;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5E76;&#x7EDF;&#x4E00; Na</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.infer<sub>objects</sub>()</td>
+<td class="org-left">&#x5C1D;&#x8BD5;&#x66F4;&#x65B0;&#x66F4;&#x9002;&#x5E94;&#x7684;&#x7C7B;&#x578B;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.copy([deep])</td>
+<td class="org-left">&#x6DF1;&#x6D45;&#x62F7;&#x8D1D;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.bool()</td>
+<td class="org-left">&#x4EC5;&#x5BF9;&#x5177;&#x6709;&#x5355;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x6570;&#x636E;&#x6846;&#x8D77;&#x4F5C;&#x7528;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1d6a15f" class="outline-4">
+<h4 id="org1d6a15f"><span class="section-number-4">2.2.4</span> <span class="done DONE">DONE</span> &#x7D22;&#x5F15;&#xFF0C;&#x8FED;&#x4EE3;</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.head([n])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; unix &#x4E0B;&#x7684; head &#x547D;&#x4EE4;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.at</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x6839;&#x636E; label &#x8FD4;&#x56DE;&#x4E00;&#x6761;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.iat</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x6839;&#x636E; int &#x8FD4;&#x56DE;&#x4E00;&#x6761;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.loc</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x6839;&#x636E; label &#x8FD4;&#x56DE;&#x4E00;&#x7EC4;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.iloc</td>
+<td class="org-left">&#x63A5;&#x53E3;&#xFF0C;&#x6839;&#x636E; int &#x8FD4;&#x56DE;&#x4E00;&#x7EC4;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.insert(loc, column, value[, &#x2026;])</td>
+<td class="org-left">&#x63D2;&#x5165;&#x4E00;&#x5217;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame._<sub>iter</sub>_<sub>()</sub></td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; label &#x7684;&#x8FED;&#x4EE3;&#x5668;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.items()</td>
+<td class="org-left">&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x4EE5; tuple &#x5F62;&#x5F0F;&#x8FED;&#x4EE3;&#x5217;&#x5411;&#x91CF;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.iteritems()</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.keys()</td>
+<td class="org-left">&#x8FD4;&#x56DE; Index</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.iterrows()</td>
+<td class="org-left">&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x4EE5; tuple &#x5F62;&#x5F0F;&#x8FED;&#x4EE3;&#x89C2;&#x6D4B;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.itertuples([index, name])</td>
+<td class="org-left">&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x4EE5; named tuple &#x5F62;&#x5F0F;&#x8FED;&#x4EE3;&#x89C2;&#x6D4B;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.lookup(row<sub>labels</sub>, col<sub>labels</sub>)</td>
+<td class="org-left">&#xFF08;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF09;&#x57FA;&#x4E8E; label &#x7684;&#x82B1;&#x54E8;&#x7D22;&#x5F15;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.pop(item)</td>
+<td class="org-left">&#x5F39;&#x51FA;&#x5411;&#x91CF;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.tail([n])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; unix &#x4E0B;&#x7684; tail &#x547D;&#x4EE4;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.xs(key[, axis, level, drop<sub>level</sub>])</td>
+<td class="org-left">&#x4EA4;&#x53C9;&#x7D22;&#x5F15;&#xFF08;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.get(key[, default])</td>
+<td class="org-left">&#x4F20;&#x5165; key,&#x8FD4;&#x56DE;&#x5411;&#x91CF;&#xFF08;&#x597D;&#x5904;&#x5728;&#x4E8E;&#x4E0D;&#x4F1A;&#x629B;&#x51FA; valueError&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.isin(values)</td>
+<td class="org-left">&#x4F20;&#x5165;&#x7C7B;&#x4F3C;&#x5217;&#x8868;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x8FD4;&#x56DE; bool &#x6570;&#x636E;&#x6846;&#xFF0C;&#x8868;&#x793A;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5728;&#x5217;&#x8868;&#x5185;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.where(cond[, other, inplace, &#x2026;])</td>
+<td class="org-left">&#x7B5B;&#x9009;&#xFF0C;&#x5C06; True &#x90E8;&#x5206;&#x66B4;&#x9732;&#x51FA;&#x6765;&#xFF1B;&#x540E;&#x7EED;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x505A;&#x66FF;&#x6362;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.mask(cond[, other, inplace, axis, &#x2026;])</td>
+<td class="org-left">&#x7B5B;&#x9009;&#xFF0C;&#x5C06; True &#x90E8;&#x5206;&#x906E;&#x76D6;&#x6389;&#xFF1B;&#x540E;&#x7EED;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x66FF;&#x6362;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.query(expr[, inplace])</td>
+<td class="org-left">&#x63D0;&#x4F9B;&#x7C7B;&#x4F3C; SQL &#x8BED;&#x8A00;&#x7684;&#x67E5;&#x8BE2;&#xFF08;&#x9009;&#x62E9;&#xFF09;&#x63A5;&#x53E3;&#xFF1B;&#x540E;&#x7EED;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x66FF;&#x6362;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgf2208dd" class="outline-4">
+<h4 id="orgf2208dd"><span class="section-number-4">2.2.5</span> <span class="todo TODO">TODO</span> &#x4E8C;&#x5143;&#x64CD;&#x4F5C;&#x51FD;&#x6570;</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+&#x8981;&#x6CE8;&#x610F;&#x6570;&#x636E;&#x5E7F;&#x64AD;&#x7684;&#x89C4;&#x5219;
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.add(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">d + o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sub(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">d - o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.mul(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">d * o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.div(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">d / o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.truediv(other[, axis, level, &#x2026;])</td>
+<td class="org-left">d / o &#x771F;&#x5B9E;&#x7248;&#x672C;&#xFF08;&#x6D6E;&#x70B9;&#x6570;&#x7248;&#x672C;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.floordiv(other[, axis, level, &#x2026;])</td>
+<td class="org-left">d / o &#x5411;&#x4E0B;&#x53D6;&#x6574;&#x7248;&#x672C;&#xFF08;&#x6574;&#x578B;&#x6570;&#x7248;&#x672C;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.mod(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">d % o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.pow(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">d ** o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.dot(other)</td>
+<td class="org-left">&#x5167;&#x79EF;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.radd(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">o + d</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rsub(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">o - d</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rmul(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">o * d</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rdiv(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">o / d</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rtruediv(other[, axis, level, &#x2026;])</td>
+<td class="org-left">o / d &#x771F;&#x5B9E;&#x7248;&#x672C;&#xFF08;&#x6D6E;&#x70B9;&#x6570;&#x7248;&#x672C;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rfloordiv(other[, axis, level, &#x2026;])</td>
+<td class="org-left">o / d &#x5411;&#x4E0B;&#x53D6;&#x6574;&#x7248;&#x672C;&#xFF08;&#x6574;&#x578B;&#x6570;&#x7248;&#x672C;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rmod(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">o  %   d</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rpow(other[, axis, level, fill<sub>value</sub>])</td>
+<td class="org-left">o **  d</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.lt(other[, axis, level])</td>
+<td class="org-left">d &lt; o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.gt(other[, axis, level])</td>
+<td class="org-left">d &gt; o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.le(other[, axis, level])</td>
+<td class="org-left">d &lt;= o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.ge(other[, axis, level])</td>
+<td class="org-left">d &gt;= o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.ne(other[, axis, level])</td>
+<td class="org-left">d != o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.eq(other[, axis, level])</td>
+<td class="org-left">d == o</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.combine(other, func[, fill<sub>value</sub>, &#x2026;])</td>
+<td class="org-left">&#x53CC;&#x8868;&#x878D;&#x5408;&#xFF0C;&#x7C7B;&#x4F3C;&#x6570;&#x636E;&#x6846;&#x5C42;&#x7EA7;&#x7684; apply</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.combine<sub>first</sub>(other)</td>
+<td class="org-left">&#x6570;&#x636E;&#x6C99;&#x7B5B;&#xFF0C;&#x524D;&#x8005;&#x4E3A;&#x7B5B;&#xFF0C;&#x540E;&#x8005;&#x4E3A;&#x6C99;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+&#x6570;&#x636E;&#x6C99;&#x7B5B;&#xFF1A;
+</p>
+</div>
+</div>
+<div id="outline-container-orge7023a9" class="outline-4">
+<h4 id="orge7023a9"><span class="section-number-4">2.2.6</span> Apply &amp; GroupBy &amp; window</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<p>
+transform &#x4E0E; apply &#x7684;&#x533A;&#x522B;&#xFF1A;
+</p>
+<ol class="org-ol">
+<li>transform &#x4E0D;&#x80FD;&#x7528;&#x4E8E;&#x805A;&#x5408;&#x6570;&#x636E;&#xFF1B;&#x800C; apply &#x53EF;&#x4EE5;
+transform &#x4F5C;&#x7528;&#x7684;&#x662F;&#x4F20;&#x5165;&#x6570;&#x636E;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x800C; apply &#x4F5C;&#x7528;&#x7684;&#x662F;&#x4F20;&#x5165;&#x6570;&#x636E;&#x7684;&#x6574;&#x4F53;</li>
+<li>transform &#x53EF;&#x4EE5;&#x4F20;&#x5165;&#x5355;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5B57;&#x7B26;&#x8868;&#x793A;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x7EC4;&#x6210;&#x7684;&#x5B57;&#x5178;&#xFF1B;&#x800C; apply &#x53EA;&#x80FD;&#x4F20;&#x5165;&#x5355;&#x4E2A;&#x51FD;&#x6570;&#xFF08;&#x800C;&#x4E14;&#x5FC5;&#x987B;&#x662F;&#x5F15;&#x7528;&#xFF09;</li>
+<li>transform &#x4E00;&#x6B21;&#x53EA;&#x80FD;&#x4F5C;&#x7528;&#x5728;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x4E4B;&#x4E0A;&#xFF1B;&#x800C; apply &#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x4F5C;&#x7528;&#x591A;&#x4E2A;&#x5411;&#x91CF;</li>
+</ol>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgee103ee"></a><span class="done DONE">DONE</span> Apply<br>
+<div class="outline-text-5" id="text-2-2-6-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.apply(func[, axis, raw, &#x2026;])</td>
+<td class="org-left">&#x5E94;&#x7528;&#xFF0C;&#x9ED8;&#x8BA4;&#x4F20;&#x5165;&#x7684;&#x662F;&#x6307;&#x5B9A;&#x65B9;&#x5411;&#x7684;&#x5411;&#x91CF;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.applymap(func[, na<sub>action</sub>])</td>
+<td class="org-left">&#x5E94;&#x7528;&#xFF0C;&#x9ED8;&#x8BA4;&#x4F20;&#x5165;&#x7684;&#x662F;&#x5143;&#x7D20;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.pipe(func, *args, **kwargs)</td>
+<td class="org-left">&#x7C7B;&#x4F3C; unix &#x4E0B;&#x7684; pipe;&#x7C7B;&#x4F3C; R &#x4E2D;&#x7684; %&gt;%&#xFF1B;&#x7C7B;&#x4F3C; JavaScript &#x4E2D;&#x7684;&#x8FDE;&#x7EED;&#x8C03;&#x7528;#TODO</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="orgd24e9c0"></a><span class="done DONE">DONE</span> GroupBy<br>
+<div class="outline-text-5" id="text-2-2-6-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.agg([func, axis])</td>
+<td class="org-left">&#x805A;&#x5408;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.aggregate([func, axis])</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.transform(func[, axis])</td>
+<td class="org-left">&#x8F6C;&#x6362;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.groupby([by, axis, level, &#x2026;])</td>
+<td class="org-left">&#x5206;&#x7EC4;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="org0c16329"></a><span class="todo TODO">TODO</span> window<br>
+<div class="outline-text-5" id="text-2-2-6-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.rolling(window[, min<sub>periods</sub>, &#x2026;])</td>
+<td class="org-left">&#x4F5C;&#x540C;&#x6B65;&#x7684;&#x7A97;&#x53E3;&#x8FD0;&#x7B97;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.expanding([min<sub>periods</sub>, center, axis])</td>
+<td class="org-left">&#x4F5C;&#x5F02;&#x6B65;&#x7684;&#x7A97;&#x53E3;&#x8FD0;&#x7B97;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.ewm([com, span, halflife, alpha, &#x2026;])</td>
+<td class="org-left">Provide exponential weighted (EW) functions.#TODO</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+&#x6CE8;&#x610F; rolling &#x4E0E; expading &#x7684;&#x53C2;&#x6570;&#x533A;&#x522B;&#xFF1A;&#x524D;&#x8005;&#x5FC5;&#x987B;&#x8F93;&#x5165; int &#x4F5C;&#x4E3A; window &#x4F20;&#x5165;&#xFF0C;&#x4E14;&#x9ED8;&#x8BA4;&#x7684; min<sub>periods</sub> &#x4E3A; None&#xFF1B;&#x540E;&#x8005;&#x6CA1;&#x6709; window &#x53C2;&#x6570;&#xFF0C;&#x4E14;&#x9ED8;&#x8BA4;&#x7684; min<sub>periods</sub> &#x4E3A; 1&#x3002;
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgd84805e" class="outline-4">
+<h4 id="orgd84805e"><span class="section-number-4">2.2.7</span> <span class="todo TODO">TODO</span> &#x7EDF;&#x8BA1;&#x76F8;&#x5173;</h4>
+<div class="outline-text-4" id="text-2-2-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.abs()</td>
+<td class="org-left">&#x6570;&#x636E;&#x6846;&#xFF0C;&#x8FD4;&#x56DE;&#x7EDD;&#x5BF9;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.all([axis, bool<sub>only</sub>, skipna, level])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; all</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.any([axis, bool<sub>only</sub>, skipna, level])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; any</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.clip([lower, upper, axis, inplace])</td>
+<td class="org-left">Trim values at input threshold(s).</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.corr([method, min<sub>periods</sub>])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#x7F3A;&#x5931;&#x503C;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.corrwith(other[, axis, drop, method])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x4E24;&#x4E24;&#x7684;&#x76F8;&#x5173;&#x7CFB;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.count([axis, level, numeric<sub>only</sub>])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x975E; NaN &#x6570;&#x503C;&#x7684;&#x603B;&#x6570;&#xFF08;&#x6CBF;&#x67D0;&#x4E2A;&#x65B9;&#x5411;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.cov([min<sub>periods</sub>, ddof])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x5217;&#x5411;&#x91CF;&#x534F;&#x65B9;&#x5DEE;&#xFF08;&#x4E0D;&#x5305;&#x542B;&#x7F3A;&#x5931;&#x503C;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.cummax([axis, skipna])</td>
+<td class="org-left">&#x6700;&#x5927;&#x503C;&#x7D2F;&#x8BA1;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.cummin([axis, skipna])</td>
+<td class="org-left">&#x6700;&#x5C0F;&#x503C;&#x7D2F;&#x8BA1;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.cumprod([axis, skipna])</td>
+<td class="org-left">&#x7D2F;&#x4E58;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.cumsum([axis, skipna])</td>
+<td class="org-left">&#x7D2F;&#x52A0;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.describe([percentiles, include, &#x2026;])</td>
+<td class="org-left">&#x63CF;&#x8FF0;&#x6027;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.diff([periods, axis])</td>
+<td class="org-left">&#x4F5C;&#x5DEE;&#x5206;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.eval(expr[, inplace])</td>
+<td class="org-left">Evaluate a string describing operations on DataFrame columns.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.kurt([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">Return unbiased kurtosis over requested axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.kurtosis([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">Return unbiased kurtosis over requested axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.mad([axis, skipna, level])</td>
+<td class="org-left">Return the mean absolute deviation of the values over the requested axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.max([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x6700;&#x5927;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.mean([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x5E73;&#x5747;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.median([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x4E2D;&#x4F4D;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.min([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x6700;&#x5C0F;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.mode([axis, numeric<sub>only</sub>, dropna])</td>
+<td class="org-left">Get the mode(s) of each element along the selected axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.pct<sub>change</sub>([periods, fill<sub>method</sub>, &#x2026;])</td>
+<td class="org-left">Percentage change between the current and a prior element.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.prod([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8FDE;&#x4E58;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.product([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.quantile([q, axis, numeric<sub>only</sub>, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97; quantile</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rank([axis, method, numeric<sub>only</sub>, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x79E9;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.round([decimals])</td>
+<td class="org-left">&#x53D6;&#x5C0F;&#x6570;&#x70B9;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sem([axis, skipna, level, ddof, &#x2026;])</td>
+<td class="org-left">Return unbiased standard error of the mean over requested axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.skew([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">Return unbiased skew over requested axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sum([axis, skipna, level, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x603B;&#x548C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.std([axis, skipna, level, ddof, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x6807;&#x51C6;&#x5DEE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.var([axis, skipna, level, ddof, &#x2026;])</td>
+<td class="org-left">&#x8BA1;&#x7B97;&#x65B9;&#x5DEE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.nunique([axis, dropna])</td>
+<td class="org-left">Count distinct observations over requested axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.value<sub>counts</sub>([subset, normalize, &#x2026;])</td>
+<td class="org-left">Return a Series containing counts of unique rows in the DataFrame.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org5828672" class="outline-4">
+<h4 id="org5828672"><span class="section-number-4">2.2.8</span> <span class="todo TODO">TODO</span> &#x91CD;&#x7D22;&#x5F15;&#xFF0C;&#x9009;&#x62E9;&#xFF0C;&#x6807;&#x8BB0;</h4>
+<div class="outline-text-4" id="text-2-2-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.add<sub>prefix</sub>(prefix)</td>
+<td class="org-left">&#x7ED9; columns &#x6DFB;&#x52A0;&#x524D;&#x7F00;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.add<sub>suffix</sub>(suffix)</td>
+<td class="org-left">&#x7ED9; columns &#x6DFB;&#x52A0;&#x540E;&#x7F00;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.align(other[, join, axis, level, &#x2026;])</td>
+<td class="org-left">&#x5C06;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x5BF9;&#x9F50;&#xFF0C;&#xFF08;&#x884C;&#xFF0C;&#x5217;&#xFF0C;&#x5168;&#x90E8;&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.at<sub>time</sub>(time[, asof, axis])</td>
+<td class="org-left">Select values at particular time of day (e.g., 9:30AM).</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.between<sub>time</sub>(start<sub>time</sub>, end<sub>time</sub>)</td>
+<td class="org-left">Select values between particular times of the day (e.g., 9:00-9:30 AM).</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.drop([labels, axis, index, &#x2026;])</td>
+<td class="org-left">Drop specified labels from rows or columns.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.drop<sub>duplicates</sub>([subset, keep, &#x2026;])</td>
+<td class="org-left">Return DataFrame with duplicate rows removed.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.duplicated([subset, keep])</td>
+<td class="org-left">Return boolean Series denoting duplicate rows.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.equals(other)</td>
+<td class="org-left">Test whether two objects contain the same elements.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.filter([items, like, regex, axis])</td>
+<td class="org-left">Subset the dataframe rows or columns according to the specified index labels.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.first(offset)</td>
+<td class="org-left">Select initial periods of time series data based on a date offset.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.head([n])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; unix &#x4E0B;&#x7684; head</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.idxmax([axis, skipna])</td>
+<td class="org-left">&#x6CBF;&#x7740;&#x67D0;&#x4E2A;&#x65B9;&#x5411;&#x8FD4;&#x56DE;&#x6700;&#x5927;&#x503C; index</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.idxmin([axis, skipna])</td>
+<td class="org-left">&#x6CBF;&#x7740;&#x67D0;&#x4E2A;&#x65B9;&#x5411;&#x8FD4;&#x56DE;&#x6700;&#x5C0F;&#x503C; index</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.last(offset)</td>
+<td class="org-left">Select final periods of time series data based on a date offset.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.reindex([labels, index, columns, &#x2026;])</td>
+<td class="org-left">Conform Series/DataFrame to new index with optional filling logic.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.reindex<sub>like</sub>(other[, method, &#x2026;])</td>
+<td class="org-left">Return an object with matching indices as other object.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rename([mapper, index, columns, &#x2026;])</td>
+<td class="org-left">Alter axes labels.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.rename<sub>axis</sub>([mapper, index, &#x2026;])</td>
+<td class="org-left">Set the name of the axis for the index or columns.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.reset<sub>index</sub>([level, drop, &#x2026;])</td>
+<td class="org-left">Reset the index, or a level of it.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sample([n, frac, replace, &#x2026;])</td>
+<td class="org-left">&#x62BD;&#x6837;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.set<sub>axis</sub>(labels[, axis, inplace])</td>
+<td class="org-left">&#x8BBE;&#x7F6E; label&#xFF08;index&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.set<sub>index</sub>(keys[, drop, append, &#x2026;])</td>
+<td class="org-left">&#x8BBE;&#x7F6E; key&#xFF08;index&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.tail([n])</td>
+<td class="org-left">&#x7C7B;&#x4F3C; unix &#x4E0B;&#x7684; tail</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.take(indices[, axis, is<sub>copy</sub>])</td>
+<td class="org-left">Return the elements in the given positional indices along an axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.truncate([before, after, axis, copy])</td>
+<td class="org-left">Truncate a Series or DataFrame before and after some index value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgf2300bb" class="outline-4">
+<h4 id="orgf2300bb"><span class="section-number-4">2.2.9</span> <span class="done DONE">DONE</span> &#x7F3A;&#x5931;&#x6570;&#x636E;&#x5904;&#x7406; NaN</h4>
+<div class="outline-text-4" id="text-2-2-9">
+<p>
+NaN &#x4E0E; None &#x7B49;&#x4EF7;
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.backfill([axis, inplace, limit, &#x2026;])</td>
+<td class="org-left">&#x5411;&#x540E;&#x586B;&#x8865;&#xFF0C;&#x53C2;&#x8003; DataFrame.fillna()</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.bfill([axis, inplace, limit, downcast])</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.dropna([axis, how, thresh, &#x2026;])</td>
+<td class="org-left">&#x4E22;&#x5F03;&#x7F3A;&#x5931;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.ffill([axis, inplace, limit, downcast])</td>
+<td class="org-left">&#x5411;&#x524D;&#x586B;&#x8865;&#xFF0C;&#x53C2;&#x8003; DataFrame.fillna()</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.fillna([value, method, axis, &#x2026;])</td>
+<td class="org-left">&#x901A;&#x7528;&#x51FD;&#x6570;&#xFF0C;&#x6307;&#x5B9A;&#x65B9;&#x6CD5;&#xFF0C;&#x586B;&#x8865;&#x7F3A;&#x5931;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.interpolate([method, axis, limit, &#x2026;])</td>
+<td class="org-left">&#x4F7F;&#x7528;&#x63D2;&#x503C;&#x7684;&#x65B9;&#x6CD5;&#x586B;&#x8865;&#x4E22;&#x5931;&#x6570;&#x636E; TODO</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.isna()</td>
+<td class="org-left">bool &#x6570;&#x636E;&#x6846;&#xFF0C;&#x6307;&#x660E;&#x662F;&#x5426;&#x4E3A;&#x7F3A;&#x5931;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.isnull()</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.notna()</td>
+<td class="org-left">bool &#x6570;&#x636E;&#x6846;&#xFF0C;&#x6307;&#x660E;&#x662F;&#x5426;&#x4E0D;&#x4E3A;&#x7F3A;&#x5931;&#x503C;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.notnull()</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.pad([axis, inplace, limit, downcast])</td>
+<td class="org-left">&#x540C; DataFrame.fillna() &#x4F7F;&#x7528; &apos;ffill&apos; &#x65B9;&#x6CD5;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.replace([to<sub>replace</sub>, value, &#x2026;])</td>
+<td class="org-left">&#x66FF;&#x6362;&#x5143;&#x7D20;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org59ea4b2" class="outline-4">
+<h4 id="org59ea4b2"><span class="section-number-4">2.2.10</span> <span class="todo TODO">TODO</span> Misc&#xFF08;&#x91CD;&#x5851;&#xFF0C;&#x6392;&#x5E8F;&#xFF0C;&#x66FF;&#x6362;&#xFF0C;&#x538B;&#x7F29;&#xFF0C;&#x7194;&#x5316;&#xFF0C;&#x8F6C;&#x7F6E;&#x7B49;&#xFF09;</h4>
+<div class="outline-text-4" id="text-2-2-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.droplevel(level[, axis])</td>
+<td class="org-left">Return DataFrame with requested index / column level(s) removed.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.pivot([index, columns, values])</td>
+<td class="org-left">Return reshaped DataFrame organized by given index / column values.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.pivot<sub>table</sub>([values, index, &#x2026;])</td>
+<td class="org-left">Create a spreadsheet-style pivot table as a DataFrame.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.reorder<sub>levels</sub>(order[, axis])</td>
+<td class="org-left">Rearrange index levels using input order.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sort<sub>values</sub>(by[, axis, ascending, &#x2026;])</td>
+<td class="org-left">Sort by the values along either axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sort<sub>index</sub>([axis, level, &#x2026;])</td>
+<td class="org-left">Sort object by labels (along an axis).</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.nlargest(n, columns[, keep])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x524D; n &#x4E2A;&#x6700;&#x5927;&#x7684;&#x6570;&#x636E;&#xFF08;&#x63D0;&#x4F9B; columns&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.nsmallest(n, columns[, keep])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x524D; n &#x4E2A;&#x6700;&#x5C0F;&#x7684;&#x6570;&#x636E;&#xFF08;&#x63D0;&#x4F9B; columns&#xFF09;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.swaplevel([i, j, axis])</td>
+<td class="org-left">Swap levels i and j in a MultiIndex on a particular axis.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.stack([level, dropna])</td>
+<td class="org-left">Stack the prescribed level(s) from columns to index.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.unstack([level, fill<sub>value</sub>])</td>
+<td class="org-left">Pivot a level of the (necessarily hierarchical) index labels.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.swapaxes(axis1, axis2[, copy])</td>
+<td class="org-left">Interchange axes and swap values axes appropriately.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.melt([id<sub>vars</sub>, value<sub>vars</sub>, &#x2026;])</td>
+<td class="org-left">&#x7194;&#x5316;&#xFF0C;&#x7C7B;&#x4F3C; R &#x8BED;&#x8A00;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.explode(column[, ignore<sub>index</sub>])</td>
+<td class="org-left">Transform each element of a list-like to a row, replicating index values.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.squeeze([axis])</td>
+<td class="org-left">Squeeze 1 dimensional axis objects into scalars.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>xarray</sub>()</td>
+<td class="org-left">&#x8FD4;&#x56DE; xarry</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.T</td>
+<td class="org-left">&#x8F6C;&#x7F6E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.transpose(*args[, copy])</td>
+<td class="org-left">&#x540C;&#x4E0A;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org10a0d15" class="outline-4">
+<h4 id="org10a0d15"><span class="section-number-4">2.2.11</span> <span class="done DONE">DONE</span> &#x7EC4;&#x5408;/&#x6BD4;&#x8F83;                                                                                                                                            |                                                                                              |</h4>
+<div class="outline-text-4" id="text-2-2-11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.append(other[, ignore<sub>index</sub>, &#x2026;])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x6839;&#x636E;&#x89C2;&#x6D4B;&#x5408;&#x5E76;&#x7684;&#x6570;&#x636E;&#x6846;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.assign(**kwargs)</td>
+<td class="org-left">&#x4F20;&#x5165;&#x51FD;&#x6570;&#xFF0C;&#x589E;&#x52A0;&#x65B0;&#x5217;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.compare(other[, align<sub>axis</sub>, &#x2026;])</td>
+<td class="org-left">&#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5408;&#x5E76;&#x6570;&#x636E;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x6BD4;&#x8F83; self &#x4E0E; other &#x6570;&#x636E;&#x6846;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.join(other[, on, how, lsuffix, &#x2026;])</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x6839;&#x636E; key &#x5408;&#x5E76;&#x7684;&#x6570;&#x636E;&#x6846;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.merge(right[, how, on, left<sub>on</sub>, &#x2026;])</td>
+<td class="org-left">&#x6570;&#x636E;&#x5408;&#x5E76;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.update(other[, join, overwrite, &#x2026;])</td>
+<td class="org-left">&#x6570;&#x636E;&#x66F4;&#x65B0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org746eb7e" class="outline-4">
+<h4 id="org746eb7e"><span class="section-number-4">2.2.12</span> <span class="todo TODO">TODO</span> &#x65F6;&#x95F4;&#x5E8F;&#x5217;&#x6570;&#x636E;</h4>
+<div class="outline-text-4" id="text-2-2-12">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.asfreq(freq[, method, how, &#x2026;])</td>
+<td class="org-left">Convert TimeSeries to specified frequency.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.asof(where[, subset])</td>
+<td class="org-left">Return the last row(s) without any NaNs before where.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.shift([periods, freq, axis, &#x2026;])</td>
+<td class="org-left">Shift index by desired number of periods with an optional time freq.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.slice<sub>shift</sub>([periods, axis])</td>
+<td class="org-left">(DEPRECATED) Equivalent to shift without copying data.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.tshift([periods, freq, axis])</td>
+<td class="org-left">(DEPRECATED) Shift the time index, using the index&#x2019;s frequency if available.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.first<sub>valid</sub><sub>index</sub>()</td>
+<td class="org-left">Return index for first non-NA/null value.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.last<sub>valid</sub><sub>index</sub>()</td>
+<td class="org-left">Return index for last non-NA/null value.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.resample(rule[, axis, closed, &#x2026;])</td>
+<td class="org-left">Resample time-series data.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>period</sub>([freq, axis, copy])</td>
+<td class="org-left">Convert DataFrame from DatetimeIndex to PeriodIndex.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>timestamp</sub>([freq, how, axis, copy])</td>
+<td class="org-left">Cast to DatetimeIndex of timestamps, at beginning of period.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.tz<sub>convert</sub>(tz[, axis, level, copy])</td>
+<td class="org-left">Convert tz-aware axis to target time zone.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.tz<sub>localize</sub>(tz[, axis, level, &#x2026;])</td>
+<td class="org-left">Localize tz-naive index of a Series or DataFrame to target time zone.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgbff64f1" class="outline-4">
+<h4 id="orgbff64f1"><span class="section-number-4">2.2.13</span> <span class="todo TODO">TODO</span> &#x6807;&#x5FD7;</h4>
+<div class="outline-text-4" id="text-2-2-13">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Flags(obj, *, allows<sub>duplicate</sub><sub>labels</sub>)</td>
+<td class="org-left">Flags that apply to pandas objects.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orga312fdc" class="outline-4">
+<h4 id="orga312fdc"><span class="section-number-4">2.2.14</span> <span class="done DONE">DONE</span> &#x5143;&#x6570;&#x636E;</h4>
+<div class="outline-text-4" id="text-2-2-14">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.attrs</td>
+<td class="org-left">&#x6570;&#x636E;&#x96C6;&#x7684;&#x5168;&#x5C40;&#x5C5E;&#x6027;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orge84cf8e" class="outline-4">
+<h4 id="orge84cf8e"><span class="section-number-4">2.2.15</span> <span class="done DONE">DONE</span> &#x7ED8;&#x56FE;</h4>
+<div class="outline-text-4" id="text-2-2-15">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.plot([x, y, kind, ax, &#x2026;.])</td>
+<td class="org-left">&#x7ED8;&#x56FE;&#x901A;&#x7528;&#x51FD;&#x6570;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.bar([x, y])</td>
+<td class="org-left">&#x6761;&#x5F62;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.barh([x, y])</td>
+<td class="org-left">&#x6C34;&#x5E73;&#x6761;&#x5F62;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.box([by])</td>
+<td class="org-left">&#x7BB1;&#x7EBF;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.density([bw<sub>method</sub>, ind])</td>
+<td class="org-left">&#x5BC6;&#x5EA6;&#x5206;&#x5E03;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.hexbin(x, y[, C, &#x2026;])</td>
+<td class="org-left">&#x516D;&#x89D2;&#x7BB1;&#x5F62;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.hist([by, bins])</td>
+<td class="org-left">&#x76F4;&#x65B9;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.kde([bw<sub>method</sub>, ind])</td>
+<td class="org-left">&#x6838;&#x5BC6;&#x5EA6;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.line([x, y])</td>
+<td class="org-left">&#x7EBF;&#x6027;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.pie(**kwargs)</td>
+<td class="org-left">&#x997C;&#x72B6;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.plot.scatter(x, y[, s, c])</td>
+<td class="org-left">&#x6563;&#x70B9;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.boxplot([column, by, ax, &#x2026;])</td>
+<td class="org-left">&#x7BB1;&#x5F62;&#x56FE;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.hist([column, by, grid, &#x2026;])</td>
+<td class="org-left">&#x76F4;&#x65B9;&#x56FE;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org66f9133" class="outline-4">
+<h4 id="org66f9133"><span class="section-number-4">2.2.16</span> <span class="todo TODO">TODO</span> &#x63A5;&#x53E3;</h4>
+<div class="outline-text-4" id="text-2-2-16">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.sparse.density</td>
+<td class="org-left">Ratio of non-sparse points to total (dense)  data points.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sparse.from<sub>spmatrix</sub>(data[, &#x2026;])</td>
+<td class="org-left">Create a new DataFrame from a scipy sparse matrix.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sparse.to<sub>coo</sub>()</td>
+<td class="org-left">Return the contents of the frame as a sparse SciPy COO matrix.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.sparse.to<sub>dense</sub>()</td>
+<td class="org-left">Convert a DataFrame with sparse values to dense.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgdca9045" class="outline-4">
+<h4 id="orgdca9045"><span class="section-number-4">2.2.17</span> <span class="todo TODO">TODO</span> I/O &amp; &#x8F6C;&#x6362;</h4>
+<div class="outline-text-4" id="text-2-2-17">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="org-left">
+
+<col class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#x51FD;&#x6570;</th>
+<th scope="col" class="org-left">&#x89E3;&#x91CA;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">DataFrame.from<sub>dict</sub>(data[, orient, dtype, &#x2026;])</td>
+<td class="org-left">&#x4ECE;&#x5B57;&#x5178;&#x4E2D;&#x8BFB;&#x53D6;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.from<sub>records</sub>(data[, index, &#x2026;])</td>
+<td class="org-left">Convert structured or record ndarray to DataFrame.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>parquet</sub>([path, engine, &#x2026;])</td>
+<td class="org-left">Write a DataFrame to the binary parquet format.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>pickle</sub>(path[, compression, &#x2026;])</td>
+<td class="org-left">&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x53C2;&#x8003;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x7684; pickle</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>csv</sub>([path<sub>or</sub><sub>buf</sub>, sep, na<sub>rep</sub>, &#x2026;])</td>
+<td class="org-left">&#x5BFC;&#x51FA;&#x4E3A; csv &#x6587;&#x4EF6;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>hdf</sub>(path<sub>or</sub><sub>buf</sub>, key[, mode, &#x2026;])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>sql</sub>(name, con[, schema, &#x2026;])</td>
+<td class="org-left">&#x5BFC;&#x51FA;&#x4E3A; SQL &#x6587;&#x4EF6;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>dict</sub>([orient, into])</td>
+<td class="org-left">&#xA0;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>excel</sub>(excel<sub>writer</sub>[, &#x2026;])</td>
+<td class="org-left">&#x5BFC;&#x51FA;&#x4E3A; Excel &#x6587;&#x4EF6;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>json</sub>([path<sub>or</sub><sub>buf</sub>, orient, &#x2026;])</td>
+<td class="org-left">&#x5BFC;&#x51FA;&#x4E3A; JSON &#x6587;&#x4EF6;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>html</sub>([buf, columns, col<sub>space</sub>, &#x2026;])</td>
+<td class="org-left">&#x5C06;&#x6570;&#x636E;&#x6E32;&#x67D3;&#x4E3A; HTML</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>feather</sub>(path, **kwargs)</td>
+<td class="org-left">Write a DataFrame to the binary Feather format.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>latex</sub>([buf, columns, &#x2026;])</td>
+<td class="org-left">&#x5C06;&#x6570;&#x636E;&#x6E32;&#x67D3;&#x4E3A; Latex</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>stata</sub>(path[, convert<sub>dates</sub>, &#x2026;])</td>
+<td class="org-left">&#x5BFC;&#x51FA;&#x4E3A; stata</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>gbq</sub>(destination<sub>table</sub>[, &#x2026;])</td>
+<td class="org-left">&#x5BFC;&#x51FA;&#x4E3A; Google BigQuery table.</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>records</sub>([index, column<sub>dtypes</sub>, &#x2026;])</td>
+<td class="org-left">&#x5BFC;&#x51FA;&#x4E3A; numpy &#x4E2D;&#x7684;&#x8BB0;&#x5F55;&#x6570;&#x636E;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>string</sub>([buf, columns, &#x2026;])</td>
+<td class="org-left">&#x5C06;&#x6570;&#x636E;&#x6E32;&#x67D3;&#x4E3A;&#x7EC8;&#x7AEF;&#x8F93;&#x51FA;&#x53CB;&#x597D;&#x7684;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>clipboard</sub>([excel, sep])</td>
+<td class="org-left">&#x5C06;&#x6570;&#x636E;&#x62F7;&#x8D1D;&#x5230;&#x526A;&#x5207;&#x677F;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.to<sub>markdown</sub>([buf, mode, index, &#x2026;])</td>
+<td class="org-left">&#x5C06;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x4E3A; markdown &#x53CB;&#x597D;&#x7684;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+
+<tr>
+<td class="org-left">DataFrame.style</td>
+<td class="org-left">&#x8FD4;&#x56DE;&#x6837;&#x5F0F;&#x5BF9;&#x8C61;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org1b43ce6" class="outline-2">
+<h2 id="org1b43ce6"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Pandas &#x70F9;&#x996A;&#x6307;&#x5317;</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org4f923f5" class="outline-3">
+<h3 id="org4f923f5"><span class="section-number-3">3.1</span> &#x7B5B;&#x9009;&#x7B26;&#x5408;&#x67D0;&#x79CD;&#x6761;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x5E76;&#x7528;&#x4E8E;&#x8BA1;&#x7B97;</h3>
+</div>
+<div id="outline-container-orgd97d03f" class="outline-3">
+<h3 id="orgd97d03f"><span class="section-number-3">3.2</span> </h3>
+</div>
+</div>
+</div>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/04/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            机器学习
+          
+        </div>
+      </a>
+    
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2021
+        <i class="ri-heart-fill heart_icon"></i> Ivory
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="梦"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
