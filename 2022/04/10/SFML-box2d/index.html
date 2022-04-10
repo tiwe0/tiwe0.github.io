@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">795</span>
+            <span class="post-count">796</span>
         </span>
     </span>
 
@@ -112,10 +112,18 @@
 </li>
 <li><p>常用参数</p>
 <ul>
-<li>-o<br> 二进制输出文件名，如<code>clang++ main.cpp example</code></li>
-<li>-I<br> 指定额外的include目录，如<code>clang++ main.cpp example -I/opt/box2d/include</code></li>
-<li>-L<br> 指定额外的library目录，如<code>clang++ main.cpp example -I/opt/box2d/lib</code></li>
-<li>-l<br> 明确指定加载的库（静态&#x2F;动态）,如<code>clang++ main.cpp example -lbox2d</code></li>
+<li><p>-o</p>
+<p>  二进制输出文件名，如<code>clang++ main.cpp example</code></p>
+</li>
+<li><p>-I</p>
+<p>  指定额外的include目录，如<code>clang++ main.cpp example -I/opt/box2d/include</code></p>
+</li>
+<li><p>-L</p>
+<p>  指定额外的library目录，如<code>clang++ main.cpp example -I/opt/box2d/lib</code></p>
+</li>
+<li><p>-l</p>
+<p>  明确指定加载的库（静态&#x2F;动态）,如<code>clang++ main.cpp example -lbox2d</code></p>
+</li>
 </ul>
 </li>
 </ol>
@@ -163,15 +171,17 @@
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body-&gt;<span class="built_in">CreateFixture</span>(&amp;fixturedef);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="box2d-向刚体读写用户信息"><a href="#box2d-向刚体读写用户信息" class="headerlink" title="box2d 向刚体读写用户信息"></a>box2d 向刚体读写用户信息</h3><ul>
-<li><p>写</p>
+<li>写</li>
+</ul>
 <ol>
-<li>在创建刚体时，在body definition中添加用户信息</li>
-</ol>
-  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bodydef.userData.pointer = <span class="built_in">reinterpret</span>&lt;<span class="type">uintptr_t</span>&gt;(&amp;data)</span><br></pre></td></tr></table></figure>
+<li><p>在创建刚体时，在body definition中添加用户信息</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bodydef.userData.pointer = <span class="built_in">reinterpret</span>&lt;<span class="type">uintptr_t</span>&gt;(&amp;data)</span><br></pre></td></tr></table></figure>
 
-<p>  注意使用reinterpret<uintptr_t>做类型转换，然后直接赋值给<code>bodydef.userData.pointer</code></p>
-<p>  不要使用<code>SetUserData(this)</code>，这个方法已经被废弃，直接赋值即可。</p>
+<p> 注意使用reinterpret<uintptr_t>做类型转换，然后直接赋值给<code>bodydef.userData.pointer</code></p>
+<p> 不要使用<code>SetUserData(this)</code>，这个方法已经被废弃，直接赋值即可。</p>
 </li>
+</ol>
+<ul>
 <li><p>读</p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataType* data = (dataType*)body.<span class="built_in">GetUserData</span>().pointer;</span><br></pre></td></tr></table></figure>
 
@@ -326,6 +336,7 @@
 <td align="left">GetUserData</td>
 </tr>
 </tbody></table>
+<p>TODO…</p>
  
       <!-- reward -->
       
