@@ -104,11 +104,13 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>[TOC]</p>
-<h2 id="SFML"><a href="#SFML" class="headerlink" title="SFML"></a>SFML</h2><p>SFML 即 Simple and Fast Multimedia<br>Library，一个开源的用于开发游戏和多媒体应用的库，这个库比起OpenGL更加简单。</p>
+  <h2 id="SFML"><a href="#SFML" class="headerlink" title="SFML"></a>SFML</h2><p>SFML 即 Simple and Fast Multimedia<br>Library，一个开源的用于开发游戏和多媒体应用的库，这个库比起OpenGL更加简单。</p>
 <p>这个库仅支持2d渲染，这也是其性能高的原因之一。</p>
 <h2 id="box2d"><a href="#box2d" class="headerlink" title="box2d"></a>box2d</h2><p>box2d 是一个开源，用于2d游戏的刚体物理引擎。</p>
-<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="clang-编译"><a href="#clang-编译" class="headerlink" title="clang++ 编译"></a>clang++ 编译</h3><ol>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h3><ol>
+<li>复杂和灵活不可兼得，但好的设计可以在保持灵活性的同时尽可能降低复杂度；</li>
+</ol>
+<h3 id="clang-编译"><a href="#clang-编译" class="headerlink" title="clang++ 编译"></a>clang++ 编译</h3><ol>
 <li><p>C++ 代码需要使用clang++编译，而非clang，否则会出现std相关的问题</p>
 </li>
 <li><p>常用参数</p>
@@ -192,7 +194,7 @@
 <li><p>用一个通用的位置获取函数，从body获取位置，但可能会带来维护性上的问题</p>
 </li>
 <li><p>在渲染对象内增加一个成员，用于追踪body，这样在其渲染函数内即可获取自己的位置信息，但这样需要解决追踪问题。</p>
-<p>可以写一个类将两者合并，或者创建body和渲染对象时，手动将两者结合起来。这个方法的缺点在于略复杂。</p>
+<p>可以写一个类将两者合并，或者创建body和渲染对象时，手动将两者结合起来。这个方法的缺点在于略复杂。优点在于灵活</p>
 </li>
 </ol>
 <h3 id="SFML-渲染图像信息"><a href="#SFML-渲染图像信息" class="headerlink" title="SFML 渲染图像信息"></a>SFML 渲染图像信息</h3><p>SFML渲染图像需要位置信息，形状信息</p>
