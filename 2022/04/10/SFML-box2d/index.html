@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.2k</span>
+            <span class="post-count">1.7k</span>
         </span>
     </span>
 
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">5 min</span>
+            <span class="post-count">6 min</span>
         </span>
     </span>
 </div>
@@ -133,6 +133,68 @@
 <h3 id="SFML-与-box2d-的关系"><a href="#SFML-与-box2d-的关系" class="headerlink" title="SFML 与 box2d 的关系"></a>SFML 与 box2d 的关系</h3><p>本质上，SFML作为前端，box2d作为后端。我们写的代码算是胶水逻辑代码，不算底层，也不算前端。</p>
 <p>所以逻辑上，应该追踪box2d中的对象。并对应适时的使用SFML渲染。一个好的想法是将两者所需要的信息抽象出来，这样可以减少软件的复杂度。</p>
 <h3 id="SFML-与-box2d-之间的度量转化"><a href="#SFML-与-box2d-之间的度量转化" class="headerlink" title="SFML 与 box2d 之间的度量转化"></a>SFML 与 box2d 之间的度量转化</h3><p>SFML使用像素单位，box2d使用现实度量，使用时最好转化一下，通常使用SCALE&#x3D;30</p>
+<h3 id="SFML-box2d"><a href="#SFML-box2d" class="headerlink" title="SFML + box2d"></a>SFML + box2d</h3><p>SFML 负责前端渲染，box2d 负责后端模拟，但box2d通常是不包括渲染信息的。</p>
+<p>面向过程，思路可能是这样，</p>
+<ol>
+<li><p>遍历box2d中的body，</p>
+</li>
+<li><p>通过某种方法判断该body应该使用的渲染函数，</p>
+</li>
+<li><p>用该渲染函数渲染该body</p>
+</li>
+</ol>
+<p>这么做有几点不好：</p>
+<ol>
+<li><p>如何判断该body对应的渲染函数</p>
+</li>
+<li><p>渲染信息是硬编码在code中的</p>
+</li>
+<li><p>维护困难，增加渲染函数很难维护</p>
+</li>
+</ol>
+<p>面向数据，思考可能这样，将渲染信息写在body的userData内部：</p>
+<ol>
+<li><p>遍历box2d中的body，</p>
+</li>
+<li><p>取出该body中userData的渲染信息，</p>
+</li>
+<li><p>用一个较通用的渲染函数，渲染该body</p>
+</li>
+</ol>
+<p>同样有几点不好：</p>
+<ol>
+<li><p>不同的图形渲染信息不同，如何抽象以及如何写通用的渲染函数很困难</p>
+</li>
+<li><p>不宜维护，万一后续加入一个奇怪的图形，那么渲染函数可能无法处理</p>
+</li>
+</ol>
+<p>折衷方案，面向对象，将渲染信息作为一个对象写在body的userData内部，同时该对象提供渲染自己的方法：</p>
+<ol>
+<li><p>遍历box2d中的body，</p>
+</li>
+<li><p>取出该body中userData的负责渲染的对象，</p>
+</li>
+<li><p>利用多态，调用该对象的渲染方法</p>
+</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>简单，易于维护</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>渲染需要用到位置信息，这些信息储存在body中，这部分需要处理</li>
+</ol>
+<p>解决方法：</p>
+<ol>
+<li><p>可以实时将位置信息同步到body的渲染对象内，但这样会带来性能上的损失</p>
+</li>
+<li><p>用一个通用的位置获取函数，从body获取位置，但可能会带来维护性上的问题</p>
+</li>
+<li><p>在渲染对象内增加一个成员，用于追踪body，这样在其渲染函数内即可获取自己的位置信息，但这样需要解决追踪问题。</p>
+<p>可以写一个类将两者合并，或者创建body和渲染对象时，手动将两者结合起来。这个方法的缺点在于略复杂。</p>
+</li>
+</ol>
 <h3 id="SFML-渲染图像信息"><a href="#SFML-渲染图像信息" class="headerlink" title="SFML 渲染图像信息"></a>SFML 渲染图像信息</h3><p>SFML渲染图像需要位置信息，形状信息</p>
 <h3 id="SFML-内置形状"><a href="#SFML-内置形状" class="headerlink" title="SFML 内置形状"></a>SFML 内置形状</h3><h4 id="SFML-矩形-RectangleShape"><a href="#SFML-矩形-RectangleShape" class="headerlink" title="SFML 矩形 RectangleShape"></a>SFML 矩形 <code>RectangleShape</code></h4><p>使用 <code>Vector2f</code> 作为长、宽，实例化矩形</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">RectangleShape <span class="title">rectangle</span><span class="params">(Vector2f(<span class="number">120.f</span>, <span class="number">50.f</span>))</span></span>;</span><br></pre></td></tr></table></figure>
@@ -177,7 +239,7 @@
 <h3 id="SFML-GameLoop"><a href="#SFML-GameLoop" class="headerlink" title="SFML GameLoop"></a>SFML GameLoop</h3><ol>
 <li><p>第一层用于判断Window存活</p>
 </li>
-<li><p>第二层用于判断event事件</p>
+<li><p>第二层用于处理event事件</p>
 </li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (window.<span class="built_in">isOpen</span>()) <span class="comment">//第一层</span></span><br><span class="line">&#123;</span><br><span class="line">  Event event;</span><br><span class="line">  <span class="keyword">while</span> (window.<span class="built_in">pollEvent</span>(event))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">/* 处理事件 */</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 其他处理 */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 渲染 */</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
