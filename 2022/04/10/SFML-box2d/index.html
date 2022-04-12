@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.7k</span>
+            <span class="post-count">2.3k</span>
         </span>
     </span>
 
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">6 min</span>
+            <span class="post-count">9 min</span>
         </span>
     </span>
 </div>
@@ -274,6 +274,55 @@
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body-&gt;<span class="built_in">CreateFixture</span>(&amp;fixturedef);</span><br></pre></td></tr></table></figure>
 
+<h3 id="box2d-常见刚体"><a href="#box2d-常见刚体" class="headerlink" title="box2d 常见刚体"></a>box2d 常见刚体</h3><h4 id="凸多边形-Polygon-Shapes"><a href="#凸多边形-Polygon-Shapes" class="headerlink" title="凸多边形 Polygon Shapes"></a>凸多边形 Polygon Shapes</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置点集</span></span><br><span class="line">b2Vec2 vertices[<span class="number">3</span>];</span><br><span class="line">vertices[<span class="number">0</span>].<span class="built_in">Set</span>(<span class="number">0.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line">vertices[<span class="number">1</span>].<span class="built_in">Set</span>(<span class="number">1.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line">vertices[<span class="number">2</span>].<span class="built_in">Set</span>(<span class="number">0.0f</span>, <span class="number">1.0f</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置顶点数</span></span><br><span class="line"><span class="type">int</span> count = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化凸多边形</span></span><br><span class="line">b2PolygonShape polygon;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置顶点</span></span><br><span class="line">polygon.<span class="built_in">Set</span>(vertices, count);</span><br></pre></td></tr></table></figure>
+
+<h4 id="矩形-Polygoon-Shapes"><a href="#矩形-Polygoon-Shapes" class="headerlink" title="矩形 Polygoon Shapes"></a>矩形 Polygoon Shapes</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化凸多边形</span></span><br><span class="line">b2PolygonShape rectangle;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用SetAsBox方法</span></span><br><span class="line">rectangle.<span class="built_in">SetAsBox</span>(<span class="number">1.0f</span>, <span class="number">4.0f</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="圆形"><a href="#圆形" class="headerlink" title="圆形"></a>圆形</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实例化圆形</span></span><br><span class="line">b2CircleShape circle;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置圆位置</span></span><br><span class="line">circle.m_p.<span class="built_in">Set</span>(<span class="number">2.0f</span>, <span class="number">3.0f</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置圆半径</span></span><br><span class="line">circle.m_radius = <span class="number">0.5f</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="线段-Edge-Shapes"><a href="#线段-Edge-Shapes" class="headerlink" title="线段 Edge Shapes"></a>线段 Edge Shapes</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义两个顶点</span></span><br><span class="line"><span class="function">b2Vec2 <span class="title">v1</span><span class="params">(<span class="number">0.0f</span>, <span class="number">0.0f</span>)</span></span>;</span><br><span class="line"><span class="function">b2Vec2 <span class="title">v2</span><span class="params">(<span class="number">1.0f</span>, <span class="number">0.0f</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化线段</span></span><br><span class="line">b2EdgeShape edge;</span><br><span class="line">edge.<span class="built_in">SetTwoSided</span>(v1, v2);</span><br></pre></td></tr></table></figure>
+
+<p>单线段会有一些问题</p>
+<h4 id="多线段-Chain-Shapes"><a href="#多线段-Chain-Shapes" class="headerlink" title="多线段 Chain Shapes"></a>多线段 Chain Shapes</h4><p>多线段自动处理了多个单线段连接的问题</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义点集</span></span><br><span class="line">b2Vec2 vs[<span class="number">4</span>];</span><br><span class="line">vs[<span class="number">0</span>].<span class="built_in">Set</span>(<span class="number">1.7f</span>, <span class="number">0.0f</span>);</span><br><span class="line">vs[<span class="number">1</span>].<span class="built_in">Set</span>(<span class="number">1.0f</span>, <span class="number">0.25f</span>);</span><br><span class="line">vs[<span class="number">2</span>].<span class="built_in">set</span>(<span class="number">0.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line">vs[<span class="number">3</span>].<span class="built_in">set</span>(<span class="number">-1.7f</span>, <span class="number">0.4f</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化多线段对象</span></span><br><span class="line">b2ChainShape chain;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置点集</span></span><br><span class="line">chain.<span class="built_in">CreateLoop</span>(vs<span class="number">.4</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="box2d-刚体知识"><a href="#box2d-刚体知识" class="headerlink" title="box2d 刚体知识"></a>box2d 刚体知识</h3><p>box2d刚体主要包含本体(body)、内部约束(fixtures)、外部约束(joints)</p>
+<h4 id="本体-body"><a href="#本体-body" class="headerlink" title="本体(body)"></a>本体(body)</h4><p>  本体包含一下信息：位置、速度、类型</p>
+<h5 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h5><ul>
+<li><p>静态类型 b2_staticBody</p>
+<p>该类型物体完全静止，不会与其他静态类型物体或动态类型物体发生碰撞。</p>
+<p>该类型物体可以被用户手动移动。</p>
+<p>该类型物体对外表现出质量无限大。</p>
+</li>
+<li><p>动态类型 b2_kinematicBody</p>
+<p>该类型物体通常有一个初始速度，不会与其他静态类型物体或动态类型物体发生碰撞。</p>
+<p>该类型物体可以被用户手动移动。</p>
+<p>该类型物体对外表现出质量无限大。</p>
+</li>
+<li><p>模拟类型 b2_dynamicBody</p>
+<p>该类型物体完全模拟碰撞。</p>
+<p>该类型物体可以被用户手动移动，但通常由力驱动。</p>
+<p>该类型物体通常具有有限非零的质量。手动设置为0会直接将其设置为1kg，并无法转动。</p>
+<p>该类型物体会被受到绑骨限制（也就是形状限制）</p>
+<p>限制通常包括碰撞体积（也就是形状）和密度，质量。</p>
+</li>
+</ul>
+<h4 id="内部约束-Fixtures"><a href="#内部约束-Fixtures" class="headerlink" title="内部约束 (Fixtures)"></a>内部约束 (Fixtures)</h4><p>一个物体(body)通常具有0到多个内部约束，多约束物体通常又叫组合体。</p>
+<p>内部约束包括以下信息：</p>
+<ul>
+<li><p>形状</p>
+</li>
+<li><p>密度、摩擦系数、弹性系数</p>
+</li>
+<li><p>图层</p>
+</li>
+<li><p>指向物体的指针</p>
+</li>
+<li><p>用户信息</p>
+</li>
+<li><p>传感器标志</p>
+</li>
+</ul>
 <h3 id="box2d-向刚体读写用户信息"><a href="#box2d-向刚体读写用户信息" class="headerlink" title="box2d 向刚体读写用户信息"></a>box2d 向刚体读写用户信息</h3><ul>
 <li>写</li>
 </ul>
