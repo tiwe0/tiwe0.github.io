@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">2.6k</span>
+            <span class="post-count">3k</span>
         </span>
     </span>
 
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">10 min</span>
+            <span class="post-count">12 min</span>
         </span>
     </span>
 </div>
@@ -132,7 +132,40 @@
 <li><p>C全部按值传递。</p>
 </li>
 </ol>
-<h4 id="C-函数调用中变量处理的几种模式"><a href="#C-函数调用中变量处理的几种模式" class="headerlink" title="C++ 函数调用中变量处理的几种模式"></a>C++ 函数调用中变量处理的几种模式</h4><h5 id="外部传入内部"><a href="#外部传入内部" class="headerlink" title="外部传入内部"></a>外部传入内部</h5><h6 id="1-纯值计算-传递值"><a href="#1-纯值计算-传递值" class="headerlink" title="1. 纯值计算 传递值"></a>1. 纯值计算 传递值</h6><h6 id="2-修改外界变量-传递引用或传递指针"><a href="#2-修改外界变量-传递引用或传递指针" class="headerlink" title="2. 修改外界变量 传递引用或传递指针"></a>2. 修改外界变量 传递引用或传递指针</h6><h5 id="内部传出外部"><a href="#内部传出外部" class="headerlink" title="内部传出外部"></a>内部传出外部</h5><h6 id="1-创建变量并返回值"><a href="#1-创建变量并返回值" class="headerlink" title="1. 创建变量并返回值"></a>1. 创建变量并返回值</h6><h6 id="2-创建变量并返回变量本身"><a href="#2-创建变量并返回变量本身" class="headerlink" title="2. 创建变量并返回变量本身"></a>2. 创建变量并返回变量本身</h6><h3 id="clang-编译"><a href="#clang-编译" class="headerlink" title="clang++ 编译"></a>clang++ 编译</h3><ol>
+<h4 id="C-函数容易犯的错误"><a href="#C-函数容易犯的错误" class="headerlink" title="C++ 函数容易犯的错误"></a>C++ 函数容易犯的错误</h4><p>C全部按值传递，这意味着参数传入的时候按值传递</p>
+<p>另一方面容易忽视的是，返回值返回时也是按值传递的</p>
+<p>每个变量都由两部分构成，地址与值；指针也一样。</p>
+<p>int i &#x3D; 9;</p>
+<p>该变量的值为9，地址为&amp;i</p>
+<p>int* p &#x3D; &amp;i;</p>
+<p>该变量的值为&amp;i，地址为&amp;p</p>
+<p>因为指针在C中很常用，通常我们给指针赋值，称为p指向某个变量</p>
+<p>此时应该这么解读，p是一个指针，p的值为某变量的地址，*p为该变量的值</p>
+<p>本质上来说，C&#x2F;C++是面向内存的语言，实际上C&#x2F;C++中最本质的只有两个东西：</p>
+<ol>
+<li><p>地址</p>
+</li>
+<li><p>*操作符</p>
+</li>
+</ol>
+<p>地址对应到实际的内存，这是一一对应的</p>
+<ul>
+<li>操作符用于获取该地址所存的值</li>
+</ul>
+<p>意识到这一点，我们会发现一切都统一起来：<code>i</code>只不过是<code>*(&amp;i)</code>的语法糖，从来就没有什么i</p>
+<p>同样，当我们声明变量时，<code>int i = 9</code>，实际的工作是，获取内存地址(&amp;i)，让内存存储的值为9，因此int是指明了该内存的大小</p>
+<h5 id="1-返回栈指针变量"><a href="#1-返回栈指针变量" class="headerlink" title="1. 返回栈指针变量"></a>1. 返回栈指针变量</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">return_int_in_stack</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> i = <span class="number">9</span>;</span><br><span class="line">  <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> p = <span class="built_in">return_int_in_stack</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这个代码没有问题，因为外部<code>p</code>的值是由栈变量<code>i</code>的值拷贝而来，栈变量<code>i</code>的销毁不会影响<code>p</code>;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span>* <span class="title">return_ptr_int_in_stack</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> i = <span class="number">9</span>;</span><br><span class="line">  <span class="type">int</span>* ptr_int = &amp;i;</span><br><span class="line">  <span class="keyword">return</span> ptr_int;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>* p = <span class="built_in">return_ptr_int_in_stack</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这个代码有问题，外部<code>p</code>的指向内部<code>ptr_int</code>所指，而内部<code>ptr_int</code>的销毁同样不会影响<code>p</code>，</p>
+<p>但是，内部<code>ptr_int</code>指向栈变量，而栈变量会在函数调用结束后销毁，因此该指针指向非法内存。</p>
+<p>结论：</p>
+<p>只关注值，则没有问题；</p>
+<p>否则应该将变量分配到堆上。</p>
+<h4 id="C-函数调用中变量处理的几种模式"><a href="#C-函数调用中变量处理的几种模式" class="headerlink" title="C++ 函数调用中变量处理的几种模式"></a>C++ 函数调用中变量处理的几种模式</h4><p>以结构为例，程序员要么关注其值，要么关注其本身（地址）</p>
+<h3 id="clang-编译"><a href="#clang-编译" class="headerlink" title="clang++ 编译"></a>clang++ 编译</h3><ol>
 <li><p>C++ 代码需要使用clang++编译，而非clang，否则会出现std相关的问题</p>
 </li>
 <li><p>常用参数</p>
@@ -585,6 +618,20 @@
   </div>
 
    
+  <nav class="article-nav">
+    
+      <a href="/2022/04/14/c%E5%8F%98%E9%87%8F%E6%9C%AC%E8%B4%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            c变量本质
+          
+        </div>
+      </a>
+    
+    
+  </nav>
+
   
    
     
