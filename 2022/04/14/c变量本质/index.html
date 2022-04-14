@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>c变量本质 |  Ivory cafe</title>
+      <title>essencial c |  Ivory cafe</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -64,7 +64,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  c变量本质
+  essencial c
 </h1>
  
 
@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">522</span>
+            <span class="post-count">858</span>
         </span>
     </span>
 
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -104,8 +104,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>学习C&#x2F;C++语言最大的困扰之一可能就是变量相关的事务，引起各种头疼的根源在于大多数的入门教材，并没有指出C&#x2F;C++变量的本质。</p>
-<h2 id="C-x2F-C-变量本质"><a href="#C-x2F-C-变量本质" class="headerlink" title="C&#x2F;C++变量本质"></a>C&#x2F;C++变量本质</h2><p>C&#x2F;C++变量 &#x3D; 内存起始地址 + 解释(类型)</p>
+  <h2 id="C-x2F-C-变量本质"><a href="#C-x2F-C-变量本质" class="headerlink" title="C&#x2F;C++变量本质"></a>C&#x2F;C++变量本质</h2><p>C&#x2F;C++变量 &#x3D; 内存起始地址 + 解释(类型)</p>
 <p>也就是经典的，信息 &#x3D; 位 + 上下文</p>
 <h3 id="内存起始地址"><a href="#内存起始地址" class="headerlink" title="内存起始地址"></a>内存起始地址</h3><p>C&#x2F;C++是面向内存的语言，意识到这一点，我们不难发现，C&#x2F;C++中只有一个东西，那就是内存起始地址，以下均用内存地址指代。</p>
 <p>内存地址与实际的内存一一对应，从数学的角度来说，它们是同构的，是等价的。</p>
@@ -135,6 +134,14 @@
 <p>p[0] &lt;-&gt; *(&amp;p[0]) &lt;-&gt; *(p+0)</p>
 <p>p[4] &lt;-&gt; *(&amp;p[4]) &lt;-&gt; *(p+4)</p>
 <p>数组里，p就是地址，因此不要使用&amp;</p>
+<ol>
+<li><p>分配内存地址 (p)</p>
+</li>
+<li><p>分配该内存地址所需要的内存（依赖类型与长度）</p>
+</li>
+<li><p>p[0] &lt;-&gt; *(&amp;p[0]) &lt;-&gt; *(p+0)</p>
+</li>
+</ol>
 <h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">  <span class="type">float</span> x, y;</span><br><span class="line">&#125; Position;</span><br><span class="line"></span><br><span class="line">Position p;</span><br><span class="line">p.x = <span class="number">1.0f</span>;</span><br><span class="line">p.y = <span class="number">2.0f</span>;</span><br></pre></td></tr></table></figure>
 
 <ol>
@@ -148,7 +155,67 @@
 <p>  *(&amp;p + x 对应偏移) &#x3D; 1.0f</p>
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 
-<p>add &lt;-&gt; *(&amp;add)</p>
+<ol>
+<li><p>分配内存地址(&amp;add)</p>
+</li>
+<li><p>分配内存大小取决于add的定义(返回值类型，参数类型)</p>
+</li>
+<li><p>add &lt;-&gt; *(&amp;add)</p>
+</li>
+</ol>
+<h2 id="Stack-V-S-Heap"><a href="#Stack-V-S-Heap" class="headerlink" title="Stack V.S. Heap"></a>Stack V.S. Heap</h2><p>CPU 运行依赖函数栈。在C&#x2F;C++中，需要时刻注意变量的分配位置。</p>
+<p>分配在栈上的变量，在响应函数栈退出后，即会被销毁。</p>
+<p>分配至堆上的变量，则不受函数栈的影响，但需要手动销毁，否则会引起内存泄漏。</p>
+<h2 id="const-int-V-S-int-const-V-S-const-int-const"><a href="#const-int-V-S-int-const-V-S-const-int-const" class="headerlink" title="const int * V.S. int * const V.S. const int * const"></a>const int * V.S. int * const V.S. const int * const</h2><ol>
+<li>const int *:</li>
+</ol>
+<p>  该变量为指针，该指针指向int，该int为const</p>
+<ol start="2">
+<li>int * const:</li>
+</ol>
+<p>  该变量为const，该变量为指针，该指针指向int</p>
+<ol start="3">
+<li>const int * const</li>
+</ol>
+<p>  该变量为const，该变量为指针，该指针指向int，该int为const</p>
+<h2 id="按值传递"><a href="#按值传递" class="headerlink" title="按值传递"></a>按值传递</h2><p>按值传递指向函数传递参数时，仅拷贝值；同时该函数返回时，同样仅拷贝值。</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>指针作用:</p>
+<ol>
+<li><p>提供灵活性</p>
+</li>
+<li><p>函数内部操作外部变量</p>
+</li>
+<li><p>向函数传递参数时不必完全拷贝变量</p>
+</li>
+</ol>
+<h2 id="值，引用，指针，const引用，const指针"><a href="#值，引用，指针，const引用，const指针" class="headerlink" title="值，引用，指针，const引用，const指针"></a>值，引用，指针，const引用，const指针</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>值</td>
+<td>纯计算，不涉及变量操作</td>
+</tr>
+<tr>
+<td>指针</td>
+<td>操作外部变量</td>
+</tr>
+<tr>
+<td>const指针</td>
+<td>纯计算，不涉及变量操作，好处在于不用拷贝一遍变量</td>
+</tr>
+<tr>
+<td>引用</td>
+<td>类似指针，但不涉及指针的拷贝，本质是一种别名</td>
+</tr>
+<tr>
+<td>const 引用</td>
+<td>本质是一种拷贝，但是加上了const限制</td>
+</tr>
+</tbody></table>
  
       <!-- reward -->
       
