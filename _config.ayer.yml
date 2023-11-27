@@ -4,10 +4,10 @@ menu:
   归档: /archives
   分类: /categories
   标签: /tags
-  翻译: /categories/旅行/
+  翻译: /categories/翻译/
   项目: /categories/项目/
   友链: /friends
-  关于我: /2023/about
+  关于我: /2023/11/26/about/
 
 # 站点次标题和打字动效
 # https://github.com/mattboldt/typed.js
@@ -238,7 +238,6 @@ minivaline:
 # 首页广告配置
 # 可以根据需要自行增加ad_3，ad_4...，留空则不显示，建议图片和url不要带ad等关键词，否则可能会被adblock等插件屏蔽
 ads:
-  ad_1:
 
 # 网站开启加密访问，密码可设置任何字符
 lock:

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>对称投影</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><style>@media(prefers-color-scheme:dark){text{fill:%23fff}}</style><text y=%22.9em%22 font-size=%22100%22>❦</text></svg>">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1>对称投影算法</h1>
+    <p> 投影法是计算视野最常用的算法。 该算法 <a href="#efficiency">高效</a>, <a href="#no_artifacts">一致</a>, 而且 <a href="#symmetry">对称</a>。
+    </p> <label><input type="checkbox" checked="checked" id="outlines"> 显示辅助线</label>
+    <div id="example0" class="fixed-width">
+        <pre class="foreground">       #·     #####              
+       #··    #···#        ·#####
+···  ###····###···###   ·······  
+····················# ······#    
+        ····················#    
+            #···@···········#    
+        ·························
+   #················# ······#####
+   # ###····######·##   ····#    
+       #··        ··       ·#    
+       #·          ··            </pre>
+        <pre class="background">·#·#·#·  ·····     ·········#····
+·###·#·   ····     ········      
+   ··                ···       ··
+                     ·       ####
+········                     ····
+············                 ####
+·###····                         
+·#·                  ·           
+·#· ·                ···     ····
+·#·#·#·   ········  ·······  ####
+·#·#·#·  ··········  ············</pre> <svg viewBox="0 0 330 110">
+            <path
+                d=" M 180 85 L 185 95 M 185 95 L 190 105 M 190 105 L 195 115 M 215 115 L 206.66666666666669 105 L 198.33333333333331 95 L 190 85 M 150 25 L 145 15 M 150 15 L 146.25 5 M 183.75 5 L 180 15 M 185 15 L 180 25 M 195 30 L 205 21.666666666666664 M 205 40 L 215 36.25 M 215 36.25 L 225 32.5 M 225 32.5 L 235 28.75 M 235 28.75 L 245 25 M 245 25 L 255 21.25 M 255 21.25 L 265 17.5 M 265 17.5 L 275 13.75 M 275 13.75 L 285 10 M 285 20 L 295 17.083333333333336 M 295 20 L 305 17.307692307692307 M 305 20 L 315 17.5 M 315 20 L 325 17.666666666666664 M 325 20 L 335 17.8125 M 335 19.583333333333336 L 325 21.666666666666664 L 315 23.75 L 305 25.833333333333336 L 295 27.916666666666664 L 285 30 M 285 60 L 295 60.41666666666667 M 295 60.41666666666667 L 305 60.83333333333333 M 305 60.83333333333333 L 315 61.25 M 315 61.25 L 325 61.66666666666667 M 325 61.66666666666667 L 335 62.08333333333333 M 335 70.9375 L 325 70 M 325 71 L 315 70 M 315 71.07142857142858 L 305 70 M 305 71.15384615384615 L 295 70 M 295 71.25 L 285 70 M 285 100 L 275 96.25 L 265 92.5 L 255 88.75 L 245 85 L 235 81.25 L 225 77.5 L 215 73.75 L 205 70 M 205 88.33333333333334 L 195 80 M 135 30 L 125 21.666666666666664 M 125 30 L 115 23.75 M 115 23.75 L 105 17.5 M 105 17.5 L 95 11.25 M 95 11.25 L 85 5 M 85 5 L 75 -1.25 M 75 30 L 65 27.22222222222222 M 65 30 L 55 27.5 M 55 30 L 45 27.72727272727273 M 45 27.72727272727273 L 35 25.454545454545453 M 35 25.454545454545453 L 25 23.181818181818183 M 25 23.181818181818183 L 15 20.909090909090907 M 15 20.909090909090907 L 5 18.636363636363637 M 5 18.636363636363637 L -5 16.363636363636363 M -5 33.75 L 5 35 L 15 36.25 L 25 37.5 L 35 38.75 L 45 40 L 55 41.25 L 65 42.5 L 75 43.75 L 85 45 L 95 46.25 L 105 47.5 L 115 48.75 L 125 50 M 125 60 L 115 61.25 M 115 61.25 L 105 62.5 M 105 62.5 L 95 63.75 M 95 63.75 L 85 65 M 85 65 L 75 66.25 M 75 66.25 L 65 67.5 M 65 67.5 L 55 68.75 M 55 68.75 L 45 70 M 45 70 L 35 71.25 M 35 84.54545454545455 L 45 82.27272727272727 L 55 80 M 55 82.5 L 65 80 M 65 82.77777777777777 L 75 80 M 75 111.25 L 85 105 L 95 98.75 L 105 92.5 L 115 86.25 L 125 80 M 125 88.33333333333334 L 135 80"
+                id="umbra"></path>
+            <path
+                d="M 10 5 L 15 0 L 20 5 L 20 10 L 25 10 L 30 10 L 30 5 L 35 0 L 40 5 L 40 15 L 35 20 L 25 20 L 15 20 L 10 15 L 10 5 M 50 5 L 55 0 L 60 5 L 60 15 L 60 20 L 65 20 L 70 20 L 70 15 L 70 5 L 75 0 L 80 5 L 80 15 L 80 25 L 75 30 L 65 30 L 55 30 L 50 25 L 50 15 L 50 5 M 140 5 L 145 0 L 155 0 L 165 0 L 175 0 L 185 0 L 190 5 L 190 15 L 190 20 L 195 20 L 205 20 L 210 25 L 210 35 L 205 40 L 200 35 L 200 30 L 195 30 L 185 30 L 180 25 L 180 15 L 180 10 L 175 10 L 165 10 L 155 10 L 150 10 L 150 15 L 150 25 L 145 30 L 135 30 L 125 30 L 120 25 L 125 20 L 135 20 L 140 20 L 140 15 L 140 5 M 280 5 L 285 0 L 290 5 L 290 10 L 295 10 L 305 10 L 315 10 L 325 10 L 330 15 L 325 20 L 315 20 L 305 20 L 295 20 L 285 20 L 280 15 L 280 5 M 280 35 L 285 30 L 295 30 L 305 30 L 315 30 L 325 30 L 330 35 L 325 40 L 315 40 L 305 40 L 295 40 L 290 40 L 290 45 L 290 50 L 295 50 L 305 50 L 315 50 L 325 50 L 330 55 L 325 60 L 315 60 L 305 60 L 295 60 L 285 60 L 280 55 L 280 45 L 280 35 M 120 55 L 125 50 L 130 55 L 125 60 L 120 55 M 10 65 L 15 60 L 25 60 L 35 60 L 40 65 L 40 75 L 40 85 L 40 95 L 40 105 L 35 110 L 30 105 L 30 95 L 30 85 L 30 75 L 30 70 L 25 70 L 20 70 L 20 75 L 20 85 L 20 95 L 20 105 L 15 110 L 10 105 L 10 95 L 10 85 L 10 75 L 10 65 M 200 75 L 205 70 L 210 75 L 210 85 L 205 90 L 195 90 L 190 85 L 195 80 L 200 80 L 200 75 M 280 75 L 285 70 L 295 70 L 305 70 L 315 70 L 325 70 L 330 75 L 325 80 L 315 80 L 305 80 L 295 80 L 290 80 L 290 85 L 290 90 L 295 90 L 305 90 L 315 90 L 325 90 L 330 95 L 325 100 L 315 100 L 305 100 L 295 100 L 285 100 L 280 95 L 280 85 L 280 75 M 50 85 L 55 80 L 65 80 L 75 80 L 80 85 L 80 95 L 80 105 L 75 110 L 70 105 L 70 95 L 70 90 L 65 90 L 60 90 L 60 95 L 60 105 L 55 110 L 50 105 L 50 95 L 50 85 M 120 85 L 125 80 L 135 80 L 145 80 L 155 80 L 165 80 L 175 80 L 180 85 L 175 90 L 165 90 L 155 90 L 145 90 L 135 90 L 125 90 L 120 85"
+                id="walls"></path>
+        </svg>
+    </div>
+    <aside> 点击、拖动以编辑地图 </aside>
+    <h2>算法原理</h2>
+    <p> 解释投影法的最好方式是一步一步演示。下面就是该算法的核心函数。你可以使用下面的滑块和按钮逐步调试代码，焦点聚焦在滑块时，按方向键也可以调试。</p>
+    <p> 完整的实现在文章最后。点击函数既可以跳转到定义。</p>
+    <div id="example2wrapper">
+        <pre><code class="python3">def scan(row):
+    prev_tile = None
+    for tile in row.tiles():
+        if is_wall(tile) or is_symmetric(row, tile):
+            reveal(tile)
+        if is_wall(prev_tile) and is_floor(tile):
+            row.start_slope = slope(tile)
+        if is_floor(prev_tile) and is_wall(tile):
+            next_row = row.next()
+            next_row.end_slope = slope(tile)
+            scan(next_row)
+        prev_tile = tile
+    if is_floor(prev_tile):
+        scan(row.next())
+    return</code></pre> <div> <div id="example2"> <pre class="foreground">       @
+         
+          
+           
+            
+             
+              
+               </pre> <pre class="background">        
+      ···
+     ·#···
+    ·······
+   ######·##
+  ······#·#··
+ ·······#·#···
+········#·#····</pre> <svg viewBox="0 0 150 80">
+                    <path d="" id="col2" class="single" />
+                    <path d="" id="row2" />
+                    <path d="" id="start2" />
+                    <path d="" id="end2" />
+                    <path d="" id="walls2" />
+                </svg>
+            </div>
+            <div role="group"> <button id="prev2">&lt;</button> <button id="next2">&gt;</button> <input id="slider2"
+                    type="range" min="1" max="100" value="1"> </div>
+        </div>
+    </div>
+    <aside> 上图中，粉色虚线表示当前的起始斜率与结束斜率。白框表示当前行。黑色方框表示当前的贴图。</aside>
+    <h2>为何使用投影法？</h2>
+    <p> 在这篇博客中 <a href="http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html">Roguelike Vision
+            Algorithms</a> ,Adam Milazzo 列举了视野算法应该满足的六个性质： </p>
+    <ul>
+        <li><a href="#symmetry">对称性</a></li>
+        <li><a href="#expansive_walls">墙体延展</a></li>
+        <li><a href="#expanding_pillar_shadows">发散性</a></li>
+        <li><a href="#no_blind_corners">无盲角</a></li>
+        <li><a href="#no_artifacts">无伪影</a></li>
+        <li><a href="#efficiency">高效</a></li>
+    </ul>
+    <p>对称投影算法满足以上六条性质。</p>
+    <p>我第一次看到使用斜角是在Adam's的帖子上的。我们的最终算法会和这个很相似，如果你想了解细节，那你一定不能错过他的帖子.</p>
+    <h2 id="symmetry">对称性</h2>
+    <p> 对称投影在不同地板间具有完美的对称性。所谓的对称性是指， 若地板A在地板B的视野内，那么地板B也必定在地板A的视野内。 该性质由
+        <code><a href="#is_symmetric">is_symmetric</a></code> 函数保证。 </p>
+    <p> 不过该性质不保证墙体也对称。举个简单的例子，该算法事先假定了视点位置的贴图并不会遮挡视线。
+        如果你在类似墙体这种会遮挡视线的位置使用该算法，那么你视野内的位置均看不到你（因为你的位置是墙体，你被墙体遮盖住了），这就是非对称性。不过做一些简单修改就可以让该算法消除这种非对称性。 </p>
+    <p> 投影算法中，视点位置为该贴图的中心点。当扫描地板时，该算法将其为中心点(<code><a href="#is_symmetric">is_symmetric</a></code>)。但扫描到墙体时，该算法将将墙体作为一个竖向的菱形处理。
+        (<code><a href="#tiles">Row.tiles</a></code>).为了保证对称性，若视点位置为墙体，该算法需要将其视为菱形。</p>
+    <p> 现在将视点(A)作为菱形，将会投射出两种阴影：实影(B)和半影(C)，半影部分可见，而实影完全不可见。 </p>
+    <div> <svg viewBox="0 -50 500 250">
+            <defs>
+                <polygon id="diamond" points="-50,0 0,50 50,0 0,-50" stroke="#fd8" fill="#343" />
+                <polygon id="hollow_diamond" points="-50,0 0,50 50,0 0,-50" fill="#343" />
+                <polygon id="square" fill="#454" stroke="#343" stroke-width="2" points="-50,-50 -50,50 50,50 50,-50" />
+            </defs>
+            <use href="#square" x="50" y="0" />
+            <use href="#square" x="50" y="100" />
+            <use href="#square" x="50" y="200" />
+            <use href="#square" x="150" y="0" />
+            <use href="#square" x="150" y="100" />
+            <use href="#square" x="150" y="200" />
+            <use href="#square" x="250" y="0" />
+            <use href="#square" x="250" y="100" />
+            <use href="#square" x="250" y="200" />
+            <use href="#square" x="350" y="0" />
+            <use href="#square" x="350" y="100" />
+            <use href="#square" x="350" y="200" />
+            <use href="#square" x="450" y="0" />
+            <use href="#square" x="450" y="100" />
+            <use href="#square" x="450" y="200" />
+            <path d="M250,50L450,-50h50V200H350L250,150L300,100Z" fill="rgba(0,0,0,0.4)" />
+            <line stroke="#f8d" x1="50" y1="150" x2="450" y2="-50" />
+            <line stroke="#f8d" x1="50" y1="50" x2="350" y2="200" />
+            <path d="M250,50H500v100H250L300,100Z" />
+            <line stroke="#f8d" x1="50" y1="150" x2="500" y2="150" />
+            <line stroke="#f8d" x1="50" y1="50" x2="500" y2="50" />
+            <use href="#diamond" x="50" y="100" fill="#343" />
+            <use href="#diamond" x="250" y="100" fill="#343" /> <text fill="#fff" x="50" y="100" font-size="50px"
+                dominant-baseline="central" text-anchor="middle">A</text> <text fill="#fff" x="350" y="100"
+                font-size="50px" dominant-baseline="central" text-anchor="middle">B</text> <text fill="#fff" x="450"
+                y="0" font-size="50px" dominant-baseline="central" text-anchor="middle">C</text>
+        </svg> </div>
+    <p> 很显然，完全在实影中的贴图应当是不可见的。但在半影中的贴图应当处理为可见，否则，由于半影中可以看到原视点，而这就破坏了对称性。</p>
+    <p> 所以，视点位为墙体时，该算法需要一些修改。 </p>
+    <ul>
+        <li>计算斜率时应当从边缘计算，而非从中心点计算。</li>
+        <li>在函数<code><a href="#is_symmetric">is_symmetric</a></code>中的比较应当使用严格不等式。</li>
+    </ul>
+    <div class="figure_wrapper">
+        <figure> <svg viewBox="0 -50 400 300">
+                <use href="#square" x="50" y="0" />
+                <use href="#square" x="50" y="100" />
+                <use href="#square" x="50" y="200" />
+                <use href="#square" x="150" y="0" />
+                <use href="#square" x="150" y="100" />
+                <use href="#square" x="150" y="200" />
+                <use href="#square" x="250" y="0" />
+                <use href="#square" x="250" y="100" />
+                <use href="#square" x="250" y="200" />
+                <use href="#square" x="350" y="0" />
+                <use href="#square" x="350" y="100" />
+                <use href="#square" x="350" y="200" />
+                <use href="#square" x="450" y="0" />
+                <use href="#square" x="450" y="100" />
+                <use href="#square" x="450" y="200" />
+                <path d="M250,50H400v100H250L300,100Z" />
+                <line stroke="#f8d" x1="50" y1="150" x2="400" y2="150" />
+                <line stroke="#f8d" x1="50" y1="50" x2="400" y2="50" />
+                <use href="#diamond" x="50" y="100" fill="#343" />
+                <use href="#diamond" x="250" y="100" fill="#343" />
+            </svg>
+            <figcaption>墙体位置的视野</figcaption>
+        </figure>
+        <figure> <svg viewBox="0 -50 400 300">
+                <use href="#square" x="50" y="0" />
+                <use href="#square" x="50" y="100" />
+                <use href="#square" x="50" y="200" />
+                <use href="#square" x="150" y="0" />
+                <use href="#square" x="150" y="100" />
+                <use href="#square" x="150" y="200" />
+                <use href="#square" x="250" y="0" />
+                <use href="#square" x="250" y="100" />
+                <use href="#square" x="250" y="200" />
+                <use href="#square" x="350" y="0" />
+                <use href="#square" x="350" y="100" />
+                <use href="#square" x="350" y="200" />
+                <use href="#square" x="450" y="0" />
+                <use href="#square" x="450" y="100" />
+                <use href="#square" x="450" y="200" />
+                <path d="M250,50L400,12.5v175L250,150L300,100Z" />
+                <line stroke="#f8d" x1="50" y1="100" x2="400" y2="187.5" />
+                <line stroke="#f8d" x1="50" y1="100" x2="400" y2="12.5" />
+                <use href="#diamond" x="250" y="100" fill="#343" />
+            </svg>
+            <figcaption>地板位置的视野</figcaption>
+        </figure>
+    </div>
+    <h2 id="expansive_walls">墙体延展</h2>
+    <p>墙体延展是指，当视点处于一个凸空间内时，所有的墙体均应该为可见。</p>
+    <div class="figure_wrapper">
+        <figure>
+            <div class="expansive">
+                <pre class="foreground">#######
+#·····#
+#@····#
+#######</pre>
+            </div>
+            <figcaption>墙体延展</figcaption>
+        </figure>
+        <figure>
+            <div class="expansive">
+                <pre class="foreground">######
+#·····#
+#@····#
+####</pre>
+                <pre class="background">      #
+ 
+ 
+    ###</pre>
+            </div>
+            <figcaption>非墙体延展</figcaption>
+        </figure>
+    </div>
+    <p>右图这个非墙体延展的例子来自于投影算法的一个变体，该变体用<code><a href="#is_symmetric">is_symmetric</a></code>检查地板和墙体 这个方法快捷简单，但是会导致奇怪的阴影。
+    </p>
+    <h2 id="expanding_pillar_shadows">发散性</h2>
+    <p> 对称投影通常都会生成发散性阴影。但视点为墙体时，会出现意外情况。此时为了保证墙体延展，必须将柱子的影子设定为固定宽度。</p>
+    <div class="figure_wrapper">
+        <figure>
+            <div class="expanding">
+                <pre class="foreground">@······
+·#·····
+··  ···
+··    ·
+···</pre>
+                <pre class="background">
+　
+  ··
+  ····
+   ····</pre>
+            </div>
+            <figcaption>发散性阴影</figcaption>
+        </figure>
+        <figure>
+            <div class="expanding">
+                <pre class="foreground">@······
+·#·····
+·· ····
+··· ···
+···· ··</pre>
+                <pre class="background">
+
+  ·
+   ·
+    ·</pre>
+            </div>
+            <figcaption>固定宽度阴影</figcaption>
+        </figure>
+    </div>
+    <h2 id="no_blind_corners">无盲角</h2>
+    <p> 很多 roguelike 游戏中，玩家可以斜着通过拐角。如果斜着通过角落后，玩家的位置在未通过时视野盲区的旁边，那么该拐角就是盲角。对称投影算法中不存在盲角。</p>
+    <div class="figure_wrapper">
+        <figure>
+            <div class="blind">
+                <pre class="foreground">···@···
+####···
+   #···
+   # ··</pre>
+                <pre class="background">
+
+···
+··· ·</pre>
+            </div>
+            <figcaption>安全角</figcaption>
+        </figure>
+        <figure>
+            <div class="blind">
+                <pre class="foreground">···@···
+####···
+   # ··
+   #  ·</pre>
+                <pre class="background">
+
+··· ·
+··· ··</pre>
+            </div>
+            <figcaption>盲角</figcaption>
+        </figure>
+    </div>
+    <p>右图这个盲角由未使用斜面墙而导致。</p>
+    <h2 id="no_artifacts">无伪影</h2>
+    <p> 该算法尽量不使用近似，以此尽可能的减少伪影。算法使用实数，而非有理数，此外该算法很仔细地处理了舍入。</p>
+    <p> 不过有些近似不可避免。毕竟这里的投影作用在网格空间，而非完备的欧几里得平面。绝大多数时候，算法的结果都符合直觉。但当墙体之间有小缝隙时，可能会出现一些异常。有时视野并不连续。 </p>
+    <div id="example4" class="fixed-width">
+        <pre class="foreground">@··#             
+··# ···          
+···     ·····    
+·····       ·····
+······          ·</pre>
+        <pre class="background">    ·············
+   ·   ··········
+   ·····     ····
+     ·······     
+      ·········· </pre> <svg viewBox="160 50 170 50">
+            <path
+                d=" M 225 0 L 235 -9.16666666666667 M 235 0 L 245 -7.857142857142856 M 245 0 L 255 -6.875 M 255 0 L 265 -6.111111111111107 M 265 0 L 275 -5.499999999999998 M 275 0 L 285 -5 M 285 0 L 295 -4.58333333333333 M 295 0 L 305 -4.2307692307692335 M 305 0 L 315 -3.9285714285714324 M 315 0 L 325 -3.6666666666666625 M 325 0 L 335 -3.4375 M 335 26.666666666666664 L 325 28.333333333333336 L 315 30 L 305 31.666666666666664 L 295 33.333333333333336 L 285 35 L 275 36.66666666666667 L 265 38.33333333333333 L 255 40 L 245 41.66666666666667 L 235 43.33333333333333 L 225 45 L 215 46.66666666666667 L 205 48.33333333333333 L 195 50 M 195 60 L 205 61.66666666666667 M 205 61.66666666666667 L 215 63.33333333333333 M 215 63.33333333333333 L 225 65 M 225 65 L 235 66.66666666666667 M 235 66.66666666666667 L 245 68.33333333333333 M 245 68.33333333333333 L 255 70 M 255 70 L 265 71.66666666666667 M 265 71.66666666666667 L 275 73.33333333333333 M 275 73.33333333333333 L 285 75 M 285 75 L 295 76.66666666666666 M 295 76.66666666666666 L 305 78.33333333333334 M 305 78.33333333333334 L 315 80 M 315 80 L 325 81.66666666666666 M 325 81.66666666666666 L 335 83.33333333333334 M 335 97.5 L 325 95 L 315 92.5 L 305 90 L 295 87.5 L 285 85 L 275 82.5 L 265 80 L 255 77.5 L 245 75 L 235 72.5 L 225 70 L 215 67.5 L 205 65 L 195 62.5 L 185 60 M 185 70 L 195 77.5 M 195 77.5 L 205 85 M 205 85 L 215 92.5 M 215 92.5 L 225 100 M 225 100 L 235 107.5 M 235 107.5 L 245 115 M 245 117.85714285714285 L 235 110 M 235 119.16666666666669 L 225 110 M 105 0 L 95 -9.16666666666667 M 95 0 L 85 -7.857142857142856 M 85 0 L 75 -6.875 M 75 0 L 65 -6.111111111111107 M 65 0 L 55 -5.499999999999998 M 55 0 L 45 -5 M 45 0 L 35 -4.58333333333333 M 35 0 L 25 -4.2307692307692335 M 25 0 L 15 -3.9285714285714324 M 15 0 L 5 -3.6666666666666625 M 5 0 L -5 -3.4375 M -5 113.4375 L 5 110 M 5 113.66666666666667 L 15 110 M 15 113.92857142857142 L 25 110 M 25 114.23076923076923 L 35 110 M 35 114.58333333333331 L 45 110 M 45 115 L 55 110 M 55 115.5 L 65 110 M 65 116.11111111111111 L 75 110 M 75 116.875 L 85 110 M 85 117.85714285714285 L 95 110 M 95 119.16666666666669 L 105 110"
+                id="umbra"></path>
+            <path d="M 190 55 L 195 50 L 200 55 L 195 60 L 190 55 M 180 65 L 185 60 L 190 65 L 185 70 L 180 65"
+                id="walls"></path>
+        </svg>
+    </div>
+    <p> 该算法模型有一个很大的优点：生成的阴影完美对应 <a href="https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm">Bresenham 算法</a>。
+        因此，如果两个位点间可以画出一条直线，那么这两个点必定互相在对方的视野中；反之亦然。
+    </p>
+    <p> 这意味着许多远程攻击类似的操作的视野与该视野是一致的。如果你能瞄准该位点，那么该位点一定在你的视野内；反之亦然。
+    </p>
+    <h2 id="efficiency">高效</h2>
+    <p> 与其他视野算法相比，投影法通常更高效。 <a
+            href="http://www.roguebasin.com/index.php?title=Comparative_study_of_field_of_view_algorithms_for_2D_grid_based_worlds">perform
+            well</a> 防止递归出问题, 文章在结尾提供了一个 <a href="#scan_iterative">非递归的</a> <code>scan</code> 函数。 </p>
+    <h2>其他相关资源</h2>
+    <ul>
+        <li><a href="http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html">Roguelike Vision Algorithms</a>,
+            as mentioned earlier</li>
+        <li>Adam Milazzo’s list of desirable properties may have originated with PaulBlay’s <a
+                href="http://angband.oook.cz/forum/showthread.php?p=20814#post20814">similar list</a></li>
+        <li> Roguebasin’s <a
+                href="http://www.roguebasin.com/index.php?title=Discussion:Field_of_Vision">Discussion:Field of
+                Vision</a> is a great resource for comparing different possible algorithms. This variant of
+            shadowcasting follows the <a
+                href="http://www.roguebasin.com/index.php?title=Discussion:Field_of_Vision#Diamond_walls.2C_point_visibility">diamond
+                walls, point visibility</a> model with additional floor-wall symmetry rules to create expansive walls.
+        </li>
+        <li> Björn Bergström wrote a great <a
+                href="http://www.roguebasin.com/index.php?title=FOV_using_recursive_shadowcasting">article</a>
+            explaining how recursive shadowcasting works. </li>
+        <li> /r/roguelikedev has a couple FAQ Fridays on the subject of field of view: <a
+                href="https://www.reddit.com/r/roguelikedev/comments/358mt5/faq_friday_12_field_of_vision/">one</a>, <a
+                href="https://www.reddit.com/r/roguelikedev/comments/6hjbki/faq_fridays_revisited_12_field_of_vision/">two</a>.
+        </li>
+    </ul>
+    <h2>完整的实现</h2>
+    <figure id="appendix">
+        <pre class="import"><a id="Fraction"></a><a id="floor"></a><a id="ceil"></a><code class="python3">import math
+from fractions import Fraction</code></pre>
+        <pre class="compute_fov"><a id="is_blocking"></a><a id="mark_visible"></a><code class="python3">def compute_fov(origin, is_blocking, mark_visible):
+
+    mark_visible(*origin)
+
+    for i in range(4):
+        quadrant = Quadrant(i, origin)</code></pre>
+        <pre class="reveal"><code class="python3">        def reveal(tile):
+            x, y = quadrant.transform(tile)
+            mark_visible(x, y)
+
+        def is_wall(tile):
+            if tile is None:
+                return false
+            x, y = quadrant.transform(tile)
+            return is_blocking(x, y)
+
+        def is_floor(tile):
+            if tile is None:
+                return false
+            x, y = quadrant.transform(tile)
+            return not is_blocking(x, y)</code></pre>
+        <pre class="scan"><code class="python3">        def scan(row):
+            prev_tile = None
+            for tile in row.tiles():
+                if is_wall(tile) or is_symmetric(row, tile):
+                    reveal(tile)
+                if is_wall(prev_tile) and is_floor(tile):
+                    row.start_slope = slope(tile)
+                if is_floor(prev_tile) and is_wall(tile):
+                    next_row = row.next()
+                    next_row.end_slope = slope(tile)
+                    scan(next_row)
+                prev_tile = tile
+            if is_floor(prev_tile):
+                scan(row.next())
+
+        first_row = Row(1, Fraction(-1), Fraction(1))
+        scan(first_row)</code></pre>
+        <pre class="quadrant"><code class="python3">class Quadrant:
+
+    north = 0
+    east  = 1
+    south = 2
+    west  = 3
+
+    def __init__(self, cardinal, origin):
+        self.cardinal = cardinal
+        self.ox, self.oy = origin</code></pre>
+        <pre class="transform"><code class="python3">    def transform(self, tile):
+        row, col = tile
+        if self.cardinal == north:
+            return (self.ox + col, self.oy - row)
+        if self.cardinal == south:
+            return (self.ox + col, self.oy + row)
+        if self.cardinal == east:
+            return (self.ox + row, self.oy + col)
+        if self.cardinal == west:
+            return (self.ox - row, self.oy + col)</code></pre>
+        <pre class="row"><code class="python3">class Row:
+
+    def __init__(self, depth, start_slope, end_slope):
+        self.depth = depth
+        self.start_slope = start_slope
+        self.end_slope = end_slope</code></pre>
+        <pre class="tiles"><code class="python3">    def tiles(self):
+        min_col = round_ties_up(self.depth * self.start_slope)
+        max_col = round_ties_down(self.depth * self.end_slope)
+        for col in range(min_col, max_col + 1):
+            yield (self.depth, col)
+
+    def next(self):
+        return Row(
+            self.depth + 1,
+            self.start_slope,
+            self.end_slope)</code></pre>
+        <pre class="slope"><code class="python3">def slope(tile):
+    row_depth, col = tile
+    return Fraction(2 * col - 1, 2 * row_depth)</code></pre>
+        <pre class="is_symmetric"><code class="python3">def is_symmetric(row, tile):
+    row_depth, col = tile
+    return (col &gt;= row.depth * row.start_slope
+        and col &lt;= row.depth * row.end_slope)</code></pre>
+        <pre class="round_ties"><code class="python3">def round_ties_up(n):
+    return math.floor(n + 0.5)
+
+def round_ties_down(n):
+    return math.ceil(n - 0.5)</code></pre>
+        <pre class="scan_iterative"><code class="python3">def scan_iterative(row):
+    rows = [row]
+    while rows:
+        row = rows.pop()
+        prev_tile = None
+        for tile in row.tiles():
+            if is_wall(tile) or is_symmetric(row, tile):
+                reveal(tile)
+            if is_wall(prev_tile) and is_floor(tile):
+                row.start_slope = slope(tile)
+            if is_floor(prev_tile) and is_wall(tile):
+                next_row = row.next()
+                next_row.end_slope = slope(tile)
+                rows.append(next_row)
+            prev_tile = tile
+        if is_floor(prev_tile):
+            rows.append(row.next())
+</code></pre>
+        <figcaption class="compute_fov"> 程序入口。调用该函数来计算原点origin位置的视野。 <p><code>origin:</code> 一个 (x, y) 元组。
+                <br><code>is_blocking(x, y):</code> 若<code>(x, y)</code> 阻挡视线，则返回True，否则返回False.
+                <br><code>mark_visible(x, y):</code> 将<code>(x, y)</code>标记为可见。
+            </p>
+        </figcaption>
+        <figcaption class="reveal"> 在函数 <code>compute_fov</code> 内部， 我们定义一些局部函数，将<code>scan</code>函数中，不同象限的细节抽象出来。
+            <code>reveal</code>,
+            <code>is_wall</code>, 和 <code>is_floor</code>的输入是表示相对位置的 <code>(row, col)</code> 元组。<code>is_blocking</code>
+            和
+            <code>mark_visible</code> 的输入是表示绝对位置的 <code>(x, y)</code>元组。
+        </figcaption>
+        <figcaption class="scan"> 递归的扫描行，及该行的所有子节点。
+            如果你将每个象限看成一棵由行组成的树，那么这个函数就是一个深度优先的树遍历。
+        </figcaption>
+        <figcaption class="quadrant"> <code>Quadrant</code> 表示一个90度的，指向北，南，东，西的扇面。Quadrants 会逐行遍历. 对于东西象限，"行" 是竖向的，而非横向。
+        </figcaption>
+        <figcaption class="transform"> 将表示相对位点的相对位置元组 <code>(row, col)</code>
+            转换为相对原点的绝对位置元组<code>(x, y)</code>.
+        </figcaption>
+        <figcaption class="row"> <code>Row</code>对象表示起始斜率和终止斜率之间约束的一段tiles <code>depth</code> 代表该行到坐标原点的距离。</figcaption>
+        <figcaption class="tiles"> <code>tiles</code> 函数返回一个tiles迭代器。
+            若视野扇区扫描到了该贴图内部的菱形，则认为该贴图在视野内，否则在视野外。若贴图内的菱形在视野扇区外，且只是和视野相切，则同样视为在视野外部。
+            <svg viewBox="0 0 500 300">
+                <use href="#square" x="50" y="50" />
+                <use href="#square" x="150" y="50" />
+                <use href="#square" x="250" y="50" />
+                <use href="#square" x="350" y="50" />
+                <use href="#square" x="450" y="50" />
+                <use href="#square" x="50" y="150" />
+                <use href="#square" x="150" y="150" />
+                <use href="#square" x="250" y="150" />
+                <use href="#square" x="350" y="150" />
+                <use href="#square" x="450" y="150" />
+                <use href="#square" x="50" y="250" />
+                <use href="#square" x="150" y="250" />
+                <use href="#square" x="250" y="250" />
+                <use href="#square" x="350" y="250" />
+                <use href="#square" x="450" y="250" />
+                <use class="inscribed" href="#hollow_diamond" x="50" y="250" />
+                <use class="inscribed" href="#hollow_diamond" x="150" y="250" />
+                <use class="inscribed" href="#hollow_diamond" x="250" y="250" />
+                <use class="inscribed" href="#hollow_diamond" x="350" y="250" />
+                <use class="inscribed" href="#hollow_diamond" x="450" y="250" />
+                <line id="tiles_line1" x1="250" y1="50" x2="312.5" y2="300" stroke="#f8d" />
+                <line id="tiles_line2" x1="250" y1="50" x2="0" y2="300" stroke="#f8d" />
+            </svg> <input id="tiles_slope1" type="range" min="0" max="160" value="0"> <input id="tiles_slope2"
+                type="range" min="0" max="160" value="100">
+        </figcaption>
+        <figcaption class="slope"> <code>slope</code>函数计算新的起始斜率和终止斜率。
+            该函数有两个作用：
+            <br>
+            [1], 若 <code>prev_tile</code> (左贴图) 是墙体 <code>tile</code> (右贴图) 是地板
+            ， 那么此时 slope 表示 起始 slope 并且应该与墙体贴图右边界相切。 <div class="figure_wrapper">
+                <figure> <svg viewBox="0 100 200 100">
+                        <use href="#square" x="50" y="50" />
+                        <use href="#square" x="150" y="50" />
+                        <use href="#square" x="150" y="150" />
+                        <use href="#square" x="50" y="150" />
+                        <use href="#diamond" x="50" y="150" />
+                        <line x1="150" y1="50" x2="75" y2="200" stroke="#f8d" />
+                    </svg>
+                    <figcaption>[1]</figcaption>
+                </figure>
+                <figure> <svg viewBox="0 100 200 100">
+                        <use href="#square" x="50" y="50" />
+                        <use href="#square" x="150" y="50" />
+                        <use href="#square" x="150" y="150" />
+                        <use href="#square" x="50" y="150" />
+                        <use href="#diamond" x="150" y="150" />
+                        <line x1="150" y1="50" x2="75" y2="200" stroke="#f8d" />
+                    </svg>
+                    <figcaption>[2]</figcaption>
+                </figure>
+            </div> [2], 若 <code>prev_tile</code> 是地板而 <tile>tile</tile> 是墙体, 那么此时 slope 表示 终止 slope 并且应该与墙体的左边界相切。 <p>
+                在这两种情况里, 视线总是和当前贴图的左边界相切，因此我们可以只用一个 <code>slope</code> 函数来处理 起始slope 和 终止slope。 </p>
+        </figcaption>
+        <figcaption class="is_symmetric"> <code>is_symmetric</code>函数用于检查某个floor tile与视点之间的视野是否具有对称性。
+            若某个贴图的中心点斜率在起始斜率和终止斜率之间，则返回True，否则返回False。 </figcaption>
+        <figcaption class="round_ties"> <code>round_ties_up</code> and <code>round_ties_down</code> 用于将数字舍入到最近的整数,
+            <code>round_ties_up</code> 向上舍入而 <code>round_ties_down</code> 向下舍入。 注意: <code>round_ties_up</code> 与 Python
+            的<code>round</code>并不相同. Python 的 <code>round</code> 会将数字向远离0的方向舍入，处理负数时，这会和我们的意图不同.
+        </figcaption>
+        <figcaption class="scan_iterative"> 核心算法的非递归版本。 </figcaption>
+    </figure>
+    <p> 完整的实现使用了 <a href="https://github.com/370417/symmetric-shadowcasting/blob/master/LICENSE.txt">CC0</a>授权.
+    </p>
+    <script src="./bundle.js" async></script>
+</body>
+
+</html>
