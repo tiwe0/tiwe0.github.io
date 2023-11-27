@@ -2,6 +2,7 @@
 title: About Me
 date: 2023-11-26 20:05:57
 tags:
+permalink: /about/
 ---
 
 > 一个热爱开源，数学，hook和猫咪的技术宅。
