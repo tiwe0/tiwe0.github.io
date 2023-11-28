@@ -7,4 +7,4 @@ categories:
 ---
 原文: [Shadow Casting](https://www.albertford.com/shadowcasting/)
 
-{% iframe /projects/trans-shadowcasting/index.html 1000rem 9000rem %}
+{% iframe /projects/trans-shadowcasting/index.html 100% 9000rem %}

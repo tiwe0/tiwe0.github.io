@@ -12,6 +12,7 @@ permalink: /about/
 毕业于: 厦门大学
 Github: [tiwe0](https://tiwe0.github.com)
 微信: iftiwe
+邮箱: contact@ivory.cafe
 
 编码: 精通python, 熟悉R, C, js, lisp, java, 单片机, 逆向分析以及hook
 工程: web 前后端, 垂直爬虫
