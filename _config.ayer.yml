@@ -31,7 +31,7 @@ logo: /images/ayer-side.svg
 cover:
   enable: true
   path: /images/cover8.jpg # /source/images目录下附送多张美图，可更换
-  logo: false #/images/ayer.svg，如果不要直接设置成false
+  logo: /images/mountain.svg，如果不要直接设置成false
 
 # 页面顶部进度条
 progressBar: true
@@ -39,8 +39,8 @@ progressBar: true
 # 告示板模块
 broadcast:
   enable: true # true开启，false关闭
-  type: 2 # 1：自定义输入，2：一言api(https://hitokoto.cn/)
-  text: 一个安静优雅的hexo主题，快速且响应式。 # type为1时有效
+  type: 1 # 1：自定义输入，2：一言api(https://hitokoto.cn/)
+  text: All those... moments... will be lost in time, like tears... in... rain. # type为1时有效
 
 # 文章配置
 # 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
