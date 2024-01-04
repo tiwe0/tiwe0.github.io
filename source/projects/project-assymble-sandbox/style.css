@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Consolas';
+    src: url('./Consolas-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+div {
+    font-family: "Consolas";
+}
+
+div.flex-v-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color:beige;
+}
+
+div.flex-h-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+div.slot {
+    display: flex;
+    background-color: rgb(65, 218, 142);
+    height: 1rem;
+    width: 1rem;
+    border: 1px solid #000;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+div.memory-slot-bit {
+    display: flex;
+    background-color: gold;
+    height: 1rem;
+    width: 1rem;
+    border: 1px solid #000;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>汇编沙盒</title>
+    <script src="./jquery.min.js"></script>
+    <script src="./snabbt.min.js"></script>
+</head>
+
+<body>
+    <div class="flex-v-container">
+        <h1 class="title">8086 CPU 汇编沙盒 (still on working...)</h1>
+        <div class="flex-h-container">
+            <div class="flex-v-container">
+                <div id="memory">内存部分</div>
+                <div id="memory-slots">
+                </div>
+            </div>
+            <div class="flex-v-container">
+                <div id="code">代码部分</div>
+                <div id="cpu flex-v-container">
+                    <div>CPU部分</div>
+                    <div id="registers">
+                        <div class="register flex-h-container" id="ax">AX:</div>
+                        <div class="register flex-h-container" id="bx">BX:</div>
+                        <div class="register flex-h-container" id="cx">CX:</div>
+                        <div class="register flex-h-container" id="dx">DX:</div>
+                        <div class="register flex-h-container" id="cs">CS:</div>
+                        <div class="register flex-h-container" id="ip">IP:</div>
+                        <div class="register flex-h-container" id="si">SI:</div>
+                        <div class="register flex-h-container" id="di">DI:</div>
+                        <div class="register flex-h-container" id="sp">SP:</div>
+                        <div class="register flex-h-container" id="bp">BP:</div>
+                        <div class="register flex-h-container" id="ss">SS:</div>
+                        <div class="register flex-h-container" id="ds">DS:</div>
+                        <div class="register flex-h-container" id="es">ES:</div>
+                        <div class="register flex-h-container" id="pws">PWS:</div>
+                    </div>
+                    <div id="console" class="flex-v-container">
+                        <p>console</p>
+                        <textarea id="console-text"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./sandbox.js"></script>
+    <script src="./instructions.js"></script>
+    <script src="./bundle.js"></script>
+    <link href="./style.css" rel="stylesheet">
+    </body>
+    
+    </html>
