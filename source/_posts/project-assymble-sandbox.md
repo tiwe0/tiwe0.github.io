@@ -6,4 +6,4 @@ tags:
 
 [传送门](/projects/project-assymble-sandbox/index.html)
 
-{% iframe /projects/project-assymble-sandbox/index.html 100% 800rem %}
+{% iframe /projects/project-assymble-sandbox/index.html 100% 600rem %}
