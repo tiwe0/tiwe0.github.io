@@ -1,7 +1,7 @@
 console.log("sandbox loaded.")
 
 var regex = {
-    args: /\s*(\[?\w+\]?)\s*,\s*(\[?\w+\]?)\s*/
+    two_args: /\s*(\[?\w+\]?)\s*,\s*(\[?\w+\]?)\s*/
 }
 
 var registers = ["ax", "bx", "cx", "dx", "al", "ah", "bl", "bh", "cl", "ch", "dh", "dl", "cs", "ip", "si", "di", "sp", "bp", "ss", "ds", "es", "pws"];
@@ -35,7 +35,11 @@ function checkType(token) {
 }
 
 var coreInstructions = {
-    mov(left, right) {
+    mov(cmd) {
+        let args = cmd.match(/mov(.*)/)[1];
+        let two_args = args.match(regex.two_args);
+        let left = two_args[1];
+        let right = two_args[2];
         let rightValue = cpu.fetchValue(right);
         switch (checkType(left)) {
             case "register":
@@ -48,7 +52,11 @@ var coreInstructions = {
         }
         return true;
     },
-    add(left, right) {
+    add(cmd) {
+        let args = cmd.match(/add(.*)/)[1];
+        let two_args = args.match(regex.two_args);
+        let left = two_args[1];
+        let right = two_args[2];
         let rightValue = parseInt(cpu.fetchValue(right), 2);
         let leftValue = parseInt(cpu.fetchValue(left), 2);
         let result = (rightValue + leftValue).toString(2);
@@ -71,53 +79,6 @@ var coreInstructions = {
         return true;
     }
 };
-
-class Instruction {
-    constructor(cmd) {
-        cmd = cmd.trim();
-        let action = cmd.match(/(\w+)\s+.*/)[1];
-        return new instructionSet[action](cmd);
-    }
-    execute() { };
-};
-
-class InstructionMov{
-    constructor(cmd) {
-        cmd = cmd.trim();
-        this.cmd = cmd;
-        let matches = cmd.match(regex.args);
-        this.left = matches[1];
-        this.right = matches[2];
-        this.invalid = false;
-    };
-    execute() { 
-        if (this.invalid) {
-            return false;
-        }
-        return coreInstructions['mov'](this.left, this.right);
-     };
-}
-
-class InstructionAdd{
-    constructor(cmd) {
-        this.cmd = cmd.trim();
-        let matches = this.cmd.match(regex.args);
-        this.left = matches[1];
-        this.right = matches[2];
-        this.invalid = false;
-    };
-    execute() {
-        if (this.invalid) {
-            return false;
-        }
-        return coreInstructions['add'](this.left, this.right);
-    }
-}
-
-var instructionSet = {
-    "mov": InstructionMov,
-    "add": InstructionAdd
-}
 
 class Register{
     constructor(size, name) {
@@ -296,16 +257,13 @@ class CPU {
         this.psw = new Register(16, "psw");
 
     };
-    execute(instruction) {
-        instruction.execute();
-    };
     eval(cmd) {
         let instruction = this.parse(cmd);
-        this.execute(instruction);
+        return coreInstructions[instruction](cmd);
     };
     parse(cmd) {
         cmd = cmd.trim();
-        return new Instruction(cmd);
+        return cmd.match(/(\w+)\s*.*/)[1];
     };
     fetchMemAddress(token) {
         let memory_ds = parseInt(cpu.ds.getValue(), 2) * 16;
