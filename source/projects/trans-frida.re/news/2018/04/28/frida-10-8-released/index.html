@@ -1,0 +1,879 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Frida 10.8 Released | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Frida 10.8 Released" />
+<meta name="author" content="oleavr" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/news/2018/04/28/frida-10-8-released/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-04-28T06:07:45+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Frida 10.8 Released" />
+<meta name="twitter:site" content="@fridadotre" />
+<meta name="twitter:creator" content="@oleavr" />
+<script type="application/ld+json">
+{"headline":"Frida 10.8 Released","dateModified":"2018-04-28T06:07:45+02:00","datePublished":"2018-04-28T06:07:45+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/news/2018/04/28/frida-10-8-released/"},"author":{"@type":"Person","name":"oleavr"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/news/2018/04/28/frida-10-8-released/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+      <option value="/news/2023/12/24/frida-16-1-10-released/">Frida 16.1.10 Released</option>
+      
+      <option value="/news/2023/12/20/frida-16-1-9-released/">Frida 16.1.9 Released</option>
+      
+      <option value="/news/2023/11/28/frida-16-1-8-released/">Frida 16.1.8 Released</option>
+      
+      <option value="/news/2023/11/16/frida-16-1-7-released/">Frida 16.1.7 Released</option>
+      
+      <option value="/news/2023/11/13/frida-16-1-6-released/">Frida 16.1.6 Released</option>
+      
+      <option value="/news/2023/11/04/frida-16-1-5-released/">Frida 16.1.5 Released</option>
+      
+      <option value="/news/2023/08/29/frida-16-1-4-released/">Frida 16.1.4 Released</option>
+      
+      <option value="/news/2023/07/14/frida-16-1-3-released/">Frida 16.1.3 Released</option>
+      
+      <option value="/news/2023/07/11/frida-16-1-2-released/">Frida 16.1.2 Released</option>
+      
+      <option value="/news/2023/07/01/frida-16-1-1-released/">Frida 16.1.1 Released</option>
+      
+      <option value="/news/2023/06/23/frida-16-1-0-released/">Frida 16.1.0 Released</option>
+      
+      <option value="/news/2023/04/27/frida-16-0-19-released/">Frida 16.0.19 Released</option>
+      
+      <option value="/news/2023/04/22/frida-16-0-18-released/">Frida 16.0.18 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-17-released/">Frida 16.0.17 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-16-released/">Frida 16.0.16 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-15-released/">Frida 16.0.15 Released</option>
+      
+      <option value="/news/2023/04/18/frida-16-0-14-released/">Frida 16.0.14 Released</option>
+      
+      <option value="/news/2023/04/15/frida-16-0-13-released/">Frida 16.0.13 Released</option>
+      
+      <option value="/news/2023/04/14/frida-16-0-12-released/">Frida 16.0.12 Released</option>
+      
+      <option value="/news/2023/03/10/frida-16-0-11-released/">Frida 16.0.11 Released</option>
+      
+      <option value="/news/2023/02/17/frida-16-0-10-released/">Frida 16.0.10 Released</option>
+      
+      <option value="/news/2023/02/11/frida-16-0-9-released/">Frida 16.0.9 Released</option>
+      
+      <option value="/news/2022/12/13/frida-16-0-8-released/">Frida 16.0.8 Released</option>
+      
+      <option value="/news/2022/12/02/frida-16-0-7-released/">Frida 16.0.7 Released</option>
+      
+      <option value="/news/2022/12/01/frida-16-0-6-released/">Frida 16.0.6 Released</option>
+      
+      <option value="/news/2022/11/28/frida-16-0-5-released/">Frida 16.0.5 Released</option>
+      
+      <option value="/news/2022/11/26/frida-16-0-4-released/">Frida 16.0.4 Released</option>
+      
+      <option value="/news/2022/11/23/frida-16-0-3-released/">Frida 16.0.3 Released</option>
+      
+      <option value="/news/2022/10/22/frida-16-0-2-released/">Frida 16.0.2 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-1-released/">Frida 16.0.1 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-0-released/">Frida 16.0.0 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-2-released/">Frida 15.2.2 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-1-released/">Frida 15.2.1 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-0-released/">Frida 15.2.0 Released</option>
+      
+      <option value="/news/2022/07/06/frida-15-1-28-released/">Frida 15.1.28 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-27-released/">Frida 15.1.27 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-26-released/">Frida 15.1.26 Released</option>
+      
+      <option value="/news/2022/06/18/frida-15-1-25-released/">Frida 15.1.25 Released</option>
+      
+      <option value="/news/2022/06/03/frida-15-1-24-released/">Frida 15.1.24 Released</option>
+      
+      <option value="/news/2022/05/30/frida-15-1-23-released/">Frida 15.1.23 Released</option>
+      
+      <option value="/news/2022/05/09/frida-15-1-22-released/">Frida 15.1.22 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-21-released/">Frida 15.1.21 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-20-released/">Frida 15.1.20 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-19-released/">Frida 15.1.19 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-18-released/">Frida 15.1.18 Released</option>
+      
+      <option value="/news/2022/02/10/frida-15-1-17-released/">Frida 15.1.17 Released</option>
+      
+      <option value="/news/2022/02/03/frida-15-1-16-released/">Frida 15.1.16 Released</option>
+      
+      <option value="/news/2022/02/01/frida-15-1-15-released/">Frida 15.1.15 Released</option>
+      
+      <option value="/news/2021/09/03/frida-15-1-released/">Frida 15.1 Released</option>
+      
+      <option value="/news/2021/07/18/frida-15-0-released/">Frida 15.0 Released</option>
+      
+      <option value="/news/2021/02/10/frida-14-2-released/">Frida 14.2 Released</option>
+      
+      <option value="/news/2020/12/01/frida-14-1-released/">Frida 14.1 Released</option>
+      
+      <option value="/news/2020/10/28/frida-14-0-released/">Frida 14.0 Released</option>
+      
+      <option value="/news/2020/07/24/frida-12-11-released/">Frida 12.11 Released</option>
+      
+      <option value="/news/2020/06/29/frida-12-10-released/">Frida 12.10 Released</option>
+      
+      <option value="/news/2020/05/19/frida-12-9-released/">Frida 12.9 Released</option>
+      
+      <option value="/news/2019/12/18/frida-12-8-released/">Frida 12.8 Released</option>
+      
+      <option value="/news/2019/09/18/frida-12-7-released/">Frida 12.7 Released</option>
+      
+      <option value="/news/2019/05/28/frida-12-6-released/">Frida 12.6 Released</option>
+      
+      <option value="/news/2019/05/15/nowsecure-connect-2019/">NowSecure Connect 2019</option>
+      
+      <option value="/news/2019/05/15/frida-12-5-released/">Frida 12.5 Released</option>
+      
+      <option value="/news/2018/09/11/frida-12-2-released/">Frida 12.2 Released</option>
+      
+      <option value="/news/2018/08/25/frida-12-1-released/">Frida 12.1 Released</option>
+      
+      <option value="/news/2018/07/12/frida-12-0-released/">Frida 12.0 Released</option>
+      
+      <option value="/news/2018/05/05/frida-11-0-released/">Frida 11.0 Released</option>
+      
+      <option value="/news/2018/04/28/frida-10-8-released/">Frida 10.8 Released</option>
+      
+      <option value="/news/2018/03/13/frida-10-7-released/">Frida 10.7 Released</option>
+      
+      <option value="/news/2017/09/29/frida-10-6-released/">Frida 10.6 Released</option>
+      
+      <option value="/news/2017/08/25/frida-10-5-released/">Frida 10.5 Released</option>
+      
+      <option value="/news/2017/08/15/frida-10-4-released/">Frida 10.4 Released</option>
+      
+      <option value="/news/2017/05/02/frida-10-0-released/">Frida 10.0 Released</option>
+      
+      <option value="/news/2017/01/09/frida-9-0-released/">Frida 9.0 Released</option>
+      
+      <option value="/news/2016/10/25/frida-8-1-released/">Frida 8.1 Released</option>
+      
+      <option value="/news/2016/10/04/frida-8-0-released/">Frida 8.0 Released</option>
+      
+      <option value="/news/2016/08/15/frida-7-3-released/">Frida 7.3 Released</option>
+      
+      <option value="/news/2016/06/02/frida-7-2-released/">Frida 7.2 Released</option>
+      
+      <option value="/news/2016/04/04/frida-7-1-released/">Frida 7.1 Released</option>
+      
+      <option value="/news/2016/02/24/frida-7-0-released/">Frida 7.0 Released</option>
+      
+      <option value="/news/2016/02/01/frida-6-2-released/">Frida 6.2 Released</option>
+      
+      <option value="/news/2016/01/31/frida-fosdem-presentation/">Frida presentation at FOSDEM 2016</option>
+      
+      <option value="/news/2016/01/14/frida-6-1-released/">Frida 6.1 Released</option>
+      
+      <option value="/news/2015/11/11/frida-6-0-released/">Frida 6.0 Released</option>
+      
+      <option value="/news/2015/09/17/frida-5-0-released/">Frida 5.0 Released</option>
+      
+      <option value="/news/2015/09/10/frida-4-5-released/">Frida 4.5 Released</option>
+      
+      <option value="/news/2015/07/31/frida-4-4-released/">Frida 4.4 Released</option>
+      
+      <option value="/news/2015/07/15/frida-4-3-released/">Frida 4.3 Released</option>
+      
+      <option value="/news/2015/06/18/frida-4-2-released/">Frida 4.2 Released</option>
+      
+      <option value="/news/2015/06/09/frida-4-1-released/">Frida 4.1 Released</option>
+      
+      <option value="/news/2015/05/09/frida-4-0-0-released/">Frida 4.0.0 Released</option>
+      
+      <option value="/news/2015/03/20/frida-3-0-0-released/">Frida 3.0.0 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-2-released/">Frida 2.0.2 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-1-released/">Frida 2.0.1 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-0-released/">Frida 2.0.0 Released</option>
+      
+      <option value="/news/2015/02/23/frida-1-8-0-released/">Frida 1.8.0 Released</option>
+      
+      <option value="/news/2014/11/18/frida-1-6-8-released/">Frida 1.6.8 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-7-released/">Frida 1.6.7 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-6-released/">Frida 1.6.6 Released</option>
+      
+      <option value="/news/2014/10/29/frida-1-6-5-released/">Frida 1.6.5 Released</option>
+      
+      <option value="/news/2014/10/19/frida-1-6-4-released/">Frida 1.6.4 Released</option>
+      
+      <option value="/news/2014/08/25/frida-1-6-3-released/">Frida 1.6.3 Released</option>
+      
+      <option value="/news/2014/08/03/frida-1-6-2-released/">Frida 1.6.2 Released</option>
+      
+      <option value="/news/2014/07/26/frida-1-6-1-released/">Frida 1.6.1 Released</option>
+      
+      <option value="/news/2014/05/30/frida-1-6-0-released/">Frida 1.6.0 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-2-released/">Frida 1.4.2 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-1-released/">Frida 1.4.1 Released</option>
+      
+      <option value="/news/2014/05/04/frida-1-4-0-released/">Frida 1.4.0 Released</option>
+      
+      <option value="/news/2014/04/21/frida-1-2-1-released/">Frida 1.2.1 Released</option>
+      
+      <option value="/news/2014/04/17/frida-1-2-0-released/">Frida 1.2.0 Released</option>
+      
+      <option value="/news/2014/03/09/frida-1-0-11-released/">Frida 1.0.11 Released</option>
+      
+      <option value="/news/2014/02/16/frida-1-0-10-released/">Frida 1.0.10 Released</option>
+      
+      <option value="/news/2014/01/25/frida-1-0-9-released/">Frida 1.0.9 Released</option>
+      
+      <option value="/news/2014/01/15/frida-1-0-8-released/">Frida 1.0.8 Released</option>
+      
+      <option value="/news/2014/01/12/frida-1-0-7-released/">Frida 1.0.7 Released</option>
+      
+      <option value="/news/2014/01/11/frida-1-0-6-released/">Frida 1.0.6 Released</option>
+      
+      <option value="/news/2014/01/05/frida-1-0-5-released/">Frida 1.0.5 Released</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+      <div class="news-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="../../../../index.html">All News</a>
+      </li>
+      <li class="">
+        <a href="../../../../releases/index.html">Frida Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="../../../../2023/12/24/frida-16-1-10-released/index.html">Version 16.1.10</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/12/20/frida-16-1-9-released/index.html">Version 16.1.9</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/28/frida-16-1-8-released/index.html">Version 16.1.8</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/16/frida-16-1-7-released/index.html">Version 16.1.7</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/13/frida-16-1-6-released/index.html">Version 16.1.6</a>
+      </li>
+      
+      <li>
+        <a href="../../../../../docs/history/index.html">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2019/05/15/nowsecure-connect-2019/index.html">NowSecure Connect 2019</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2016/01/31/frida-fosdem-presentation/index.html">Frida presentation at FOSDEM 2016</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="news-articles unit three-quarters">
+        <article>
+  <h2>
+    Frida 10.8 Released
+    <a href="index.html" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    
+    <span class="label">release</span>
+    
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      28 Apr 2018
+    </span>
+    <a href="https://github.com/oleavr" class="post-author">
+      <img src="https://github.com/oleavr.png" class="avatar" />
+      oleavr
+    </a>
+  </div>
+  <p class="post-content">
+    <p>Get ready for a major upgrade. This time we have solved our three longest
+standing limitations – all in one release.</p>
+
+<h3 id="limitation-1-fork">Limitation #1: fork()</h3>
+
+<p>As a quick refresher, this old-school UNIX API clones the entire process and
+returns the child’s process ID to the parent, and zero to the child. The child
+gets its own copy of the parent’s address space, usually at a very small cost
+due to copy-on-write.</p>
+
+<p>Dealing with this one gets tricky once multiple threads are involved. Only the
+thread calling <em>fork()</em> survives in the child process, so if any of the other
+threads happen to be holding locks, those locks will still be held in the child,
+and nobody is going to release them.</p>
+
+<p>Essentially this means that any application doing both forking and
+multi-threading will have to be really carefully designed. Even though most
+applications that fork are single-threaded, Frida effectively makes them
+multi-threaded by injecting its agent into them. Another aspect is
+file-descriptors, which are shared, so those also have to be carefully managed.</p>
+
+<p>I’m super-excited to announce that we are finally able to detect that a <em>fork()</em>
+is about to happen, temporarily stop our threads, pause our communications
+channel, and start things back up afterwards. You are then able to apply the
+desired instrumentation to the child, if any, before letting it continue
+running.</p>
+
+<h3 id="limitation-2-execve-posix_spawn-createprocess-and-friends">Limitation #2: execve(), posix_spawn(), CreateProcess(), and friends</h3>
+
+<p>Or in plain English: programs that start other programs, either by replacing
+themselves entirely, e.g. <em>execve()</em>, or by spawning a child process, e.g.
+<em>posix_spawn()</em> without <em>POSIX_SPAWN_SETEXEC</em>.</p>
+
+<p>Just like after a <em>fork()</em> happened you are now able to apply instrumentation
+and control when the child process starts running its first instructions.</p>
+
+<h3 id="limitation-3-dealing-with-sudden-process-termination">Limitation #3: dealing with sudden process termination</h3>
+
+<p>An aspect that’s caused a lot of confusion in the past is how one might hand off
+some data to Frida’s <em>send()</em> API, and if the process is about to terminate,
+said data might not actually make it to the other side.</p>
+
+<p>Up until now the prescribed solution was always to hook <em>exit()</em>, <em>abort()</em> etc.
+so you can do a <em>send()</em> plus <em>recv().wait()</em> ping-pong to flush any data still
+in transit. In retrospect this wasn’t such a great idea, as it makes it hard to
+do this correctly across multiple platforms. We now have a way better solution.</p>
+
+<p>So with that, let’s talk about the new APIs and features.</p>
+
+<h3 id="child-gating">Child gating</h3>
+
+<p>This is how we address the first two. The <em>Session</em> object, the one providing
+<em>create_script()</em>, now also has <em>enable_child_gating()</em> and
+<em>disable_child_gating()</em>. By default Frida will behave just like before, and
+you will have to opt-in to this new behavior by calling <em>enable_child_gating()</em>.</p>
+
+<p>From that point on, any child process is going to end up suspended, and you will
+be responsible for calling <em>resume()</em> with its PID. The <em>Device</em> object now also
+provides a signal named <em>delivered</em> which you should attach a callback to in
+order to be notified of any new children that appear. That is the point where
+you should be applying the desired instrumentation, if any, before calling
+<em>resume()</em>. The <em>Device</em> object also has a new method named
+<em>enumerate_pending_children()</em> which can be used to get a full list of pending
+children. Processes will remain suspended and part of that list until they’re
+resumed by you, or eventually killed.</p>
+
+<p>So that’s the theory. Let’s have a look at a practical <a href="https://github.com/frida/frida-python/blob/c846da1191e50e017235f29580c737f5b8555d9a/examples/child_gating.py">example</a>, using
+Frida’s Python bindings:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">frida</span>
+<span class="kn">from</span> <span class="nn">frida.application</span> <span class="kn">import</span> <span class="n">Reactor</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_stop_requested</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_reactor</span> <span class="o">=</span> <span class="n">Reactor</span><span class="p">(</span><span class="n">run_until_return</span><span class="o">=</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_stop_requested</span><span class="p">.</span><span class="n">wait</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">_device</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">get_local_device</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_sessions</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">_device</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"delivered"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">child</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_reactor</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_on_delivered</span><span class="p">(</span><span class="n">child</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_reactor</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_start</span><span class="p">())</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_reactor</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s">"/bin/sh"</span><span class="p">,</span> <span class="s">"-c"</span><span class="p">,</span> <span class="s">"cat /etc/hosts"</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"✔ spawn(argv={})"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">argv</span><span class="p">))</span>
+        <span class="n">pid</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_instrument</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_stop_if_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_sessions</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_stop_requested</span><span class="p">.</span><span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pid</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"✔ attach(pid={})"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">pid</span><span class="p">))</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_device</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+        <span class="n">session</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"detached"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">reason</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_reactor</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">_on_detached</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">reason</span><span class="p">)))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"✔ enable_child_gating()"</span><span class="p">)</span>
+        <span class="n">session</span><span class="p">.</span><span class="n">enable_child_gating</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"✔ create_script()"</span><span class="p">)</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="s">"""
+Interceptor.attach(Module.getExportByName(null, 'open'), {
+  onEnter(args) {
+    send({
+      type: 'open',
+      path: Memory.readUtf8String(args[0])
+    });
+  }
+});
+"""</span><span class="p">)</span>
+        <span class="n">script</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"message"</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">message</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_reactor</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_on_message</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">message</span><span class="p">)))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"✔ load()"</span><span class="p">)</span>
+        <span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"✔ resume(pid={})"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">pid</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_device</span><span class="p">.</span><span class="n">resume</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_sessions</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_delivered</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"⚡ delivered: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_instrument</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">pid</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_detached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pid</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"⚡ detached: pid={}, reason='{}'"</span>
+            <span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">reason</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_sessions</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_reactor</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_stop_if_idle</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pid</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"⚡ message: pid={}, payload={}"</span>
+            <span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">message</span><span class="p">[</span><span class="s">"payload"</span><span class="p">]))</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+<span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">()</span></code></pre></figure>
+
+<p>And action:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>python3 example.py
+✔ spawn<span class="o">(</span><span class="nv">argv</span><span class="o">=[</span><span class="s1">'/bin/sh'</span>, <span class="s1">'-c'</span>, <span class="s1">'cat /etc/hosts'</span><span class="o">])</span>
+✔ attach<span class="o">(</span><span class="nv">pid</span><span class="o">=</span>42401<span class="o">)</span>
+✔ enable_child_gating<span class="o">()</span>
+✔ create_script<span class="o">()</span>
+✔ load<span class="o">()</span>
+✔ resume<span class="o">(</span><span class="nv">pid</span><span class="o">=</span>42401<span class="o">)</span>
+⚡ message: <span class="nv">pid</span><span class="o">=</span>42401,
+↪payload<span class="o">={</span><span class="s1">'type'</span>: <span class="s1">'open'</span>, <span class="s1">'path'</span>: <span class="s1">'/dev/tty'</span><span class="o">}</span>
+⚡ detached: <span class="nv">pid</span><span class="o">=</span>42401, <span class="nv">reason</span><span class="o">=</span><span class="s1">'process-replaced'</span>
+⚡ delivered: Child<span class="o">(</span><span class="nv">pid</span><span class="o">=</span>42401, <span class="nv">parent_pid</span><span class="o">=</span>42401,
+↪path<span class="o">=</span><span class="s2">"/bin/cat"</span>, <span class="nv">argv</span><span class="o">=[</span><span class="s1">'cat'</span>, <span class="s1">'/etc/hosts'</span><span class="o">]</span>,
+↪envp<span class="o">=[</span><span class="s1">'SHELL=/bin/bash'</span>, <span class="s1">'TERM=xterm-256color'</span>, …],
+↪origin<span class="o">=</span><span class="nb">exec</span><span class="o">)</span>
+✔ attach<span class="o">(</span><span class="nv">pid</span><span class="o">=</span>42401<span class="o">)</span>
+✔ enable_child_gating<span class="o">()</span>
+✔ create_script<span class="o">()</span>
+✔ load<span class="o">()</span>
+✔ resume<span class="o">(</span><span class="nv">pid</span><span class="o">=</span>42401<span class="o">)</span>
+⚡ message: <span class="nv">pid</span><span class="o">=</span>42401,
+↪payload<span class="o">={</span><span class="s1">'type'</span>: <span class="s1">'open'</span>, <span class="s1">'path'</span>: <span class="s1">'/etc/hosts'</span><span class="o">}</span>
+⚡ detached: <span class="nv">pid</span><span class="o">=</span>42401, <span class="nv">reason</span><span class="o">=</span><span class="s1">'process-terminated'</span>
+<span class="err">$</span></code></pre></figure>
+
+<h3 id="flush-before-exit">Flush-before-exit</h3>
+
+<p>As for the third limitation, namely dealing with sudden process termination,
+Frida will now intercept the most common process termination APIs and take
+care of flushing any pending data for you.</p>
+
+<p>However, for advanced agents that optimize throughput by buffering data and only
+doing <em>send()</em> periodically, there is now a way to run your own code when the
+process terminates, or the script is unloaded. All you need to do is to define
+an <a href="../../../../../docs/javascript-api/index.html#rpc">RPC</a> export named <em>dispose</em>. E.g.:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">rpc</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">dispose</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">send</span><span class="p">(</span><span class="nx">bufferedData</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<h3 id="in-closing">In closing</h3>
+
+<p>Building on the brand new <em>fork()</em>-handling in Frida, there is also a fully
+reworked Android app launching implementation. The <em>frida-loader-{32,64}.so</em>
+helper agents are now gone, and our behind-the-scenes Zygote instrumentation
+is now leveraging the brand new child gating to do all of the heavy lifting.
+This means you can also instrument Zygote for your own needs. Just remember to
+<em>enable_child_gating()</em> and <em>resume()</em> any children that you don’t care about.</p>
+
+<p>So that’s pretty much it for this release. Enjoy!</p>
+
+
+  </p>
+</article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1299 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Frida 12.7 Released | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Frida 12.7 Released" />
+<meta name="author" content="oleavr" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/news/2019/09/18/frida-12-7-released/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-18T23:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Frida 12.7 Released" />
+<meta name="twitter:site" content="@fridadotre" />
+<meta name="twitter:creator" content="@oleavr" />
+<script type="application/ld+json">
+{"headline":"Frida 12.7 Released","dateModified":"2019-09-18T23:00:00+02:00","datePublished":"2019-09-18T23:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/news/2019/09/18/frida-12-7-released/"},"author":{"@type":"Person","name":"oleavr"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/news/2019/09/18/frida-12-7-released/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+      <option value="/news/2023/12/24/frida-16-1-10-released/">Frida 16.1.10 Released</option>
+      
+      <option value="/news/2023/12/20/frida-16-1-9-released/">Frida 16.1.9 Released</option>
+      
+      <option value="/news/2023/11/28/frida-16-1-8-released/">Frida 16.1.8 Released</option>
+      
+      <option value="/news/2023/11/16/frida-16-1-7-released/">Frida 16.1.7 Released</option>
+      
+      <option value="/news/2023/11/13/frida-16-1-6-released/">Frida 16.1.6 Released</option>
+      
+      <option value="/news/2023/11/04/frida-16-1-5-released/">Frida 16.1.5 Released</option>
+      
+      <option value="/news/2023/08/29/frida-16-1-4-released/">Frida 16.1.4 Released</option>
+      
+      <option value="/news/2023/07/14/frida-16-1-3-released/">Frida 16.1.3 Released</option>
+      
+      <option value="/news/2023/07/11/frida-16-1-2-released/">Frida 16.1.2 Released</option>
+      
+      <option value="/news/2023/07/01/frida-16-1-1-released/">Frida 16.1.1 Released</option>
+      
+      <option value="/news/2023/06/23/frida-16-1-0-released/">Frida 16.1.0 Released</option>
+      
+      <option value="/news/2023/04/27/frida-16-0-19-released/">Frida 16.0.19 Released</option>
+      
+      <option value="/news/2023/04/22/frida-16-0-18-released/">Frida 16.0.18 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-17-released/">Frida 16.0.17 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-16-released/">Frida 16.0.16 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-15-released/">Frida 16.0.15 Released</option>
+      
+      <option value="/news/2023/04/18/frida-16-0-14-released/">Frida 16.0.14 Released</option>
+      
+      <option value="/news/2023/04/15/frida-16-0-13-released/">Frida 16.0.13 Released</option>
+      
+      <option value="/news/2023/04/14/frida-16-0-12-released/">Frida 16.0.12 Released</option>
+      
+      <option value="/news/2023/03/10/frida-16-0-11-released/">Frida 16.0.11 Released</option>
+      
+      <option value="/news/2023/02/17/frida-16-0-10-released/">Frida 16.0.10 Released</option>
+      
+      <option value="/news/2023/02/11/frida-16-0-9-released/">Frida 16.0.9 Released</option>
+      
+      <option value="/news/2022/12/13/frida-16-0-8-released/">Frida 16.0.8 Released</option>
+      
+      <option value="/news/2022/12/02/frida-16-0-7-released/">Frida 16.0.7 Released</option>
+      
+      <option value="/news/2022/12/01/frida-16-0-6-released/">Frida 16.0.6 Released</option>
+      
+      <option value="/news/2022/11/28/frida-16-0-5-released/">Frida 16.0.5 Released</option>
+      
+      <option value="/news/2022/11/26/frida-16-0-4-released/">Frida 16.0.4 Released</option>
+      
+      <option value="/news/2022/11/23/frida-16-0-3-released/">Frida 16.0.3 Released</option>
+      
+      <option value="/news/2022/10/22/frida-16-0-2-released/">Frida 16.0.2 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-1-released/">Frida 16.0.1 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-0-released/">Frida 16.0.0 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-2-released/">Frida 15.2.2 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-1-released/">Frida 15.2.1 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-0-released/">Frida 15.2.0 Released</option>
+      
+      <option value="/news/2022/07/06/frida-15-1-28-released/">Frida 15.1.28 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-27-released/">Frida 15.1.27 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-26-released/">Frida 15.1.26 Released</option>
+      
+      <option value="/news/2022/06/18/frida-15-1-25-released/">Frida 15.1.25 Released</option>
+      
+      <option value="/news/2022/06/03/frida-15-1-24-released/">Frida 15.1.24 Released</option>
+      
+      <option value="/news/2022/05/30/frida-15-1-23-released/">Frida 15.1.23 Released</option>
+      
+      <option value="/news/2022/05/09/frida-15-1-22-released/">Frida 15.1.22 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-21-released/">Frida 15.1.21 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-20-released/">Frida 15.1.20 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-19-released/">Frida 15.1.19 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-18-released/">Frida 15.1.18 Released</option>
+      
+      <option value="/news/2022/02/10/frida-15-1-17-released/">Frida 15.1.17 Released</option>
+      
+      <option value="/news/2022/02/03/frida-15-1-16-released/">Frida 15.1.16 Released</option>
+      
+      <option value="/news/2022/02/01/frida-15-1-15-released/">Frida 15.1.15 Released</option>
+      
+      <option value="/news/2021/09/03/frida-15-1-released/">Frida 15.1 Released</option>
+      
+      <option value="/news/2021/07/18/frida-15-0-released/">Frida 15.0 Released</option>
+      
+      <option value="/news/2021/02/10/frida-14-2-released/">Frida 14.2 Released</option>
+      
+      <option value="/news/2020/12/01/frida-14-1-released/">Frida 14.1 Released</option>
+      
+      <option value="/news/2020/10/28/frida-14-0-released/">Frida 14.0 Released</option>
+      
+      <option value="/news/2020/07/24/frida-12-11-released/">Frida 12.11 Released</option>
+      
+      <option value="/news/2020/06/29/frida-12-10-released/">Frida 12.10 Released</option>
+      
+      <option value="/news/2020/05/19/frida-12-9-released/">Frida 12.9 Released</option>
+      
+      <option value="/news/2019/12/18/frida-12-8-released/">Frida 12.8 Released</option>
+      
+      <option value="/news/2019/09/18/frida-12-7-released/">Frida 12.7 Released</option>
+      
+      <option value="/news/2019/05/28/frida-12-6-released/">Frida 12.6 Released</option>
+      
+      <option value="/news/2019/05/15/nowsecure-connect-2019/">NowSecure Connect 2019</option>
+      
+      <option value="/news/2019/05/15/frida-12-5-released/">Frida 12.5 Released</option>
+      
+      <option value="/news/2018/09/11/frida-12-2-released/">Frida 12.2 Released</option>
+      
+      <option value="/news/2018/08/25/frida-12-1-released/">Frida 12.1 Released</option>
+      
+      <option value="/news/2018/07/12/frida-12-0-released/">Frida 12.0 Released</option>
+      
+      <option value="/news/2018/05/05/frida-11-0-released/">Frida 11.0 Released</option>
+      
+      <option value="/news/2018/04/28/frida-10-8-released/">Frida 10.8 Released</option>
+      
+      <option value="/news/2018/03/13/frida-10-7-released/">Frida 10.7 Released</option>
+      
+      <option value="/news/2017/09/29/frida-10-6-released/">Frida 10.6 Released</option>
+      
+      <option value="/news/2017/08/25/frida-10-5-released/">Frida 10.5 Released</option>
+      
+      <option value="/news/2017/08/15/frida-10-4-released/">Frida 10.4 Released</option>
+      
+      <option value="/news/2017/05/02/frida-10-0-released/">Frida 10.0 Released</option>
+      
+      <option value="/news/2017/01/09/frida-9-0-released/">Frida 9.0 Released</option>
+      
+      <option value="/news/2016/10/25/frida-8-1-released/">Frida 8.1 Released</option>
+      
+      <option value="/news/2016/10/04/frida-8-0-released/">Frida 8.0 Released</option>
+      
+      <option value="/news/2016/08/15/frida-7-3-released/">Frida 7.3 Released</option>
+      
+      <option value="/news/2016/06/02/frida-7-2-released/">Frida 7.2 Released</option>
+      
+      <option value="/news/2016/04/04/frida-7-1-released/">Frida 7.1 Released</option>
+      
+      <option value="/news/2016/02/24/frida-7-0-released/">Frida 7.0 Released</option>
+      
+      <option value="/news/2016/02/01/frida-6-2-released/">Frida 6.2 Released</option>
+      
+      <option value="/news/2016/01/31/frida-fosdem-presentation/">Frida presentation at FOSDEM 2016</option>
+      
+      <option value="/news/2016/01/14/frida-6-1-released/">Frida 6.1 Released</option>
+      
+      <option value="/news/2015/11/11/frida-6-0-released/">Frida 6.0 Released</option>
+      
+      <option value="/news/2015/09/17/frida-5-0-released/">Frida 5.0 Released</option>
+      
+      <option value="/news/2015/09/10/frida-4-5-released/">Frida 4.5 Released</option>
+      
+      <option value="/news/2015/07/31/frida-4-4-released/">Frida 4.4 Released</option>
+      
+      <option value="/news/2015/07/15/frida-4-3-released/">Frida 4.3 Released</option>
+      
+      <option value="/news/2015/06/18/frida-4-2-released/">Frida 4.2 Released</option>
+      
+      <option value="/news/2015/06/09/frida-4-1-released/">Frida 4.1 Released</option>
+      
+      <option value="/news/2015/05/09/frida-4-0-0-released/">Frida 4.0.0 Released</option>
+      
+      <option value="/news/2015/03/20/frida-3-0-0-released/">Frida 3.0.0 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-2-released/">Frida 2.0.2 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-1-released/">Frida 2.0.1 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-0-released/">Frida 2.0.0 Released</option>
+      
+      <option value="/news/2015/02/23/frida-1-8-0-released/">Frida 1.8.0 Released</option>
+      
+      <option value="/news/2014/11/18/frida-1-6-8-released/">Frida 1.6.8 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-7-released/">Frida 1.6.7 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-6-released/">Frida 1.6.6 Released</option>
+      
+      <option value="/news/2014/10/29/frida-1-6-5-released/">Frida 1.6.5 Released</option>
+      
+      <option value="/news/2014/10/19/frida-1-6-4-released/">Frida 1.6.4 Released</option>
+      
+      <option value="/news/2014/08/25/frida-1-6-3-released/">Frida 1.6.3 Released</option>
+      
+      <option value="/news/2014/08/03/frida-1-6-2-released/">Frida 1.6.2 Released</option>
+      
+      <option value="/news/2014/07/26/frida-1-6-1-released/">Frida 1.6.1 Released</option>
+      
+      <option value="/news/2014/05/30/frida-1-6-0-released/">Frida 1.6.0 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-2-released/">Frida 1.4.2 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-1-released/">Frida 1.4.1 Released</option>
+      
+      <option value="/news/2014/05/04/frida-1-4-0-released/">Frida 1.4.0 Released</option>
+      
+      <option value="/news/2014/04/21/frida-1-2-1-released/">Frida 1.2.1 Released</option>
+      
+      <option value="/news/2014/04/17/frida-1-2-0-released/">Frida 1.2.0 Released</option>
+      
+      <option value="/news/2014/03/09/frida-1-0-11-released/">Frida 1.0.11 Released</option>
+      
+      <option value="/news/2014/02/16/frida-1-0-10-released/">Frida 1.0.10 Released</option>
+      
+      <option value="/news/2014/01/25/frida-1-0-9-released/">Frida 1.0.9 Released</option>
+      
+      <option value="/news/2014/01/15/frida-1-0-8-released/">Frida 1.0.8 Released</option>
+      
+      <option value="/news/2014/01/12/frida-1-0-7-released/">Frida 1.0.7 Released</option>
+      
+      <option value="/news/2014/01/11/frida-1-0-6-released/">Frida 1.0.6 Released</option>
+      
+      <option value="/news/2014/01/05/frida-1-0-5-released/">Frida 1.0.5 Released</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+      <div class="news-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="../../../../index.html">All News</a>
+      </li>
+      <li class="">
+        <a href="../../../../releases/index.html">Frida Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="../../../../2023/12/24/frida-16-1-10-released/index.html">Version 16.1.10</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/12/20/frida-16-1-9-released/index.html">Version 16.1.9</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/28/frida-16-1-8-released/index.html">Version 16.1.8</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/16/frida-16-1-7-released/index.html">Version 16.1.7</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/13/frida-16-1-6-released/index.html">Version 16.1.6</a>
+      </li>
+      
+      <li>
+        <a href="../../../../../docs/history/index.html">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../05/15/nowsecure-connect-2019/index.html">NowSecure Connect 2019</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2016/01/31/frida-fosdem-presentation/index.html">Frida presentation at FOSDEM 2016</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="news-articles unit three-quarters">
+        <article>
+  <h2>
+    Frida 12.7 Released
+    <a href="index.html" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    
+    <span class="label">release</span>
+    
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      18 Sep 2019
+    </span>
+    <a href="https://github.com/oleavr" class="post-author">
+      <img src="https://github.com/oleavr.png" class="avatar" />
+      oleavr
+    </a>
+  </div>
+  <p class="post-content">
+    <p>There’s only one new feature this time, but it’s a big one. We’re going to
+address the elephant in the room: performance.</p>
+
+<p>While Frida’s instrumentation core, Gum, is written in C and can be used from C,
+most use-cases are better off using its JavaScript bindings.</p>
+
+<p>There are however situations where performance becomes an issue. Even when using
+our V8-based runtime, which means your JavaScript will be profiled while it’s
+running and optimized based on where the hotspots are… (Which by the way is
+amazing – V8 is truly an impressive feat of engineering!)</p>
+
+<p>…there is a small price to pay for entering and leaving the JavaScript VM.
+On an iPhone 5S this might amount to something like six microseconds if you
+use <em>Interceptor.attach()</em> and only specify <em>onEnter</em>, and leave it empty.</p>
+
+<p>This may not sound like a lot, but if a function is called a million times,
+it’s going to amount to 6 seconds of added overhead. And perhaps the hook only
+needs to do something really simple, so most of the time is actually spent on
+entering and leaving the VM.</p>
+
+<p>There’s also the same kind of issue when needing to pass a callback to an API,
+where the API walks through potentially millions of items and needs to call the
+callback for each of them. The callback might just look at one byte and collect
+the few of the items that match a certain criteria.</p>
+
+<p>Naively one could go ahead and use a NativeCallback to implement that callback,
+but it quickly becomes apparent that this just doesn’t scale.</p>
+
+<p>Or, you might be writing a fuzzer and needing to call a NativeFunction in a
+tight loop, and the cost of entering/leaving the VM plus libffi just adds up.</p>
+
+<p>Short of writing the whole agent in C, one could go ahead and build a native
+library, and load it using <em>Module.load()</em>. This works but means it has to be
+compiled for every single architecture, deployed to the target, etc.</p>
+
+<p>Another solution is to use the X86Writer/Arm64Writer/etc. APIs to generate
+code at runtime. This is also painful as there’s quite a bit of work required
+for each architecture to be supported. But up until now this was the only
+portable option for use in modules such as <a href="https://github.com/frida/frida-java-bridge">frida-java-bridge</a>.</p>
+
+<p>But now we finally have something much better. Enter <strong>CModule</strong>:</p>
+
+<p><img src="../../../../../img/cmodule-hello-world.png" alt="CModule Hello World" title="CModule Hello World" /></p>
+
+<p>It takes the string of C source code and compiles it to machine code, straight
+to memory. This is implemented using <a href="https://bellard.org/tcc/">TinyCC</a>, which means that this feature
+only adds ~100 kB of footprint to Frida.</p>
+
+<p>As you can see, any global functions are automatically exported as NativePointer
+properties named exactly like in the C source code.</p>
+
+<p>And, it’s fast:</p>
+
+<p><img src="../../../../../img/cmodule-speed.png" alt="CModule Speed" title="CModule Speed" /></p>
+
+<p>(Measured on an Intel i7 @ 3.1 GHz.)</p>
+
+<p>We can also use this new feature in conjunction with APIs like Interceptor:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CModule</span><span class="p">(</span><span class="s2">`
+#include &lt;gum/guminterceptor.h&gt;
+
+#define EPERM 1
+
+int
+open (const char * path,
+      int oflag,
+      ...)
+{
+  GumInvocationContext * ic;
+
+  ic = gum_interceptor_get_current_invocation ();
+  ic-&gt;system_error = EPERM;
+
+  return -1;
+}
+`</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">openImpl</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">getExportByName</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">openImpl</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">open</span><span class="p">);</span></code></pre></figure>
+
+<p>(Note that this and the following examples use modern JavaScript features like
+template literals, so they either need to be run on our V8 runtime, or compiled
+using <a href="https://github.com/oleavr/frida-agent-example">frida-compile</a>.)</p>
+
+<p>We can also combine it with <em>Interceptor.attach()</em>:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">openImpl</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">getExportByName</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">openImpl</span><span class="p">,</span> <span class="k">new</span> <span class="nx">CModule</span><span class="p">(</span><span class="s2">`
+  #include &lt;gum/guminterceptor.h&gt;
+  #include &lt;stdio.h&gt;
+
+  void
+  onEnter (GumInvocationContext * ic)
+  {
+    const char * path;
+
+    path = gum_invocation_context_get_nth_argument (ic, 0);
+
+    printf ("open() path=\\"%s\\"\\n", path);
+  }
+
+  void
+  onLeave (GumInvocationContext * ic)
+  {
+    int fd;
+
+    fd = (int) gum_invocation_context_get_return_value (ic);
+
+    printf ("=&gt; fd=%d\\n", fd);
+  }
+`</span><span class="p">));</span></code></pre></figure>
+
+<p>Yay. Though this last particular example actually writes to <em>stdout</em> of the
+target process, which is fine for debugging but probably not all that useful.</p>
+
+<p>We can however fix that by calling back into JavaScript. Let’s see what that
+might look like:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">openImpl</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">getExportByName</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">openImpl</span><span class="p">,</span> <span class="k">new</span> <span class="nx">CModule</span><span class="p">(</span><span class="s2">`
+  #include &lt;gum/guminterceptor.h&gt;
+
+  extern void onMessage (const gchar * message);
+
+  static void log (const gchar * format, ...);
+
+  void
+  onEnter (GumInvocationContext * ic)
+  {
+    const char * path;
+
+    path = gum_invocation_context_get_nth_argument (ic, 0);
+
+    log ("open() path=\\"%s\\"", path);
+  }
+
+  void
+  onLeave (GumInvocationContext * ic)
+  {
+    int fd;
+
+    fd = (int) gum_invocation_context_get_return_value (ic);
+
+    log ("=&gt; fd=%d", fd);
+  }
+
+  static void
+  log (const gchar * format,
+       ...)
+  {
+    gchar * message;
+    va_list args;
+
+    va_start (args, format);
+    message = g_strdup_vprintf (format, args);
+    va_end (args);
+
+    onMessage (message);
+
+    g_free (message);
+  }
+`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">onMessage</span><span class="p">:</span> <span class="k">new</span> <span class="nx">NativeCallback</span><span class="p">(</span><span class="nx">messagePtr</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">messagePtr</span><span class="p">.</span><span class="nx">readUtf8String</span><span class="p">();</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">onMessage:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+  <span class="p">},</span> <span class="dl">'</span><span class="s1">void</span><span class="dl">'</span><span class="p">,</span> <span class="p">[</span><span class="dl">'</span><span class="s1">pointer</span><span class="dl">'</span><span class="p">])</span>
+<span class="p">}));</span></code></pre></figure>
+
+<p>That is however just a toy example: doing it this way will actually defeat the
+purpose of writing the hooks in C to improve performance. A real implementation
+might instead append to a <a href="https://developer.gnome.org/glib/stable/glib-Arrays.html">GLib.Array</a> after acquiring a <a href="https://developer.gnome.org/glib/stable/glib-Threads.html#GMutex">GLib.Mutex</a>, and
+periodically flush the buffered data by calling back into JS.</p>
+
+<p>And just like JavaScript functions can be called from C, we can also share data
+between the two realms:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">calls</span> <span class="o">=</span> <span class="nx">Memory</span><span class="p">.</span><span class="nx">alloc</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">openImpl</span> <span class="o">=</span> <span class="nx">Module</span><span class="p">.</span><span class="nx">getExportByName</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">openImpl</span><span class="p">,</span> <span class="k">new</span> <span class="nx">CModule</span><span class="p">(</span><span class="s2">`
+  #include &lt;gum/guminterceptor.h&gt;
+
+  extern volatile gint calls;
+
+  void
+  onEnter (GumInvocationContext * ic)
+  {
+    g_atomic_int_add (&amp;calls, 1);
+  }
+`</span><span class="p">,</span> <span class="p">{</span> <span class="nx">calls</span> <span class="p">}));</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Calls so far:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">calls</span><span class="p">.</span><span class="nx">readInt</span><span class="p">());</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span></code></pre></figure>
+
+<p>For now we don’t have any docs on the built-in C APIs, but you can browse the
+headers in <a href="https://github.com/frida/frida-gum/tree/master/bindings/gumjs/runtime/cmodule">frida-gum/bindings/gumjs/runtime/cmodule</a> to get an overview.
+Drop function names into an Internet search engine to look up docs for the
+non-Frida APIs such as GLib’s.</p>
+
+<p>The intention is to only expose a minimal subset of the standard C library,
+GLib, JSON-GLib, and Gum APIs; in order to minimize bloat and maximize
+performance. Things we include should either be impossible to achieve by calling
+into JS, or prohibitively expensive to achieve that way.</p>
+
+<p>Think of the JS side as the operating system where the functions you plug into
+it are system calls; and only use CModule for hooking hot functions or
+implementing high-performance glue code like callbacks passed to
+performance-sensitive APIs.</p>
+
+<p>Also bear in mind that the machine code generated by TinyCC is not as efficient
+as that of Clang or GCC, so computationally expensive algorithms might actually
+be faster to implement in JavaScript. (When using our V8-based runtime.) But for
+hooks and glue code this difference isn’t significant, and you can always
+generate machine code using e.g. Arm64Writer and plug into your CModule if you
+need to optimize an inner loop.</p>
+
+<p>One important caveat is that all data is read-only, so writable globals should
+be declared <em>extern</em>, allocated using e.g. <em>Memory.alloc()</em>, and passed in as
+symbols through the constructor’s second argument. (Like we did with <code class="language-plaintext highlighter-rouge">calls</code> in
+the last example.)</p>
+
+<p>You might also need to initialize things and clean them up when the CModule gets
+destroyed – e.g. because the script got unloaded – and we provide a couple of
+lifetime hooks for such purposes:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">cm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CModule</span><span class="p">(</span><span class="s2">`
+#include &lt;stdio.h&gt;
+
+void
+init (void)
+{
+  printf ("init\\n");
+}
+
+void
+finalize (void)
+{
+  printf ("finalize\\n");
+}
+`</span><span class="p">);</span>
+
+<span class="nx">cm</span><span class="p">.</span><span class="nx">dispose</span><span class="p">();</span> <span class="c1">// or wait until it gets GCed or script unloaded</span></code></pre></figure>
+
+<p>Anyway, this post is getting long, but before we wrap up let’s look at how to
+use CModule with the Stalker APIs:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">cm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CModule</span><span class="p">(</span><span class="s2">`
+#include &lt;gum/gumstalker.h&gt;
+
+static void on_ret (GumCpuContext * cpu_context,
+    gpointer user_data);
+
+void
+transform (GumStalkerIterator * iterator,
+           GumStalkerOutput * output,
+           gpointer user_data)
+{
+  cs_insn * insn;
+
+  while (gum_stalker_iterator_next (iterator, &amp;insn))
+  {
+    if (insn-&gt;id == X86_INS_RET)
+    {
+      gum_x86_writer_put_nop (output-&gt;writer.x86);
+      gum_stalker_iterator_put_callout (iterator,
+          on_ret, NULL, NULL);
+    }
+
+    gum_stalker_iterator_keep (iterator);
+  }
+}
+
+static void
+on_ret (GumCpuContext * cpu_context,
+        gpointer user_data)
+{
+  printf ("on_ret!\n");
+}
+`</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">mainThread</span> <span class="o">=</span> <span class="nx">Process</span><span class="p">.</span><span class="nx">enumerateThreads</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+
+<span class="nx">Stalker</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="nx">mainThread</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">transform</span><span class="p">:</span> <span class="nx">cm</span><span class="p">.</span><span class="nx">transform</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="nx">ptr</span><span class="p">(</span><span class="mi">1337</span><span class="p">)</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>This shows how you can implement both the transform callback and the callouts
+in C, but you may also use a hybrid approach where you write the transform
+callback in JS and only some of the callouts in C.</p>
+
+<p>It is also worth noting that I rewrote <em>ObjC.choose()</em> to use CModule, and it is
+now roughly 100x faster. When testing it on the login screen of the Twitter app
+on an iPhone 6S, this went from taking ~5 seconds to now only ~50 ms.</p>
+
+<p>So with that, I hope you’ll enjoy this release. Excited to see what kind of
+things you will build with the new CModule API. One thing I’m really looking
+forward to is improving our REPL to support loading a <em>.c</em> file next to the
+<em>.js</em>, for rapid prototyping purposes.</p>
+
+<p>Enjoy!</p>
+
+<h3 id="changes-in-1270">Changes in 12.7.0</h3>
+
+<ul>
+  <li>Brand new CModule API powered by TinyCC. (You just read about it.)</li>
+  <li>TinyCC was improved to support Apple’s ABI on macOS/x86.</li>
+  <li><em>Stalker.exclude()</em> is now exposed to JS to be able to mark specific memory
+ranges as excluded. This is useful to improve performance and reduce noise.</li>
+  <li>Concurrent calls to <em>Java.use()</em> are now supported, thanks to a neat
+contribution by <a href="https://github.com/gebing">@gebing</a>.</li>
+  <li>The <em>hexdump()</em> implementation was improved to clamp the <em>length</em> option to
+the length of the ArrayBuffer, thanks to another neat contribution by
+<a href="https://github.com/gebing">@gebing</a>.</li>
+</ul>
+
+<h3 id="changes-in-1271">Changes in 12.7.1</h3>
+
+<ul>
+  <li>More CModule goodies, including <a href="https://developer.gnome.org/glib/stable/glib-Strings.html">GLib.String</a>, <a href="https://developer.gnome.org/glib/stable/glib-Timers.html">GLib.Timer</a>, and
+<a href="https://developer.gnome.org/json-glib/stable/JsonBuilder.html">Json.Builder</a>.</li>
+  <li>TinyCC was improved to support Apple’s ABI on iOS/arm64.</li>
+  <li><em>ObjC.choose()</em> was rewritten using CModule, and is now ~100x faster.</li>
+</ul>
+
+<h3 id="changes-in-1272">Changes in 12.7.2</h3>
+
+<ul>
+  <li>CModule got some missing ref-counting APIs.</li>
+</ul>
+
+<h3 id="changes-in-1273">Changes in 12.7.3</h3>
+
+<ul>
+  <li>CModule memory ranges are now properly cloaked.</li>
+  <li>The V8 garbage collector is now informed about externally allocated CModule
+memory so it can make better decisions about when to GC.</li>
+  <li>Symbols attached to a CModule are now properly kept alive in the V8 runtime
+also; and the CModule itself is not kept alive indefinitely (or until script
+unload).</li>
+  <li><em>CModule.dispose()</em> was added for eagerly cleaning up memory.</li>
+</ul>
+
+<h3 id="changes-in-1274">Changes in 12.7.4</h3>
+
+<ul>
+  <li>The <em>frida-inject</em> tool now supports <em>spawn()</em>. Kudos to <a href="https://github.com/hunterli">@hunterli</a> for
+contributing this neat feature.</li>
+  <li>Our V8 runtime no longer deadlocks on i/macOS when <em>thread_suspend()</em> is
+called with the JS lock still held, like <em>Stalker.follow()</em> indirectly does
+when asked to follow another thread.</li>
+</ul>
+
+<h3 id="changes-in-1275">Changes in 12.7.5</h3>
+
+<ul>
+  <li>Brand new channels API for establishing TCP connections to a tethered iOS
+or Android device, as well as talking to lockdown services on a tethered
+iOS device.</li>
+  <li>The timeout logic behind <em>DeviceManager.find_device()</em> and its sibling methods
+is now working properly.</li>
+  <li>Java marshaling of <em>java.lang.Class</em> is now working properly, and instance
+fields can also be introspected without needing an instance. Kudos to
+<a href="https://github.com/gebing">@gebing</a> for contributing these neat fixes!</li>
+</ul>
+
+<h3 id="changes-in-1276">Changes in 12.7.6</h3>
+
+<ul>
+  <li>The Android linker is now properly detected on Android 10.</li>
+  <li>Our Android SELinux policy patcher now also handles devices like Samsung S10,
+thanks to a neat contribution by <a href="https://github.com/cbayet">@cbayet</a>.</li>
+  <li>The <em>frida-inject</em> tool now supports <em>-D/–device</em> for working with non-local
+devices.</li>
+  <li>We now have better error-handling to avoid crashing when i/macOS processes
+terminate unexpectedly during early instrumentation.</li>
+  <li>iOS crash reporter integration is way more robust, thanks to some awesome
+fixes contributed by <a href="https://twitter.com/bezjaje">@mrmacete</a>. One of his fixes also ensures parallel
+calls to <em>recv().wait()</em> for the same message type don’t end up in an infinite
+wait.</li>
+  <li>Stalking of thread creation is now supported on Linux/arm64. Kudos to
+<a href="https://twitter.com/alvaro_fe">@alvaro_fe</a> for this awesome contribution!</li>
+  <li>V8 runtime’s WebAssembly support is working again on non-iOS also.</li>
+  <li>The <em>Gum.DarwinModule</em> API is now part of the cross-platform Gum API. Useful
+for parsing Mach-O files on non-Apple systems.</li>
+</ul>
+
+<h3 id="changes-in-1277">Changes in 12.7.7</h3>
+
+<ul>
+  <li>Eternalized agents are now kept around when the last session gets closed,
+which means they can be reused for as long as the <em>HostSession</em> side, e.g.
+frida-server, sticks around. This means that additional copies of frida-agent
+can be avoided in a lot of cases. Kudos to <a href="https://twitter.com/bezjaje">@mrmacete</a> for this awesome
+improvement.</li>
+  <li>Java bridge no longer triggers a use-after-free when a method returns <em>this</em>.</li>
+  <li>Our Android SELinux policy patcher no longer prints a warning on older
+versions of Android. This harmless but confusing regression was introduced
+by the previous release’ fix for Samsung S10 ROMs.</li>
+  <li>Better SELinux-related error messages.</li>
+  <li>Rudimentary support for iOS/arm64e.</li>
+</ul>
+
+<h3 id="changes-in-1278">Changes in 12.7.8</h3>
+
+<ul>
+  <li>Android 10 support just landed in our Java bridge thanks to a brilliant
+contribution by <a href="https://github.com/Alien-AV">@Alien-AV</a>.</li>
+  <li>Better spawn()-handling for Android apps, where the <em>activity</em> parameter can
+be used in cases where the app doesn’t have a launcher activity. This neat
+improvement was contributed by <a href="https://github.com/muhzii">@muhzii</a>.</li>
+  <li>Android linker seeking logic was made future-proof thanks to an elegant
+contribution by <a href="https://twitter.com/timstrazz">@timstrazz</a>.</li>
+  <li>Massively improved fault-tolerance on iOS: our launchd agent now kills pending
+processes when unloaded. This means that frida-server dying won’t leave
+processes stuck in a suspended state. Kudos to <a href="https://twitter.com/bezjaje">@mrmacete</a> for this awesome
+improvement.</li>
+</ul>
+
+<h3 id="changes-in-1279">Changes in 12.7.9</h3>
+
+<ul>
+  <li>We are back in business on macOS after a last-minute build regression snuck
+into the previous release.</li>
+</ul>
+
+<h3 id="changes-in-12710">Changes in 12.7.10</h3>
+
+<ul>
+  <li><em>MemoryAccessMonitor</em> is now available on all platforms, and even the Duktape
+runtime. Kudos to <a href="https://twitter.com/alvaro_fe">@alvaro_fe</a> for these awesome improvements.</li>
+  <li>Android linker detection working properly again. (Regression introduced in
+12.7.8.)</li>
+  <li>Gadget was improved to support passing a config through its constructor
+function on i/macOS.</li>
+  <li>Gadget’s system loop integration – only implemented on i/macOS – was removed
+to avoid undefined behavior in some scenarios.</li>
+</ul>
+
+<h3 id="changes-in-12711">Changes in 12.7.11</h3>
+
+<ul>
+  <li>Frida no longer crashes in Android processes without a vDSO. (Regression
+introduced in 12.7.8.)</li>
+  <li>Better error-handling when parsing Mach-O images.</li>
+  <li>ARM vs Thumb properly handled when restoring exception on i/macOS. Thanks
+<a href="https://twitter.com/alvaro_fe">@alvaro_fe</a>!</li>
+  <li>CModule’s header for JSON-GLib is now self-contained, as it should be.</li>
+</ul>
+
+<h3 id="changes-in-12712">Changes in 12.7.12</h3>
+
+<ul>
+  <li>Full-featured iOS lockdown integration and unified devices, so Frida-based
+tools don’t need to worry as much about jailed vs jailbroken. When interacting
+with a jailed iOS device, Gadget is now injected automatically and there is no
+need to repackage the app, it only has to be debuggable.</li>
+  <li>Frida is finally able to detect recent iOS devices on Windows.</li>
+  <li>Bug in V8 was tracked down and fix backported from upstream. Kudos to
+<a href="https://twitter.com/bezjaje">@mrmacete</a> for tracking this one down!</li>
+</ul>
+
+<h3 id="changes-in-12713">Changes in 12.7.13</h3>
+
+<ul>
+  <li>Better handling of structs and unions in <em>frida-objc-bridge</em>. Thanks
+<a href="https://github.com/gebing">@gebing</a>!</li>
+  <li>Our Node.js bindings now also expose type definitions for <em>Crash</em> and
+<em>CrashParameters</em>.</li>
+  <li>Attempts to attach to the system session on jailed iOS throw early and
+with a clearer error message.</li>
+  <li>The iOS Developer Disk Image-related error messages were tweaked for
+consistency.</li>
+</ul>
+
+<h3 id="changes-in-12714">Changes in 12.7.14</h3>
+
+<ul>
+  <li>Frida now ensures code is readable before accessing it on Android &gt;= 10.
+This was the last missing piece for full-featured Android 10 support. Being
+able to instrument system processes means that early instrumentation – i.e.
+spawn() – works, and starting frida-server doesn’t crash <em>system_server</em> due
+to the attempt it makes at preloading so the first <em>spawn()</em> will be fast.
+Kudos to <a href="https://github.com/Alien-AV">@Alien-AV</a> and <a href="https://twitter.com/esanfelix">@esanfelix</a> for the painful research that made
+the solution possible to implement in one late Saturday evening. :-)</li>
+</ul>
+
+<h3 id="changes-in-12715">Changes in 12.7.15</h3>
+
+<ul>
+  <li>Node.js bindings also expose the “summary” field of the <em>Crash</em> typing.</li>
+</ul>
+
+<h3 id="changes-in-12716">Changes in 12.7.16</h3>
+
+<ul>
+  <li>The <em>frida-gadget-ios</em> meta-package comes with type definitions so it can be
+consumed from TypeScript.</li>
+  <li>Node.js bindings provide proper typings for <em>Stdio</em> and <em>ChildOrigin</em>.</li>
+</ul>
+
+<h3 id="changes-in-12717">Changes in 12.7.17</h3>
+
+<ul>
+  <li>More robust support for jailed iOS: calling kill() before resume() but after
+attach() is now working properly.</li>
+  <li>Frida now communicates directly with the remote iOS/Android agent when
+possible. We achieve this by establishing a fresh TCP connection to the
+frida-server and having its file-descriptor passed to the agent. This means
+frida-server can remove itself from the data path, improving performance and
+reliability.</li>
+  <li>Clients connecting to frida-server to spawn() a process, but getting
+disconnected before they get a chance to resume() or kill() said process,
+will no longer leave such orphans in limbo. We now keep track of spawned
+processes and kill() them if the client suddenly gets disconnected.</li>
+  <li>We no longer crash Zygote on Android 10. Turns out an SELinux rule was
+missing.</li>
+  <li>Our TCP sockets now have <em>TCP_NODELAY</em> set, and we also support communicating
+with a remote frida-server or frida-gadget using UNIX sockets in addition to
+TCP.</li>
+  <li>NativeFunction now supports variadic functions, to avoid needing to
+create one instance per unique argument list signature. Thanks <a href="https://github.com/gebing">@gebing</a>!</li>
+</ul>
+
+<h3 id="changes-in-12718">Changes in 12.7.18</h3>
+
+<ul>
+  <li>Node.js bindings finally link in needed OpenSSL symbols on UNIX, instead of
+relying on luck where we’d usually end up in processes with another OpenSSL
+already loaded that’s globally visible <em>and</em> ABI-compatible (!).</li>
+</ul>
+
+<h3 id="changes-in-12719">Changes in 12.7.19</h3>
+
+<ul>
+  <li>We now properly handle apply() on NativeFunction w/o args in the V8 runtime
+also. Kudos to <a href="https://twitter.com/taviso">@taviso</a> for reporting this long-standing bug.</li>
+  <li>NativeFunction’s handling of optional args in call() and apply() now behaves
+like the builtin counterparts.</li>
+</ul>
+
+<h3 id="changes-in-12720">Changes in 12.7.20</h3>
+
+<ul>
+  <li>Frida now supports both cleartext and encrypted iOS lockdown channels,
+retaining support for “cleartext after TLS handshake”-style channels by
+appending “?tls=handshake-only” to the channel address. Kudos, <a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+  <li>The paired lockdown channel itself can be accessed by using “lockdown:” as the
+channel address. Thanks <a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+</ul>
+
+<h3 id="changes-in-12721">Changes in 12.7.21</h3>
+
+<ul>
+  <li>We now support iOS 13 on the checkra1n jailbreak. (Jailed iOS 13 was already
+supported.)</li>
+</ul>
+
+<h3 id="changes-in-12722">Changes in 12.7.22</h3>
+
+<ul>
+  <li>Our iOS package scripts launch daemon logic is now compatible with checkra1n,
+so frida-server won’t have to be started/stopped manually.</li>
+</ul>
+
+<h3 id="changes-in-12723">Changes in 12.7.23</h3>
+
+<ul>
+  <li>Enhanced support for the checkra1n jailbreak: Stalker is now way faster as it
+makes use of RWX pages.</li>
+  <li>Stability improvements when using Stalker on iOS on jailbreaks without RWX
+support. Thanks <a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+  <li>CModule is now compatible with additional iOS jailbreak flavors. Kudos,
+<a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+  <li>CModule runtime support for working with ModuleMap objects.</li>
+  <li>Support for ARMBE8 thanks to awesome contributions by <a href="https://github.com/jonwilson030981">Jon Wilson</a>.</li>
+  <li>Frida now makes parent file-descriptors available to child processes when
+spawn()ing on i/macOS. This is consistent with the current behavior on Linux.
+Thanks <a href="https://twitter.com/wizche">@wizche</a>!</li>
+</ul>
+
+<h3 id="changes-in-12724">Changes in 12.7.24</h3>
+
+<ul>
+  <li>Node.js prebuilds also provided for Node.js v13.</li>
+</ul>
+
+<h3 id="changes-in-12725">Changes in 12.7.25</h3>
+
+<ul>
+  <li>Log handler APIs got an overhaul in the Python and Node.js bindings, as part
+of a critical fix: the Node.js setter’s type wasn’t the same as the getter,
+as it also allowed <em>null</em>. This inconsistency resulted in recent TypeScript
+compiler versions choking on it. Thanks <a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+  <li>No more timestamp truncations in the V8 platform integration. Thanks for
+reporting, <a href="https://twitter.com/DaveManouchehri">@DaveManouchehri</a>!</li>
+  <li>Our <em>Module.enumerateSymbols()</em> API provides a “size” property when available,
+i.e. only on Linux/Android for now. Thanks <a href="https://twitter.com/DaveManouchehri">@DaveManouchehri</a>!</li>
+  <li><em>Java.use(name, { cache: ‘skip’ })</em> can now be used to bypass caching. Useful
+when dealing with multiple class-loaders and colliding class names. Thanks
+<a href="https://github.com/ChaosData">@ChaosData</a> and <a href="https://github.com/H4oK3">@H4oK3</a>!</li>
+</ul>
+
+<h3 id="changes-in-12726">Changes in 12.7.26</h3>
+
+<ul>
+  <li>Stalker now supports temporary reactivation, to allow stalking code from
+inside an excluded memory range.</li>
+  <li>NativeFunction got a brand new option <code class="language-plaintext highlighter-rouge">traps: 'all'</code> to allow calls to be
+stalked even when Frida’s own memory range is marked as excluded.</li>
+  <li>Thread enumeration on Linux is finally working when using Yama. Thanks
+<a href="https://github.com/jonwilson030981">Jon Wilson</a>!</li>
+</ul>
+
+
+  </p>
+</article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

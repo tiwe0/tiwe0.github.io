@@ -77,6 +77,55 @@ var coreInstructions = {
                 break;
         }
         return true;
+    },
+    sub(cmd) {
+        let args = cmd.match(/add(.*)/)[1];
+        let two_args = args.match(regex.two_args);
+        let left = two_args[1];
+        let right = two_args[2];
+        let rightValue = parseInt(cpu.fetchValue(right), 2);
+        let leftValue = parseInt(cpu.fetchValue(left), 2);
+        let result = (leftValue - rightValue).toString(2);
+        if (result.length < 8) {
+            result = result.padStart(8, "0");
+        } else if (result.length < 16) {
+            result = result.padStart(16, "0");
+        } else {
+            return false;
+        }
+        switch (checkType(left)) {
+            case "register":
+                cpu[left].write(result);
+                break;
+            case "memory":
+                let address = cpu.fetchMemAddress(left);
+                memory.write(address, result);
+                break;
+        }
+        return true;
+    },
+    push(cmd) { // push ax
+        let args = cmd.match(/push\s*(\[?\w+\]?)/)[1];
+        let spValue = parseInt(cpu.sp.getValue(), 2) - 2;
+        let ssValue = parseInt(cpu.ss.getValue(), 2);
+        cpu.sp.writeOneWord(spValue);
+        let value = cpu.fetchValue(args);
+        memory.write(ssValue + spValue, value);
+        return true;
+    },
+    pop(cmd) { // pop ax
+        let args = cmd.match(/pop\s*(\[?\w+\]?)/)[1];
+        let spValue = parseInt(cpu.sp.getValue(), 2);
+        let ssValue = parseInt(cpu.ss.getValue(), 2);
+        let value = memory.readOneWord(ssValue + spValue);
+        if (isMemory(args)) {
+            let address = cpu.fetchMemAddress(args);
+            memory.writeOneWord(address, value);
+        } else if (isRegister(args)) {
+            cpu[args].writeOneWord(value);
+        }
+        cpu.sp.write(spValue + 2);
+        return true;
     }
 };
 

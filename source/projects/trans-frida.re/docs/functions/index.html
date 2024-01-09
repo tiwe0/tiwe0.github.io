@@ -1,0 +1,3955 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Functions | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Functions" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/docs/functions/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-25T09:11:28+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Functions" />
+<meta name="twitter:site" content="@fridadotre" />
+<script type="application/ld+json">
+{"headline":"Functions","dateModified":"2023-12-25T09:11:28+01:00","datePublished":"2023-12-25T09:11:28+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/docs/functions/"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/docs/functions/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    
+    <optgroup label="Getting Started">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/home/">Welcome</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/quickstart/">Quick-start guide</option>
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/installation/">Installation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/modes/">Modes of Operation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gadget/">Gadget</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/hacking/">Hacking</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/stalker/">Stalker</option>
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/presentations/">Presentations</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tutorials">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/functions/">Functions</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/messages/">Messages</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+      <option value="/docs/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Examples">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/windows/">Windows</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/macos/">macOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/linux/">Linux</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/javascript/">JavaScript</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-cli/">Frida CLI</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ps/">frida-ps</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-trace/">frida-trace</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-discover/">frida-discover</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ls-devices/">frida-ls-devices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-kill/">frida-kill</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gum-graft/">gum-graft</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="API Reference">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/javascript-api/">JavaScript API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/c-api/">C API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/swift-api/">Swift API</option>
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/go-api/">Go API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+
+
+  
+
+  
+    
+  
+    
+      <option value="/docs/best-practices/">Best Practices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/troubleshooting/">Troubleshooting</option>
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+      <option value="/docs/building/">Building</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/footprint/">Footprint</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsoc-ideas-2015/">GSoC Ideas 2015</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsod-ideas-2023/">GSoD Ideas 2023</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/history/">History</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+      <div class="docs-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../home/index.html">Welcome</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../quickstart/index.html">Quick-start guide</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../installation/index.html">Installation</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../modes/index.html">Modes of Operation</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gadget/index.html">Gadget</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../hacking/index.html">Hacking</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../stalker/index.html">Stalker</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../presentations/index.html">Presentations</a></li>
+
+
+</ul>
+
+    
+    <h4>Tutorials</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class="current"><a href="index.html">Functions</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../messages/index.html">Messages</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../android/index.html">Android</a></li>
+
+
+</ul>
+
+    
+    <h4>Examples</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/windows/index.html">Windows</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/macos/index.html">macOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/linux/index.html">Linux</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/android/index.html">Android</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/javascript/index.html">JavaScript</a></li>
+
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-cli/index.html">Frida CLI</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-ps/index.html">frida-ps</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-trace/index.html">frida-trace</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-discover/index.html">frida-discover</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-ls-devices/index.html">frida-ls-devices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-kill/index.html">frida-kill</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gum-graft/index.html">gum-graft</a></li>
+
+
+</ul>
+
+    
+    <h4>API Reference</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../javascript-api/index.html">JavaScript API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../c-api/index.html">C API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../swift-api/index.html">Swift API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../go-api/index.html">Go API</a></li>
+
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../best-practices/index.html">Best Practices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../troubleshooting/index.html">Troubleshooting</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../building/index.html">Building</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../footprint/index.html">Footprint</a></li>
+
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="index.html"></a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gsoc-ideas-2015/index.html">GSoC Ideas 2015</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gsod-ideas-2023/index.html">GSoD Ideas 2023</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../history/index.html">History</a></li>
+
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="docs-articles unit three-quarters">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/frida/frida-website/edit/main/_i18n/en/_docs/functions.md">
+              <i class="fa fa-pencil"></i>Improve this page</a>
+          </div>
+          <h1>Functions</h1>
+          <p>We show how to use Frida to inspect functions as they are called, modify their
+arguments, and do custom calls to functions inside a target process.</p>
+
+<h2 id="setting-up-the-experiment">Setting up the experiment</h2>
+
+<p>Create a file <code class="language-plaintext highlighter-rouge">hello.c</code>:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+</span>
+<span class="kt">void</span>
+<span class="nf">f</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"Number: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span>
+      <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"f() is at %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">f</span> <span class="p">(</span><span class="n">i</span><span class="o">++</span><span class="p">);</span>
+    <span class="n">sleep</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Compile with:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gcc <span class="nt">-Wall</span> hello.c <span class="nt">-o</span> hello</code></pre></figure>
+
+<p>Start the program and make note of the address of <code class="language-plaintext highlighter-rouge">f()</code> (<code class="language-plaintext highlighter-rouge">0x400544</code> in the
+following example):</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">f<span class="o">()</span> is at 0x400544
+Number: 0
+Number: 1
+Number: 2
+…</code></pre></figure>
+
+<h2 id="hooking-functions">Hooking Functions</h2>
+
+<p>The following script shows how to hook calls to functions inside a target
+process and report back a function argument to you. Create a file <code class="language-plaintext highlighter-rouge">hook.py</code>
+containing:</p>
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">frida</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="s">"hello"</span><span class="p">)</span>
+<span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="s">"""
+Interceptor.attach(ptr("%s"), {
+    onEnter(args) {
+        send(args[0].toInt32());
+    }
+});
+"""</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="n">script</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">'message'</span><span class="p">,</span> <span class="n">on_message</span><span class="p">)</span>
+<span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">read</span><span class="p">()</span></code></pre></figure>
+
+<p>Run this script with the address you picked out from above (<code class="language-plaintext highlighter-rouge">0x400544</code> on our
+example):</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>python hook.py 0x400544</code></pre></figure>
+
+<p>This should give you a new message every second on the form:</p>
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'send'</span><span class="p">,</span> <span class="s">'payload'</span><span class="p">:</span> <span class="mi">531</span><span class="p">}</span>
+<span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'send'</span><span class="p">,</span> <span class="s">'payload'</span><span class="p">:</span> <span class="mi">532</span><span class="p">}</span>
+<span class="err">…</span></code></pre></figure>
+
+<h2 id="modifying-function-arguments">Modifying Function Arguments</h2>
+
+<p>Next up: we want to modify the argument passed to a function inside a target
+process. Create the file <code class="language-plaintext highlighter-rouge">modify.py</code> with the following contents:</p>
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">frida</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="s">"hello"</span><span class="p">)</span>
+<span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="s">"""
+Interceptor.attach(ptr("%s"), {
+    onEnter(args) {
+        args[0] = ptr("1337");
+    }
+});
+"""</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">))</span>
+<span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">read</span><span class="p">()</span></code></pre></figure>
+
+<p>Run this against the <code class="language-plaintext highlighter-rouge">hello</code> process (which should be still running):</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>python modify.py 0x400544</code></pre></figure>
+
+<p>At this point, the terminal running the <code class="language-plaintext highlighter-rouge">hello process</code> should stop counting
+and always report <code class="language-plaintext highlighter-rouge">1337</code>, until you hit <code class="language-plaintext highlighter-rouge">Ctrl-D</code> to detach from it.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Number: 1281
+Number: 1282
+Number: 1337
+Number: 1337
+Number: 1337
+Number: 1337
+Number: 1287
+Number: 1288
+Number: 1289
+…</code></pre></figure>
+
+<h2 id="calling-functions">Calling Functions</h2>
+
+<p>We can use Frida to call functions inside a target process. Create the file
+<code class="language-plaintext highlighter-rouge">call.py</code> with the contents:</p>
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">frida</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="s">"hello"</span><span class="p">)</span>
+<span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="s">"""
+const f = new NativeFunction(ptr("%s"), 'void', ['int']);
+f(1911);
+f(1911);
+f(1911);
+"""</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">))</span>
+<span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span></code></pre></figure>
+
+<p>Run the script:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>python call.py 0x400544</code></pre></figure>
+
+<p>and keep a watchful eye on the terminal (still) running <code class="language-plaintext highlighter-rouge">hello</code>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Number: 1879
+Number: 1911
+Number: 1911
+Number: 1911
+Number: 1880
+…</code></pre></figure>
+
+<h2 id="experiment-no-2---injecting-strings-and-calling-a-function">Experiment No. 2 - Injecting Strings and Calling a Function</h2>
+
+<p>Injecting integers is really useful, but we can also inject strings,
+and indeed, any other kind of object you would require for fuzzing/testing.</p>
+
+<p>Create a new file <code class="language-plaintext highlighter-rouge">hi.c</code>:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+</span>
+<span class="kt">int</span>
+<span class="nf">f</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"String: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span>
+      <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"Testing!"</span><span class="p">;</span>
+
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"f() is at %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"s is at %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">f</span> <span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">sleep</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>In a similar way to before, we can create a script <code class="language-plaintext highlighter-rouge">stringhook.py</code>, using Frida
+to inject a string into memory, and then call the function f() in the following
+way:</p>
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">frida</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="s">"hi"</span><span class="p">)</span>
+<span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="s">"""
+const st = Memory.allocUtf8String("TESTMEPLZ!");
+const f = new NativeFunction(ptr("%s"), 'int', ['pointer']);
+    // In NativeFunction param 2 is the return value type,
+    // and param 3 is an array of input types
+f(st);
+"""</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="n">script</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">'message'</span><span class="p">,</span> <span class="n">on_message</span><span class="p">)</span>
+<span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span></code></pre></figure>
+
+<p>Keeping a beady eye on the output of <code class="language-plaintext highlighter-rouge">hi</code>, you should see something along these
+lines:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">...
+String: Testing!
+String: Testing!
+String: TESTMEPLZ!
+String: Testing!
+String: Testing!
+...</code></pre></figure>
+
+<p>Use similar methods, like <code class="language-plaintext highlighter-rouge">Memory.alloc()</code> and <code class="language-plaintext highlighter-rouge">Memory.protect()</code> to manipulate
+the process memory with ease. Couple this with the python <code class="language-plaintext highlighter-rouge">ctypes</code> library, and
+other memory objects, like <code class="language-plaintext highlighter-rouge">structs</code> can be created, loaded as byte arrays, and
+then passed into functions as pointer arguments.</p>
+
+<h2 id="injecting-malicious-memory-objects---example-sockaddr_in-struct">Injecting Malicious Memory Objects - Example: sockaddr_in struct</h2>
+
+<p>Anyone who has done network programming knows that one of the most commonly
+used data types is the <code class="language-plaintext highlighter-rouge">struct</code> in C. Here is a naive example of a program
+that creates a network socket, and connects to a server over port 5000, and
+announces itself by sending the string <code class="language-plaintext highlighter-rouge">"Hello there!"</code> over the connection.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;arpa/inet.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+</span>
+<span class="kt">int</span>
+<span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span>
+      <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">sock_fd</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">message</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">recv_buf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"Usage: %s &lt;ip of server&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"connect() is at: %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">connect</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="n">sock_fd</span> <span class="o">=</span> <span class="n">socket</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">perror</span> <span class="p">(</span><span class="s">"Unable to create socket"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">bzero</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
+
+  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+  <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span> <span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">inet_pton</span> <span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fprintf</span> <span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"Unable to parse IP address</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Here's the serv_addr buffer:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="s">"%s%02x"</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="s">" "</span> <span class="o">:</span> <span class="s">""</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+  <span class="n">printf</span> <span class="p">(</span><span class="s">"</span><span class="se">\n\n</span><span class="s">Press ENTER key to Continue</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">getchar</span> <span class="p">()</span> <span class="o">==</span> <span class="n">EOF</span> <span class="o">&amp;&amp;</span> <span class="n">ferror</span> <span class="p">(</span><span class="n">stdin</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">errno</span> <span class="o">==</span> <span class="n">EINTR</span><span class="p">)</span>
+    <span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">connect</span> <span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">perror</span> <span class="p">(</span><span class="s">"Unable to connect"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">message</span> <span class="o">=</span> <span class="s">"Hello there!"</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">send</span> <span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">strlen</span> <span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">perror</span> <span class="p">(</span><span class="s">"Unable to send"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">recv</span> <span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="n">recv_buf</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">recv_buf</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">errno</span> <span class="o">==</span> <span class="n">EINTR</span><span class="p">)</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="n">recv_buf</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">fputs</span> <span class="p">(</span><span class="n">recv_buf</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">perror</span> <span class="p">(</span><span class="s">"Unable to read"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This is fairly standard code, and calls out to any IP address given as the
+first argument. If you run <code class="language-plaintext highlighter-rouge">nc -lp 5000</code> and in another terminal window run
+<code class="language-plaintext highlighter-rouge">./client 127.0.0.1</code>, you should see the message appear in netcat, and also
+be able to send messages back to <code class="language-plaintext highlighter-rouge">client</code> in return.</p>
+
+<p>Now, we can start having some fun - as we saw above, we can inject strings and
+pointers into the process. We can do the same by manipulating the struct
+<code class="language-plaintext highlighter-rouge">sockaddr_in</code> which the program spits out as part of its operation:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>./client 127.0.0.1
+connect<span class="o">()</span> is at: 0x400780
+
+Here<span class="s1">'s the serv_addr buffer:
+02 00 13 88 7f 00 00 01 30 30 30 30 30 30 30 30
+Press ENTER key to Continue</span></code></pre></figure>
+
+<p>If you are not fully familiar with the structure of a struct, there are many
+resources online that will tell you what’s what. The important bits here are the
+bytes <code class="language-plaintext highlighter-rouge">0x1388</code>, or 5000 in dec. This is our port number (the 4 bytes that
+follow are the IP address in hex). If we change this to <code class="language-plaintext highlighter-rouge">0x1389</code> then we can
+re-direct our client to a different port. If we change the next 4 bytes we
+can change the IP address that the client points at completely!</p>
+
+<p>Here’s a script to inject the malicious struct into memory, and then hijack the
+<code class="language-plaintext highlighter-rouge">connect()</code> function in <code class="language-plaintext highlighter-rouge">libc.so</code> to take our new struct as its argument.</p>
+
+<p>Create the file <code class="language-plaintext highlighter-rouge">struct_mod.py</code> as follows:</p>
+
+<figure class="highlight"><pre><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">frida</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="s">"client"</span><span class="p">)</span>
+<span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="s">"""
+// First, let's give ourselves a bit of memory to put our struct in:
+send('Allocating memory and writing bytes...');
+const st = Memory.alloc(16);
+// Now we need to fill it - this is a bit blunt, but works...
+st.writeByteArray([0x02, 0x00, 0x13, 0x89, 0x7F, 0x00, 0x00, 0x01, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30]);
+// Module.getExportByName() can find functions without knowing the source
+// module, but it's slower, especially over large binaries! YMMV...
+Interceptor.attach(Module.getExportByName(null, 'connect'), {
+    onEnter(args) {
+        send('Injecting malicious byte array:');
+        args[1] = st;
+    }
+    //, onLeave(retval) {
+    //   retval.replace(0); // Use this to manipulate the return value
+    //}
+});
+"""</span><span class="p">)</span>
+
+<span class="c1"># Here's some message handling..
+# [ It's a little bit more meaningful to read as output :-D
+#   Errors get [!] and messages get [i] prefixes. ]
+</span><span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">message</span><span class="p">[</span><span class="s">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'error'</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"[!] "</span> <span class="o">+</span> <span class="n">message</span><span class="p">[</span><span class="s">'stack'</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">message</span><span class="p">[</span><span class="s">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'send'</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"[i] "</span> <span class="o">+</span> <span class="n">message</span><span class="p">[</span><span class="s">'payload'</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="n">script</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">'message'</span><span class="p">,</span> <span class="n">on_message</span><span class="p">)</span>
+<span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">read</span><span class="p">()</span></code></pre></figure>
+
+<p>Note that this script demonstrates how the <code class="language-plaintext highlighter-rouge">Module.getExportByName()</code> API can
+be used to find any exported function by name in our target. If we can supply a
+module then it will be faster on larger binaries, but that is less critical
+here.</p>
+
+<p>Now, run <code class="language-plaintext highlighter-rouge">./client 127.0.0.1</code>, in another terminal run <code class="language-plaintext highlighter-rouge">nc -lp 5001</code>, and in a
+third terminal run <code class="language-plaintext highlighter-rouge">./struct_mod.py</code>. Once our script is running, press ENTER
+in the <code class="language-plaintext highlighter-rouge">client</code> terminal window, and netcat should now show the string sent
+by the client.</p>
+
+<p>We have successfully hijacked the raw networking by injecting our own data
+object into memory and hooking our process with Frida, and using <code class="language-plaintext highlighter-rouge">Interceptor</code>
+to do our dirty work in manipulating the function.</p>
+
+<p>This shows the real power of Frida - no patching, complicated reversing, nor
+difficult hours spent staring at dissassembly without end.</p>
+
+<p>Here’s a quick video demonstrating the above:</p>
+
+<p>https://www.youtube.com/watch?v=cTcM7R872Ls</p>
+
+          
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="section-nav">
+      <div class="left align-right">
+          
+            
+            
+            <a href="../presentations/index.html" class="prev">Back</a>
+          
+      </div>
+      <div class="right align-left">
+          
+            
+            
+            <a href="../messages/index.html" class="next">Next</a>
+          
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

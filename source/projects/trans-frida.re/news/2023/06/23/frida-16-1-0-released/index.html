@@ -1,0 +1,1306 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Frida 16.1.0 Released | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Frida 16.1.0 Released" />
+<meta name="author" content="oleavr" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/news/2023/06/23/frida-16-1-0-released/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-23T23:31:22+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Frida 16.1.0 Released" />
+<meta name="twitter:site" content="@fridadotre" />
+<meta name="twitter:creator" content="@oleavr" />
+<script type="application/ld+json">
+{"headline":"Frida 16.1.0 Released","dateModified":"2023-06-23T23:31:22+02:00","datePublished":"2023-06-23T23:31:22+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/news/2023/06/23/frida-16-1-0-released/"},"author":{"@type":"Person","name":"oleavr"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/news/2023/06/23/frida-16-1-0-released/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+      <option value="/news/2023/12/24/frida-16-1-10-released/">Frida 16.1.10 Released</option>
+      
+      <option value="/news/2023/12/20/frida-16-1-9-released/">Frida 16.1.9 Released</option>
+      
+      <option value="/news/2023/11/28/frida-16-1-8-released/">Frida 16.1.8 Released</option>
+      
+      <option value="/news/2023/11/16/frida-16-1-7-released/">Frida 16.1.7 Released</option>
+      
+      <option value="/news/2023/11/13/frida-16-1-6-released/">Frida 16.1.6 Released</option>
+      
+      <option value="/news/2023/11/04/frida-16-1-5-released/">Frida 16.1.5 Released</option>
+      
+      <option value="/news/2023/08/29/frida-16-1-4-released/">Frida 16.1.4 Released</option>
+      
+      <option value="/news/2023/07/14/frida-16-1-3-released/">Frida 16.1.3 Released</option>
+      
+      <option value="/news/2023/07/11/frida-16-1-2-released/">Frida 16.1.2 Released</option>
+      
+      <option value="/news/2023/07/01/frida-16-1-1-released/">Frida 16.1.1 Released</option>
+      
+      <option value="/news/2023/06/23/frida-16-1-0-released/">Frida 16.1.0 Released</option>
+      
+      <option value="/news/2023/04/27/frida-16-0-19-released/">Frida 16.0.19 Released</option>
+      
+      <option value="/news/2023/04/22/frida-16-0-18-released/">Frida 16.0.18 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-17-released/">Frida 16.0.17 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-16-released/">Frida 16.0.16 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-15-released/">Frida 16.0.15 Released</option>
+      
+      <option value="/news/2023/04/18/frida-16-0-14-released/">Frida 16.0.14 Released</option>
+      
+      <option value="/news/2023/04/15/frida-16-0-13-released/">Frida 16.0.13 Released</option>
+      
+      <option value="/news/2023/04/14/frida-16-0-12-released/">Frida 16.0.12 Released</option>
+      
+      <option value="/news/2023/03/10/frida-16-0-11-released/">Frida 16.0.11 Released</option>
+      
+      <option value="/news/2023/02/17/frida-16-0-10-released/">Frida 16.0.10 Released</option>
+      
+      <option value="/news/2023/02/11/frida-16-0-9-released/">Frida 16.0.9 Released</option>
+      
+      <option value="/news/2022/12/13/frida-16-0-8-released/">Frida 16.0.8 Released</option>
+      
+      <option value="/news/2022/12/02/frida-16-0-7-released/">Frida 16.0.7 Released</option>
+      
+      <option value="/news/2022/12/01/frida-16-0-6-released/">Frida 16.0.6 Released</option>
+      
+      <option value="/news/2022/11/28/frida-16-0-5-released/">Frida 16.0.5 Released</option>
+      
+      <option value="/news/2022/11/26/frida-16-0-4-released/">Frida 16.0.4 Released</option>
+      
+      <option value="/news/2022/11/23/frida-16-0-3-released/">Frida 16.0.3 Released</option>
+      
+      <option value="/news/2022/10/22/frida-16-0-2-released/">Frida 16.0.2 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-1-released/">Frida 16.0.1 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-0-released/">Frida 16.0.0 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-2-released/">Frida 15.2.2 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-1-released/">Frida 15.2.1 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-0-released/">Frida 15.2.0 Released</option>
+      
+      <option value="/news/2022/07/06/frida-15-1-28-released/">Frida 15.1.28 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-27-released/">Frida 15.1.27 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-26-released/">Frida 15.1.26 Released</option>
+      
+      <option value="/news/2022/06/18/frida-15-1-25-released/">Frida 15.1.25 Released</option>
+      
+      <option value="/news/2022/06/03/frida-15-1-24-released/">Frida 15.1.24 Released</option>
+      
+      <option value="/news/2022/05/30/frida-15-1-23-released/">Frida 15.1.23 Released</option>
+      
+      <option value="/news/2022/05/09/frida-15-1-22-released/">Frida 15.1.22 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-21-released/">Frida 15.1.21 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-20-released/">Frida 15.1.20 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-19-released/">Frida 15.1.19 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-18-released/">Frida 15.1.18 Released</option>
+      
+      <option value="/news/2022/02/10/frida-15-1-17-released/">Frida 15.1.17 Released</option>
+      
+      <option value="/news/2022/02/03/frida-15-1-16-released/">Frida 15.1.16 Released</option>
+      
+      <option value="/news/2022/02/01/frida-15-1-15-released/">Frida 15.1.15 Released</option>
+      
+      <option value="/news/2021/09/03/frida-15-1-released/">Frida 15.1 Released</option>
+      
+      <option value="/news/2021/07/18/frida-15-0-released/">Frida 15.0 Released</option>
+      
+      <option value="/news/2021/02/10/frida-14-2-released/">Frida 14.2 Released</option>
+      
+      <option value="/news/2020/12/01/frida-14-1-released/">Frida 14.1 Released</option>
+      
+      <option value="/news/2020/10/28/frida-14-0-released/">Frida 14.0 Released</option>
+      
+      <option value="/news/2020/07/24/frida-12-11-released/">Frida 12.11 Released</option>
+      
+      <option value="/news/2020/06/29/frida-12-10-released/">Frida 12.10 Released</option>
+      
+      <option value="/news/2020/05/19/frida-12-9-released/">Frida 12.9 Released</option>
+      
+      <option value="/news/2019/12/18/frida-12-8-released/">Frida 12.8 Released</option>
+      
+      <option value="/news/2019/09/18/frida-12-7-released/">Frida 12.7 Released</option>
+      
+      <option value="/news/2019/05/28/frida-12-6-released/">Frida 12.6 Released</option>
+      
+      <option value="/news/2019/05/15/nowsecure-connect-2019/">NowSecure Connect 2019</option>
+      
+      <option value="/news/2019/05/15/frida-12-5-released/">Frida 12.5 Released</option>
+      
+      <option value="/news/2018/09/11/frida-12-2-released/">Frida 12.2 Released</option>
+      
+      <option value="/news/2018/08/25/frida-12-1-released/">Frida 12.1 Released</option>
+      
+      <option value="/news/2018/07/12/frida-12-0-released/">Frida 12.0 Released</option>
+      
+      <option value="/news/2018/05/05/frida-11-0-released/">Frida 11.0 Released</option>
+      
+      <option value="/news/2018/04/28/frida-10-8-released/">Frida 10.8 Released</option>
+      
+      <option value="/news/2018/03/13/frida-10-7-released/">Frida 10.7 Released</option>
+      
+      <option value="/news/2017/09/29/frida-10-6-released/">Frida 10.6 Released</option>
+      
+      <option value="/news/2017/08/25/frida-10-5-released/">Frida 10.5 Released</option>
+      
+      <option value="/news/2017/08/15/frida-10-4-released/">Frida 10.4 Released</option>
+      
+      <option value="/news/2017/05/02/frida-10-0-released/">Frida 10.0 Released</option>
+      
+      <option value="/news/2017/01/09/frida-9-0-released/">Frida 9.0 Released</option>
+      
+      <option value="/news/2016/10/25/frida-8-1-released/">Frida 8.1 Released</option>
+      
+      <option value="/news/2016/10/04/frida-8-0-released/">Frida 8.0 Released</option>
+      
+      <option value="/news/2016/08/15/frida-7-3-released/">Frida 7.3 Released</option>
+      
+      <option value="/news/2016/06/02/frida-7-2-released/">Frida 7.2 Released</option>
+      
+      <option value="/news/2016/04/04/frida-7-1-released/">Frida 7.1 Released</option>
+      
+      <option value="/news/2016/02/24/frida-7-0-released/">Frida 7.0 Released</option>
+      
+      <option value="/news/2016/02/01/frida-6-2-released/">Frida 6.2 Released</option>
+      
+      <option value="/news/2016/01/31/frida-fosdem-presentation/">Frida presentation at FOSDEM 2016</option>
+      
+      <option value="/news/2016/01/14/frida-6-1-released/">Frida 6.1 Released</option>
+      
+      <option value="/news/2015/11/11/frida-6-0-released/">Frida 6.0 Released</option>
+      
+      <option value="/news/2015/09/17/frida-5-0-released/">Frida 5.0 Released</option>
+      
+      <option value="/news/2015/09/10/frida-4-5-released/">Frida 4.5 Released</option>
+      
+      <option value="/news/2015/07/31/frida-4-4-released/">Frida 4.4 Released</option>
+      
+      <option value="/news/2015/07/15/frida-4-3-released/">Frida 4.3 Released</option>
+      
+      <option value="/news/2015/06/18/frida-4-2-released/">Frida 4.2 Released</option>
+      
+      <option value="/news/2015/06/09/frida-4-1-released/">Frida 4.1 Released</option>
+      
+      <option value="/news/2015/05/09/frida-4-0-0-released/">Frida 4.0.0 Released</option>
+      
+      <option value="/news/2015/03/20/frida-3-0-0-released/">Frida 3.0.0 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-2-released/">Frida 2.0.2 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-1-released/">Frida 2.0.1 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-0-released/">Frida 2.0.0 Released</option>
+      
+      <option value="/news/2015/02/23/frida-1-8-0-released/">Frida 1.8.0 Released</option>
+      
+      <option value="/news/2014/11/18/frida-1-6-8-released/">Frida 1.6.8 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-7-released/">Frida 1.6.7 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-6-released/">Frida 1.6.6 Released</option>
+      
+      <option value="/news/2014/10/29/frida-1-6-5-released/">Frida 1.6.5 Released</option>
+      
+      <option value="/news/2014/10/19/frida-1-6-4-released/">Frida 1.6.4 Released</option>
+      
+      <option value="/news/2014/08/25/frida-1-6-3-released/">Frida 1.6.3 Released</option>
+      
+      <option value="/news/2014/08/03/frida-1-6-2-released/">Frida 1.6.2 Released</option>
+      
+      <option value="/news/2014/07/26/frida-1-6-1-released/">Frida 1.6.1 Released</option>
+      
+      <option value="/news/2014/05/30/frida-1-6-0-released/">Frida 1.6.0 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-2-released/">Frida 1.4.2 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-1-released/">Frida 1.4.1 Released</option>
+      
+      <option value="/news/2014/05/04/frida-1-4-0-released/">Frida 1.4.0 Released</option>
+      
+      <option value="/news/2014/04/21/frida-1-2-1-released/">Frida 1.2.1 Released</option>
+      
+      <option value="/news/2014/04/17/frida-1-2-0-released/">Frida 1.2.0 Released</option>
+      
+      <option value="/news/2014/03/09/frida-1-0-11-released/">Frida 1.0.11 Released</option>
+      
+      <option value="/news/2014/02/16/frida-1-0-10-released/">Frida 1.0.10 Released</option>
+      
+      <option value="/news/2014/01/25/frida-1-0-9-released/">Frida 1.0.9 Released</option>
+      
+      <option value="/news/2014/01/15/frida-1-0-8-released/">Frida 1.0.8 Released</option>
+      
+      <option value="/news/2014/01/12/frida-1-0-7-released/">Frida 1.0.7 Released</option>
+      
+      <option value="/news/2014/01/11/frida-1-0-6-released/">Frida 1.0.6 Released</option>
+      
+      <option value="/news/2014/01/05/frida-1-0-5-released/">Frida 1.0.5 Released</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+      <div class="news-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="../../../../index.html">All News</a>
+      </li>
+      <li class="">
+        <a href="../../../../releases/index.html">Frida Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="../../../12/24/frida-16-1-10-released/index.html">Version 16.1.10</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../12/20/frida-16-1-9-released/index.html">Version 16.1.9</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../11/28/frida-16-1-8-released/index.html">Version 16.1.8</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../11/16/frida-16-1-7-released/index.html">Version 16.1.7</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../11/13/frida-16-1-6-released/index.html">Version 16.1.6</a>
+      </li>
+      
+      <li>
+        <a href="../../../../../docs/history/index.html">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2019/05/15/nowsecure-connect-2019/index.html">NowSecure Connect 2019</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2016/01/31/frida-fosdem-presentation/index.html">Frida presentation at FOSDEM 2016</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="news-articles unit three-quarters">
+        <article>
+  <h2>
+    Frida 16.1.0 Released
+    <a href="index.html" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    
+    <span class="label">release</span>
+    
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      23 Jun 2023
+    </span>
+    <a href="https://github.com/oleavr" class="post-author">
+      <img src="https://github.com/oleavr.png" class="avatar" />
+      oleavr
+    </a>
+  </div>
+  <p class="post-content">
+    <p>For quite some years I’ve been dreaming of taking Frida beyond user-space
+software, to also support instrumenting OS kernels as well as barebone systems.
+Perhaps even microcontrollers…</p>
+
+<h2 id="microcontrollers">Microcontrollers</h2>
+
+<p>Earlier this year my family’s cat door broke down. After some back and forth
+with the retailer, double-checking the installation and such, it would work
+for a little while before it eventually started malfunctioning.</p>
+
+<p>This was obviously not much fun for our cats:</p>
+
+<p><img src="../../../../../img/cat-door-fail.jpg" alt="cat-door-fail" title="disappointed cat" /></p>
+
+<p>It’s also no surprise that they’d end up making a lot of noise, in turn making
+it hard to get a good night’s sleep when having to get up to let them back in
+manually.</p>
+
+<p>I ended up buying a second cat door and, lo and behold, no more issues. The old
+one ended up collecting dust for a while. Something I kept thinking of was
+whether I could debug it, and perhaps even extend the software to do more useful
+things.</p>
+
+<p>Feeling the urge to open it up to poke at the electronics inside of it, I
+eventually gave in:</p>
+
+<p><img src="../../../../../img/cat-door-pcb.jpg" alt="cat-door-pcb" title="cat-door PCB" width="100%" /></p>
+
+<p>That looked like an STM32F030C6T6, which is an ARM Cortex M0-based MCU. My first
+thought was whether I could dump the flash memory to do some static analysis.</p>
+
+<p>After quickly skimming MCU docs, and a little bit of multimeter probing, I
+figured out the JP12 pads:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">PAD 1/2</th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">PAD 7/8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">BOOT0</td>
+      <td style="text-align: center">USART1 RX</td>
+      <td style="text-align: center">SWDIO</td>
+      <td style="text-align: center">GND</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">VDD</td>
+      <td style="text-align: center">USART1 TX</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">SWCLK</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This made it easy to pull <em>BOOT0</em> high, so the MCU boots into its internal
+bootloader instead of user code.</p>
+
+<p>By hooking up a USB to 3.3V TTL device to the USART1 pads, I could dump the
+flash:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>./stm32flash <span class="nt">-r</span> firmware.bin /dev/ttyUSB0
+stm32flash 0.7
+
+http://stm32flash.sourceforge.net/
+
+Interface serial_posix: 57600 8E1
+Version      : 0x31
+Option 1     : 0x00
+Option 2     : 0x00
+Device ID    : 0x0444 <span class="o">(</span>STM32F03xx4/6<span class="o">)</span>
+- RAM        : Up to 4KiB  <span class="o">(</span>2048b reserved by bootloader<span class="o">)</span>
+- Flash      : Up to 32KiB <span class="o">(</span>size first sector: 4x1024<span class="o">)</span>
+- Option bytes  : 16b
+- System memory : 3KiB
+Memory <span class="nb">read
+</span>Read address 0x08008000 <span class="o">(</span>100.00%<span class="o">)</span> Done.</code></pre></figure>
+
+<p>And perform some static analysis:
+<img src="../../../../../img/cat-door-firmware.png" alt="cat-door-firmware" title="cat-door firmware" /></p>
+
+<p>Seeing as two of the other pads are connected to SWDIO and SWCLK, used for
+Serial Wire Debug (SWD), the natural next step was to hook up a <a href="https://www.raspberrypi.com/products/debug-probe/">Raspberry Pi
+Debug Probe</a> to those. After getting that set up, I fired up <a href="https://openocd.org/">OpenOCD</a>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>openocd <span class="nt">-f</span> interface/cmsis-dap.cfg <span class="nt">-f</span> target/stm32f0x.cfg
+Open On-Chip Debugger 0.11.0-g8e3c38f7-dirty <span class="o">(</span>2023-05-05-14:25<span class="o">)</span>
+Licensed under GNU GPL v2
+For bug reports, <span class="nb">read
+	</span>http://openocd.org/doc/doxygen/bugs.html
+Info : auto-selecting first available session transport <span class="s2">"swd"</span><span class="nb">.</span> To override use <span class="s1">'transport select &lt;transport&gt;'</span><span class="nb">.</span>
+Info : Listening on port 6666 <span class="k">for </span>tcl connections
+Info : Listening on port 4444 <span class="k">for </span>telnet connections
+Info : Using CMSIS-DAPv2 interface with VID:PID<span class="o">=</span>0x2e8a:0x000c, <span class="nv">serial</span><span class="o">=</span>E6614103E78B482F
+Info : CMSIS-DAP: SWD  Supported
+Info : CMSIS-DAP: FW Version <span class="o">=</span> 2.0.0
+Info : CMSIS-DAP: Interface Initialised <span class="o">(</span>SWD<span class="o">)</span>
+Info : SWCLK/TCK <span class="o">=</span> 0 SWDIO/TMS <span class="o">=</span> 0 TDI <span class="o">=</span> 0 TDO <span class="o">=</span> 0 nTRST <span class="o">=</span> 0 nRESET <span class="o">=</span> 0
+Info : CMSIS-DAP: Interface ready
+Info : clock speed 1000 kHz
+Info : SWD DPIDR 0x0bb11477
+Info : stm32f0x.cpu: hardware has 4 breakpoints, 2 watchpoints
+Info : starting gdb server <span class="k">for </span>stm32f0x.cpu on 3333
+Info : Listening on port 3333 <span class="k">for </span>gdb connections</code></pre></figure>
+
+<p>The idea I had been thinking about for a long time was to add a new Frida
+backend where the only process you can attach to is PID 0. Any scripts loaded
+there would actually be run locally, and implement the familiar
+<a href="../../../../../docs/javascript-api/index.html">JavaScript API</a>. Any API that accesses memory, such as when dereferencing an
+<em>int *</em> by doing e.g. <em>ptr(‘0x80000’).readInt()</em>, would end up querying the
+target, through SWD in the above case.</p>
+
+<p>I initially started sketching this where the backend would talk to the OpenOCD
+daemon through its telnet interface. But I quickly realized that it would be
+better to talk to its GDB-compatible remote stub. In this way, Frida will be
+able to instrument any target with an available remote stub. Whether that’s
+OpenOCD, <a href="https://www.corellium.com/">Corellium</a> (iOS kernel instrumentation!), QEMU, etc.</p>
+
+<p>As for Interceptor, my thinking was that basic functionality would be
+implemented using breakpoints. But, only if the user supplies JavaScript
+callbacks. If function pointers are supplied instead, we could perform inline
+hooking so the target can run without any traps/ping-pongs with the host. This
+means it could even be used for observing and modifying hot code inside an OS
+kernel or MCU firmware.</p>
+
+<p>After some initial sketching, I was able to run the following script:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">Interceptor</span><span class="p">.</span><span class="nx">breakpointKind</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">hard</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">THUMB_BIT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">initRest</span> <span class="o">=</span> <span class="nx">ptr</span><span class="p">(</span><span class="dl">'</span><span class="s1">0x0800306a</span><span class="dl">'</span><span class="p">).</span><span class="nx">or</span><span class="p">(</span><span class="nx">THUMB_BIT</span><span class="p">);</span>
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">initRest</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">onEnter</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt;&gt;&gt; init_rest()</span><span class="dl">'</span><span class="p">,</span>
+        <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="p">},</span>
+  <span class="nx">onLeave</span><span class="p">(</span><span class="nx">retval</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`&lt;&lt;&lt; init_rest() retval=</span><span class="p">${</span><span class="nx">retval</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Using the Frida REPL:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida <span class="nt">-D</span> barebone <span class="nt">-p</span> 0 <span class="nt">-l</span> demo.js
+     ____
+    / _  |   Frida 16.1.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to GDB Remote Stub <span class="o">(</span><span class="nb">id</span><span class="o">=</span>barebone<span class="o">)</span>
+
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; <span class="nv">$gdb</span>.continue<span class="o">()</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; <span class="o">&gt;&gt;&gt;</span> init_rest<span class="o">()</span> <span class="o">{</span>
+  <span class="s2">"r7"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"pc"</span>: <span class="s2">"0x800306a"</span>,
+  <span class="s2">"r8"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"xPSR"</span>: <span class="s2">"0x41000000"</span>,
+  <span class="s2">"r9"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"sp"</span>: <span class="s2">"0x20000578"</span>,
+  <span class="s2">"r0"</span>: <span class="s2">"0x0"</span>,
+  <span class="s2">"r10"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"lr"</span>: <span class="s2">"0x8003069"</span>,
+  <span class="s2">"r1"</span>: <span class="s2">"0x40021008"</span>,
+  <span class="s2">"r11"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"r2"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"r12"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"r3"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"r4"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"r5"</span>: <span class="s2">"0xffffffff"</span>,
+  <span class="s2">"r6"</span>: <span class="s2">"0xffffffff"</span>
+<span class="o">}</span>
+<span class="o">&lt;&lt;&lt;</span> init_rest<span class="o">()</span> <span class="nv">retval</span><span class="o">=</span>0x1</code></pre></figure>
+
+<p>A few things to note here:</p>
+
+<ul>
+  <li>We set <em>Interceptor.breakpointKind</em> to <em>hard</em>, as our target’s code resides
+in flash, which means software-breakpoints won’t work. This would not have
+been necessary if I was using a <a href="https://www.segger.com/products/debug-probes/j-link/technology/flash-breakpoints/">J-Link</a> or similar SWD interface, which
+transparently reflashes as software-breakpoints are added.</li>
+  <li>The backend does not yet automatically resume, so we are doing that manually
+through <em>$gdb.continue()</em>, part of <a href="https://github.com/frida/frida-core/blob/0c6737becb603871f62c775f06214b27c3e208ad/src/barebone/script.vala#L220-L257">this internal API</a>, which exposes most
+of <a href="https://github.com/frida/frida-core/blob/0c6737becb603871f62c775f06214b27c3e208ad/src/gdb.vala#L3">GDB.Client</a> to JavaScript. This is meant to become an internal
+implementation detail, but will be needed while this new backend matures –
+it should not yet be considered stable API.</li>
+  <li>We set the least significant bit to indicate to Interceptor that the target
+function uses Thumb instruction encoding. This part may already be familiar to
+you if you have previously used Frida’s conventional backends on 32-bit ARM.</li>
+  <li>The new Barebone backend connects to the GDB-compatible remote stub at
+<em>127.0.0.1:3333</em> by default. This matches what OpenOCD typically defaults to,
+but can be overridden by setting the <em>FRIDA_BAREBONE_ADDRESS</em> environment
+variable.</li>
+</ul>
+
+<h2 id="os-kernels">OS kernels</h2>
+
+<p>While my fun little cat door side-quest is a great test case for the tiny part
+of the spectrum, there’s also a lot of potential in supporting larger systems.</p>
+
+<p>One of the cooler use-cases there is definitely Corellium, as it means we can
+instrument the iOS kernel. Using a <a href="https://github.com/stacksmashing/tamarin-firmware">Tamarin Cable</a> it should even be possible
+to get this working on a checkm8-exploitable physical device.</p>
+
+<p>Before we touch on that though, let’s see if we can get things going with QEMU
+and a live Linux kernel.</p>
+
+<h3 id="linux">Linux</h3>
+
+<p>First, we’ll fire up a VM we can play with:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pip <span class="nb">install </span>arm_now
+<span class="nv">$ </span>arm_now start aarch64 <span class="nt">--add-qemu-options</span><span class="o">=</span><span class="s1">'-gdb tcp::9000'</span>
+...
+Welcome to arm_now
+buildroot login:</code></pre></figure>
+
+<p>Next, we’ll use the Frida REPL to look around:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">export </span><span class="nv">FRIDA_BAREBONE_ADDRESS</span><span class="o">=</span>127.0.0.1:9000
+<span class="nv">$ </span>frida <span class="nt">-D</span> barebone <span class="nt">-p</span> 0
+     ____
+    / _  |   Frida 16.1.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to GDB Remote Stub <span class="o">(</span><span class="nb">id</span><span class="o">=</span>barebone<span class="o">)</span>
+
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; Process.arch
+<span class="s2">"arm64"</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; Process.enumerateRanges<span class="o">(</span><span class="s1">'r-x'</span><span class="o">)</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"base"</span>: <span class="s2">"0xffffff8008080000"</span>,
+        <span class="s2">"protection"</span>: <span class="s2">"r-x"</span>,
+        <span class="s2">"size"</span>: 4259840
+    <span class="o">}</span>
+<span class="o">]</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; <span class="nv">$gdb</span>.state
+<span class="s2">"stopped"</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; <span class="nv">$gdb</span>.exception
+<span class="o">{</span>
+    <span class="s2">"breakpoint"</span>: null,
+    <span class="s2">"signum"</span>: 2,
+    <span class="s2">"thread"</span>: <span class="o">{}</span>
+<span class="o">}</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; <span class="nv">$gdb</span>.exception.thread.readRegisters<span class="o">()</span>
+<span class="o">{</span>
+    <span class="s2">"cpsr"</span>: 1610613189,
+    <span class="s2">"pc"</span>: <span class="s2">"0xffffff8008096648"</span>,
+    <span class="s2">"sp"</span>: <span class="s2">"0xffffff80085f3f10"</span>,
+    <span class="s2">"x0"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x1"</span>: <span class="s2">"0xffffff80085e6b78"</span>,
+    <span class="s2">"x10"</span>: <span class="s2">"0x880"</span>,
+    <span class="s2">"x11"</span>: <span class="s2">"0xffffffc00e877180"</span>,
+    <span class="s2">"x12"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x13"</span>: <span class="s2">"0xffffffc00ffe1f30"</span>,
+    <span class="s2">"x14"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x15"</span>: <span class="s2">"0xfffffff8"</span>,
+    <span class="s2">"x16"</span>: <span class="s2">"0xffffffbeff000000"</span>,
+    <span class="s2">"x17"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x18"</span>: <span class="s2">"0xffffffc00ffe17e0"</span>,
+    <span class="s2">"x19"</span>: <span class="s2">"0xffffff80085e0000"</span>,
+    <span class="s2">"x2"</span>: <span class="s2">"0x40079f5000"</span>,
+    <span class="s2">"x20"</span>: <span class="s2">"0xffffff80085f892c"</span>,
+    <span class="s2">"x21"</span>: <span class="s2">"0xffffff80085f88a0"</span>,
+    <span class="s2">"x22"</span>: <span class="s2">"0xffffff80085ffe80"</span>,
+    <span class="s2">"x23"</span>: <span class="s2">"0xffffff80085ffe80"</span>,
+    <span class="s2">"x24"</span>: <span class="s2">"0xffffff80085d5028"</span>,
+    <span class="s2">"x25"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x26"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x27"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x28"</span>: <span class="s2">"0x405a0018"</span>,
+    <span class="s2">"x29"</span>: <span class="s2">"0xffffff80085f3f10"</span>,
+    <span class="s2">"x3"</span>: <span class="s2">"0x30c"</span>,
+    <span class="s2">"x30"</span>: <span class="s2">"0xffffff800808492c"</span>,
+    <span class="s2">"x4"</span>: <span class="s2">"0x0"</span>,
+    <span class="s2">"x5"</span>: <span class="s2">"0x40079f5000"</span>,
+    <span class="s2">"x6"</span>: <span class="s2">"0x1"</span>,
+    <span class="s2">"x7"</span>: <span class="s2">"0x1c0"</span>,
+    <span class="s2">"x8"</span>: <span class="s2">"0x2"</span>,
+    <span class="s2">"x9"</span>: <span class="s2">"0xffffff80085f3e80"</span>
+<span class="o">}</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt;</code></pre></figure>
+
+<p>You might wonder how we’ve implemented <em>Process.enumerateRanges()</em>. This part is
+for now only implemented on arm64, and it is accomplished by <a href="https://github.com/frida/frida-core/blob/0c6737becb603871f62c775f06214b27c3e208ad/src/barebone/arch-arm64/machine.vala#L38-L91">parsing the page
+tables</a>. (And if we’re talking to Corellium’s remote stub we use a
+vendor-specific monitor command to save ourselves a lot of network roundtrips.)</p>
+
+<p>So now that we’re peeking into a running kernel, one of the things we might want
+to do is find internal functions and data structures. This is where the memory-
+scanning API comes handy:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">r</span> <span class="k">of</span> <span class="nx">Process</span><span class="p">.</span><span class="nx">enumerateRanges</span><span class="p">(</span><span class="dl">'</span><span class="s1">r-x</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="kd">const</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">Memory</span><span class="p">.</span><span class="nx">scanSync</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">base</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">size</span><span class="p">,</span>
+      <span class="dl">'</span><span class="s1">7b2000f0 fa03082a 992480d2 : 1f00009f ffffffff 1f00e0ff</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Matches:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">matches</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Here we’re looking for the Linux kernel’s <a href="https://github.com/torvalds/linux/blob/569dbb88e80deb68974ef6fdd6a13edb9d686261/arch/arm64/kernel/entry.S#L800-L802">arm64 syscall handler</a>, matching on
+its first three instructions. We use the masking feature to mask out the
+immediates of the ADRP and MOV instructions (first and third instruction).</p>
+
+<p>Let’s take it for a spin:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida <span class="nt">-D</span> barebone <span class="nt">-p</span> 0 <span class="nt">-l</span> scan.js
+     ____
+    / _  |   Frida 16.1.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to GDB Remote Stub <span class="o">(</span><span class="nb">id</span><span class="o">=</span>barebone<span class="o">)</span>
+Attaching...
+<span class="o">{</span>
+  <span class="s2">"base"</span>: <span class="s2">"0xffffff8008080000"</span>,
+  <span class="s2">"size"</span>: 4259840,
+  <span class="s2">"protection"</span>: <span class="s2">"r-x"</span>
+<span class="o">}</span>
+Matches: <span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">"address"</span>: <span class="s2">"0xffffff8008082f00"</span>,
+    <span class="s2">"size"</span>: 12
+  <span class="o">}</span>
+<span class="o">]</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt;</code></pre></figure>
+
+<p>So now we’ve dynamically detected the kernel’s internal syscall handler! 🚀</p>
+
+<p>Re-implementing the memory scanning feature was one of the highlights for me
+personally, as <a href="https://twitter.com/hsorbo">@hsorbo</a> and I had a lot of fun pair-programming on it. The
+implementation is conceptually very similar to what we’re doing in our Fruity
+backend for jailed iOS, and our new Linux injector: instead of transferring data
+to the host, and searching that, we can get away with transferring only the
+search algorithm, to run that on the target.</p>
+
+<p>The <a href="https://github.com/frida/frida-core/tree/0c6737becb603871f62c775f06214b27c3e208ad/src/barebone/helpers">memory scanner implementation</a> is written in Rust, and helped prepare
+the groundwork for a new cool feature I’m going to cover a bit later in this
+post.</p>
+
+<p>So, now that we know where the Linux kernel’s syscall handler is, we can use
+Interceptor to install an instruction-level hook:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">el0Svc</span> <span class="o">=</span> <span class="nx">ptr</span><span class="p">(</span><span class="dl">'</span><span class="s1">0xffffff8008082f00</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">el0Svc</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">context</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">scno</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">x8</span><span class="p">.</span><span class="nx">toUInt32</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`syscall! scno=</span><span class="p">${</span><span class="nx">scno</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>And try that out on our running VM:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida <span class="nt">-D</span> barebone <span class="nt">-p</span> 0 <span class="nt">-l</span> kernhook.js
+     ____
+    / _  |   Frida 16.1.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to GDB Remote Stub <span class="o">(</span><span class="nb">id</span><span class="o">=</span>barebone<span class="o">)</span>
+
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; <span class="nv">$gdb</span>.continue<span class="o">()</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; syscall! <span class="nv">scno</span><span class="o">=</span>63
+syscall! <span class="nv">scno</span><span class="o">=</span>64
+syscall! <span class="nv">scno</span><span class="o">=</span>73
+syscall! <span class="nv">scno</span><span class="o">=</span>63
+syscall! <span class="nv">scno</span><span class="o">=</span>64
+syscall! <span class="nv">scno</span><span class="o">=</span>73
+syscall! <span class="nv">scno</span><span class="o">=</span>63
+syscall! <span class="nv">scno</span><span class="o">=</span>64
+syscall! <span class="nv">scno</span><span class="o">=</span>56
+syscall! <span class="nv">scno</span><span class="o">=</span>62
+syscall! <span class="nv">scno</span><span class="o">=</span>64
+syscall! <span class="nv">scno</span><span class="o">=</span>57
+syscall! <span class="nv">scno</span><span class="o">=</span>29
+syscall! <span class="nv">scno</span><span class="o">=</span>134
+...</code></pre></figure>
+
+<p>And that’s it – we are monitoring system calls across the entire system! 💥</p>
+
+<h3 id="rust">Rust</h3>
+
+<p>One of the first things you’ll probably notice if you try the previous example
+is that we slow down the system quite a bit. This is because Interceptor uses
+breakpoints when a JavaScript function is specified as the callback.</p>
+
+<p>Not to worry though. If we write our callback in machine code and pass a
+NativePointer instead, Interceptor will pick a different strategy: it will
+modify the target’s machine code to redirect execution to a trampoline, which in
+turn calls the function at the address that we specify.</p>
+
+<p>So that’s great. We only need to get our machine code into memory. Some of you
+may be familiar with our <a href="../../../../../docs/javascript-api/index.html#cmodule">CModule API</a>. We don’t yet implement that one in
+this new Barebone backend (and we will, eventually!), but we have something even
+better. Enter <em>RustModule</em>:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">kernBase</span> <span class="o">=</span> <span class="nx">ptr</span><span class="p">(</span><span class="dl">'</span><span class="s1">0xffffff8008080000</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">procPidStatus</span> <span class="o">=</span> <span class="nx">kernBase</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mh">0x15e600</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RustModule</span><span class="p">(</span><span class="s2">`
+#[no_mangle]
+pub unsafe extern "C" fn hook(ic: &amp;mut gum::InvocationContext) -&gt; () {
+    let regs = &amp;mut ic.cpu_context;
+    println!("proc_pid_status() was called with x0={:#x} x1={:#x}",
+        regs.x[0],
+        regs.x[1],
+    );
+}
+`</span><span class="p">);</span>
+
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">procPidStatus</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">hook</span><span class="p">);</span></code></pre></figure>
+
+<p>The RustModule implementation uses a local Rust toolchain, assumed to be on your
+PATH, to compile the code you provide it into a <em>no_std</em> self-contained ELF. It
+relocates this ELF and writes it into the target’s memory. As part of this it
+will also parse the MMU’s page tables and insert new entries there so the
+uploaded code becomes part of the virtual address space, where the pages are
+read/write/execute.</p>
+
+<p>In this example we’re hooking <a href="https://github.com/torvalds/linux/blob/569dbb88e80deb68974ef6fdd6a13edb9d686261/fs/proc/array.c#L372-L391">proc_pid_status()</a> in our live Linux kernel.</p>
+
+<p>Note that <em>File.readAllText()</em> can be used to avoid having to inline Rust code
+inside your JavaScript. Here we’re using inline code for the sake of brevity.</p>
+
+<p>Now, with our Rust-powered agent, let’s take it for a spin:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida <span class="nt">-D</span> barebone <span class="nt">-p</span> 0 <span class="nt">-l</span> kernhook2.js
+     ____
+    / _  |   Frida 16.1.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to GDB Remote Stub <span class="o">(</span><span class="nb">id</span><span class="o">=</span>barebone<span class="o">)</span>
+
+Error: to <span class="nb">enable </span>this feature, <span class="nb">set </span>FRIDA_BAREBONE_HEAP_BASE to the physical base address to use, e.g. 0x48000000
+    at &lt;<span class="nb">eval</span><span class="o">&gt;</span> <span class="o">(</span>/home/oleavr/src/demo/kernhook2.js:13<span class="o">)</span>
+    at evaluate <span class="o">(</span>native<span class="o">)</span>
+    at &lt;anonymous&gt; <span class="o">(</span>/frida/repl-2.js:1<span class="o">)</span>
+
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt;</code></pre></figure>
+
+<p>Oops! That didn’t quite work. There is still one piece missing in our new
+backend: we don’t yet have any “kernel bridges” in place that automatically
+fingerprint the internals of known kernels in order to find a suitable internal
+memory allocator we can use. This will also be needed to implement APIs such as
+<em>Process.enumerateModules()</em>, which will allow listing the loaded kernel
+modules/kexts. We could also locate the kernel’s process list and implement
+<em>enumerate_processes()</em>, so frida-ps works. And those are only a couple of
+examples… How about injecting frida-gadget into a user-space process? That
+would be super-useful for an embedded system where we want to avoid modifying
+the flash. Anyway, I digress 😊</p>
+
+<p>So, on MCUs and unknown kernels you will have to tell Frida where, in physical
+memory, we may clobber if you want to use intrusive features such as RustModule,
+Interceptor in its inline hooking mode, Memory.alloc(), etc.</p>
+
+<p>With that in mind, let’s retry our example, but this time we’ll set the
+<em>FRIDA_BAREBONE_HEAP_BASE</em> environment variable:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">export </span><span class="nv">FRIDA_BAREBONE_HEAP_BASE</span><span class="o">=</span>0x48000000
+<span class="nv">$ </span>frida <span class="nt">-D</span> barebone <span class="nt">-p</span> 0 <span class="nt">-l</span> kernhook2.js
+     ____
+    / _  |   Frida 16.1.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to GDB Remote Stub <span class="o">(</span><span class="nb">id</span><span class="o">=</span>barebone<span class="o">)</span>
+
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; m
+<span class="o">{</span>
+    <span class="s2">"hook"</span>: <span class="s2">"0xffffff80080103e0"</span>
+<span class="o">}</span>
+<span class="o">[</span>Remote::SystemSession <span class="o">]</span>-&gt; <span class="nv">$gdb</span>.continue<span class="o">()</span></code></pre></figure>
+
+<p>Yay! 🎉 So now, in the terminal where we have QEMU running, let’s try accessing
+<em>/proc/$pid/status</em> three times, so the hooked function gets called:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># head -3 /proc/self/status</span>
+Name:	<span class="nb">head
+</span>Umask:	0022
+State:	R <span class="o">(</span>running<span class="o">)</span>
+<span class="c"># head -3 /proc/self/status</span>
+Name:	<span class="nb">head
+</span>Umask:	0022
+State:	R <span class="o">(</span>running<span class="o">)</span>
+<span class="c"># head -3 /proc/self/status</span>
+Name:	<span class="nb">head
+</span>Umask:	0022
+State:	R <span class="o">(</span>running<span class="o">)</span></code></pre></figure>
+
+<p>Over in our REPL, we should see our <em>hook()</em> getting hit three times:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">proc_pid_status<span class="o">()</span> was called with <span class="nv">x0</span><span class="o">=</span>0xffffffc00d4bca00 <span class="nv">x1</span><span class="o">=</span>0xffffff8008608758
+proc_pid_status<span class="o">()</span> was called with <span class="nv">x0</span><span class="o">=</span>0xffffffc00d4bc780 <span class="nv">x1</span><span class="o">=</span>0xffffff8008608758
+proc_pid_status<span class="o">()</span> was called with <span class="nv">x0</span><span class="o">=</span>0xffffffc00d4bc780 <span class="nv">x1</span><span class="o">=</span>0xffffff8008608758</code></pre></figure>
+
+<p>It works! 🥳</p>
+
+<p>There’s one important thing to note though: In our example we’re using
+<em>println!()</em>, and this actually causes the target to hit a breakpoint, so the
+host can read out the message passed to it, and bubble that up just like a
+<em>console.log()</em> from JavaScript. This means you should only use this feature for
+temporary debugging purposes, and throttle how often it’s called if on a hot
+code-path.</p>
+
+<p>The next thing you might want to do is pass external symbols into your
+RustModule. For example if you want to call internal kernel functions from your
+Rust code. This is accomplished by declaring them like this:</p>
+
+<figure class="highlight"><pre><code class="language-rs" data-lang="rs"><span class="k">extern</span> <span class="s">"C"</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">frobnicate</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="o">*</span><span class="k">const</span> <span class="nb">u8</span><span class="p">,</span> <span class="n">len</span><span class="p">:</span> <span class="nb">usize</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Then when constructing the RustModule, pass it in through the second argument:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RustModule</span><span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">frobnicate</span><span class="p">:</span> <span class="nx">ptr</span><span class="p">(</span><span class="dl">'</span><span class="s1">0xffffff8008084320</span><span class="dl">'</span><span class="p">),</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>For those of you familiar with our CModule API, this part is exactly the same.
+You can also use NativeCallback to implement portions host-side, in JavaScript,
+but this needs to be handled with care to avoid performance bottlenecks. Going
+in the opposite direction there is also NativeFunction, which you can use to
+call into your Rust code from JavaScript.</p>
+
+<p>Last but not least, you may also want to import existing Rust crates from
+<a href="https://crates.io/">crates.io</a>. This is also supported:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RustModule</span><span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span>
+  <span class="na">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="dl">'</span><span class="s1">cstr_core = { version = "0.2.6", default-features = false }</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">]</span>
+<span class="p">});</span></code></pre></figure>
+
+<h2 id="corellium">Corellium</h2>
+
+<p>What’s so exciting is that all of the Linux bits above all “just work” on
+Corellium as well. All you need to do is point <em>FRIDA_BAREBONE_ADDRESS</em> at the
+endpoint shown in Corellium’s UI under “Advanced Options” -&gt; “gdb”.</p>
+
+<p>Shout-out to the awesome folks at Corellium for their support while doing this.
+They even implemented new protocol features to improve interoperability 🔥</p>
+
+<h2 id="future">Future</h2>
+
+<p>This new backend should be considered alpha quality for now, but I think it’s
+already capable of so many useful things that it would be a shame to keep it
+sitting on a branch.</p>
+
+<p>You may notice that the JS APIs implemented only cover a subset, and not all
+features are available on non-arm64 targets yet. But all of this will improve as
+the backend matures. (Pull-requests are super-welcome!)</p>
+
+<p>And as a fun aside, here’s Frida attached to the BeOS kernel:</p>
+
+<p><img src="../../../../../img/barebone-beos.png" alt="beos-kernel" title="BeOS kernel" width="100%" /></p>
+
+<h2 id="eof">EOF</h2>
+
+<p>There’s also a bunch of other exciting changes, so definitely check out the
+changelog below.</p>
+
+<p>Enjoy!</p>
+
+<h3 id="changelog">Changelog</h3>
+
+<ul>
+  <li>Add Barebone backend. (Covered extensively above.)</li>
+  <li>objc: Handle modifiers. This makes type parsing more reliable, especially when
+dealing with ivars which often times have the “atomic” modifier: exceptions
+were thrown because the modifiers ended up being treated as unknown types.
+Thanks <a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+  <li>android: Fix support for Android 14. Thanks <a href="https://github.com/gsingh93">@gsingh93</a>! Also thanks
+<a href="https://github.com/jayluxferro">@jayluxferro</a> for contributing a follow-up fix for a mistake I made while
+merging <a href="https://github.com/gsingh93">@gsingh93</a>’s PR.</li>
+  <li>gum-graft: Add support for chained imports. Thanks <a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+  <li>gumjs: Add NativePointer#readVolatile(), to provide a safe way to read from
+memory that may become unmapped or have its memory protection changed midway
+through. Thanks <a href="https://twitter.com/hsorbo">@hsorbo</a>!</li>
+  <li>darwin: Improve tvOS support to also cover frida-server. Thanks <a href="https://twitter.com/tmm1">@tmm1</a>!</li>
+  <li>darwin: Plug memory leak in fallback kill() logic. Thanks <a href="https://twitter.com/tmm1">@tmm1</a>!</li>
+  <li>fruity: Handle failure to fetch dyld symbols.</li>
+  <li>compiler: Bump frida-compile to 16.2.2. Dependencies’ source maps are now also
+bundled – thanks <a href="https://github.com/vfsfitvnm">@vfsfitvnm</a>!</li>
+  <li>compiler: Bump @types/frida-gum to 18.3.2, now with improved typings for
+<em>hexdump()</em>.</li>
+  <li>gdb: Add GDB.Client, by factoring out the guts of Fruity’s LLDB.Client, with
+many protocol enhancements and interoperability fixes added on top.</li>
+  <li>elf-module: Improve API and make it cross-platform. Support loading from a
+blob, expose relocations, and improve overall robustness.</li>
+  <li>capstone: Fix crash on x86 when building with MSVC.</li>
+</ul>
+
+
+  </p>
+</article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

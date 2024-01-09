@@ -1,0 +1,844 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Frida 16.0.0 Released | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Frida 16.0.0 Released" />
+<meta name="author" content="oleavr" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/news/2022/10/08/frida-16-0-0-released/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-08T02:00:19+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Frida 16.0.0 Released" />
+<meta name="twitter:site" content="@fridadotre" />
+<meta name="twitter:creator" content="@oleavr" />
+<script type="application/ld+json">
+{"headline":"Frida 16.0.0 Released","dateModified":"2022-10-08T02:00:19+02:00","datePublished":"2022-10-08T02:00:19+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/news/2022/10/08/frida-16-0-0-released/"},"author":{"@type":"Person","name":"oleavr"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/news/2022/10/08/frida-16-0-0-released/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+      <option value="/news/2023/12/24/frida-16-1-10-released/">Frida 16.1.10 Released</option>
+      
+      <option value="/news/2023/12/20/frida-16-1-9-released/">Frida 16.1.9 Released</option>
+      
+      <option value="/news/2023/11/28/frida-16-1-8-released/">Frida 16.1.8 Released</option>
+      
+      <option value="/news/2023/11/16/frida-16-1-7-released/">Frida 16.1.7 Released</option>
+      
+      <option value="/news/2023/11/13/frida-16-1-6-released/">Frida 16.1.6 Released</option>
+      
+      <option value="/news/2023/11/04/frida-16-1-5-released/">Frida 16.1.5 Released</option>
+      
+      <option value="/news/2023/08/29/frida-16-1-4-released/">Frida 16.1.4 Released</option>
+      
+      <option value="/news/2023/07/14/frida-16-1-3-released/">Frida 16.1.3 Released</option>
+      
+      <option value="/news/2023/07/11/frida-16-1-2-released/">Frida 16.1.2 Released</option>
+      
+      <option value="/news/2023/07/01/frida-16-1-1-released/">Frida 16.1.1 Released</option>
+      
+      <option value="/news/2023/06/23/frida-16-1-0-released/">Frida 16.1.0 Released</option>
+      
+      <option value="/news/2023/04/27/frida-16-0-19-released/">Frida 16.0.19 Released</option>
+      
+      <option value="/news/2023/04/22/frida-16-0-18-released/">Frida 16.0.18 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-17-released/">Frida 16.0.17 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-16-released/">Frida 16.0.16 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-15-released/">Frida 16.0.15 Released</option>
+      
+      <option value="/news/2023/04/18/frida-16-0-14-released/">Frida 16.0.14 Released</option>
+      
+      <option value="/news/2023/04/15/frida-16-0-13-released/">Frida 16.0.13 Released</option>
+      
+      <option value="/news/2023/04/14/frida-16-0-12-released/">Frida 16.0.12 Released</option>
+      
+      <option value="/news/2023/03/10/frida-16-0-11-released/">Frida 16.0.11 Released</option>
+      
+      <option value="/news/2023/02/17/frida-16-0-10-released/">Frida 16.0.10 Released</option>
+      
+      <option value="/news/2023/02/11/frida-16-0-9-released/">Frida 16.0.9 Released</option>
+      
+      <option value="/news/2022/12/13/frida-16-0-8-released/">Frida 16.0.8 Released</option>
+      
+      <option value="/news/2022/12/02/frida-16-0-7-released/">Frida 16.0.7 Released</option>
+      
+      <option value="/news/2022/12/01/frida-16-0-6-released/">Frida 16.0.6 Released</option>
+      
+      <option value="/news/2022/11/28/frida-16-0-5-released/">Frida 16.0.5 Released</option>
+      
+      <option value="/news/2022/11/26/frida-16-0-4-released/">Frida 16.0.4 Released</option>
+      
+      <option value="/news/2022/11/23/frida-16-0-3-released/">Frida 16.0.3 Released</option>
+      
+      <option value="/news/2022/10/22/frida-16-0-2-released/">Frida 16.0.2 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-1-released/">Frida 16.0.1 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-0-released/">Frida 16.0.0 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-2-released/">Frida 15.2.2 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-1-released/">Frida 15.2.1 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-0-released/">Frida 15.2.0 Released</option>
+      
+      <option value="/news/2022/07/06/frida-15-1-28-released/">Frida 15.1.28 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-27-released/">Frida 15.1.27 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-26-released/">Frida 15.1.26 Released</option>
+      
+      <option value="/news/2022/06/18/frida-15-1-25-released/">Frida 15.1.25 Released</option>
+      
+      <option value="/news/2022/06/03/frida-15-1-24-released/">Frida 15.1.24 Released</option>
+      
+      <option value="/news/2022/05/30/frida-15-1-23-released/">Frida 15.1.23 Released</option>
+      
+      <option value="/news/2022/05/09/frida-15-1-22-released/">Frida 15.1.22 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-21-released/">Frida 15.1.21 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-20-released/">Frida 15.1.20 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-19-released/">Frida 15.1.19 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-18-released/">Frida 15.1.18 Released</option>
+      
+      <option value="/news/2022/02/10/frida-15-1-17-released/">Frida 15.1.17 Released</option>
+      
+      <option value="/news/2022/02/03/frida-15-1-16-released/">Frida 15.1.16 Released</option>
+      
+      <option value="/news/2022/02/01/frida-15-1-15-released/">Frida 15.1.15 Released</option>
+      
+      <option value="/news/2021/09/03/frida-15-1-released/">Frida 15.1 Released</option>
+      
+      <option value="/news/2021/07/18/frida-15-0-released/">Frida 15.0 Released</option>
+      
+      <option value="/news/2021/02/10/frida-14-2-released/">Frida 14.2 Released</option>
+      
+      <option value="/news/2020/12/01/frida-14-1-released/">Frida 14.1 Released</option>
+      
+      <option value="/news/2020/10/28/frida-14-0-released/">Frida 14.0 Released</option>
+      
+      <option value="/news/2020/07/24/frida-12-11-released/">Frida 12.11 Released</option>
+      
+      <option value="/news/2020/06/29/frida-12-10-released/">Frida 12.10 Released</option>
+      
+      <option value="/news/2020/05/19/frida-12-9-released/">Frida 12.9 Released</option>
+      
+      <option value="/news/2019/12/18/frida-12-8-released/">Frida 12.8 Released</option>
+      
+      <option value="/news/2019/09/18/frida-12-7-released/">Frida 12.7 Released</option>
+      
+      <option value="/news/2019/05/28/frida-12-6-released/">Frida 12.6 Released</option>
+      
+      <option value="/news/2019/05/15/nowsecure-connect-2019/">NowSecure Connect 2019</option>
+      
+      <option value="/news/2019/05/15/frida-12-5-released/">Frida 12.5 Released</option>
+      
+      <option value="/news/2018/09/11/frida-12-2-released/">Frida 12.2 Released</option>
+      
+      <option value="/news/2018/08/25/frida-12-1-released/">Frida 12.1 Released</option>
+      
+      <option value="/news/2018/07/12/frida-12-0-released/">Frida 12.0 Released</option>
+      
+      <option value="/news/2018/05/05/frida-11-0-released/">Frida 11.0 Released</option>
+      
+      <option value="/news/2018/04/28/frida-10-8-released/">Frida 10.8 Released</option>
+      
+      <option value="/news/2018/03/13/frida-10-7-released/">Frida 10.7 Released</option>
+      
+      <option value="/news/2017/09/29/frida-10-6-released/">Frida 10.6 Released</option>
+      
+      <option value="/news/2017/08/25/frida-10-5-released/">Frida 10.5 Released</option>
+      
+      <option value="/news/2017/08/15/frida-10-4-released/">Frida 10.4 Released</option>
+      
+      <option value="/news/2017/05/02/frida-10-0-released/">Frida 10.0 Released</option>
+      
+      <option value="/news/2017/01/09/frida-9-0-released/">Frida 9.0 Released</option>
+      
+      <option value="/news/2016/10/25/frida-8-1-released/">Frida 8.1 Released</option>
+      
+      <option value="/news/2016/10/04/frida-8-0-released/">Frida 8.0 Released</option>
+      
+      <option value="/news/2016/08/15/frida-7-3-released/">Frida 7.3 Released</option>
+      
+      <option value="/news/2016/06/02/frida-7-2-released/">Frida 7.2 Released</option>
+      
+      <option value="/news/2016/04/04/frida-7-1-released/">Frida 7.1 Released</option>
+      
+      <option value="/news/2016/02/24/frida-7-0-released/">Frida 7.0 Released</option>
+      
+      <option value="/news/2016/02/01/frida-6-2-released/">Frida 6.2 Released</option>
+      
+      <option value="/news/2016/01/31/frida-fosdem-presentation/">Frida presentation at FOSDEM 2016</option>
+      
+      <option value="/news/2016/01/14/frida-6-1-released/">Frida 6.1 Released</option>
+      
+      <option value="/news/2015/11/11/frida-6-0-released/">Frida 6.0 Released</option>
+      
+      <option value="/news/2015/09/17/frida-5-0-released/">Frida 5.0 Released</option>
+      
+      <option value="/news/2015/09/10/frida-4-5-released/">Frida 4.5 Released</option>
+      
+      <option value="/news/2015/07/31/frida-4-4-released/">Frida 4.4 Released</option>
+      
+      <option value="/news/2015/07/15/frida-4-3-released/">Frida 4.3 Released</option>
+      
+      <option value="/news/2015/06/18/frida-4-2-released/">Frida 4.2 Released</option>
+      
+      <option value="/news/2015/06/09/frida-4-1-released/">Frida 4.1 Released</option>
+      
+      <option value="/news/2015/05/09/frida-4-0-0-released/">Frida 4.0.0 Released</option>
+      
+      <option value="/news/2015/03/20/frida-3-0-0-released/">Frida 3.0.0 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-2-released/">Frida 2.0.2 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-1-released/">Frida 2.0.1 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-0-released/">Frida 2.0.0 Released</option>
+      
+      <option value="/news/2015/02/23/frida-1-8-0-released/">Frida 1.8.0 Released</option>
+      
+      <option value="/news/2014/11/18/frida-1-6-8-released/">Frida 1.6.8 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-7-released/">Frida 1.6.7 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-6-released/">Frida 1.6.6 Released</option>
+      
+      <option value="/news/2014/10/29/frida-1-6-5-released/">Frida 1.6.5 Released</option>
+      
+      <option value="/news/2014/10/19/frida-1-6-4-released/">Frida 1.6.4 Released</option>
+      
+      <option value="/news/2014/08/25/frida-1-6-3-released/">Frida 1.6.3 Released</option>
+      
+      <option value="/news/2014/08/03/frida-1-6-2-released/">Frida 1.6.2 Released</option>
+      
+      <option value="/news/2014/07/26/frida-1-6-1-released/">Frida 1.6.1 Released</option>
+      
+      <option value="/news/2014/05/30/frida-1-6-0-released/">Frida 1.6.0 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-2-released/">Frida 1.4.2 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-1-released/">Frida 1.4.1 Released</option>
+      
+      <option value="/news/2014/05/04/frida-1-4-0-released/">Frida 1.4.0 Released</option>
+      
+      <option value="/news/2014/04/21/frida-1-2-1-released/">Frida 1.2.1 Released</option>
+      
+      <option value="/news/2014/04/17/frida-1-2-0-released/">Frida 1.2.0 Released</option>
+      
+      <option value="/news/2014/03/09/frida-1-0-11-released/">Frida 1.0.11 Released</option>
+      
+      <option value="/news/2014/02/16/frida-1-0-10-released/">Frida 1.0.10 Released</option>
+      
+      <option value="/news/2014/01/25/frida-1-0-9-released/">Frida 1.0.9 Released</option>
+      
+      <option value="/news/2014/01/15/frida-1-0-8-released/">Frida 1.0.8 Released</option>
+      
+      <option value="/news/2014/01/12/frida-1-0-7-released/">Frida 1.0.7 Released</option>
+      
+      <option value="/news/2014/01/11/frida-1-0-6-released/">Frida 1.0.6 Released</option>
+      
+      <option value="/news/2014/01/05/frida-1-0-5-released/">Frida 1.0.5 Released</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+      <div class="news-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="../../../../index.html">All News</a>
+      </li>
+      <li class="">
+        <a href="../../../../releases/index.html">Frida Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="../../../../2023/12/24/frida-16-1-10-released/index.html">Version 16.1.10</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/12/20/frida-16-1-9-released/index.html">Version 16.1.9</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/28/frida-16-1-8-released/index.html">Version 16.1.8</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/16/frida-16-1-7-released/index.html">Version 16.1.7</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/13/frida-16-1-6-released/index.html">Version 16.1.6</a>
+      </li>
+      
+      <li>
+        <a href="../../../../../docs/history/index.html">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2019/05/15/nowsecure-connect-2019/index.html">NowSecure Connect 2019</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2016/01/31/frida-fosdem-presentation/index.html">Frida presentation at FOSDEM 2016</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="news-articles unit three-quarters">
+        <article>
+  <h2>
+    Frida 16.0.0 Released
+    <a href="index.html" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    
+    <span class="label">release</span>
+    
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      08 Oct 2022
+    </span>
+    <a href="https://github.com/oleavr" class="post-author">
+      <img src="https://github.com/oleavr.png" class="avatar" />
+      oleavr
+    </a>
+  </div>
+  <p class="post-content">
+    <p>Hope some of you are enjoying frida.Compiler! In case you have no idea what that
+is, check out the <a href="../../../07/21/frida-15-2-0-released/index.html">15.2.0 release notes</a>.</p>
+
+<h2 id="performance">Performance</h2>
+
+<p>Back in 15.2.0 there was something that bothered me about frida.Compiler: it
+would take a few seconds just to compile a tiny “Hello World”, even on my
+i9-12900K Linux workstation:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">time </span>frida-compile explore.ts <span class="nt">-o</span> _agent.js
+
+real	0m1.491s
+user	0m3.016s
+sys	0m0.115s</code></pre></figure>
+
+<p>After a lot of <a href="https://github.com/frida/frida-core/blob/155328df3420ead34e485f1c4fb7e5b3fe7d71a6/tests/profile-compiler.sh">profiling</a> and insane amounts of yak shaving, I finally
+arrived at this:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">time </span>frida-compile explore.ts <span class="nt">-o</span> _agent.js
+
+real	0m0.325s
+user	0m0.244s
+sys	0m0.109s</code></pre></figure>
+
+<p>That’s quite a difference! This means on-the-fly compilation use-cases such as
+<code class="language-plaintext highlighter-rouge">frida -l explore.ts</code> are now a lot smoother. More importantly though, it means
+Frida-based tools can load user scripts this way without making their users
+suffer through seconds of startup delay.</p>
+
+<h2 id="snapshots">Snapshots</h2>
+
+<p>You might be wondering how we made our compiler so quick to start. If you take
+a peek under the hood, you’ll see that it uses the TypeScript compiler. This is
+quite a bit of code to parse and run at startup. Also, loading and processing
+the .d.ts files that define all of the types involved is actually even more
+expensive.</p>
+
+<p>The first optimization that we implemented back in 15.2 was to simply use our
+V8 runtime if it’s available. That alone gave us a nice speed boost. However,
+after a bit of profiling it was clear that V8 realized that it’s dealing with
+a heavy workload once we start processing the .d.ts files, and that resulted in
+it spending a big chunk of time just optimizing the TypeScript compiler’s code.</p>
+
+<p>This reminded me of a really cool V8 feature that I’d noticed a long time ago:
+<a href="https://v8.dev/blog/custom-startup-snapshots">custom startup snapshots</a>. Basically if we could warm up the TypeScript
+compiler ahead of time and also pre-create all of the .d.ts source files when
+building Frida, we could snapshot the VM’s state at that point and embed the
+resulting startup snapshot. Then at runtime we can boot from the snapshot and
+hit the ground running.</p>
+
+<p>As part of implementing this, I extended GumJS so a snapshot can be passed to
+create_script(), together with the source code of the agent. There is also
+snapshot_script(), used to create the snapshot in the first place.</p>
+
+<p>For example:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">frida</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">snapshot</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">snapshot_script</span><span class="p">(</span><span class="s">"const example = { magic: 42 };"</span><span class="p">,</span>
+                                   <span class="n">warmup_script</span><span class="o">=</span><span class="s">"true"</span><span class="p">,</span>
+                                   <span class="n">runtime</span><span class="o">=</span><span class="s">"v8"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Snapshot created! Size:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">snapshot</span><span class="p">))</span></code></pre></figure>
+
+<p>This snapshot could then be saved to a file and later loaded like this:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="s">"console.log(JSON.stringify(example));"</span><span class="p">,</span>
+                               <span class="n">snapshot</span><span class="o">=</span><span class="n">snapshot</span><span class="p">,</span>
+                               <span class="n">runtime</span><span class="o">=</span><span class="s">"v8"</span><span class="p">)</span>
+<span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span></code></pre></figure>
+
+<p>Note that snapshots need to be created on the same OS/architecture/V8 version
+as they’re later going to be loaded on.</p>
+
+<h2 id="v8-10x">V8 10.x</h2>
+
+<p>Another exciting bit of news is that we’ve upgraded V8 to 10.x, which means we
+get to enjoy the latest VM refinements and JavaScript language features.
+Considering that our last upgrade was more than two years ago, it’s definitely a
+solid upgrade this time around.</p>
+
+<h2 id="the-curse-of-multiple-build-systems-part-two">The curse of multiple build systems, part two</h2>
+
+<p>As you may recall from the <a href="../../../02/01/frida-15-1-15-released/index.html">15.1.15 release notes</a>, we were closer than ever
+to reaching the milestone where all of Frida can be built with a single build
+system. The only component left at that point was V8, which we used to build
+using Google’s GN build system. I’m happy to report that we have finally reached
+that milestone. We now have a brand new Meson build system for V8. Yay!</p>
+
+<h2 id="eof">EOF</h2>
+
+<p>There’s also a bunch of other exciting changes, so definitely check out the
+changelog below.</p>
+
+<p>Enjoy!</p>
+
+<h3 id="changelog">Changelog</h3>
+
+<ul>
+  <li>compiler: Use snapshot to reduce startup time.</li>
+  <li>compiler: Bump frida-compile and other dependencies.</li>
+  <li>Add support for JavaScript VM snapshots. This is only implemented by the V8
+backend, as QuickJS does not currently support this.</li>
+  <li>Move debugger API from Session to Script. This is necessary since V8’s
+debugger works on a per-Isolate basis, and we now need one Isolate per Script
+in order to support snapshots.</li>
+  <li>server+portal: Fix daemon parent ready fail exit. Thanks <a href="https://github.com/pachoo">@pachoo</a>!</li>
+  <li>resource-compiler: Add support for compression. We make use of this for
+frida.Compiler’s heap snapshot.</li>
+  <li>ipc: Bump UNIX socket buffer sizes for improved throughput.</li>
+  <li>meson: Promote frida-payload to public API. This allows implementing custom
+payloads for use-cases where frida-agent and frida-gadget aren’t suitable.</li>
+  <li>windows: Move to Visual Studio 2022.</li>
+  <li>windows: Move toolchain/SDK logic to use granular SDKs.</li>
+  <li>windows: Do not rely on .py file association.</li>
+  <li>darwin: Fix compatibility with macOS 13 and iOS &gt;= 15.6.1.</li>
+  <li>darwin: Use Apple’s libffi-trampolines.dylib if present, so we can support
+iOS 15 and beyond. Thanks for the fun pair-programming sessions, <a href="https://twitter.com/hsorbo">@hsorbo</a>!</li>
+  <li>fruity: Fix handling of USBMUXD_SOCKET_ADDRESS. Thanks <a href="https://github.com/0x3c3e">@0x3c3e</a>!</li>
+  <li>fruity: Drop support for USBMUXD_SERVER_* envvars. Thanks <a href="https://twitter.com/as0ler">@as0ler</a>!</li>
+  <li>droidy: Improve handling of ADB envvars. Thanks <a href="https://github.com/0x3c3e">@0x3c3e</a>!</li>
+  <li>java: (android) Fix ClassLinker offset detection on Android 11 &amp; 12 (#264).
+Thanks <a href="https://github.com/sh4dowb">@sh4dowb</a>!</li>
+  <li>java: (android) Fix early instrumentation on Android 13.</li>
+  <li>java: Handle methods and fields prefixed with <em>$</em>. Thanks <a href="https://github.com/eybisi">@eybisi</a>!</li>
+  <li>android: Move to NDK r25.</li>
+  <li>arm64: Optimize memory copy implementation.</li>
+  <li>stalker: Ensure EventSink gets stopped on teardown.</li>
+  <li>stalker: Fix ARM stack clobbering when branch involves a shift.</li>
+  <li>stalker: Handle ARM PC load involving shifted register.</li>
+  <li>stalker: Notify ARM observer when backpatches are applied.</li>
+  <li>stalker: Apply ARM backpatches when notified.</li>
+  <li>stalker: Add ARM support for switch block callback.</li>
+  <li>arm-reader: Expose disassemble_instruction_at().</li>
+  <li>thumb-reader: Expose disassemble_instruction_at().</li>
+  <li>memory: Realign API with current V8 semantics.</li>
+  <li>gumjs: Move V8 backend to one Isolate per script.</li>
+  <li>gumjs: Support passing V8 flags using an env var: FRIDA_V8_EXTRA_FLAGS.</li>
+  <li>gumjs: Use V8 write protection on Darwin/arm*.</li>
+  <li>gumjs: Add support for dynamically defined scripts.</li>
+  <li>prof: Support old system headers on Linux/MIPS.</li>
+  <li>devkit: Improve examples’ compilation docs on UNIX.</li>
+  <li>ci: Migrate remainder of the legacy CI to GitHub Actions.</li>
+  <li>quickjs: Fix use-after-free on error during module evaluation.</li>
+  <li>v8: Upgrade to latest V8 10.x.</li>
+  <li>v8: Add Meson build system.</li>
+  <li>usrsctp: Lower Windows requirement to XP, like the rest of our components.</li>
+  <li>xz: Avoid ANSI-era Windows API.</li>
+  <li>libc-shim: Support old system headers on Linux/MIPS.</li>
+  <li>glib: Add Linux libc fallbacks for MIPS.</li>
+  <li>Add config.mk option to be able to disable emulated agents on Android, to
+allow building smaller binaries. Thanks <a href="https://github.com/muhzii">@muhzii</a>!</li>
+  <li>python: Drop Python 2 support, modernize code, add docstrings, typings, add CI
+with modern tooling, and many other goodies. Thanks <a href="https://github.com/yotamN">@yotamN</a>!</li>
+  <li>python: Build Python wheels instead of eggs. Thanks <a href="https://github.com/oriori1703">@oriori1703</a>!</li>
+  <li>python: Fix Device.get_bus(). The previous implementation called
+_Device.get_bus(), which doesn’t exist. Thanks <a href="https://github.com/oriori1703">@oriori1703</a>!</li>
+  <li>python: Move to the stable Python C API.</li>
+  <li>python: Add support for building from source, using a frida-core devkit.</li>
+  <li>python: Add support for the new snapshot APIs.</li>
+  <li>node: Add support for the new snapshot APIs.</li>
+  <li>node: Fix Electron v20 compatibility.</li>
+</ul>
+
+
+  </p>
+</article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

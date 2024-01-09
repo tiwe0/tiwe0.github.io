@@ -1,0 +1,3928 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Gadget | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Gadget" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/docs/gadget/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-25T09:11:28+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Gadget" />
+<meta name="twitter:site" content="@fridadotre" />
+<script type="application/ld+json">
+{"headline":"Gadget","dateModified":"2023-12-25T09:11:28+01:00","datePublished":"2023-12-25T09:11:28+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/docs/gadget/"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/docs/gadget/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    
+    <optgroup label="Getting Started">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/home/">Welcome</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/quickstart/">Quick-start guide</option>
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/installation/">Installation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/modes/">Modes of Operation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gadget/">Gadget</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/hacking/">Hacking</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/stalker/">Stalker</option>
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/presentations/">Presentations</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tutorials">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/functions/">Functions</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/messages/">Messages</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+      <option value="/docs/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Examples">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/windows/">Windows</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/macos/">macOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/linux/">Linux</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/javascript/">JavaScript</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-cli/">Frida CLI</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ps/">frida-ps</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-trace/">frida-trace</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-discover/">frida-discover</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ls-devices/">frida-ls-devices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-kill/">frida-kill</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gum-graft/">gum-graft</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="API Reference">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/javascript-api/">JavaScript API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/c-api/">C API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/swift-api/">Swift API</option>
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/go-api/">Go API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+
+
+  
+
+  
+    
+  
+    
+      <option value="/docs/best-practices/">Best Practices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/troubleshooting/">Troubleshooting</option>
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+      <option value="/docs/building/">Building</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/footprint/">Footprint</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsoc-ideas-2015/">GSoC Ideas 2015</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsod-ideas-2023/">GSoD Ideas 2023</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/history/">History</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+      <div class="docs-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../home/index.html">Welcome</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../quickstart/index.html">Quick-start guide</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../installation/index.html">Installation</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../modes/index.html">Modes of Operation</a></li>
+
+
+  
+
+  
+
+  
+  <li class="current"><a href="index.html">Gadget</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../hacking/index.html">Hacking</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../stalker/index.html">Stalker</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../presentations/index.html">Presentations</a></li>
+
+
+</ul>
+
+    
+    <h4>Tutorials</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../functions/index.html">Functions</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../messages/index.html">Messages</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../android/index.html">Android</a></li>
+
+
+</ul>
+
+    
+    <h4>Examples</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/windows/index.html">Windows</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/macos/index.html">macOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/linux/index.html">Linux</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/android/index.html">Android</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/javascript/index.html">JavaScript</a></li>
+
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-cli/index.html">Frida CLI</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-ps/index.html">frida-ps</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-trace/index.html">frida-trace</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-discover/index.html">frida-discover</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-ls-devices/index.html">frida-ls-devices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-kill/index.html">frida-kill</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gum-graft/index.html">gum-graft</a></li>
+
+
+</ul>
+
+    
+    <h4>API Reference</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../javascript-api/index.html">JavaScript API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../c-api/index.html">C API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../swift-api/index.html">Swift API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../go-api/index.html">Go API</a></li>
+
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../best-practices/index.html">Best Practices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../troubleshooting/index.html">Troubleshooting</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../building/index.html">Building</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../footprint/index.html">Footprint</a></li>
+
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="index.html"></a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gsoc-ideas-2015/index.html">GSoC Ideas 2015</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gsod-ideas-2023/index.html">GSoD Ideas 2023</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../history/index.html">History</a></li>
+
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="docs-articles unit three-quarters">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/frida/frida-website/edit/main/_i18n/en/_docs/gadget.md">
+              <i class="fa fa-pencil"></i>Improve this page</a>
+          </div>
+          <h1>Gadget</h1>
+          <p> Gadget 是 Frida 提供的一个共享库。当没办法使用<a href="../modes/index.html#injected">注入模</a>式时，可以将该库加载到需要调试的程序中。</p>
+
+<p>通常有几个办法可以把Gadget嵌入到目标程序中，比如:</p>
+
+<ul>
+  <li>修改程序源码</li>
+  <li>给目标程序或目标程序的某个库打补丁。比如使用
+<a href="https://github.com/Tyilo/insert_dylib">insert_dylib</a> 类似的工具</li>
+  <li>借助动态链接特性，如 <em>LD_PRELOAD</em> 或 <em>DYLD_INSERT_LIBRARIES</em></li>
+</ul>
+
+<p>动态链接器在执行Gadget的构造器后就会立刻开始工作。 </p>
+
+<p>Gadget 可以根据你的需求提供四种不同的交互模式。其中默认交互模式为
+<a href="index.html#listen">监听</a> 模式. 你可以在配置文件中修改默认模式。
+这个配置文件命名应该和Gadget二进制文件一模一样，除了后缀名是<em>.config</em>。
+举个例子，如果你的Gadget名字为<em>FridaGadget.dylib</em>，那么对应的配置文件名就应该是<em>FridaGadget.config</em>。
+</p>
+
+<p>
+  注意，Gadget二进制文件的名字可以随意设定，这样可以规避一些反Frida引擎的检测。
+</p>
+
+<p>使用Xcode向iOS应用中添加.config的时候需要注意，你可能会倾向于将<em>FridaGadget.dylib</em>放到一个称为"Frameworks"的子目录下，
+然后将".config"文件放到父目录中，也就是和app以及其他资源文件同级的目录。处于这个原因，Gadget也会在其父目录名字为"Framework"时，在父目录里寻找.config文件。</p>
+
+<p>在Android上，对一个非debug模式的应用，包管理器只会在满足以下条件之一的情况下拷贝<code class="language-plaintext highlighter-rouge">/lib</code>文件:</p>
+
+<ul>
+  <li>名字前缀为 <code class="language-plaintext highlighter-rouge">lib</code></li>
+  <li>名字后缀为 <code class="language-plaintext highlighter-rouge">.so</code></li>
+  <li>名字为 <code class="language-plaintext highlighter-rouge">gdbserver</code></li>
+</ul>
+
+<p>因此Frida会很智能的检测如下的配置文件名称：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lib
+└── arm64-v8a
+    ├── libgadget.config.so
+    ├── libgadget.so
+</code></pre></div></div>
+<p>更多详情，查阅这篇
+<a href="https://lief.quarkslab.com/doc/latest/tutorials/09_frida_lief.html#id9">文章</a>.</p>
+
+<p>配置文件应该是使用UTF-8编码的JSON文本文件。支持四种根键:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">interaction</code>: 指明交互模式的对象。默认为
+<a href="index.html#listen">监听</a> 交互.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">teardown</code>: 字符串 <code class="language-plaintext highlighter-rouge">minimal</code> 或 <code class="language-plaintext highlighter-rouge">full</code>, 指明该库卸载时，需要清理的干净程度
+默认值为 <code class="language-plaintext highlighter-rouge">minimal</code>,
+也就是不关闭内部线程，也不释放已分配的内存和系统资源。
+这么做没啥问题，因为Gadget的生命周期是和程序绑定的。如果你想在某个时间点完全卸载该库，你可以设置为<code class="language-plaintext highlighter-rouge">full</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">runtime</code>: 字符串 <code class="language-plaintext highlighter-rouge">default</code>, <code class="language-plaintext highlighter-rouge">qjs</code>, 或 <code class="language-plaintext highlighter-rouge">v8</code>
+。默认使用的JS运行时。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">code_signing</code>: 字符串 <code class="language-plaintext highlighter-rouge">optional</code> 或 <code class="language-plaintext highlighter-rouge">required</code>
+      , 设置为 <code class="language-plaintext highlighter-rouge">required</code>，将允许Gadget在已越狱iOS设备上不实用调试器附加的情况下运行。
+默认值为 <code class="language-plaintext highlighter-rouge">optional</code>,
+这时Gadget会假定拥有修改内存中已存在代码的权限和运行未签名代码的权限，而且做这两件事不会被内核杀死。将该值设置为
+<code class="language-plaintext highlighter-rouge">required</code>
+也意味着拦截API是不可行的。因此，在已越狱的iOS设备上，使用拦截API的唯一方式是在Gadget加载完毕前附加上调试器。需要注意的是，启动应用时附加调试器就够了，
+没有必要一直附加，因为代码签名状态是黏性的，设置后就不会再变了。 </p>
+  </li>
+</ul>
+
+<h2 id="supported-interaction-types">支持的交互模式</h2>
+
+<ol>
+  <li><a href="index.html#listen">监听</a></li>
+  <li><a href="index.html#connect">连接</a></li>
+  <li><a href="index.html#script">脚本</a></li>
+  <li><a href="index.html#scriptdirectory">脚本目录</a></li>
+</ol>
+
+<h2 id="listen">被动监听模式</h2>
+
+<p>默认的交互模式。 Gadget 会将 <em>frida-server</em> 接口暴露出来，
+默认在 <em>localhost:27042</em> 监听。唯一的区别是，正在运行的进程列表和已安装app列表里只包函一个程序。程序名永远为<em>Gadget</em>,以及app的标识符永远为
+<em>re.frida.Gadget</em>。</p>
+
+<p>为了实现早期调试，我们会让Gadget的构造器阻塞，直到你调用<em>attach()</em>附加到进程，或者在使用<em>spawn()</em> -&gt; <em>attach()</em>-&gt; <em>…apply instrumentation…</em>过程中
+  调用<em>resume()</em>。
+  这也就意味着原本就存在工具(比如 <a href="../frida-trace/index.html">frida-trace</a>)可以仍按照器原本的方式运作。
+  </p>
+
+<p>如果你不想阻塞，想让程序立刻启动起来，或者你更想在不同的接口上监听，你可以在配置文件里自定义。</p>
+
+<p>默认的配置文件：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"interaction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"listen"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">27042</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"on_port_conflict"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fail"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"on_load"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wait"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>支持的配置键有：</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">address</code>: 字符串，指明监听的接口。 支持 IPv4
+和 IPv6。 默认值为 <code class="language-plaintext highlighter-rouge">127.0.0.1</code>. 设置为 <code class="language-plaintext highlighter-rouge">0.0.0.0</code> 表明在所有IPv4上监听。
+ <code class="language-plaintext highlighter-rouge">::</code> 为在所有IPv6上监听。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">port</code>: 数字，指明默认监听的端口号. 默认值为 <code class="language-plaintext highlighter-rouge">27042</code>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">certificate</code>: 设置该键用于支持TLS。 其值应当为PEM编码的公钥和私钥
+      可以是包函多行PEM数据的字符串，或者是指明文件位置的路径。服务器接受所有客户端侧的任何证书。
+</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">token</code>: 设置该键用于打开身份认证。 其值应为客户端访问时应该提供的密码。
+</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">on_port_conflict</code>: 字符串 <code class="language-plaintext highlighter-rouge">fail</code> 或 <code class="language-plaintext highlighter-rouge">pick-next</code>,
+      指明监听端口冲突时的行为。
+默认  <code class="language-plaintext highlighter-rouge">fail</code>,
+也就是端口冲突时，Gadget会启动失败。 设置为 <code class="language-plaintext highlighter-rouge">pick-next</code> 时，Gadget 会在端口冲突时逐个检测下个端口，直到找到一个可用端口。
+</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">on_load</code>: 字符串 <code class="language-plaintext highlighter-rouge">resume</code> 或 <code class="language-plaintext highlighter-rouge">wait</code>,
+      指明Gadget加载完毕后的行为。
+默认值为<code class="language-plaintext highlighter-rouge">wait</code>, 也就是等待你连接并通知它恢复运行
+设置为 <code class="language-plaintext highlighter-rouge">resume</code> 时，程序会立刻启动，当你想晚一点附加进程的时候，你可以使用这个选项。
+</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">origin</code>: 设置该值用来保护未认证的跨源访问，设置后将只接受匹配头的请求。
+</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">asset_root</code>: 设置该值以启用HTTP/HTTPS托管静态文件。所有目录内的文件都将暴露出来。默认情况下不托管任何文件。
+</p>
+  </li>
+</ul>
+
+<h2 id="connect">主动连接模式</h2>
+
+<p>这是一个和 “监听模式” 对立的模式。监听模式下，Gadget会监听一个TCP接口，等待连接，而连接模式下，Gadget会主动连接到一个运行的<em>frida-portal</em>，然后
+  成为其集群的一个进程节点。
+ 这就是所谓的<em>cluster</em>接口。
+ 而Portal通常也会暴露一个<em>control</em>接口，该接口和<em>frida-server</em>使用相同的协议。这允许任何已连接的控制器，就像在本地机器上的进程一样运行<em>enumerate_processes</em> 和 <em>attach()</em>。
+
+<p>为了实现早期调试，我们会让Gadget的构造器阻塞，直到一个控制器发出<em>resume()</em>请求(前提启用了 spawn-gating，可以通过<em>Device.enable_spawn_gating()</em>启用)。
+  这意味着启动后，Gadget会阻塞，直到其连接的Portal或集群发出命令。</p>
+
+<p>默认的配置文件：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"interaction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"connect"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">27052</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>支持的配置键有：/p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">address</code>: 字符串，指明要连接的主机，或暴露的集群接口。
+      支持 IPv4 和 IPv6。
+默认值为 <code class="language-plaintext highlighter-rouge">127.0.0.1</code>。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">port</code>: 数字，指明要连接的TCP端口。
+默认为 <code class="language-plaintext highlighter-rouge">27052</code>。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">certificate</code>: 若 Portal启用了TLS，则必须设置该值。也就是PEM编码的公钥。
+      和前面一样，可以是多行的PEM数据，也可以是指明公钥位置的字符串。这个公钥应该来自被信任的CA，也就是服务端证书匹配或者继承来的。
+</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">token</code>: 若 Portal 集群启用了身份认证，就必须设置该值。该值会在连接到 Portal 时提供给服务器用于身份验证。
+      该键的具体值取决于Portal的实现。可能是固定的密码，也可能是任何验证方式。该验证服务接口是可外部集成定制的。
+      </p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">acl</code>: 字符串数组，用于指明存取控制列表。该值限定了可以和发现并和该进程的控制器。比如
+<code class="language-plaintext highlighter-rouge">["team-a", "team-b"]</code>,任何来自"team-a"或"team-b"的控制器都将获取控制权限。
+只有 Portal 通过API实例化，且需要提供身份认证的时候，才需要设置该键。
+</p>
+  </li>
+</ul>
+
+<div class="note">
+  <h5>高级用法Advanced users</h5>
+  <p>
+    为了更好的控制，比如定制的身份验证，节点ACLs，以及应用协议信息。你也可以自己实例化 PortalService 对象，而不是运行 frida-portal 的CLI程序。
+  </p>
+</div>
+
+<h2 id="script">脚本模式</h2>
+
+<p>有时，从本地直接加载脚本，并在程序入口前执行全面的调试非常有必要。</p>
+
+<p>这里有一个简单的必要配置：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"interaction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"script"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/oleavr/explore.js"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>其中 <em>explore.js</em> 包含如下的框架:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">rpc</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">init</span><span class="p">(</span><span class="nx">stage</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">[init]</span><span class="dl">'</span><span class="p">,</span> <span class="nx">stage</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">parameters</span><span class="p">));</span>
+
+    <span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">Module</span><span class="p">.</span><span class="nx">getExportByName</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">),</span> <span class="p">{</span>
+      <span class="nx">onEnter</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">readUtf8String</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">open("</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">path</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">")</span><span class="dl">'</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nx">dispose</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">[dispose]</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>其中 <a href="../javascript-api/index.html#rpc">rpc.exports</a> 不是必须的, 但在你的脚本需要知晓生命周期的时候很有用。
+</p>
+
+<p>Gadget 会调用你的 <code class="language-plaintext highlighter-rouge">init()</code> 方法，然后等待其返回，这部分发生在程序进入其入口时发生。
+  如果你同时还想做点别的什么事，你可以返回一个<em>Promise</em>。比如 <a href="../javascript-api/index.html#socket">Socket.connect()</a>, 然后保证不要错过早期的调用。
+第一个参数, <code class="language-plaintext highlighter-rouge">stage</code>, 是一个字符串，取值为 <code class="language-plaintext highlighter-rouge">early</code> 或 <code class="language-plaintext highlighter-rouge">late</code>,
+该参数在知晓Gadget是否是刚加载时十分有用，或在脚本重新加载时也很有用。
+后面的主题会介绍更多。
+第二个参数, <code class="language-plaintext highlighter-rouge">parameters</code>, 是一个对象，该对象为配置文件中的对象。如果配置文件中没配置，则默认为空。
+如果你想参数化你的脚本，这个参数将会很重要。
+</p>
+
+<p>如果你需要显式地在脚本卸载后做一些清理工作，那么你需要暴露<code class="language-plaintext highlighter-rouge">dispose()</code> 方法。
+  通常在进程退出，Gadget卸载时，或者你的脚本发生变动，旧版本退出时调用。
+</p>
+
+<p>你可以使用 <em>console.log()</em>, <em>console.warn()</em>, 和
+<em>console.error()</em> 进行调试, 这些信息会打印到 <em>stdout</em>/<em>stderr</em>。</p>
+
+<p>支持的配置键有：</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">path</code>: 字符串，指明需要需要加载的脚本路径。相对路径时则是相对于Gadget二进制文件。
+      在 iOS 上，Gadget 首先会查看相对于 app 文档目录的路径。这意味着你可以通过 iTunes 文件共享来上传和更新脚本。这个功能和<code class="language-plaintext highlighter-rouge">"on_change": "reload"</code>一起使用时非常有用。该键没有默认值，而且必须提供。
+      </p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">parameters</code>: 对象，包含任意的配置数据。该对象会传递给
+<code class="language-plaintext highlighter-rouge">init()</code> RPC 方法。默认为空。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">on_change</code>: 字符串 <code class="language-plaintext highlighter-rouge">ignore</code> 或 <code class="language-plaintext highlighter-rouge">reload</code>, 其中 <code class="language-plaintext highlighter-rouge">ignore</code>
+意味着脚本只会加载一次, 而 <code class="language-plaintext highlighter-rouge">reload</code> 意味着 Gadget 会监视脚本文件，并在脚本变动时立刻重新加载脚本
+默认值为
+<code class="language-plaintext highlighter-rouge">ignore</code>, 但在开发期间，强烈建议使用 <code class="language-plaintext highlighter-rouge">reload</code></p>
+  </li>
+</ul>
+
+<h2 id="scriptdirectory">脚本目录模式</h2>
+
+<p>有时你可能会想在系统层面篡改程序和库，但是不用自己的脚本逻辑去筛选程序，而是想尽可能少的作筛选，
+  并且根据当前运行Gadget的程序选择不同的脚本注入。你可能甚至不需要过滤，就可以将每个脚本当作独立的插件。
+  在 GNU/Linux 系统里，类似的脚本甚至可以来自于包，通常这些脚本用来安装并微调已存在的应用。
+</p>
+
+<p>这里有一个简单的必要配置：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"interaction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"script-directory"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/usr/local/frida/scripts"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>支持的配置键有：</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">path</code>: 字符串，用于指明包含脚本的目录。也可以是相对Gadget二进制文件的相对目录。
+      该键没有默认值，必须提供。脚本必须以<em>.js</em>作为其后缀名，而且每个脚本都可以有一个对应的<em>.config</em>文件。也就是说，<em>twitter.js</em>会将<em>twitter.config</em>识别为其配置文件。
+      </p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">on_change</code>: 字符串，值为 <code class="language-plaintext highlighter-rouge">ignore</code> 或 <code class="language-plaintext highlighter-rouge">rescan</code>， 其中 <code class="language-plaintext highlighter-rouge">ignore</code>
+      意味着目录只会扫描一次，而 <code class="language-plaintext highlighter-rouge">rescan</code> 意味着 Gadget 会监视目录，并在有变动时重新扫描。
+      默认值为
+<code class="language-plaintext highlighter-rouge">ignore</code>, 但在开发期间，强烈建议使用 <code class="language-plaintext highlighter-rouge">rescan</code></p>
+  </li>
+</ul>
+
+<p>每个脚本可选的配置文件可以包含以下键:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">filter</code>: 对象，包含了若干加载目标脚本的条件。这下加载条件中只有一个会被匹配到，所以如果需要复杂的过滤逻辑，最好还是用脚本实现。支持的匹配方式如下：
+</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">executables</code>: 字符串数组，指明可执行文件的名称</li>
+      <li><code class="language-plaintext highlighter-rouge">bundles</code>: 字符串数组，指明一系列标识符</li>
+      <li><code class="language-plaintext highlighter-rouge">objc_classes</code>: 字符串数组，用于指明Objectiv-C的类名</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">parameters</code>: 对象，包含任意的配置数据。该对象会传递给
+<code class="language-plaintext highlighter-rouge">init()</code> RPC 方法。默认为空。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">on_change</code>: 字符串，取值为 <code class="language-plaintext highlighter-rouge">ignore</code> 或 <code class="language-plaintext highlighter-rouge">reload</code>，其中 <code class="language-plaintext highlighter-rouge">ignore</code>
+意味着脚本只会加载一次，而<code class="language-plaintext highlighter-rouge">reload</code> 意味着 Gadget 会监视脚本文件，并在脚本变动时立刻重新加载脚本。
+默认值为
+<code class="language-plaintext highlighter-rouge">ignore</code> , 不过强烈建议开发阶段使用 <code class="language-plaintext highlighter-rouge">reload</code> 。</p>
+  </li>
+</ul>
+
+<p>比如你想在Twitter的macOS应用中写一个延迟脚本，你可以编写这样一个文件 <em>twitter.js</em>，将其放在<em>/usr/local/frida/scripts</em>，内容为:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="p">{</span> <span class="nx">TMTheme</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">;</span>
+
+<span class="nx">rpc</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">init</span><span class="p">(</span><span class="nx">stage</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">[init]</span><span class="dl">'</span><span class="p">,</span> <span class="nx">stage</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">parameters</span><span class="p">));</span>
+
+    <span class="nx">ObjC</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">mainQueue</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">TMTheme</span><span class="p">.</span><span class="nx">switchToTheme_</span><span class="p">(</span><span class="nx">TMTheme</span><span class="p">.</span><span class="nx">darkTheme</span><span class="p">());</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nx">dispose</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">[dispose]</span><span class="dl">'</span><span class="p">);</span>
+
+    <span class="nx">ObjC</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">mainQueue</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">TMTheme</span><span class="p">.</span><span class="nx">switchToTheme_</span><span class="p">(</span><span class="nx">TMTheme</span><span class="p">.</span><span class="nx">lightTheme</span><span class="p">());</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>然后为了确保该脚本只会加载到特定的app中，你需要再创建一个配置文件<em>twitter.config</em>，其中包含:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"executables"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Twitter"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"bundles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"com.twitter.twitter-mac"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"objc_classes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Twitter"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>这个例子里，配置文件说明了这样一些事：</p>
+
+<ul>
+  <li>可执行文件名字为 <code class="language-plaintext highlighter-rouge">Twitter</code>, 或</li>
+  <li>其打包标识符是 <code class="language-plaintext highlighter-rouge">com.twitter.twitter-mac</code>, 或</li>
+  <li>检测到名为 <code class="language-plaintext highlighter-rouge">Twitter</code>的 Objective-C class被加载。</li>
+</ul>
+
+<p>这个例子里，你可能只会用 bundle ID作为过滤条件，因为通常来说这个是最稳定的标识。不过如果需要的话，还是多一些检查更好。</p>
+
+<p>接下来你可能想再声明一些其他键，比如 <code class="language-plaintext highlighter-rouge">parameters</code> 和 <code class="language-plaintext highlighter-rouge">on_change</code>，
+  这些配置和前面
+<a href="index.html#script">脚本</a> 的配置一模一样。</p>
+
+
+          
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="section-nav">
+      <div class="left align-right">
+          
+            
+            
+            <a href="../modes/index.html" class="prev">上一页</a>
+          
+      </div>
+      <div class="right align-left">
+          
+            
+            
+            <a href="../hacking/index.html" class="next">下一页</a>
+          
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

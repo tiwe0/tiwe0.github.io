@@ -1,0 +1,4033 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to use frida-trace’s “init-session” option | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="How to use frida-trace’s “init-session” option" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/docs/frida-trace/session-initialization-primer/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-25T09:11:28+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to use frida-trace’s “init-session” option" />
+<meta name="twitter:site" content="@fridadotre" />
+<script type="application/ld+json">
+{"headline":"How to use frida-trace’s “init-session” option","dateModified":"2023-12-25T09:11:28+01:00","datePublished":"2023-12-25T09:11:28+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/docs/frida-trace/session-initialization-primer/"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/docs/frida-trace/session-initialization-primer/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    
+    <optgroup label="Getting Started">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/home/">Welcome</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/quickstart/">Quick-start guide</option>
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/installation/">Installation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/modes/">Modes of Operation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gadget/">Gadget</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/hacking/">Hacking</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/stalker/">Stalker</option>
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/presentations/">Presentations</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tutorials">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/functions/">Functions</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/messages/">Messages</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+      <option value="/docs/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Examples">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/windows/">Windows</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/macos/">macOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/linux/">Linux</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/javascript/">JavaScript</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-cli/">Frida CLI</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ps/">frida-ps</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-trace/">frida-trace</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-discover/">frida-discover</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ls-devices/">frida-ls-devices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-kill/">frida-kill</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gum-graft/">gum-graft</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="API Reference">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/javascript-api/">JavaScript API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/c-api/">C API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/swift-api/">Swift API</option>
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/go-api/">Go API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+
+
+  
+
+  
+    
+  
+    
+      <option value="/docs/best-practices/">Best Practices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/troubleshooting/">Troubleshooting</option>
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+      <option value="/docs/building/">Building</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/footprint/">Footprint</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsoc-ideas-2015/">GSoC Ideas 2015</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsod-ideas-2023/">GSoD Ideas 2023</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/history/">History</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+      <div class="docs-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../../home/index.html">Welcome</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../quickstart/index.html">Quick-start guide</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../installation/index.html">Installation</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../modes/index.html">Modes of Operation</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../gadget/index.html">Gadget</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../hacking/index.html">Hacking</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../stalker/index.html">Stalker</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../presentations/index.html">Presentations</a></li>
+
+
+</ul>
+
+    
+    <h4>Tutorials</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../../functions/index.html">Functions</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../messages/index.html">Messages</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../android/index.html">Android</a></li>
+
+
+</ul>
+
+    
+    <h4>Examples</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../../examples/windows/index.html">Windows</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../examples/macos/index.html">macOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../examples/linux/index.html">Linux</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../examples/ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../examples/android/index.html">Android</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../examples/javascript/index.html">JavaScript</a></li>
+
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../../frida-cli/index.html">Frida CLI</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../frida-ps/index.html">frida-ps</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../index.html">frida-trace</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../frida-discover/index.html">frida-discover</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../frida-ls-devices/index.html">frida-ls-devices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../frida-kill/index.html">frida-kill</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../gum-graft/index.html">gum-graft</a></li>
+
+
+</ul>
+
+    
+    <h4>API Reference</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../../javascript-api/index.html">JavaScript API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../c-api/index.html">C API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../swift-api/index.html">Swift API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../go-api/index.html">Go API</a></li>
+
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../../best-practices/index.html">Best Practices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../troubleshooting/index.html">Troubleshooting</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../building/index.html">Building</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../footprint/index.html">Footprint</a></li>
+
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="index.html"></a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../gsoc-ideas-2015/index.html">GSoC Ideas 2015</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../gsod-ideas-2023/index.html">GSoD Ideas 2023</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../../history/index.html">History</a></li>
+
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="docs-articles unit three-quarters">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/frida/frida-website/edit/main/_i18n/en/_docs/frida-trace/session-initialization-primer.md">
+              <i class="fa fa-pencil"></i>Improve this page</a>
+          </div>
+          <h1>How to use frida-trace's "init-session" option</h1>
+          <p>This page describes uses for the frida-trace <code class="language-plaintext highlighter-rouge">--init-session</code> / <code class="language-plaintext highlighter-rouge">-S</code> command
+line option, and how to utilize it in your work.</p>
+
+<h2 id="what-is-the-init-session-option">What is the –init-session option?</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">--init-session</code> option executes any number of user-written JavaScript code
+files during the frida-trace engine initialization stage.  These files are
+executed before the first function handler is called.</p>
+
+<p>Its power comes from the ability to define globally visible functions and store
+data in the global <code class="language-plaintext highlighter-rouge">state</code> object, which is passed as a parameter to every
+handler called.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">state</code> object allows you to maintain information across function calls.
+Data stored in <code class="language-plaintext highlighter-rouge">state</code> are accessible to all called handlers.</p>
+
+<h2 id="uses-for-the-init-session-option">Uses for the –init-session option</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">--init-session</code> / <code class="language-plaintext highlighter-rouge">-S</code> option guarantees that JavaScript source code of
+your choice is executed before the frida-trace engine begins its tracing.
+Possible applications of this feature include:</p>
+
+<ol>
+  <li>Executing custom code that creates both code and data objects of your choice,
+doing this before the first function handler is invoked.</li>
+  <li>Creating a library of shared code, allowing the sharing of fine-tuned and
+debugged JavaScript code that can be called globally by any handler, at any
+time.</li>
+</ol>
+
+<p>The frida-trace JavaScript code is often written as one-time “throw-away” code.
+If, however, you find yourself frequently copying and pasting code between
+handlers and projects, consider saving the code in a shared library.  Once
+written and debugged, you can reuse the functions and data in future projects.</p>
+
+<h2 id="detailed-example-creating-a-shared-code-library">Detailed Example: Creating a shared-code library</h2>
+
+<p>In this example, we demonstrate using the <code class="language-plaintext highlighter-rouge">--init-session</code> / <code class="language-plaintext highlighter-rouge">-S</code> option to
+enhance tracing of the Microsoft Windows <code class="language-plaintext highlighter-rouge">ExtTextOutW()</code> function.  We describe
+the components in a top-down fashion, beginning with the ExtTextOutW.js
+JavaScript handler function, working our way down to the shared code files.</p>
+
+<h3 id="exttextoutw-function-signature">ExtTextOutW(): Function Signature</h3>
+
+<p>In my Windows system, the <a href="https://web.archive.org/web/20191222090821/https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-exttextoutw">ExtTextOutW()</a> function to monitor resides in
+<em>gdi32full.dll</em>. Here is the C syntax of the function:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">BOOL</span> <span class="nf">ExtTextOutA</span><span class="p">(</span>
+  <span class="n">HDC</span>        <span class="n">hdc</span><span class="p">,</span>
+  <span class="kt">int</span>        <span class="n">x</span><span class="p">,</span>
+  <span class="kt">int</span>        <span class="n">y</span><span class="p">,</span>
+  <span class="n">UINT</span>       <span class="n">options</span><span class="p">,</span>
+  <span class="k">const</span> <span class="n">RECT</span> <span class="o">*</span><span class="n">lprect</span><span class="p">,</span>
+  <span class="n">LPCSTR</span>     <span class="n">lpString</span><span class="p">,</span>
+  <span class="n">UINT</span>       <span class="n">c</span><span class="p">,</span>
+  <span class="k">const</span> <span class="n">INT</span>  <span class="o">*</span><span class="n">lpDx</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>Leveraging JavaScript code in our shared code libraries, we produce an enhanced
+tracing output.</p>
+
+<h3 id="the-enhanced-trace-output">The enhanced trace output</h3>
+
+<p>Before showing the handler code and the shared code libraries, here is the
+enhanced tracing output itself:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">c:\project&gt;</span><span class="w"> </span>frida-trace <span class="nt">-p</span> 6980 <span class="nt">--decorate</span> <span class="nt">-i</span> <span class="s2">"gdi32full.dll!ExtTextOutW"</span> <span class="nt">-S</span> core.js <span class="nt">-S</span> ms-windows.js
+<span class="go">Instrumenting...
+ExtTextOutW: Loaded handler at "c:\\project\\__handlers__\\gdi32full.dll\\ExtTextOutW.js"
+Started tracing 1 function. Press Ctrl+C to stop.
+           /* TID 0x3ab8 */
+  2695 ms  ---------------------------------------------
+  2695 ms  ExtTextOutW() [gdi32full.dll]
+  2695 ms  x: 0
+  2695 ms  y: 0
+  2695 ms  options: ETO_OPAQUE
+  2695 ms  lprect [20 bytes]
+                           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF
+                00b9c81c  00 00 00 00 01 00 00 00 01 00 00 00 98 02 00 00  ................
+                00b9c82c  26 90 b2 b3                                      &amp;...
+  2695 ms  lprect: (left, top, right, bottom) = (0, 1, 1, 664)
+  2695 ms  c: 0
+  2696 ms  x (exit): 0
+  2696 ms  y (exit): 0
+  . . .
+  2788 ms  ---------------------------------------------
+  2788 ms  ExtTextOutW() [gdi32full.dll]
+  2788 ms  x: 1
+  2788 ms  y: 0
+  2788 ms  options: ETO_CLIPPED | ETO_IGNORELANGUAGE
+  2788 ms  lprect [20 bytes]
+                      0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF
+           00b9eaac  00 00 00 00 00 00 00 00 4d 00 00 00 0f 00 00 00  ........M.......
+           00b9eabc  0a 78 7e c1                                      .x~.
+  2788 ms  lprect: (left, top, right, bottom) = (0, 0, 77, 15)
+  2788 ms  lpString [50 bytes]
+                      0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF
+           1aa90148  43 00 61 00 6c 00 69 00 62 00 72 00 69 00 20 00  C.a.l.i.b.r.i. .
+           1aa90158  28 00 42 00 6f 00 64 00 79 00 29 00 29 00 75 00  (.B.o.d.y.).).u.
+           1aa90168  20 00 77 00 61 00 6e 00 20 00 20 00 74 00 6f 00   .w.a.n. . .t.o.
+           1aa90178  20 00                                             .
+  2788 ms  *lpString: "Calibri (Body))u wan  to do"
+  2788 ms  c: 14
+  2788 ms  lpDx [4 bytes]
+                      0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF
+           09e71208  08 00 00 00                                      ....
+  2788 ms  *lpDx: 8
+  2789 ms  x (exit): 0
+  2789 ms  y (exit): 0</span></code></pre></figure>
+
+<p>Notice the following tracing enhancements:</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">options</code> field is converted to textual form</li>
+  <li>The <code class="language-plaintext highlighter-rouge">lprect</code> memory pointer is displayed as both a hex memory dump and a
+textual string</li>
+  <li>The <code class="language-plaintext highlighter-rouge">lpString</code> memory pointer is displayed as both a hex memory dump and a
+textual string</li>
+  <li>The <code class="language-plaintext highlighter-rouge">lpDx</code> integer pointer is displayed as both a hex memory dump and an
+integer</li>
+</ul>
+
+<p>The textual conversions and hex memory dumps are functions within our shared code
+libraries.  Let’s see our <code class="language-plaintext highlighter-rouge">ExtTextOutW()</code> handler JavaScript code, which will
+make use of the shared code.</p>
+
+<h3 id="handler-exttextoutwjs">Handler: ExtTextOutW.js</h3>
+
+<p>Here is our ExeTextOutW() handler code.  We enhance it by invoking shared code
+functions.  These functions exist in the outer scope, as any top-level functions
+defined in session scripts become visible to all handlers.  The functions are
+defined when the shared code JavaScript files are executed by frida-trace via
+the <code class="language-plaintext highlighter-rouge">--init-session</code> / <code class="language-plaintext highlighter-rouge">-S</code> command line option.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*
+ * Auto-generated by Frida. Please modify to match the signature of ExtTextOutW.
+ * This stub is currently auto-generated from manpages when available.
+ *
+ * For full API reference, see: https://frida.re/docs/javascript-api/
+ */</span>
+
+<span class="p">{</span>
+  <span class="nx">onEnter</span><span class="p">(</span><span class="nx">log</span><span class="p">,</span> <span class="nx">args</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/*
+     * C syntax:
+     *
+     * BOOL ExtTextOutW(
+     *   HDC        hdc,
+     *   int        x,
+     *   int        y,
+     *   UINT       options,
+     *   const RECT *lprect,
+     *   LPCWSTR    lpString,
+     *   UINT       c,
+     *   const INT  *lpDx
+     * );
+    */</span>
+
+    <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">---------------------------------------------</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">ExtTextOutW() [gdi32full.dll]</span><span class="dl">'</span><span class="p">);</span>
+
+    <span class="nx">cloneArgs</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="p">[,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">lprect</span><span class="p">,</span> <span class="nx">lpString</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">lpDx</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">args</span><span class="p">;</span>
+
+    <span class="nx">log</span><span class="p">(</span><span class="s2">`x: </span><span class="p">${</span><span class="nx">x</span><span class="p">.</span><span class="nx">toInt32</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="nx">log</span><span class="p">(</span><span class="s2">`y: </span><span class="p">${</span><span class="nx">y</span><span class="p">.</span><span class="nx">toInt32</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+
+    <span class="nx">log</span><span class="p">(</span><span class="s2">`options: </span><span class="p">${</span><span class="nx">decodeExttextoutOptions</span><span class="p">(</span><span class="nx">options</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">lprect</span><span class="p">.</span><span class="nx">isNull</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">prettyHexdump</span><span class="p">(</span><span class="nx">log</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lprect</span><span class="dl">'</span><span class="p">,</span> <span class="nx">lprect</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+      <span class="nx">log</span><span class="p">(</span><span class="s2">`lprect: </span><span class="p">${</span><span class="nx">rectStructToString</span><span class="p">(</span><span class="nx">lprect</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">lpString</span><span class="p">.</span><span class="nx">isNull</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">prettyHexdump</span><span class="p">(</span><span class="nx">log</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lpString</span><span class="dl">'</span><span class="p">,</span> <span class="nx">lpString</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+      <span class="nx">log</span><span class="p">(</span><span class="s2">`*lpString: "</span><span class="p">${</span><span class="nx">lpString</span><span class="p">.</span><span class="nx">readUtf16String</span><span class="p">()}</span><span class="s2">"`</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">log</span><span class="p">(</span><span class="s2">`c: </span><span class="p">${</span><span class="nx">c</span><span class="p">.</span><span class="nx">toUInt32</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">lpDx</span><span class="p">.</span><span class="nx">isNull</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">prettyHexdump</span><span class="p">(</span><span class="nx">log</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lpDx</span><span class="dl">'</span><span class="p">,</span> <span class="nx">lpDx</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+      <span class="nx">log</span><span class="p">(</span><span class="s2">`*lpDx: </span><span class="p">${</span><span class="nx">lpDx</span><span class="p">.</span><span class="nx">readU32</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="nx">onLeave</span><span class="p">(</span><span class="nx">log</span><span class="p">,</span> <span class="nx">retval</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/*
+     * We can access the onEnter arguments using `this.args`,
+     * as cloneArgs() copied them there.
+     */</span>
+    <span class="kd">const</span> <span class="p">[,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">args</span><span class="p">;</span>
+    <span class="nx">log</span><span class="p">(</span><span class="s2">`x (exit): </span><span class="p">${</span><span class="nx">x</span><span class="p">.</span><span class="nx">toInt32</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="nx">log</span><span class="p">(</span><span class="s2">`y (exit): </span><span class="p">${</span><span class="nx">y</span><span class="p">.</span><span class="nx">toInt32</span><span class="p">()}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Note that, besides calling standard Frida functions (e.g., <code class="language-plaintext highlighter-rouge">toInt32()</code>,
+<code class="language-plaintext highlighter-rouge">isNull()</code>, <code class="language-plaintext highlighter-rouge">readUtf16String()</code>), there are calls to our shared code functions
+(e.g., <code class="language-plaintext highlighter-rouge">cloneArgs()</code>, <code class="language-plaintext highlighter-rouge">decodeExttextoutOptions()</code>, <code class="language-plaintext highlighter-rouge">prettyHexdump()</code>,
+<code class="language-plaintext highlighter-rouge">rectStructToString()</code>).  The shared code functions have been debugged and
+refined, and are ready to be called by any handler, at any time.</p>
+
+<h3 id="shared-code-corejs">Shared Code: core.js</h3>
+
+<p>The “core.js” shared code library contains core, or basic, functions that are
+meant to be reused by frida-trace handlers and shared code libraries.</p>
+
+<p>Writing a shared code library is simple: your shared library source files define
+functions and data objects, storing the latter in the global <code class="language-plaintext highlighter-rouge">state</code> object.
+Once stored there, any handler can access them through <code class="language-plaintext highlighter-rouge">state.propertyName</code>.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*
+ * Collection of useful general-purpose Frida handler functions.
+ */</span>
+
+<span class="cm">/**
+ * Creates a true JavaScript array as `invCtx.args`.  This array can be accessed
+ * in the handler's onLeave().
+ *
+ * @param {NativePointer[]} args - The `args` array as passed to onEnter().
+ * @param {number} numArgs - The number of meaningful arguments in `args`. This
+ *     function has no way of determining the number of actual arguments because
+ *     `args` is a virtual array.
+ * @param {InvocationContext} invCtx - The `this` object of the calling onEnter().
+ * @returns {NativePointer[]} Copy of `args`.
+ */</span>
+<span class="kd">function</span> <span class="nx">cloneArgs</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">numArgs</span><span class="p">,</span> <span class="nx">invCtx</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">!==</span> <span class="nx">numArgs</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="nx">invCtx</span><span class="p">.</span><span class="nx">args</span> <span class="o">=</span> <span class="nx">items</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * Returns a string describing the bitflags set in `value`.
+ *
+ * @param {number} value - A value consisting of zero or more bitflags.
+ * @param {Map&lt;number, string&gt;} spec - A Map between:
+ *     [hex value] -&gt; [flag descriptive string]
+ *     For example:
+ *       new Map([
+ *          [0x0004: 'ETO_CLIPPED'],
+ *          [0x0010: 'ETO_GLYPH_INDEX'],
+ *          ...
+ *       ])
+ * @returns {string} Flag names delimited by '|', or '0' if none are set.
+ */</span>
+<span class="kd">function</span> <span class="nx">decodeBitflags</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">spec</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">0</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="kd">const</span> <span class="nx">flags</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">let</span> <span class="nx">pending</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">flagValue</span><span class="p">,</span> <span class="nx">flagName</span><span class="p">]</span> <span class="k">of</span> <span class="nx">spec</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">value</span> <span class="o">&amp;</span> <span class="nx">flagValue</span><span class="p">)</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">flags</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">flagName</span><span class="p">);</span>
+      <span class="nx">pending</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="nx">flagValue</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">pending</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">pending</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nx">flags</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">`0x</span><span class="p">${</span><span class="nx">pending</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">flags</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1"> | </span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * Outputs the hex dump results to the log stream.  If you only want the dump
+ * lines without outputing them to the log stream, use prettyHexdumpLines().
+ *
+ * @param {function} log - The log function to output to.
+ * @param {string} desc - Descriptive text, printed together with the hex dump.
+ * @param {NativePointer} address - Memory location to dump.
+ * @param {number} length - Number of bytes to dump.
+ */</span>
+<span class="kd">function</span> <span class="nx">prettyHexdump</span><span class="p">(</span><span class="nx">log</span><span class="p">,</span> <span class="nx">desc</span><span class="p">,</span> <span class="nx">address</span><span class="p">,</span> <span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">lines</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nx">prettyHexdumpLines</span><span class="p">(</span><span class="nx">lines</span><span class="p">,</span> <span class="nx">desc</span><span class="p">,</span> <span class="nx">address</span><span class="p">,</span> <span class="nx">length</span><span class="p">);</span>
+  <span class="nx">log</span><span class="p">(</span><span class="nx">lines</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * Produces a somewhat more elegant hex dump, based on Frida's own hexdump().
+ * It does not output the hex dump to any stream, but rather returns the hex
+ * dump lines in an array.  It is up to the caller to decide where to, and how,
+ * to output the dump lines.
+ *
+ * @param {string[]} lines - Caller-provided array that will return the hex dump
+ *     lines.
+ * @param {string} desc - Descriptive text, printed together with the hex dump.
+ * @param {NativePointer} address - Memory location to dump.
+ * @param {number} length - Number of bytes to dump.
+ * @param {string} [indent='\t\t'] - String to prepend to each dump line.
+ */</span>
+<span class="kd">function</span> <span class="nx">prettyHexdumpLines</span><span class="p">(</span><span class="nx">lines</span><span class="p">,</span> <span class="nx">desc</span><span class="p">,</span> <span class="nx">address</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">indent</span> <span class="o">=</span> <span class="dl">'</span><span class="se">\t\t</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">lines</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">desc</span><span class="p">}</span><span class="s2"> [</span><span class="p">${</span><span class="nx">length</span><span class="p">}</span><span class="s2"> bytes]`</span><span class="p">);</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">hexdump</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="p">{</span> <span class="nx">length</span> <span class="p">});</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">line</span> <span class="k">of</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">lines</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">indent</span><span class="p">}${</span><span class="nx">line</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">lines</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">indent</span><span class="p">}</span><span class="s2">WARNING: address is NOT VALID (</span><span class="p">${</span><span class="nx">address</span><span class="p">}</span><span class="s2">)`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="shared-code-ms-windowsjs">Shared Code: ms-windows.js</h3>
+
+<p>The “ms-windows.js” shared code library consists of MS Windows-related utility
+functions, and is built on top of the <code class="language-plaintext highlighter-rouge">core.js</code> library.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*
+ * Collection of useful Frida handler functions for MS Windows.
+ */</span>
+
+<span class="kd">const</span> <span class="nx">extTextOptionsSpec</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">([</span>
+  <span class="p">[</span><span class="mh">0x00004</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_CLIPPED</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x00010</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_GLYPH_INDEX</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x01000</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_IGNORELANGUAGE</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x00800</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_NUMERICSLATIN</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x00400</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_NUMERICSLOCAL</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x00002</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_OPAQUE</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x02000</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_PDY</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x00080</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_RTLREADING</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">[</span><span class="mh">0x10000</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ETO_REVERSE_INDEX_MAP</span><span class="dl">'</span><span class="p">],</span>
+<span class="p">]);</span>
+
+<span class="cm">/**
+ * Decodes ExtTextOutW() `options` bit flags.
+ *
+ * @param {number} flags - A DWORD consisting of the `options` bit flags used
+ *     by ExtTextOutW().
+ * @returns {string} Options delimited by '|', or '0' if none are set.
+ */</span>
+<span class="kd">function</span> <span class="nx">decodeExttextoutOptions</span><span class="p">(</span><span class="nx">flags</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">decodeBitflags</span><span class="p">(</span><span class="nx">flags</span><span class="p">,</span> <span class="nx">extTextOptionsSpec</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * Returns the four RECT values as a string of the form:
+ *     (left, top, right, bottom) = (0, 0, 77, 15)
+ *
+ * @param {NativePointer} lprect - Pointer to a Windows RECT object.  The memory
+ *     consists of four (4) contiguous LONG values, corresponding to the left,
+ *     top, right, and bottom values, respectively.
+ * @returns {string} Description of the RECT.
+ */</span>
+<span class="kd">function</span> <span class="nx">rectStructToString</span><span class="p">(</span><span class="nx">lprect</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">lprect</span><span class="p">.</span><span class="nx">isNull</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">LPRECT is null</span><span class="dl">'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">left</span>   <span class="o">=</span> <span class="nx">lprect</span><span class="p">.</span><span class="nx">readU32</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">top</span>    <span class="o">=</span> <span class="nx">lprect</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">readU32</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">right</span>  <span class="o">=</span> <span class="nx">lprect</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">8</span><span class="p">).</span><span class="nx">readU32</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">bottom</span> <span class="o">=</span> <span class="nx">lprect</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">12</span><span class="p">).</span><span class="nx">readU32</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="s2">`(left, top, right, bottom) = (</span><span class="p">${</span><span class="nx">left</span><span class="p">}</span><span class="s2">, </span><span class="p">${</span><span class="nx">top</span><span class="p">}</span><span class="s2">, </span><span class="p">${</span><span class="nx">right</span><span class="p">}</span><span class="s2">, </span><span class="p">${</span><span class="nx">bottom</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The two <code class="language-plaintext highlighter-rouge">-S</code> command line options provide the paths to the “core.js” and
+“ms-windows.js” shared library source files.</p>
+
+<p>Touching just about anything in the Word application with the cursor will
+generate ExtTextOutW() traces.</p>
+
+<h2 id="points-to-consider">Points to Consider</h2>
+
+<p>Here are some points to consider when using the <code class="language-plaintext highlighter-rouge">-S</code> option.</p>
+
+<h3 id="use-different-code-source-files-to-group-your-shared-functions">Use different code source files to group your shared functions</h3>
+
+<p>For clarity sake, you can have several shared code files for different groups of
+functions.  In the above example, the common and basic functions reside in
+“core.js”, while MS Windows specific function are found in “ms-windows.js”.
+In other projects you may have files for Android-related functions, for Linux
+functions, etc.</p>
+
+<h3 id="implementing-namespaces">Implementing namespaces</h3>
+
+<p>As the number of shared library code files you use grows, you may experience
+name clashes due to “namespace pollution”.  This can occur if two different
+shared code files implement a function with the same name.  If within your own
+organization, you can modify the name.  If, however, you are using third-party
+shared code libraries, this might be more difficult.</p>
+
+<p>A possible solution is for a shared library to store its functions on a global
+object named descriptively, and correspondingly for data stored on “state”.</p>
+
+<p>Here is how you might implement it:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nb">global</span><span class="p">.</span><span class="nx">MyLibrary</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">doX</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">},</span>
+  <span class="nx">doY</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+
+          
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

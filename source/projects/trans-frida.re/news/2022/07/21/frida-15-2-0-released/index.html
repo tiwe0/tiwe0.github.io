@@ -1,0 +1,966 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Frida 15.2.0 Released | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Frida 15.2.0 Released" />
+<meta name="author" content="oleavr" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/news/2022/07/21/frida-15-2-0-released/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-21T00:02:32+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Frida 15.2.0 Released" />
+<meta name="twitter:site" content="@fridadotre" />
+<meta name="twitter:creator" content="@oleavr" />
+<script type="application/ld+json">
+{"headline":"Frida 15.2.0 Released","dateModified":"2022-07-21T00:02:32+02:00","datePublished":"2022-07-21T00:02:32+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/news/2022/07/21/frida-15-2-0-released/"},"author":{"@type":"Person","name":"oleavr"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/news/2022/07/21/frida-15-2-0-released/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+      <option value="/news/2023/12/24/frida-16-1-10-released/">Frida 16.1.10 Released</option>
+      
+      <option value="/news/2023/12/20/frida-16-1-9-released/">Frida 16.1.9 Released</option>
+      
+      <option value="/news/2023/11/28/frida-16-1-8-released/">Frida 16.1.8 Released</option>
+      
+      <option value="/news/2023/11/16/frida-16-1-7-released/">Frida 16.1.7 Released</option>
+      
+      <option value="/news/2023/11/13/frida-16-1-6-released/">Frida 16.1.6 Released</option>
+      
+      <option value="/news/2023/11/04/frida-16-1-5-released/">Frida 16.1.5 Released</option>
+      
+      <option value="/news/2023/08/29/frida-16-1-4-released/">Frida 16.1.4 Released</option>
+      
+      <option value="/news/2023/07/14/frida-16-1-3-released/">Frida 16.1.3 Released</option>
+      
+      <option value="/news/2023/07/11/frida-16-1-2-released/">Frida 16.1.2 Released</option>
+      
+      <option value="/news/2023/07/01/frida-16-1-1-released/">Frida 16.1.1 Released</option>
+      
+      <option value="/news/2023/06/23/frida-16-1-0-released/">Frida 16.1.0 Released</option>
+      
+      <option value="/news/2023/04/27/frida-16-0-19-released/">Frida 16.0.19 Released</option>
+      
+      <option value="/news/2023/04/22/frida-16-0-18-released/">Frida 16.0.18 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-17-released/">Frida 16.0.17 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-16-released/">Frida 16.0.16 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-15-released/">Frida 16.0.15 Released</option>
+      
+      <option value="/news/2023/04/18/frida-16-0-14-released/">Frida 16.0.14 Released</option>
+      
+      <option value="/news/2023/04/15/frida-16-0-13-released/">Frida 16.0.13 Released</option>
+      
+      <option value="/news/2023/04/14/frida-16-0-12-released/">Frida 16.0.12 Released</option>
+      
+      <option value="/news/2023/03/10/frida-16-0-11-released/">Frida 16.0.11 Released</option>
+      
+      <option value="/news/2023/02/17/frida-16-0-10-released/">Frida 16.0.10 Released</option>
+      
+      <option value="/news/2023/02/11/frida-16-0-9-released/">Frida 16.0.9 Released</option>
+      
+      <option value="/news/2022/12/13/frida-16-0-8-released/">Frida 16.0.8 Released</option>
+      
+      <option value="/news/2022/12/02/frida-16-0-7-released/">Frida 16.0.7 Released</option>
+      
+      <option value="/news/2022/12/01/frida-16-0-6-released/">Frida 16.0.6 Released</option>
+      
+      <option value="/news/2022/11/28/frida-16-0-5-released/">Frida 16.0.5 Released</option>
+      
+      <option value="/news/2022/11/26/frida-16-0-4-released/">Frida 16.0.4 Released</option>
+      
+      <option value="/news/2022/11/23/frida-16-0-3-released/">Frida 16.0.3 Released</option>
+      
+      <option value="/news/2022/10/22/frida-16-0-2-released/">Frida 16.0.2 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-1-released/">Frida 16.0.1 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-0-released/">Frida 16.0.0 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-2-released/">Frida 15.2.2 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-1-released/">Frida 15.2.1 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-0-released/">Frida 15.2.0 Released</option>
+      
+      <option value="/news/2022/07/06/frida-15-1-28-released/">Frida 15.1.28 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-27-released/">Frida 15.1.27 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-26-released/">Frida 15.1.26 Released</option>
+      
+      <option value="/news/2022/06/18/frida-15-1-25-released/">Frida 15.1.25 Released</option>
+      
+      <option value="/news/2022/06/03/frida-15-1-24-released/">Frida 15.1.24 Released</option>
+      
+      <option value="/news/2022/05/30/frida-15-1-23-released/">Frida 15.1.23 Released</option>
+      
+      <option value="/news/2022/05/09/frida-15-1-22-released/">Frida 15.1.22 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-21-released/">Frida 15.1.21 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-20-released/">Frida 15.1.20 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-19-released/">Frida 15.1.19 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-18-released/">Frida 15.1.18 Released</option>
+      
+      <option value="/news/2022/02/10/frida-15-1-17-released/">Frida 15.1.17 Released</option>
+      
+      <option value="/news/2022/02/03/frida-15-1-16-released/">Frida 15.1.16 Released</option>
+      
+      <option value="/news/2022/02/01/frida-15-1-15-released/">Frida 15.1.15 Released</option>
+      
+      <option value="/news/2021/09/03/frida-15-1-released/">Frida 15.1 Released</option>
+      
+      <option value="/news/2021/07/18/frida-15-0-released/">Frida 15.0 Released</option>
+      
+      <option value="/news/2021/02/10/frida-14-2-released/">Frida 14.2 Released</option>
+      
+      <option value="/news/2020/12/01/frida-14-1-released/">Frida 14.1 Released</option>
+      
+      <option value="/news/2020/10/28/frida-14-0-released/">Frida 14.0 Released</option>
+      
+      <option value="/news/2020/07/24/frida-12-11-released/">Frida 12.11 Released</option>
+      
+      <option value="/news/2020/06/29/frida-12-10-released/">Frida 12.10 Released</option>
+      
+      <option value="/news/2020/05/19/frida-12-9-released/">Frida 12.9 Released</option>
+      
+      <option value="/news/2019/12/18/frida-12-8-released/">Frida 12.8 Released</option>
+      
+      <option value="/news/2019/09/18/frida-12-7-released/">Frida 12.7 Released</option>
+      
+      <option value="/news/2019/05/28/frida-12-6-released/">Frida 12.6 Released</option>
+      
+      <option value="/news/2019/05/15/nowsecure-connect-2019/">NowSecure Connect 2019</option>
+      
+      <option value="/news/2019/05/15/frida-12-5-released/">Frida 12.5 Released</option>
+      
+      <option value="/news/2018/09/11/frida-12-2-released/">Frida 12.2 Released</option>
+      
+      <option value="/news/2018/08/25/frida-12-1-released/">Frida 12.1 Released</option>
+      
+      <option value="/news/2018/07/12/frida-12-0-released/">Frida 12.0 Released</option>
+      
+      <option value="/news/2018/05/05/frida-11-0-released/">Frida 11.0 Released</option>
+      
+      <option value="/news/2018/04/28/frida-10-8-released/">Frida 10.8 Released</option>
+      
+      <option value="/news/2018/03/13/frida-10-7-released/">Frida 10.7 Released</option>
+      
+      <option value="/news/2017/09/29/frida-10-6-released/">Frida 10.6 Released</option>
+      
+      <option value="/news/2017/08/25/frida-10-5-released/">Frida 10.5 Released</option>
+      
+      <option value="/news/2017/08/15/frida-10-4-released/">Frida 10.4 Released</option>
+      
+      <option value="/news/2017/05/02/frida-10-0-released/">Frida 10.0 Released</option>
+      
+      <option value="/news/2017/01/09/frida-9-0-released/">Frida 9.0 Released</option>
+      
+      <option value="/news/2016/10/25/frida-8-1-released/">Frida 8.1 Released</option>
+      
+      <option value="/news/2016/10/04/frida-8-0-released/">Frida 8.0 Released</option>
+      
+      <option value="/news/2016/08/15/frida-7-3-released/">Frida 7.3 Released</option>
+      
+      <option value="/news/2016/06/02/frida-7-2-released/">Frida 7.2 Released</option>
+      
+      <option value="/news/2016/04/04/frida-7-1-released/">Frida 7.1 Released</option>
+      
+      <option value="/news/2016/02/24/frida-7-0-released/">Frida 7.0 Released</option>
+      
+      <option value="/news/2016/02/01/frida-6-2-released/">Frida 6.2 Released</option>
+      
+      <option value="/news/2016/01/31/frida-fosdem-presentation/">Frida presentation at FOSDEM 2016</option>
+      
+      <option value="/news/2016/01/14/frida-6-1-released/">Frida 6.1 Released</option>
+      
+      <option value="/news/2015/11/11/frida-6-0-released/">Frida 6.0 Released</option>
+      
+      <option value="/news/2015/09/17/frida-5-0-released/">Frida 5.0 Released</option>
+      
+      <option value="/news/2015/09/10/frida-4-5-released/">Frida 4.5 Released</option>
+      
+      <option value="/news/2015/07/31/frida-4-4-released/">Frida 4.4 Released</option>
+      
+      <option value="/news/2015/07/15/frida-4-3-released/">Frida 4.3 Released</option>
+      
+      <option value="/news/2015/06/18/frida-4-2-released/">Frida 4.2 Released</option>
+      
+      <option value="/news/2015/06/09/frida-4-1-released/">Frida 4.1 Released</option>
+      
+      <option value="/news/2015/05/09/frida-4-0-0-released/">Frida 4.0.0 Released</option>
+      
+      <option value="/news/2015/03/20/frida-3-0-0-released/">Frida 3.0.0 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-2-released/">Frida 2.0.2 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-1-released/">Frida 2.0.1 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-0-released/">Frida 2.0.0 Released</option>
+      
+      <option value="/news/2015/02/23/frida-1-8-0-released/">Frida 1.8.0 Released</option>
+      
+      <option value="/news/2014/11/18/frida-1-6-8-released/">Frida 1.6.8 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-7-released/">Frida 1.6.7 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-6-released/">Frida 1.6.6 Released</option>
+      
+      <option value="/news/2014/10/29/frida-1-6-5-released/">Frida 1.6.5 Released</option>
+      
+      <option value="/news/2014/10/19/frida-1-6-4-released/">Frida 1.6.4 Released</option>
+      
+      <option value="/news/2014/08/25/frida-1-6-3-released/">Frida 1.6.3 Released</option>
+      
+      <option value="/news/2014/08/03/frida-1-6-2-released/">Frida 1.6.2 Released</option>
+      
+      <option value="/news/2014/07/26/frida-1-6-1-released/">Frida 1.6.1 Released</option>
+      
+      <option value="/news/2014/05/30/frida-1-6-0-released/">Frida 1.6.0 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-2-released/">Frida 1.4.2 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-1-released/">Frida 1.4.1 Released</option>
+      
+      <option value="/news/2014/05/04/frida-1-4-0-released/">Frida 1.4.0 Released</option>
+      
+      <option value="/news/2014/04/21/frida-1-2-1-released/">Frida 1.2.1 Released</option>
+      
+      <option value="/news/2014/04/17/frida-1-2-0-released/">Frida 1.2.0 Released</option>
+      
+      <option value="/news/2014/03/09/frida-1-0-11-released/">Frida 1.0.11 Released</option>
+      
+      <option value="/news/2014/02/16/frida-1-0-10-released/">Frida 1.0.10 Released</option>
+      
+      <option value="/news/2014/01/25/frida-1-0-9-released/">Frida 1.0.9 Released</option>
+      
+      <option value="/news/2014/01/15/frida-1-0-8-released/">Frida 1.0.8 Released</option>
+      
+      <option value="/news/2014/01/12/frida-1-0-7-released/">Frida 1.0.7 Released</option>
+      
+      <option value="/news/2014/01/11/frida-1-0-6-released/">Frida 1.0.6 Released</option>
+      
+      <option value="/news/2014/01/05/frida-1-0-5-released/">Frida 1.0.5 Released</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+      <div class="news-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="../../../../index.html">All News</a>
+      </li>
+      <li class="">
+        <a href="../../../../releases/index.html">Frida Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="../../../../2023/12/24/frida-16-1-10-released/index.html">Version 16.1.10</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/12/20/frida-16-1-9-released/index.html">Version 16.1.9</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/28/frida-16-1-8-released/index.html">Version 16.1.8</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/16/frida-16-1-7-released/index.html">Version 16.1.7</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/13/frida-16-1-6-released/index.html">Version 16.1.6</a>
+      </li>
+      
+      <li>
+        <a href="../../../../../docs/history/index.html">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2019/05/15/nowsecure-connect-2019/index.html">NowSecure Connect 2019</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2016/01/31/frida-fosdem-presentation/index.html">Frida presentation at FOSDEM 2016</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="news-articles unit three-quarters">
+        <article>
+  <h2>
+    Frida 15.2.0 Released
+    <a href="index.html" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    
+    <span class="label">release</span>
+    
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      21 Jul 2022
+    </span>
+    <a href="https://github.com/oleavr" class="post-author">
+      <img src="https://github.com/oleavr.png" class="avatar" />
+      oleavr
+    </a>
+  </div>
+  <p class="post-content">
+    <p>Super-excited about this one. What I’ve been wanting to do for years is to
+streamline Frida’s JavaScript developer experience. As a developer I may start
+out with a really simple agent, but as it grows I start to feel the pain.</p>
+
+<p>Early on I may want to split up the agent into multiple files. I may also want
+to use some off-the-shelf packages from npm, such as <a href="https://github.com/nowsecure/frida-remote-stream">frida-remote-stream</a>.
+Later I’d want code completion, inline docs, type checking, etc., so I move the
+agent to TypeScript and fire up VS Code.</p>
+
+<p>Since we’ve been piggybacking on the amazing frontend web tooling that’s already
+out there, we already have all the pieces of the puzzle. We can use a bundler
+such as <a href="https://rollupjs.org/guide/en/">Rollup</a> to combine our source files into a single .js, we can use
+<a href="https://www.npmjs.com/package/@frida/rollup-plugin-node-polyfills">@frida/rollup-plugin-node-polyfills</a> for interop with packages from npm, and
+we can plug in <a href="https://www.npmjs.com/package/@rollup/plugin-typescript">@rollup/plugin-typescript</a> for TypeScript support.</p>
+
+<p>That is quite a bit of plumbing to set up over and over though, so I eventually
+created <a href="https://www.npmjs.com/package/frida-compile">frida-compile</a> as a simple tool that does the plumbing for you, with
+configuration defaults optimized for what makes sense in a Frida context. Still
+though, this does require some boilerplate such as package.json, tsconfig.json,
+and so forth.</p>
+
+<p>To solve that, I published <a href="https://github.com/oleavr/frida-agent-example">frida-agent-example</a>, a repo that can be cloned
+and used as a starting point. That is still a bit of friction, so later
+frida-tools got a new CLI tool called frida-create. Anyway, even with all of
+that, we’re still asking the user to install Node.js and deal with npm, and
+potentially also feel confused by the .json files just sitting there.</p>
+
+<p>Then it struck me. What if we could use frida-compile to compile frida-compile
+into a self-contained .js that we can run on Frida’s system session? The system
+session is a somewhat obscure feature where you can load scripts inside of the
+process hosting frida-core. For example if you’re using our Python bindings,
+that process would be the Python interpreter.</p>
+
+<p>Once we are able to run that frida-compile agent inside of GumJS, we can
+communicate with it and turn that into an API. This API can then be exposed
+by language bindings, and frida-tools can consume it to give the user a
+frida-compile CLI tool that doesn’t require Node.js/npm to be installed. Tools
+such as our REPL can seamlessly use this API too if the user asks it to load a
+script with a .ts extension.</p>
+
+<p>And all of that is precisely what we have done! 🥳</p>
+
+<h2 id="build">build()</h2>
+
+<p>Here’s how easy it is to use it from Python:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">frida</span>
+
+<span class="n">compiler</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">Compiler</span><span class="p">()</span>
+<span class="n">bundle</span> <span class="o">=</span> <span class="n">compiler</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="s">"agent.ts"</span><span class="p">)</span></code></pre></figure>
+
+<p>The <em>bundle</em> variable is a string that can be passed to create_script(), or
+written to a file.</p>
+
+<p>Running that example we might see something like:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/home/oleavr/src/explore.py"</span>, line 4, <span class="k">in</span> &lt;module&gt;
+    bundle <span class="o">=</span> compiler.build<span class="o">(</span><span class="s2">"agent.ts"</span><span class="o">)</span>
+  File <span class="s2">"/home/oleavr/.local/lib/python3.10/site-packages/frida/core.py"</span>, line 76, <span class="k">in </span>wrapper
+    <span class="k">return </span>f<span class="o">(</span><span class="k">*</span>args, <span class="k">**</span>kwargs<span class="o">)</span>
+  File <span class="s2">"/home/oleavr/.local/lib/python3.10/site-packages/frida/core.py"</span>, line 1150, <span class="k">in </span>build
+    <span class="k">return </span>self._impl.build<span class="o">(</span>entrypoint, <span class="k">**</span>kwargs<span class="o">)</span>
+frida.NotSupportedError: compilation failed</code></pre></figure>
+
+<p>That makes us wonder <em>why</em> it failed, so let’s add a handler for the
+<em>diagnostics</em> signal:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">frida</span>
+
+<span class="k">def</span> <span class="nf">on_diagnostics</span><span class="p">(</span><span class="n">diag</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"on_diagnostics:"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span>
+
+<span class="n">compiler</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">Compiler</span><span class="p">()</span>
+<span class="n">compiler</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"diagnostics"</span><span class="p">,</span> <span class="n">on_diagnostics</span><span class="p">)</span>
+<span class="n">bundle</span> <span class="o">=</span> <span class="n">compiler</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="s">"agent.ts"</span><span class="p">)</span></code></pre></figure>
+
+<p>And suddenly it’s all making sense:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">on_diagnostics: <span class="o">[{</span><span class="s1">'category'</span>: <span class="s1">'error'</span>, <span class="s1">'code'</span>: 6053,
+    <span class="s1">'text'</span>: <span class="s2">"File '/home/oleavr/src/agent.ts' not "</span>
+            <span class="s2">"found.</span><span class="se">\n</span><span class="s2">  The file is in the program "</span>
+            <span class="s2">"because:</span><span class="se">\n</span><span class="s2">    Root file specified for"</span>
+             <span class="s2">" compilation"</span><span class="o">}]</span>
+…</code></pre></figure>
+
+<p>We forgot to actually create the file! Ok, let’s create <em>agent.ts</em>:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello from Frida:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">Frida</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span></code></pre></figure>
+
+<p>And let’s also write that script to a file:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">frida</span>
+
+<span class="k">def</span> <span class="nf">on_diagnostics</span><span class="p">(</span><span class="n">diag</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"on_diagnostics:"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span>
+
+<span class="n">compiler</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">Compiler</span><span class="p">()</span>
+<span class="n">compiler</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"diagnostics"</span><span class="p">,</span> <span class="n">on_diagnostics</span><span class="p">)</span>
+<span class="n">bundle</span> <span class="o">=</span> <span class="n">compiler</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="s">"agent.ts"</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"_agent.js"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span></code></pre></figure>
+
+<p>If we now run it, we should have an _agent.js ready to go:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cat </span>_agent.js
+📦
+175 /explore.js.map
+39 /explore.js
+✄
+<span class="o">{</span><span class="s2">"version"</span>:3,<span class="s2">"file"</span>:<span class="s2">"explore.js"</span>,<span class="s2">"sourceRoot"</span>:<span class="s2">"/home/oleavr/src/"</span>,<span class="s2">"sources"</span>:[<span class="s2">"explore.ts"</span><span class="o">]</span>,<span class="s2">"names"</span>:[],<span class="s2">"mappings"</span>:<span class="s2">"AAAA,OAAO,CAAC,GAAG,CAAC,SAAS,KAAK,CAAC,OAAO,GAAG,CAAC,CAAC"</span><span class="o">}</span>
+✄
+console.log<span class="o">(</span><span class="sb">`</span>Hello <span class="k">${</span><span class="nv">Frida</span><span class="p">.version</span><span class="k">}</span><span class="o">!</span><span class="sb">`</span><span class="o">)</span><span class="p">;</span></code></pre></figure>
+
+<p>This weird-looking format is how GumJS’ allows us to opt into the new ECMAScript
+Module (ESM) format where code is confined to the module it belongs to instead
+of being evaluated in the global scope. What this also means is we can load
+multiple modules that import/export values. The .map files are optional and can
+be omitted, but if left in they allow GumJS to map the generated JavaScript line
+numbers back to TypeScript in stack traces.</p>
+
+<p>Anyway, let’s take _agent.js for a spin:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida <span class="nt">-p</span> 0 <span class="nt">-l</span> _agent.js
+     ____
+    / _  |   Frida 15.2.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to Local System <span class="o">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">local</span><span class="o">)</span>
+Attaching...
+Hello 15.2.0!
+<span class="o">[</span>Local::SystemSession <span class="o">]</span>-&gt;</code></pre></figure>
+
+<p>It works! Now let’s try refactoring it to split the code into two files:</p>
+
+<h3 id="agentts">agent.ts</h3>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="k">import</span> <span class="p">{</span> <span class="nx">log</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./log.js</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello from Frida:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">Frida</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span></code></pre></figure>
+
+<h3 id="logts">log.ts</h3>
+
+<figure class="highlight"><pre><code class="language-typescript" data-lang="typescript"><span class="k">export</span> <span class="kd">function</span> <span class="nx">log</span><span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="kr">any</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(...</span><span class="nx">args</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>If we now run our example compiler script again, it should produce a slightly
+more interesting-looking _agent.js:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">📦
+204 /agent.js.map
+72 /agent.js
+199 /log.js.map
+58 /log.js
+✄
+<span class="o">{</span><span class="s2">"version"</span>:3,<span class="s2">"file"</span>:<span class="s2">"agent.js"</span>,<span class="s2">"sourceRoot"</span>:<span class="s2">"/home/oleavr/src/"</span>,<span class="s2">"sources"</span>:[<span class="s2">"agent.ts"</span><span class="o">]</span>,<span class="s2">"names"</span>:[],<span class="s2">"mappings"</span>:<span class="s2">"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,UAAU,CAAC;AAE/B,GAAG,CAAC,mBAAmB,EAAE,KAAK,CAAC,OAAO,CAAC,CAAC"</span><span class="o">}</span>
+✄
+import <span class="o">{</span> log <span class="o">}</span> from <span class="s2">"./log.js"</span><span class="p">;</span>
+log<span class="o">(</span><span class="s2">"Hello from Frida:"</span>, Frida.version<span class="o">)</span><span class="p">;</span>
+✄
+<span class="o">{</span><span class="s2">"version"</span>:3,<span class="s2">"file"</span>:<span class="s2">"log.js"</span>,<span class="s2">"sourceRoot"</span>:<span class="s2">"/home/oleavr/src/"</span>,<span class="s2">"sources"</span>:[<span class="s2">"log.ts"</span><span class="o">]</span>,<span class="s2">"names"</span>:[],<span class="s2">"mappings"</span>:<span class="s2">"AAAA,MAAM,UAAU,GAAG,CAAC,GAAG,IAAW;IAC9B,OAAO,CAAC,GAAG,CAAC,GAAG,IAAI,CAAC,CAAC;AACzB,CAAC"</span><span class="o">}</span>
+✄
+<span class="nb">export </span><span class="k">function </span>log<span class="o">(</span>...args<span class="o">)</span> <span class="o">{</span>
+    console.log<span class="o">(</span>...args<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Loading that into the REPL should yield the exact same result as before.</p>
+
+<h2 id="watch">watch()</h2>
+
+<p>Let’s turn our toy compiler into a tool that loads the compiled script, and
+recompiles whenever a source file changes on disk:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">frida</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">script</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">on_output</span><span class="p">(</span><span class="n">bundle</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">script</span>
+    <span class="k">if</span> <span class="n">script</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Unloading old bundle..."</span><span class="p">)</span>
+        <span class="n">script</span><span class="p">.</span><span class="n">unload</span><span class="p">()</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Loading bundle..."</span><span class="p">)</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">create_script</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span>
+    <span class="n">script</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"message"</span><span class="p">,</span> <span class="n">on_message</span><span class="p">)</span>
+    <span class="n">script</span><span class="p">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">on_diagnostics</span><span class="p">(</span><span class="n">diag</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"on_diagnostics:"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"on_message:"</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+<span class="n">compiler</span> <span class="o">=</span> <span class="n">frida</span><span class="p">.</span><span class="n">Compiler</span><span class="p">()</span>
+<span class="n">compiler</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">on_output</span><span class="p">)</span>
+<span class="n">compiler</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s">"diagnostics"</span><span class="p">,</span> <span class="n">on_diagnostics</span><span class="p">)</span>
+<span class="n">compiler</span><span class="p">.</span><span class="n">watch</span><span class="p">(</span><span class="s">"agent.ts"</span><span class="p">)</span>
+
+<span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">read</span><span class="p">()</span></code></pre></figure>
+
+<p>And off we go:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>python3 explore.py
+Loading bundle...
+Hello from Frida: 15.2.0</code></pre></figure>
+
+<p>If we leave that running and then edit the source code on disk we should see
+some new output:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Unloading old bundle...
+Loading bundle...
+Hello from Frida version: 15.2.0</code></pre></figure>
+
+<p>Yay!</p>
+
+<h2 id="frida-compile">frida-compile</h2>
+
+<p>We can also use frida-tools’ new frida-compile CLI tool:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida-compile agent.ts <span class="nt">-o</span> _agent.js</code></pre></figure>
+
+<p>It also supports watch mode:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida-compile agent.ts <span class="nt">-o</span> _agent.js <span class="nt">-w</span></code></pre></figure>
+
+<h2 id="repl">REPL</h2>
+
+<p>Our REPL is also powered by the new frida.Compiler:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>frida <span class="nt">-p</span> 0 <span class="nt">-l</span> agent.ts
+     ____
+    / _  |   Frida 15.2.0 - A world-class dynamic instrumentation toolkit
+   | <span class="o">(</span>_| |
+    <span class="o">&gt;</span> _  |   Commands:
+   /_/ |_|       <span class="nb">help</span>      -&gt; Displays the <span class="nb">help </span>system
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       object?   -&gt; Display information about <span class="s1">'object'</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>       <span class="nb">exit</span>/quit -&gt; Exit
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   More info at https://frida.re/docs/home/
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+   <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>   Connected to Local System <span class="o">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">local</span><span class="o">)</span>
+Compiled agent.ts <span class="o">(</span>1428 ms<span class="o">)</span>
+Hello from Frida version: 15.2.0
+<span class="o">[</span>Local::SystemSession <span class="o">]</span>-&gt;</code></pre></figure>
+
+<h2 id="shoutout">Shoutout</h2>
+
+<p>Shoutout to <a href="https://twitter.com/hsorbo">@hsorbo</a> for the fun and productive pair-programming sessions
+where we were working on frida.Compiler together! 🙌</p>
+
+<h2 id="eof">EOF</h2>
+
+<p>There are also quite a few other goodies in this release, so definitely check
+out the changelog below.</p>
+
+<p>Enjoy!</p>
+
+<h3 id="changelog">Changelog</h3>
+
+<ul>
+  <li>core: Add Compiler API. Only exposed by Python bindings for now, but available
+from C/Vala.</li>
+  <li>interceptor: Improve <em>replace()</em> to support returning original. Thanks
+<a href="https://github.com/aviramha">@aviramha</a>!</li>
+  <li>gumjs: Fix typing for <em>pc</em> in the writer options.</li>
+  <li>gumjs: Fix V8 ESM crash with circular dependencies.</li>
+  <li>gumjs: Handle ESM bundles with multiple aliases per module.</li>
+  <li>gumjs: Tighten up the <em>Checksum</em> data argument parsing.</li>
+  <li>android: Fix null pointer deref in crash delivery. Thanks <a href="https://github.com/muhzii">@muhzii</a>!</li>
+  <li>fruity: Use env variables to find usbmuxd. Thanks <a href="https://github.com/0x3c3e">@0x3c3e</a>!</li>
+  <li>ios: Make Substrate detection logic a bit more resilient. Thanks
+<a href="https://github.com/lemon4ex">@lemon4ex</a>!</li>
+  <li>meson: Only try to use V8 if available. Thanks <a href="https://github.com/muhzii">@muhzii</a>!</li>
+  <li>windows: Add support for building without V8.</li>
+  <li>devkit: Fix library dependency hints on Windows. Thanks <a href="https://github.com/nblog">@nblog</a>!</li>
+</ul>
+
+
+  </p>
+</article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

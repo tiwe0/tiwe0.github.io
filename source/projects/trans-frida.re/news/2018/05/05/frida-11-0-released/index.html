@@ -1,0 +1,994 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Frida 11.0 Released | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Frida 11.0 Released" />
+<meta name="author" content="oleavr" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/news/2018/05/05/frida-11-0-released/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-05T23:51:56+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Frida 11.0 Released" />
+<meta name="twitter:site" content="@fridadotre" />
+<meta name="twitter:creator" content="@oleavr" />
+<script type="application/ld+json">
+{"headline":"Frida 11.0 Released","dateModified":"2018-05-05T23:51:56+02:00","datePublished":"2018-05-05T23:51:56+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/news/2018/05/05/frida-11-0-released/"},"author":{"@type":"Person","name":"oleavr"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/news/2018/05/05/frida-11-0-released/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+      <option value="/news/2023/12/24/frida-16-1-10-released/">Frida 16.1.10 Released</option>
+      
+      <option value="/news/2023/12/20/frida-16-1-9-released/">Frida 16.1.9 Released</option>
+      
+      <option value="/news/2023/11/28/frida-16-1-8-released/">Frida 16.1.8 Released</option>
+      
+      <option value="/news/2023/11/16/frida-16-1-7-released/">Frida 16.1.7 Released</option>
+      
+      <option value="/news/2023/11/13/frida-16-1-6-released/">Frida 16.1.6 Released</option>
+      
+      <option value="/news/2023/11/04/frida-16-1-5-released/">Frida 16.1.5 Released</option>
+      
+      <option value="/news/2023/08/29/frida-16-1-4-released/">Frida 16.1.4 Released</option>
+      
+      <option value="/news/2023/07/14/frida-16-1-3-released/">Frida 16.1.3 Released</option>
+      
+      <option value="/news/2023/07/11/frida-16-1-2-released/">Frida 16.1.2 Released</option>
+      
+      <option value="/news/2023/07/01/frida-16-1-1-released/">Frida 16.1.1 Released</option>
+      
+      <option value="/news/2023/06/23/frida-16-1-0-released/">Frida 16.1.0 Released</option>
+      
+      <option value="/news/2023/04/27/frida-16-0-19-released/">Frida 16.0.19 Released</option>
+      
+      <option value="/news/2023/04/22/frida-16-0-18-released/">Frida 16.0.18 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-17-released/">Frida 16.0.17 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-16-released/">Frida 16.0.16 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-15-released/">Frida 16.0.15 Released</option>
+      
+      <option value="/news/2023/04/18/frida-16-0-14-released/">Frida 16.0.14 Released</option>
+      
+      <option value="/news/2023/04/15/frida-16-0-13-released/">Frida 16.0.13 Released</option>
+      
+      <option value="/news/2023/04/14/frida-16-0-12-released/">Frida 16.0.12 Released</option>
+      
+      <option value="/news/2023/03/10/frida-16-0-11-released/">Frida 16.0.11 Released</option>
+      
+      <option value="/news/2023/02/17/frida-16-0-10-released/">Frida 16.0.10 Released</option>
+      
+      <option value="/news/2023/02/11/frida-16-0-9-released/">Frida 16.0.9 Released</option>
+      
+      <option value="/news/2022/12/13/frida-16-0-8-released/">Frida 16.0.8 Released</option>
+      
+      <option value="/news/2022/12/02/frida-16-0-7-released/">Frida 16.0.7 Released</option>
+      
+      <option value="/news/2022/12/01/frida-16-0-6-released/">Frida 16.0.6 Released</option>
+      
+      <option value="/news/2022/11/28/frida-16-0-5-released/">Frida 16.0.5 Released</option>
+      
+      <option value="/news/2022/11/26/frida-16-0-4-released/">Frida 16.0.4 Released</option>
+      
+      <option value="/news/2022/11/23/frida-16-0-3-released/">Frida 16.0.3 Released</option>
+      
+      <option value="/news/2022/10/22/frida-16-0-2-released/">Frida 16.0.2 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-1-released/">Frida 16.0.1 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-0-released/">Frida 16.0.0 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-2-released/">Frida 15.2.2 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-1-released/">Frida 15.2.1 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-0-released/">Frida 15.2.0 Released</option>
+      
+      <option value="/news/2022/07/06/frida-15-1-28-released/">Frida 15.1.28 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-27-released/">Frida 15.1.27 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-26-released/">Frida 15.1.26 Released</option>
+      
+      <option value="/news/2022/06/18/frida-15-1-25-released/">Frida 15.1.25 Released</option>
+      
+      <option value="/news/2022/06/03/frida-15-1-24-released/">Frida 15.1.24 Released</option>
+      
+      <option value="/news/2022/05/30/frida-15-1-23-released/">Frida 15.1.23 Released</option>
+      
+      <option value="/news/2022/05/09/frida-15-1-22-released/">Frida 15.1.22 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-21-released/">Frida 15.1.21 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-20-released/">Frida 15.1.20 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-19-released/">Frida 15.1.19 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-18-released/">Frida 15.1.18 Released</option>
+      
+      <option value="/news/2022/02/10/frida-15-1-17-released/">Frida 15.1.17 Released</option>
+      
+      <option value="/news/2022/02/03/frida-15-1-16-released/">Frida 15.1.16 Released</option>
+      
+      <option value="/news/2022/02/01/frida-15-1-15-released/">Frida 15.1.15 Released</option>
+      
+      <option value="/news/2021/09/03/frida-15-1-released/">Frida 15.1 Released</option>
+      
+      <option value="/news/2021/07/18/frida-15-0-released/">Frida 15.0 Released</option>
+      
+      <option value="/news/2021/02/10/frida-14-2-released/">Frida 14.2 Released</option>
+      
+      <option value="/news/2020/12/01/frida-14-1-released/">Frida 14.1 Released</option>
+      
+      <option value="/news/2020/10/28/frida-14-0-released/">Frida 14.0 Released</option>
+      
+      <option value="/news/2020/07/24/frida-12-11-released/">Frida 12.11 Released</option>
+      
+      <option value="/news/2020/06/29/frida-12-10-released/">Frida 12.10 Released</option>
+      
+      <option value="/news/2020/05/19/frida-12-9-released/">Frida 12.9 Released</option>
+      
+      <option value="/news/2019/12/18/frida-12-8-released/">Frida 12.8 Released</option>
+      
+      <option value="/news/2019/09/18/frida-12-7-released/">Frida 12.7 Released</option>
+      
+      <option value="/news/2019/05/28/frida-12-6-released/">Frida 12.6 Released</option>
+      
+      <option value="/news/2019/05/15/nowsecure-connect-2019/">NowSecure Connect 2019</option>
+      
+      <option value="/news/2019/05/15/frida-12-5-released/">Frida 12.5 Released</option>
+      
+      <option value="/news/2018/09/11/frida-12-2-released/">Frida 12.2 Released</option>
+      
+      <option value="/news/2018/08/25/frida-12-1-released/">Frida 12.1 Released</option>
+      
+      <option value="/news/2018/07/12/frida-12-0-released/">Frida 12.0 Released</option>
+      
+      <option value="/news/2018/05/05/frida-11-0-released/">Frida 11.0 Released</option>
+      
+      <option value="/news/2018/04/28/frida-10-8-released/">Frida 10.8 Released</option>
+      
+      <option value="/news/2018/03/13/frida-10-7-released/">Frida 10.7 Released</option>
+      
+      <option value="/news/2017/09/29/frida-10-6-released/">Frida 10.6 Released</option>
+      
+      <option value="/news/2017/08/25/frida-10-5-released/">Frida 10.5 Released</option>
+      
+      <option value="/news/2017/08/15/frida-10-4-released/">Frida 10.4 Released</option>
+      
+      <option value="/news/2017/05/02/frida-10-0-released/">Frida 10.0 Released</option>
+      
+      <option value="/news/2017/01/09/frida-9-0-released/">Frida 9.0 Released</option>
+      
+      <option value="/news/2016/10/25/frida-8-1-released/">Frida 8.1 Released</option>
+      
+      <option value="/news/2016/10/04/frida-8-0-released/">Frida 8.0 Released</option>
+      
+      <option value="/news/2016/08/15/frida-7-3-released/">Frida 7.3 Released</option>
+      
+      <option value="/news/2016/06/02/frida-7-2-released/">Frida 7.2 Released</option>
+      
+      <option value="/news/2016/04/04/frida-7-1-released/">Frida 7.1 Released</option>
+      
+      <option value="/news/2016/02/24/frida-7-0-released/">Frida 7.0 Released</option>
+      
+      <option value="/news/2016/02/01/frida-6-2-released/">Frida 6.2 Released</option>
+      
+      <option value="/news/2016/01/31/frida-fosdem-presentation/">Frida presentation at FOSDEM 2016</option>
+      
+      <option value="/news/2016/01/14/frida-6-1-released/">Frida 6.1 Released</option>
+      
+      <option value="/news/2015/11/11/frida-6-0-released/">Frida 6.0 Released</option>
+      
+      <option value="/news/2015/09/17/frida-5-0-released/">Frida 5.0 Released</option>
+      
+      <option value="/news/2015/09/10/frida-4-5-released/">Frida 4.5 Released</option>
+      
+      <option value="/news/2015/07/31/frida-4-4-released/">Frida 4.4 Released</option>
+      
+      <option value="/news/2015/07/15/frida-4-3-released/">Frida 4.3 Released</option>
+      
+      <option value="/news/2015/06/18/frida-4-2-released/">Frida 4.2 Released</option>
+      
+      <option value="/news/2015/06/09/frida-4-1-released/">Frida 4.1 Released</option>
+      
+      <option value="/news/2015/05/09/frida-4-0-0-released/">Frida 4.0.0 Released</option>
+      
+      <option value="/news/2015/03/20/frida-3-0-0-released/">Frida 3.0.0 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-2-released/">Frida 2.0.2 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-1-released/">Frida 2.0.1 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-0-released/">Frida 2.0.0 Released</option>
+      
+      <option value="/news/2015/02/23/frida-1-8-0-released/">Frida 1.8.0 Released</option>
+      
+      <option value="/news/2014/11/18/frida-1-6-8-released/">Frida 1.6.8 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-7-released/">Frida 1.6.7 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-6-released/">Frida 1.6.6 Released</option>
+      
+      <option value="/news/2014/10/29/frida-1-6-5-released/">Frida 1.6.5 Released</option>
+      
+      <option value="/news/2014/10/19/frida-1-6-4-released/">Frida 1.6.4 Released</option>
+      
+      <option value="/news/2014/08/25/frida-1-6-3-released/">Frida 1.6.3 Released</option>
+      
+      <option value="/news/2014/08/03/frida-1-6-2-released/">Frida 1.6.2 Released</option>
+      
+      <option value="/news/2014/07/26/frida-1-6-1-released/">Frida 1.6.1 Released</option>
+      
+      <option value="/news/2014/05/30/frida-1-6-0-released/">Frida 1.6.0 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-2-released/">Frida 1.4.2 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-1-released/">Frida 1.4.1 Released</option>
+      
+      <option value="/news/2014/05/04/frida-1-4-0-released/">Frida 1.4.0 Released</option>
+      
+      <option value="/news/2014/04/21/frida-1-2-1-released/">Frida 1.2.1 Released</option>
+      
+      <option value="/news/2014/04/17/frida-1-2-0-released/">Frida 1.2.0 Released</option>
+      
+      <option value="/news/2014/03/09/frida-1-0-11-released/">Frida 1.0.11 Released</option>
+      
+      <option value="/news/2014/02/16/frida-1-0-10-released/">Frida 1.0.10 Released</option>
+      
+      <option value="/news/2014/01/25/frida-1-0-9-released/">Frida 1.0.9 Released</option>
+      
+      <option value="/news/2014/01/15/frida-1-0-8-released/">Frida 1.0.8 Released</option>
+      
+      <option value="/news/2014/01/12/frida-1-0-7-released/">Frida 1.0.7 Released</option>
+      
+      <option value="/news/2014/01/11/frida-1-0-6-released/">Frida 1.0.6 Released</option>
+      
+      <option value="/news/2014/01/05/frida-1-0-5-released/">Frida 1.0.5 Released</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+      <div class="news-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="../../../../index.html">All News</a>
+      </li>
+      <li class="">
+        <a href="../../../../releases/index.html">Frida Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="../../../../2023/12/24/frida-16-1-10-released/index.html">Version 16.1.10</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/12/20/frida-16-1-9-released/index.html">Version 16.1.9</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/28/frida-16-1-8-released/index.html">Version 16.1.8</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/16/frida-16-1-7-released/index.html">Version 16.1.7</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/13/frida-16-1-6-released/index.html">Version 16.1.6</a>
+      </li>
+      
+      <li>
+        <a href="../../../../../docs/history/index.html">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2019/05/15/nowsecure-connect-2019/index.html">NowSecure Connect 2019</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2016/01/31/frida-fosdem-presentation/index.html">Frida presentation at FOSDEM 2016</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="news-articles unit three-quarters">
+        <article>
+  <h2>
+    Frida 11.0 Released
+    <a href="index.html" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    
+    <span class="label">release</span>
+    
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      05 May 2018
+    </span>
+    <a href="https://github.com/oleavr" class="post-author">
+      <img src="https://github.com/oleavr.png" class="avatar" />
+      oleavr
+    </a>
+  </div>
+  <p class="post-content">
+    <p>It’s time to overhaul the <em>spawn()</em> API and fix some rough edges in the spawn-
+and child-gating APIs.</p>
+
+<h3 id="spawn">spawn()</h3>
+
+<p>Say you’re using Frida’s Python bindings, you’d currently do:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pid</span> <span class="o">=</span> <span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">([</span><span class="s">"/bin/cat"</span><span class="p">,</span> <span class="s">"/etc/passwd"</span><span class="p">])</span></code></pre></figure>
+
+<p>Or to spawn an iOS app:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pid</span> <span class="o">=</span> <span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">([</span><span class="s">"com.apple.mobilesafari"</span><span class="p">])</span></code></pre></figure>
+
+<p>Well, that’s pretty much all you could do with that API really… except one
+thing that wasn’t exposed by the Python and Node.js bindings. We’ll get to
+that in a bit. Before we go there, let’s take a look at the underlying <a href="https://gist.github.com/oleavr/e6af8791adbef8fbde06">API</a>
+in frida-core, which these bindings expose to different languages:</p>
+
+<figure class="highlight"><pre><code class="language-vala" data-lang="vala"><span class="k">namespace</span> <span class="nn">Frida</span> <span class="p">{</span>
+	<span class="err">…</span>
+	<span class="k">public</span> <span class="k">class</span> <span class="nc">Device</span> <span class="p">:</span> <span class="n">GLib</span><span class="p">.</span><span class="n">Object</span> <span class="p">{</span>
+		<span class="err">…</span>
+		<span class="k">public</span> <span class="k">async</span> <span class="kt">uint</span> <span class="nf">spawn</span> <span class="p">(</span><span class="kt">string</span> <span class="n">path</span><span class="p">,</span>
+			<span class="kt">string</span><span class="p">[]</span> <span class="n">argv</span><span class="p">,</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">envp</span><span class="p">)</span>
+			<span class="k">throws</span> <span class="n">Frida</span><span class="p">.</span><span class="n">Error</span><span class="p">;</span>
+		<span class="k">public</span> <span class="kt">uint</span> <span class="nf">spawn_sync</span> <span class="p">(</span><span class="kt">string</span> <span class="n">path</span><span class="p">,</span>
+			<span class="kt">string</span><span class="p">[]</span> <span class="n">argv</span><span class="p">,</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">envp</span><span class="p">)</span>
+			<span class="k">throws</span> <span class="n">Frida</span><span class="p">.</span><span class="n">Error</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="err">…</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>That’s <a href="https://wiki.gnome.org/Projects/Vala">Vala</a> code by the way, which is the language that frida-core is
+written in. It’s a C#-like language that compiles to C, and it’s pretty awesome.
+But I digress. The first method, <em>spawn()</em> is asynchronous, allowing the calling
+thread to do other things while the call is in progress, whereas <em>spawn_sync()</em>
+blocks until the operation completes.</p>
+
+<p>Those two methods compile down to the following three C functions:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">frida_device_spawn</span> <span class="p">(</span><span class="n">FridaDevice</span> <span class="o">*</span> <span class="n">self</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span> <span class="n">path</span><span class="p">,</span>
+    <span class="n">gchar</span> <span class="o">**</span> <span class="n">argv</span><span class="p">,</span> <span class="kt">int</span> <span class="n">argv_length</span><span class="p">,</span>
+    <span class="n">gchar</span> <span class="o">**</span> <span class="n">envp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">envp_length</span><span class="p">,</span>
+    <span class="n">GAsyncReadyCallback</span> <span class="n">callback</span><span class="p">,</span> <span class="n">gpointer</span> <span class="n">user_data</span><span class="p">);</span>
+<span class="n">guint</span> <span class="nf">frida_device_spawn_finish</span> <span class="p">(</span><span class="n">FridaDevice</span> <span class="o">*</span> <span class="n">self</span><span class="p">,</span>
+    <span class="n">GAsyncResult</span> <span class="o">*</span> <span class="n">result</span><span class="p">,</span> <span class="n">GError</span> <span class="o">**</span> <span class="n">error</span><span class="p">);</span>
+<span class="n">guint</span> <span class="nf">frida_device_spawn_sync</span> <span class="p">(</span><span class="n">FridaDevice</span> <span class="o">*</span> <span class="n">self</span><span class="p">,</span>
+    <span class="k">const</span> <span class="n">gchar</span> <span class="o">*</span> <span class="n">path</span><span class="p">,</span>
+    <span class="n">gchar</span> <span class="o">**</span> <span class="n">argv</span><span class="p">,</span> <span class="kt">int</span> <span class="n">argv_length</span><span class="p">,</span>
+    <span class="n">gchar</span> <span class="o">**</span> <span class="n">envp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">envp_length</span><span class="p">,</span>
+    <span class="n">GError</span> <span class="o">**</span> <span class="n">error</span><span class="p">);</span></code></pre></figure>
+
+<p>The first two constitute <em>spawn()</em>, where you’d call the first giving it a
+callback, and once that callback gets called you’d call the second one,
+<em>spawn_finish()</em>, giving it the <em>GAsyncResult</em> your callback was given.
+The return value is the PID, or, in case it failed, the <em>error</em> out-argument
+explains what went wrong. This is the <a href="https://developer.gnome.org/gio/stable/ch02.html">GIO</a> async pattern in case you’re
+curious.</p>
+
+<p>As for the third, <em>spawn_sync()</em>, this is what Frida’s Python bindings use.
+Our Node.js bindings actually use the first two, as those bindings are fully
+asynchronous. Someday it would be nice to also migrate our Python bindings to
+be fully async, by integrating with the <em>async/await</em> support introduced in
+Python 3.5.</p>
+
+<p>Anyway, returning to the examples above, I mentioned there was something not
+exposed. If you look closely at the frida-core API you’ll notice that there’s
+the <em>envp</em> string-array. Peeking under the hood of the bindings, you’d realize
+we did indeed not expose this, and we actually did this:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="n">envp</span> <span class="o">=</span> <span class="n">g_get_environ</span> <span class="p">();</span>
+  <span class="n">envp_length</span> <span class="o">=</span> <span class="n">g_strv_length</span> <span class="p">(</span><span class="n">envp</span><span class="p">);</span></code></pre></figure>
+
+<p>So that means we passed along whatever the Python process’ environment happened
+to be. That’s definitely not good if the actual spawning happened on another
+system entirely, like on a connected iOS or Android device. What made this
+slightly less problematic was the fact that <em>envp</em> was ignored when spawning
+iOS and Android apps, and only used when spawning regular programs.</p>
+
+<p>Another issue with this old API is that the declaration, <em>string[] envp</em>, means
+it isn’t nullable, which it would have been if the declaration had been:
+<em>string[]? envp</em>. That means there is no way to distinguish between wanting to
+spawn without any environment, which intuitively would mean “use defaults”, and
+an empty environment.</p>
+
+<p>As I was about to fix this aspect of the API, I realized that it was time to
+also fix a few other long-standing issues with it, like being able to:</p>
+
+<ul>
+  <li>provide just a few extra environment variables on top of the defaults</li>
+  <li>set the working directory</li>
+  <li>customize stdio redirection</li>
+  <li>pass along platform-specific options</li>
+</ul>
+
+<p>Up until this point we have always redirected stdio to our own pipes, and
+streamed any output through the <em>output</em> signal on <em>Device</em>. There was also
+<em>Device.input()</em> for writing to <em>stdin</em>. Those APIs are still the same, the
+only difference is that we no longer do such redirection by default. Most of
+you were probably not too bothered with this, though, as we didn’t implement
+such redirection for iOS and Android apps. Starting with this release we do
+however finally implement it for iOS apps.</p>
+
+<p>By now you’re probably wondering what the new API looks like. Let’s have a look:</p>
+
+<figure class="highlight"><pre><code class="language-vala" data-lang="vala"><span class="k">namespace</span> <span class="nn">Frida</span> <span class="p">{</span>
+	<span class="err">…</span>
+	<span class="k">public</span> <span class="k">class</span> <span class="nc">Device</span> <span class="p">:</span> <span class="n">GLib</span><span class="p">.</span><span class="n">Object</span> <span class="p">{</span>
+		<span class="err">…</span>
+		<span class="k">public</span> <span class="k">async</span> <span class="kt">uint</span> <span class="nf">spawn</span> <span class="p">(</span><span class="kt">string</span> <span class="n">program</span><span class="p">,</span>
+			<span class="n">Frida</span><span class="p">.</span><span class="n">SpawnOptions</span><span class="p">?</span> <span class="n">options</span> <span class="p">=</span> <span class="k">null</span><span class="p">)</span>
+			<span class="k">throws</span> <span class="n">Frida</span><span class="p">.</span><span class="n">Error</span><span class="p">;</span>
+		<span class="k">public</span> <span class="kt">uint</span> <span class="nf">spawn_sync</span> <span class="p">(</span><span class="kt">string</span> <span class="n">program</span><span class="p">,</span>
+			<span class="n">Frida</span><span class="p">.</span><span class="n">SpawnOptions</span><span class="p">?</span> <span class="n">options</span> <span class="p">=</span> <span class="k">null</span><span class="p">)</span>
+			<span class="k">throws</span> <span class="n">Frida</span><span class="p">.</span><span class="n">Error</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="err">…</span>
+	<span class="k">public</span> <span class="k">class</span> <span class="nc">SpawnOptions</span> <span class="p">:</span> <span class="n">GLib</span><span class="p">.</span><span class="n">Object</span> <span class="p">{</span>
+		<span class="k">public</span> <span class="kt">string</span><span class="p">[]?</span> <span class="n">argv</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+		<span class="k">public</span> <span class="kt">string</span><span class="p">[]?</span> <span class="n">envp</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+		<span class="k">public</span> <span class="kt">string</span><span class="p">[]?</span> <span class="n">env</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+		<span class="k">public</span> <span class="kt">string</span><span class="p">?</span> <span class="n">cwd</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+		<span class="k">public</span> <span class="n">Frida</span><span class="p">.</span><span class="n">Stdio</span> <span class="n">stdio</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+		<span class="k">public</span> <span class="n">GLib</span><span class="p">.</span><span class="n">VariantDict</span> <span class="n">aux</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+
+		<span class="k">public</span> <span class="nf">SpawnOptions</span> <span class="p">();</span>
+	<span class="p">}</span>
+	<span class="err">…</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>So going back to the Python examples at the beginning, those still work without
+any changes. But, instead of:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">([</span><span class="s">"com.apple.mobilesafari"</span><span class="p">])</span></code></pre></figure>
+
+<p>You can now also do:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"com.apple.mobilesafari"</span><span class="p">)</span></code></pre></figure>
+
+<p>As the first argument is the <em>program</em> to spawn. You can still pass an <em>argv</em>
+here and that will be used to set the <em>argv</em> option, meaning that <em>argv[0]</em> will
+be used for the <em>program</em> argument. You can also do this:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"/bin/busybox"</span><span class="p">,</span> <span class="n">argv</span><span class="o">=</span><span class="p">[</span><span class="s">"/bin/cat"</span><span class="p">,</span> <span class="s">"/etc/passwd"</span><span class="p">])</span></code></pre></figure>
+
+<p>And if you’d like to replace the entire environment instead of using defaults:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"/bin/ls"</span><span class="p">,</span> <span class="n">envp</span><span class="o">=</span><span class="p">{</span> <span class="s">"CLICOLOR"</span><span class="p">:</span> <span class="s">"1"</span> <span class="p">})</span></code></pre></figure>
+
+<p>Though in most cases you probably only want to add/override a few environment
+variables, which is now also possible:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"/bin/ls"</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="p">{</span> <span class="s">"CLICOLOR"</span><span class="p">:</span> <span class="s">"1"</span> <span class="p">})</span></code></pre></figure>
+
+<p>You might also want to use a different working directory:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"/bin/ls"</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="s">"/etc"</span><span class="p">)</span></code></pre></figure>
+
+<p>Or perhaps you’d like to redirect stdio:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"/bin/ls"</span><span class="p">,</span> <span class="n">stdio</span><span class="o">=</span><span class="s">"pipe"</span><span class="p">)</span></code></pre></figure>
+
+<p>The <em>stdio</em> default value is <em>inherit</em>, as mentioned earlier.</p>
+
+<p>We have now covered all of the <em>SpawnOptions</em>, except the last of them: <em>aux</em>.
+This is a dictionary for platform-specific options. Setting such options is
+pretty simple with the Python bindings: any keyword-argument not recognized
+will end up in that dictionary.</p>
+
+<p>For example, to launch Safari and tell it to open a specific URL:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"com.apple.mobilesafari"</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s">"https://frida.re"</span><span class="p">)</span></code></pre></figure>
+
+<p>Or perhaps you’d like to spawn an i/macOS program with ASLR disabled:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">device</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s">"/bin/ls"</span><span class="p">,</span> <span class="n">aslr</span><span class="o">=</span><span class="s">"disable"</span><span class="p">)</span></code></pre></figure>
+
+<p>Another example is spawning an Android app with a specific activity:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">spawn</span><span class="p">(</span><span class="s">"com.android.settings"</span><span class="p">,</span> <span class="n">activity</span><span class="o">=</span><span class="s">".SecuritySettings"</span><span class="p">)</span></code></pre></figure>
+
+<p>And that’s actually all of the aux options we currently support – and what’s
+great is that we can add new ones without needing to update our bindings.</p>
+
+<p>But before we move on, let’s take a quick look at what this new API would look
+like using our Node.js bindings:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">pid</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">device</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="dl">'</span><span class="s1">/bin/sh</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">argv</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">/bin/sh</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">-c</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ls /</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">env</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">BADGER</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">badger-badger-badger</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">SNAKE</span><span class="dl">'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">MUSHROOM</span><span class="dl">'</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">cwd</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/usr</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">stdio</span><span class="p">:</span> <span class="dl">'</span><span class="s1">pipe</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">aslr</span><span class="p">:</span> <span class="dl">'</span><span class="s1">auto</span><span class="dl">'</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>So as you can see, the second argument is an object with options, and those not
+recognized end up in the aux dictionary.</p>
+
+<h3 id="remaining-changes-in-1100">Remaining changes in 11.0.0</h3>
+
+<p>Let’s just summarize the remaining changes, starting with the <em>Device</em> class:</p>
+
+<ul>
+  <li><em>enumerate_pending_spawns()</em> is now <em>enumerate_pending_spawn()</em> to be
+grammatically correct.</li>
+  <li>The <em>spawned</em> signal has been renamed to <em>spawn-added</em>, and there is now also
+<em>spawn-removed</em>.</li>
+  <li>The <em>delivered</em> signal has been renamed to <em>child-added</em>, and there is now
+also <em>child-removed</em>.</li>
+</ul>
+
+<p>The final change is that the <em>Child</em> class’ <em>path</em>, <em>argv</em>, and <em>envp</em>
+properties are now all nullable. This is to be able to discern e.g. “no <em>envp</em>
+provided” from “empty <em>envp</em> provided”.</p>
+
+<h3 id="changes-in-1101">Changes in 11.0.1</h3>
+
+<ul>
+  <li>core: fix stack alignment of agent thread for 32-bit ARM processes</li>
+  <li>core: fix fragile SELinux rule patching</li>
+</ul>
+
+<h3 id="changes-in-1102">Changes in 11.0.2</h3>
+
+<ul>
+  <li>core: plug Mach ports leaks in spawn()-logic on i/macOS (long-standing issue)</li>
+</ul>
+
+<h3 id="changes-in-1103">Changes in 11.0.3</h3>
+
+<ul>
+  <li>core: fix crash on iPhone 8 and X caused by bad tls_base calculation on arm64</li>
+</ul>
+
+<h3 id="changes-in-1104">Changes in 11.0.4</h3>
+
+<ul>
+  <li>python: update metadata and bump requirements</li>
+</ul>
+
+<h3 id="changes-in-1105">Changes in 11.0.5</h3>
+
+<ul>
+  <li>core: fix compatibility issue with Electra’s Tweak Injector</li>
+  <li>core: fix process name truncation in <em>enumerate_processes()</em> on iOS</li>
+  <li>java: Java.registerClass() now supports overloads</li>
+  <li>packaging: every new release now comes with packages for Fedora and Ubuntu</li>
+</ul>
+
+<h3 id="changes-in-1106">Changes in 11.0.6</h3>
+
+<ul>
+  <li>python: fix dependency spec so REPL works again when installed from PyPI</li>
+</ul>
+
+<h3 id="changes-in-1107">Changes in 11.0.7</h3>
+
+<ul>
+  <li>core: better child gating API coverage on Windows</li>
+  <li>python: 2.7 binaries for Linux are no longer broken when installed from PyPI</li>
+</ul>
+
+<h3 id="changes-in-1108">Changes in 11.0.8</h3>
+
+<ul>
+  <li>core: fix race resulting in crash on system session setup on some platforms</li>
+  <li>python: fix deadlock on interpreter shutdown</li>
+</ul>
+
+<h3 id="changes-in-1109">Changes in 11.0.9</h3>
+
+<ul>
+  <li>java: fix issue preventing <em>Java.registerClass()</em> during early instrumentation</li>
+</ul>
+
+<h3 id="changes-in-11010">Changes in 11.0.10</h3>
+
+<ul>
+  <li>core: fix crash when enumerating imports/exports of ELF modules with an empty
+DT_GNU_HASH</li>
+</ul>
+
+<h3 id="changes-in-11011">Changes in 11.0.11</h3>
+
+<ul>
+  <li>java: fix type compatibility checking, which typically resulted in the wrong
+overload getting called, in turn causing the VM to abort()</li>
+</ul>
+
+<h3 id="changes-in-11012">Changes in 11.0.12</h3>
+
+<ul>
+  <li>core: fix compatibility issues with the latest macOS Mojave and iOS 12 betas</li>
+  <li>core: improve the iOS <em>Kernel</em> API available in the system session, i.e. PID 0</li>
+  <li>frida-trace: fix crash when tracer scripts <em>send()</em> arbitrary data</li>
+</ul>
+
+<h3 id="changes-in-11013">Changes in 11.0.13</h3>
+
+<ul>
+  <li>core: fix hang on teardown of script that was never <em>load()</em>ed</li>
+</ul>
+
+<h3 id="eof">EOF</h3>
+
+<p>So that’s about it. If you didn’t read about the Frida 10.8 release that
+happened last week, make sure you go read about it <a href="../../../04/28/frida-10-8-released/index.html">here</a>.</p>
+
+<p>Enjoy!</p>
+
+
+  </p>
+</article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

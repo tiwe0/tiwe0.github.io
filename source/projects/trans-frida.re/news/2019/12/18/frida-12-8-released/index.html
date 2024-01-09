@@ -1,0 +1,1075 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../../../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../../../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../../../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Frida 12.8 Released | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Frida 12.8 Released" />
+<meta name="author" content="oleavr" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/news/2019/12/18/frida-12-8-released/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-18T19:15:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Frida 12.8 Released" />
+<meta name="twitter:site" content="@fridadotre" />
+<meta name="twitter:creator" content="@oleavr" />
+<script type="application/ld+json">
+{"headline":"Frida 12.8 Released","dateModified":"2019-12-18T19:15:00+01:00","datePublished":"2019-12-18T19:15:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/news/2019/12/18/frida-12-8-released/"},"author":{"@type":"Person","name":"oleavr"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/news/2019/12/18/frida-12-8-released/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../../../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../../../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../../../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../../../../index.html">Overview</a>
+  </li>
+  <li class="">
+    <a href="../../../../../docs/home/index.html">Docs</span></a>
+  </li>
+  <li class="current">
+    <a href="../../../../index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../../../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="news">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the blog…</option>
+    <option value="/news/">Home</option>
+    <optgroup label="v1.x">
+      
+      <option value="/news/2023/12/24/frida-16-1-10-released/">Frida 16.1.10 Released</option>
+      
+      <option value="/news/2023/12/20/frida-16-1-9-released/">Frida 16.1.9 Released</option>
+      
+      <option value="/news/2023/11/28/frida-16-1-8-released/">Frida 16.1.8 Released</option>
+      
+      <option value="/news/2023/11/16/frida-16-1-7-released/">Frida 16.1.7 Released</option>
+      
+      <option value="/news/2023/11/13/frida-16-1-6-released/">Frida 16.1.6 Released</option>
+      
+      <option value="/news/2023/11/04/frida-16-1-5-released/">Frida 16.1.5 Released</option>
+      
+      <option value="/news/2023/08/29/frida-16-1-4-released/">Frida 16.1.4 Released</option>
+      
+      <option value="/news/2023/07/14/frida-16-1-3-released/">Frida 16.1.3 Released</option>
+      
+      <option value="/news/2023/07/11/frida-16-1-2-released/">Frida 16.1.2 Released</option>
+      
+      <option value="/news/2023/07/01/frida-16-1-1-released/">Frida 16.1.1 Released</option>
+      
+      <option value="/news/2023/06/23/frida-16-1-0-released/">Frida 16.1.0 Released</option>
+      
+      <option value="/news/2023/04/27/frida-16-0-19-released/">Frida 16.0.19 Released</option>
+      
+      <option value="/news/2023/04/22/frida-16-0-18-released/">Frida 16.0.18 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-17-released/">Frida 16.0.17 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-16-released/">Frida 16.0.16 Released</option>
+      
+      <option value="/news/2023/04/19/frida-16-0-15-released/">Frida 16.0.15 Released</option>
+      
+      <option value="/news/2023/04/18/frida-16-0-14-released/">Frida 16.0.14 Released</option>
+      
+      <option value="/news/2023/04/15/frida-16-0-13-released/">Frida 16.0.13 Released</option>
+      
+      <option value="/news/2023/04/14/frida-16-0-12-released/">Frida 16.0.12 Released</option>
+      
+      <option value="/news/2023/03/10/frida-16-0-11-released/">Frida 16.0.11 Released</option>
+      
+      <option value="/news/2023/02/17/frida-16-0-10-released/">Frida 16.0.10 Released</option>
+      
+      <option value="/news/2023/02/11/frida-16-0-9-released/">Frida 16.0.9 Released</option>
+      
+      <option value="/news/2022/12/13/frida-16-0-8-released/">Frida 16.0.8 Released</option>
+      
+      <option value="/news/2022/12/02/frida-16-0-7-released/">Frida 16.0.7 Released</option>
+      
+      <option value="/news/2022/12/01/frida-16-0-6-released/">Frida 16.0.6 Released</option>
+      
+      <option value="/news/2022/11/28/frida-16-0-5-released/">Frida 16.0.5 Released</option>
+      
+      <option value="/news/2022/11/26/frida-16-0-4-released/">Frida 16.0.4 Released</option>
+      
+      <option value="/news/2022/11/23/frida-16-0-3-released/">Frida 16.0.3 Released</option>
+      
+      <option value="/news/2022/10/22/frida-16-0-2-released/">Frida 16.0.2 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-1-released/">Frida 16.0.1 Released</option>
+      
+      <option value="/news/2022/10/08/frida-16-0-0-released/">Frida 16.0.0 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-2-released/">Frida 15.2.2 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-1-released/">Frida 15.2.1 Released</option>
+      
+      <option value="/news/2022/07/21/frida-15-2-0-released/">Frida 15.2.0 Released</option>
+      
+      <option value="/news/2022/07/06/frida-15-1-28-released/">Frida 15.1.28 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-27-released/">Frida 15.1.27 Released</option>
+      
+      <option value="/news/2022/06/20/frida-15-1-26-released/">Frida 15.1.26 Released</option>
+      
+      <option value="/news/2022/06/18/frida-15-1-25-released/">Frida 15.1.25 Released</option>
+      
+      <option value="/news/2022/06/03/frida-15-1-24-released/">Frida 15.1.24 Released</option>
+      
+      <option value="/news/2022/05/30/frida-15-1-23-released/">Frida 15.1.23 Released</option>
+      
+      <option value="/news/2022/05/09/frida-15-1-22-released/">Frida 15.1.22 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-21-released/">Frida 15.1.21 Released</option>
+      
+      <option value="/news/2022/05/06/frida-15-1-20-released/">Frida 15.1.20 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-19-released/">Frida 15.1.19 Released</option>
+      
+      <option value="/news/2022/05/04/frida-15-1-18-released/">Frida 15.1.18 Released</option>
+      
+      <option value="/news/2022/02/10/frida-15-1-17-released/">Frida 15.1.17 Released</option>
+      
+      <option value="/news/2022/02/03/frida-15-1-16-released/">Frida 15.1.16 Released</option>
+      
+      <option value="/news/2022/02/01/frida-15-1-15-released/">Frida 15.1.15 Released</option>
+      
+      <option value="/news/2021/09/03/frida-15-1-released/">Frida 15.1 Released</option>
+      
+      <option value="/news/2021/07/18/frida-15-0-released/">Frida 15.0 Released</option>
+      
+      <option value="/news/2021/02/10/frida-14-2-released/">Frida 14.2 Released</option>
+      
+      <option value="/news/2020/12/01/frida-14-1-released/">Frida 14.1 Released</option>
+      
+      <option value="/news/2020/10/28/frida-14-0-released/">Frida 14.0 Released</option>
+      
+      <option value="/news/2020/07/24/frida-12-11-released/">Frida 12.11 Released</option>
+      
+      <option value="/news/2020/06/29/frida-12-10-released/">Frida 12.10 Released</option>
+      
+      <option value="/news/2020/05/19/frida-12-9-released/">Frida 12.9 Released</option>
+      
+      <option value="/news/2019/12/18/frida-12-8-released/">Frida 12.8 Released</option>
+      
+      <option value="/news/2019/09/18/frida-12-7-released/">Frida 12.7 Released</option>
+      
+      <option value="/news/2019/05/28/frida-12-6-released/">Frida 12.6 Released</option>
+      
+      <option value="/news/2019/05/15/nowsecure-connect-2019/">NowSecure Connect 2019</option>
+      
+      <option value="/news/2019/05/15/frida-12-5-released/">Frida 12.5 Released</option>
+      
+      <option value="/news/2018/09/11/frida-12-2-released/">Frida 12.2 Released</option>
+      
+      <option value="/news/2018/08/25/frida-12-1-released/">Frida 12.1 Released</option>
+      
+      <option value="/news/2018/07/12/frida-12-0-released/">Frida 12.0 Released</option>
+      
+      <option value="/news/2018/05/05/frida-11-0-released/">Frida 11.0 Released</option>
+      
+      <option value="/news/2018/04/28/frida-10-8-released/">Frida 10.8 Released</option>
+      
+      <option value="/news/2018/03/13/frida-10-7-released/">Frida 10.7 Released</option>
+      
+      <option value="/news/2017/09/29/frida-10-6-released/">Frida 10.6 Released</option>
+      
+      <option value="/news/2017/08/25/frida-10-5-released/">Frida 10.5 Released</option>
+      
+      <option value="/news/2017/08/15/frida-10-4-released/">Frida 10.4 Released</option>
+      
+      <option value="/news/2017/05/02/frida-10-0-released/">Frida 10.0 Released</option>
+      
+      <option value="/news/2017/01/09/frida-9-0-released/">Frida 9.0 Released</option>
+      
+      <option value="/news/2016/10/25/frida-8-1-released/">Frida 8.1 Released</option>
+      
+      <option value="/news/2016/10/04/frida-8-0-released/">Frida 8.0 Released</option>
+      
+      <option value="/news/2016/08/15/frida-7-3-released/">Frida 7.3 Released</option>
+      
+      <option value="/news/2016/06/02/frida-7-2-released/">Frida 7.2 Released</option>
+      
+      <option value="/news/2016/04/04/frida-7-1-released/">Frida 7.1 Released</option>
+      
+      <option value="/news/2016/02/24/frida-7-0-released/">Frida 7.0 Released</option>
+      
+      <option value="/news/2016/02/01/frida-6-2-released/">Frida 6.2 Released</option>
+      
+      <option value="/news/2016/01/31/frida-fosdem-presentation/">Frida presentation at FOSDEM 2016</option>
+      
+      <option value="/news/2016/01/14/frida-6-1-released/">Frida 6.1 Released</option>
+      
+      <option value="/news/2015/11/11/frida-6-0-released/">Frida 6.0 Released</option>
+      
+      <option value="/news/2015/09/17/frida-5-0-released/">Frida 5.0 Released</option>
+      
+      <option value="/news/2015/09/10/frida-4-5-released/">Frida 4.5 Released</option>
+      
+      <option value="/news/2015/07/31/frida-4-4-released/">Frida 4.4 Released</option>
+      
+      <option value="/news/2015/07/15/frida-4-3-released/">Frida 4.3 Released</option>
+      
+      <option value="/news/2015/06/18/frida-4-2-released/">Frida 4.2 Released</option>
+      
+      <option value="/news/2015/06/09/frida-4-1-released/">Frida 4.1 Released</option>
+      
+      <option value="/news/2015/05/09/frida-4-0-0-released/">Frida 4.0.0 Released</option>
+      
+      <option value="/news/2015/03/20/frida-3-0-0-released/">Frida 3.0.0 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-2-released/">Frida 2.0.2 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-1-released/">Frida 2.0.1 Released</option>
+      
+      <option value="/news/2015/03/01/frida-2-0-0-released/">Frida 2.0.0 Released</option>
+      
+      <option value="/news/2015/02/23/frida-1-8-0-released/">Frida 1.8.0 Released</option>
+      
+      <option value="/news/2014/11/18/frida-1-6-8-released/">Frida 1.6.8 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-7-released/">Frida 1.6.7 Released</option>
+      
+      <option value="/news/2014/11/03/frida-1-6-6-released/">Frida 1.6.6 Released</option>
+      
+      <option value="/news/2014/10/29/frida-1-6-5-released/">Frida 1.6.5 Released</option>
+      
+      <option value="/news/2014/10/19/frida-1-6-4-released/">Frida 1.6.4 Released</option>
+      
+      <option value="/news/2014/08/25/frida-1-6-3-released/">Frida 1.6.3 Released</option>
+      
+      <option value="/news/2014/08/03/frida-1-6-2-released/">Frida 1.6.2 Released</option>
+      
+      <option value="/news/2014/07/26/frida-1-6-1-released/">Frida 1.6.1 Released</option>
+      
+      <option value="/news/2014/05/30/frida-1-6-0-released/">Frida 1.6.0 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-2-released/">Frida 1.4.2 Released</option>
+      
+      <option value="/news/2014/05/14/frida-1-4-1-released/">Frida 1.4.1 Released</option>
+      
+      <option value="/news/2014/05/04/frida-1-4-0-released/">Frida 1.4.0 Released</option>
+      
+      <option value="/news/2014/04/21/frida-1-2-1-released/">Frida 1.2.1 Released</option>
+      
+      <option value="/news/2014/04/17/frida-1-2-0-released/">Frida 1.2.0 Released</option>
+      
+      <option value="/news/2014/03/09/frida-1-0-11-released/">Frida 1.0.11 Released</option>
+      
+      <option value="/news/2014/02/16/frida-1-0-10-released/">Frida 1.0.10 Released</option>
+      
+      <option value="/news/2014/01/25/frida-1-0-9-released/">Frida 1.0.9 Released</option>
+      
+      <option value="/news/2014/01/15/frida-1-0-8-released/">Frida 1.0.8 Released</option>
+      
+      <option value="/news/2014/01/12/frida-1-0-7-released/">Frida 1.0.7 Released</option>
+      
+      <option value="/news/2014/01/11/frida-1-0-6-released/">Frida 1.0.6 Released</option>
+      
+      <option value="/news/2014/01/05/frida-1-0-5-released/">Frida 1.0.5 Released</option>
+      
+    </optgroup>
+  </select>
+</div>
+
+      <div class="news-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    <ul>
+      <li class="">
+        <a href="../../../../index.html">All News</a>
+      </li>
+      <li class="">
+        <a href="../../../../releases/index.html">Frida Releases</a>
+      </li>
+    </ul>
+    <h4>Recent Releases</h4>
+    <ul>
+      
+      <li class="">
+        <a href="../../../../2023/12/24/frida-16-1-10-released/index.html">Version 16.1.10</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/12/20/frida-16-1-9-released/index.html">Version 16.1.9</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/28/frida-16-1-8-released/index.html">Version 16.1.8</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/16/frida-16-1-7-released/index.html">Version 16.1.7</a>
+      </li>
+      
+      <li class="">
+        <a href="../../../../2023/11/13/frida-16-1-6-released/index.html">Version 16.1.6</a>
+      </li>
+      
+      <li>
+        <a href="../../../../../docs/history/index.html">History »</a>
+      </li>
+    </ul>
+    <h4>Other News</h4>
+    <ul>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../05/15/nowsecure-connect-2019/index.html">NowSecure Connect 2019</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li class="">
+          <a href="../../../../2016/01/31/frida-fosdem-presentation/index.html">Frida presentation at FOSDEM 2016</a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="news-articles unit three-quarters">
+        <article>
+  <h2>
+    Frida 12.8 Released
+    <a href="index.html" class="permalink" title="Permalink">∞</a>
+  </h2>
+  <span class="post-category">
+    
+    <span class="label">release</span>
+    
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      18 Dec 2019
+    </span>
+    <a href="https://github.com/oleavr" class="post-author">
+      <img src="https://github.com/oleavr.png" class="avatar" />
+      oleavr
+    </a>
+  </div>
+  <p class="post-content">
+    <p>Get ready for an exciting new release. This time around we’re giving some long
+overdue love to our <a href="../../../../../docs/javascript-api/index.html#stalker">Stalker</a> engine. It’s been around for roughly ten years,
+but it wasn’t until Frida 10.5 in late 2017 that we <a href="../../../../2017/08/25/frida-10-5-released/index.html">started</a> unleashing its
+massive potential.</p>
+
+<p>Up until now we were able to Stalker.follow() existing threads and not only
+observe them, but also mutate their instruction streams any way we’d like. It
+could also be combined with Interceptor to instrument the current thread
+between strategic points. This allowed us to build tools such as <a href="https://github.com/nowsecure/airspy">AirSpy</a>.</p>
+
+<p>But, what if we want to Stalker.follow() a NativeFunction call? This may seem
+really simple, but reentrancy makes this really hard. It’s easy to end up
+following execution inside e.g. our private heap, and end up needing to allocate
+memory for the instrumentation itself… all kinds of fun scenarios that are
+mind-boggling to reason about.</p>
+
+<p>The way we dealt with this was to teach Stalker to exclude certain memory
+ranges, so that if it sees a call going to such a location it will simply emit
+a call instruction there instead of following execution. So what we did was to
+automatically exclude frida-agent’s own memory range, and that way we didn’t
+have to deal with any of the reentrancy madness.</p>
+
+<p>We also took care to special-case attempts to Stalker.follow() the current
+thread, so that we queued that work until we’re about to leave our runtime
+and transition back into user code (or our main loop, in the case of the JS
+thread).</p>
+
+<p>That still left the big unanswered question of how to use Stalker in conjunction
+with NativeFunction. We can now finally put that behind us:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">open</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NativeFunction</span><span class="p">(</span>
+    <span class="nx">Module</span><span class="p">.</span><span class="nx">getExportByName</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="dl">'</span><span class="s1">open</span><span class="dl">'</span><span class="p">),</span>
+    <span class="dl">'</span><span class="s1">int</span><span class="dl">'</span><span class="p">,</span> <span class="p">[</span><span class="dl">'</span><span class="s1">pointer</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">int</span><span class="dl">'</span><span class="p">],</span>
+    <span class="p">{</span> <span class="na">traps</span><span class="p">:</span> <span class="dl">'</span><span class="s1">all</span><span class="dl">'</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">Stalker</span><span class="p">.</span><span class="nx">follow</span><span class="p">({</span>
+  <span class="na">events</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">call</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="nx">onReceive</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">Stalker</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">)));</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">fd</span> <span class="o">=</span> <span class="nx">open</span><span class="p">(</span><span class="nx">Memory</span><span class="p">.</span><span class="nx">allocUtf8String</span><span class="p">(</span><span class="dl">'</span><span class="s1">/foo/bar</span><span class="dl">'</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">open() =&gt;</span><span class="dl">'</span><span class="p">,</span> <span class="nx">fd</span><span class="p">);</span></code></pre></figure>
+
+<p>By setting the <code class="language-plaintext highlighter-rouge">traps: 'all'</code> option on the NativeFunction, it will re-activate
+Stalker when called from a thread where Stalker is temporarily paused because
+it’s calling out to an excluded range – which is the case here because all of
+frida-agent’s code is marked as excluded.</p>
+
+<p>We can also achieve the same goal for Objective-C methods:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">Stalker</span><span class="p">.</span><span class="nx">follow</span><span class="p">({</span>
+  <span class="na">events</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">call</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="nx">onReceive</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">Stalker</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">)));</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">NSAutoreleasePool</span> <span class="o">=</span> <span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">.</span><span class="nx">NSAutoreleasePool</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">NSFileManager</span> <span class="o">=</span> <span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">.</span><span class="nx">NSFileManager</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">fileExistsAtPath</span> <span class="o">=</span> <span class="nx">NSFileManager</span><span class="p">[</span><span class="dl">'</span><span class="s1">- fileExistsAtPath:</span><span class="dl">'</span><span class="p">]</span>
+    <span class="p">.</span><span class="nx">clone</span><span class="p">({</span> <span class="na">traps</span><span class="p">:</span> <span class="dl">'</span><span class="s1">all</span><span class="dl">'</span> <span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">pool</span> <span class="o">=</span> <span class="nx">NSAutoreleasePool</span><span class="p">.</span><span class="nx">alloc</span><span class="p">().</span><span class="nx">init</span><span class="p">();</span>
+<span class="k">try</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">manager</span> <span class="o">=</span> <span class="nx">NSFileManager</span><span class="p">.</span><span class="nx">defaultManager</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">fileExistsAtPath</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">manager</span><span class="p">,</span> <span class="dl">'</span><span class="s1">/foo/bar</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">fileExistsAtPath() =&gt;</span><span class="dl">'</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+  <span class="nx">pool</span><span class="p">.</span><span class="nx">release</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>And also for Java methods on Android:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">Stalker</span><span class="p">.</span><span class="nx">follow</span><span class="p">({</span>
+  <span class="na">events</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">call</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="nx">onReceive</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">Stalker</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">)));</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">Java</span><span class="p">.</span><span class="nx">perform</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">JFile</span> <span class="o">=</span> <span class="nx">Java</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">java.io.File</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">exists</span> <span class="o">=</span> <span class="nx">JFile</span><span class="p">.</span><span class="nx">exists</span><span class="p">.</span><span class="nx">clone</span><span class="p">({</span> <span class="na">traps</span><span class="p">:</span> <span class="dl">'</span><span class="s1">all</span><span class="dl">'</span> <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">JFile</span><span class="p">.</span><span class="nx">$new</span><span class="p">(</span><span class="dl">'</span><span class="s1">/foo/bar</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">exists</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">exists() =&gt;</span><span class="dl">'</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Yay. That said, these examples are barely scratching the surface of what’s
+possible using Stalker. One of the really cool use-cases is in-process fuzzing,
+which <a href="https://twitter.com/andreafioraldi/status/1205194910372110337">frida-fuzz</a> is a great example of. There’s also a bunch of other
+use-cases, such as reversing, measuring code coverage, fault injection for
+testing purposes, hooking inline syscalls, etc.</p>
+
+<p>So that’s the main story of this release. Would like to thank
+<a href="https://twitter.com/andreafioraldi">@andreafioraldi</a> for the great bug-reports and help testing these tricky
+changes.</p>
+
+<h3 id="wrapping-up">Wrapping up</h3>
+
+<p>One cool new feature worth mentioning is the new <code class="language-plaintext highlighter-rouge">ArrayBuffer.wrap()</code> API, which
+allows you to conveniently and efficiently access memory regions as if they were
+JavaScript arrays:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">header</span> <span class="o">=</span> <span class="nx">Memory</span><span class="p">.</span><span class="nx">alloc</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">(</span><span class="nb">ArrayBuffer</span><span class="p">.</span><span class="nx">wrap</span><span class="p">(</span><span class="nx">header</span><span class="p">,</span> <span class="mi">16</span><span class="p">));</span>
+<span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hexdump</span><span class="p">(</span><span class="nx">header</span><span class="p">,</span> <span class="p">{</span> <span class="na">length</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">ansi</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">First byte is:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span></code></pre></figure>
+
+<p>This means you can hand over direct memory access to JavaScript APIs without
+needing to copy memory in/out of the runtime. The only drawback is that bad
+pointers won’t result in a JS exception, and will crash the process.</p>
+
+<p>We now also allow you to access the backing store of any ArrayBuffer, through
+the new <code class="language-plaintext highlighter-rouge">unwrap()</code> method on ArrayBuffer. An example use-case for this is when
+using an existing module such as <a href="https://github.com/nowsecure/frida-fs">frida-fs</a> where you get an ArrayBuffer that
+you then want to pass to native code.</p>
+
+<p>Kudos to <a href="https://twitter.com/DaveManouchehri">@DaveManouchehri</a> for contributing the first draft of the
+ArrayBuffer.wrap() API, and also big thanks to <a href="https://twitter.com/CodeColorist">@CodeColorist</a> for suggesting
+and helping shape the unwrap() feature.</p>
+
+<h3 id="changes-in-1280">Changes in 12.8.0</h3>
+
+<ul>
+  <li>Stalker reactivation working properly.</li>
+  <li>Stalker thread lifetime properly handled. Will also no longer crash when
+following a thread to its death on i/macOS.</li>
+  <li>Safer garbage collection logic in Stalker.</li>
+  <li>Making mistakes in the Stalker transform callback which ends up throwing a JS
+exception now results in Stalker.unfollow(), so the error doesn’t get
+swallowed by the process crashing.</li>
+  <li>Robust support for Stalker transform calling unfollow().</li>
+  <li>Stalker support for older x86 CPUs without AVX2 support.</li>
+  <li>Support for disabling automatic Stalker queue drain.</li>
+  <li>NativeFunction is better at handling exceptions through the brand new
+Interceptor unwinding API.</li>
+  <li>Java and ObjC APIs to specify NativeFunction options for methods through
+clone(options), and blocks through the second argument to ObjC.Block().</li>
+  <li>ObjC class and protocol caching logic finally works. Thanks <a href="https://github.com/gebing">@gebing</a>!</li>
+  <li>The prebuilt Python 3 extension for Windows finally supports all Python 3
+versions &gt;= 3.4 on Windows, just like on the other platforms.</li>
+  <li>ArrayBuffer wrap() and unwrap().</li>
+  <li>DebugSymbol API has better error-handling on Linux/Android.</li>
+  <li>Java integration no longer crashes in recompileExceptionClearForArm64() in
+system processes on Android 10.</li>
+  <li>GumJS devkit on i/macOS supports V8 once again.</li>
+</ul>
+
+<h3 id="changes-in-1281">Changes in 12.8.1</h3>
+
+<ul>
+  <li>The CModule Stalker integration is back in business.</li>
+</ul>
+
+<h3 id="changes-in-1282">Changes in 12.8.2</h3>
+
+<ul>
+  <li>Thumb IT blocks are finally relocated correctly. This means we are able to
+hook a lot more functions on 32-bit ARM targets, e.g. Android. Thanks
+<a href="https://github.com/bigboysun">@bigboysun</a>!</li>
+</ul>
+
+<h3 id="changes-in-1283">Changes in 12.8.3</h3>
+
+<ul>
+  <li>Java.ClassFactory.get() introduced to be able to work with multiple class
+loaders without worrying about colliding class names. This means that
+assigning to the <em>loader</em> property is now considered deprecated. We still
+keep it around for backwards compatibility, but using it alongside the new
+API is not supported.</li>
+  <li>Java.enumerateLoadedClasses() also provides class handles and not just names.</li>
+  <li>The JNI GetByteArrayRegion() function is now part of the Env wrapper. Thanks
+<a href="https://github.com/iddoeldor">@iddoeldor</a>!</li>
+</ul>
+
+<h3 id="changes-in-1284">Changes in 12.8.4</h3>
+
+<ul>
+  <li>Internal hooks no longer result in crashes on Linux/ELF targets when PLT/GOT
+entries haven’t been warmed up.</li>
+</ul>
+
+<h3 id="changes-in-1285">Changes in 12.8.5</h3>
+
+<ul>
+  <li>Python bindings finally provide properly encoded error messages on Python 2.x.</li>
+</ul>
+
+<h3 id="changes-in-1286">Changes in 12.8.6</h3>
+
+<ul>
+  <li>Android linker detection is finally working again in sandboxed processes.
+This was a regression introduced in 12.7.8. Kudos to <a href="https://twitter.com/DaveManouchehri">@DaveManouchehri</a>
+for reporting and helping track this one down!</li>
+</ul>
+
+<h3 id="changes-in-1287">Changes in 12.8.7</h3>
+
+<ul>
+  <li>Our Node.js <em>IOStream</em> bindings received two critical stability improvements.
+Turns out the cancellation logic had a race-condition that resulted in the
+cancellable not always being used. There was also a bug in the teardown logic
+that could result in a stream being closed before all I/O operations had
+completed. Kudos to <a href="https://twitter.com/bezjaje">@mrmacete</a> for these awesome fixes!</li>
+</ul>
+
+<h3 id="changes-in-1288">Changes in 12.8.8</h3>
+
+<ul>
+  <li>Gadget no longer deadlocks on Android/Linux during early instrumentation
+use-cases where Gadget’s entrypoint gets called with dynamic linker lock(s)
+held. Due to Exceptor now using <em>dlsym()</em> to avoid running into PLT/GOT issues
+during early instrumentation, we need to ensure that Exceptor gets initialized
+from the entrypoint thread, and not the Gadget thread.</li>
+</ul>
+
+<h3 id="changes-in-1289">Changes in 12.8.9</h3>
+
+<ul>
+  <li>Stalker’s JavaScript integration is no longer performing a use-after-free in
+<em>EventSink::stop()</em>, i.e. after <em>Stalker.unfollow()</em>.</li>
+</ul>
+
+<h3 id="changes-in-12810">Changes in 12.8.10</h3>
+
+<ul>
+  <li>Gadget is once again able to run on iOS without a debugger present. This was a
+regression introduced in 12.8.8. Kudos to <a href="https://github.com/ddzobov">@ddzobov</a> for reporting!</li>
+</ul>
+
+<h3 id="changes-in-12811">Changes in 12.8.11</h3>
+
+<ul>
+  <li>The i/macOS Exceptor’s API hooks no longer perform an OOB write when a
+user of the Mach exception handling APIs only requests a subset of the
+handlers. Such a user would typically be a crash reporter or analytics
+framework.</li>
+  <li>Electron prebuilds are now provided for v8 (stable) and v9 (beta). We no
+longer provide prebuilds for v7.</li>
+</ul>
+
+<h3 id="changes-in-12812">Changes in 12.8.12</h3>
+
+<ul>
+  <li>Massively overhauled Android Java integration, now using Proxy objects and
+CModule to lazily resolve things. And no more <em>eval</em>-usage to dynamically
+generate method and field wrappers – i.e. less memory required per wrapper
+generated. All of these changes reduce memory usage and allow <em>Java.use()</em>
+to complete much faster.</li>
+  <li>Android Java integration provides uncensored access to methods and fields on
+Android versions that attempt to hide private APIs, i.e. Android &gt;= 9.</li>
+  <li>Way faster Android device enumeration. No longer running any <em>adb shell</em>
+commands to determine the device name when the locally running ADB daemon is
+new enough (i.e. ADB &gt;= sometime during 2017).</li>
+  <li>We’ve finally eliminated a long-standing memory leak on Linux-based OSes,
+affecting restricted processes such as <em>zygote</em> and <em>system_server</em> on newer
+versions of Android. This was a bug in our logic that garbage-collects
+thread-local data shortly after a given thread has exited. The mechanism that
+determines that the thread has indeed finished exiting would fail and never
+consider the thread gone. This would result in more and more garbage
+accumulating, with a longer and longer collection of garbage to iterate over.
+So not only would we be spending increasingly more time on futile GC attempts,
+we would also be eating CPU retrying a GC every 50 ms.</li>
+  <li>The Python bindings allow obtaining a file-descriptor from a Cancellable in
+order to integrate it into event loops and other <em>poll()</em>-style use-cases.
+Worth noting that frida-tools 7.0.1 is out with a major improvement built on
+this: The CLI tools no longer delay for up to 500 ms before exiting. So
+short-lived programs like <em>frida-ls-devices</em> and <em>frida-ps</em> now feel very
+snappy.</li>
+  <li>Duktape source-map handling now also works with scripts loaded by the REPL –
+where the inline source-map isn’t the last line of the script due to the REPL
+appending its own code. This means stack-traces always contain meaningful
+filenames and line numbers.</li>
+  <li>Duktape: the baked in JavaScript runtime – i.e. GumJS’ glue code, ObjC, and
+Java – is now Babelified with the <em>loose</em> option enabled, to reduce bloat and
+improve performance. No modern JavaScript data structures leak out through the
+APIs, so there’s no need to have Babel be spec-compliant.</li>
+  <li>V8: the baked in JavaScript runtime is compressed, for a smaller footprint and
+faster code. This was previously only done to the Duktape one.</li>
+  <li>Better Linux process name heuristics in <em>enumerate_processes()</em>.</li>
+</ul>
+
+<h3 id="changes-in-12813">Changes in 12.8.13</h3>
+
+<ul>
+  <li><em>Java.performNow()</em> is back in working order.</li>
+  <li>Python bindings’ setup.py now looks for a local <em>.egg</em> before attempting to
+download one, and expects the download to complete within two minutes.
+Kudos to <a href="https://github.com/XieEDeHeiShou">@XieEDeHeiShou</a> for these nice improvements!</li>
+</ul>
+
+<h3 id="changes-in-12814">Changes in 12.8.14</h3>
+
+<ul>
+  <li>The iOS Simulator is now properly supported, both in Gadget form and attaching
+to a running Simulator process from macOS. Kudos to <a href="https://twitter.com/insitusec">@insitusec</a> for helping
+fix these issues!</li>
+  <li>Gadget now also looks for its .config in the directory above on iOS, but only
+if its parent directory is named “Frameworks”. Kudos to <a href="https://twitter.com/insitusec">@insitusec</a> for
+the suggestion!</li>
+</ul>
+
+<h3 id="changes-in-12815">Changes in 12.8.15</h3>
+
+<ul>
+  <li>Brand new feature-complete support for iOS/arm64e, including new
+<em>NativePointer</em> methods: <em>sign()</em>, <em>strip()</em>, <em>blend()</em>.</li>
+  <li>Latest iOS Unc0ver jailbreak is now supported. Kudos to <a href="https://twitter.com/bezjaje">@mrmacete</a> for
+the pull-request, and <a href="https://twitter.com/Pwn20wnd">@Pwn20wnd</a> for the assistance! ❤️</li>
+  <li>Improved support for the Chimera jailbreak, making sure its
+<em>pspawn_payload-stg2.dylib</em> is initialized. Thanks <a href="https://twitter.com/bezjaje">@mrmacete</a>!</li>
+  <li>The i/macOS injector no longer fails when an agent entrypoint returns
+instantly.</li>
+  <li>Better error message about needing Gadget for jailed iOS.</li>
+  <li>Improved error-handling in the Windows injector to avoid crashing the target
+process when our DLL injection fails. Kudos <a href="https://github.com/dasraf9">@dasraf9</a>!</li>
+  <li>Support for injection into live newborn targets on i/macOS, and also no longer
+treating suspended processes as needing to be prepared for injection,
+regardless of whether they actually need it.</li>
+  <li>Improved iOS fault tolerance, handling frontmost iOS app name query failing.</li>
+  <li>Improved Android fault tolerance, handling <em>zygote</em> and <em>system_server</em>
+processes dying without having to restart <em>frida-server</em>.</li>
+  <li>Now able to launch <em>frida-server</em> during boot on Android 10, as
+<em>LD_LIBRARY_PATH</em> no longer interferes with the spawning of <em>frida-helper-32</em>.
+Kudos to <a href="https://twitter.com/enovella_">@enovella</a> for helping track this one down!</li>
+  <li>No more infinite loop when failing to handle <em>SIGABRT</em> on UNIXy platforms.</li>
+  <li>We now support nested signals in Exceptor’s POSIX backend. Kudos <a href="https://twitter.com/bannsec">@bannsec</a>!</li>
+  <li>Proper handling of invalid Windows ANSI strings. Thanks, <a href="https://github.com/clouds56">@clouds56</a>!</li>
+  <li><em>Java.perform()</em> working properly again on Android &lt; 5.</li>
+  <li>Improved varargs-handling in <em>NativeFunction</em>, now promoting varargs smaller
+than int. Thanks for reporting, <a href="https://github.com/0x410c">@0x410c</a>!</li>
+</ul>
+
+<h3 id="changes-in-12816">Changes in 12.8.16</h3>
+
+<ul>
+  <li>Large CModule instances now working on iOS systems with 16K pages. Kudos to
+<a href="https://twitter.com/bezjaje">@mrmacete</a> for discovering and fixing this long-standing issue!</li>
+  <li>Stalker also works in arm64 processes on iOS/arm64e. Kudos to <a href="https://twitter.com/AeonLucid">@AeonLucid</a>
+for reporting and helping track this one down!</li>
+</ul>
+
+<h3 id="changes-in-12817">Changes in 12.8.17</h3>
+
+<ul>
+  <li>Support for injection into live newborn targets on i/macOS turned out to cause
+regressions, so we’ve reverted it for now. Specifically, <em>notifyd</em> on iOS 12.4
+is a case where <em>libSystemInitialized</em> is not getting set. Need to dig deeper
+to figure out why, so decided to walk back this logic for now.</li>
+</ul>
+
+<h3 id="changes-in-12818">Changes in 12.8.18</h3>
+
+<ul>
+  <li>New and improved <em>Java.scheduleOnMainThread()</em> to allow calling APIs such as
+<em>getApplicationContext()</em>. Kudos to <a href="https://twitter.com/giantpune">@giantpune</a> for reporting!</li>
+  <li>Ability to hook CriticalNative methods on newer versions of Android. Kudos to
+<a href="https://github.com/abdawoud">@abdawoud</a> for reporting!</li>
+</ul>
+
+<h3 id="changes-in-12819">Changes in 12.8.19</h3>
+
+<ul>
+  <li>Scripts are now properly cleaned up if destroyed without first being loaded.
+This ensures that ultimately when the script core is disposed, it in turn
+disposes its reference to the Exceptor. Failing to do so causes indefinite
+hang when attaching after detaching in presence of unloaded scripts, due to
+the Exceptor thread remaining in the target process. Kudos to <a href="https://twitter.com/bezjaje">@mrmacete</a>
+for discovering and fixing this long-standing issue!</li>
+</ul>
+
+<h3 id="changes-in-12820">Changes in 12.8.20</h3>
+
+<ul>
+  <li>The <em>remove_remote_device()</em> API is back in working order. This was an
+unfortunate regression introduced in 12.7.17. Thanks for reporting,
+<a href="https://twitter.com/CodeColorist">@CodeColorist</a>!</li>
+</ul>
+
+
+  </p>
+</article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../../../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>

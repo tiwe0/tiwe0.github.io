@@ -1,0 +1,3983 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.0">
+  <link type="application/atom+xml" rel="alternate" href="../../feed.xml" title="Frida • A world-class dynamic instrumentation toolkit" />
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to Frida’s master branch" href="https://github.com/frida/frida/commits/master.atom" />
+  <link rel="stylesheet" href="../../css/screen.css" />
+  <link rel="icon" type="image/png" href="../../favicon.ico" />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>frida-trace | Frida • A world-class dynamic instrumentation toolkit</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="frida-trace" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<meta property="og:description" content="Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="https://frida.re/docs/frida-trace/" />
+<meta property="og:site_name" content="Frida • A world-class dynamic instrumentation toolkit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-25T09:11:28+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="frida-trace" />
+<meta name="twitter:site" content="@fridadotre" />
+<script type="application/ld+json">
+{"headline":"frida-trace","dateModified":"2023-12-25T09:11:28+01:00","datePublished":"2023-12-25T09:11:28+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://frida.re/docs/frida-trace/"},"@type":"BlogPosting","description":"Observe and reprogram running programs on Windows, macOS, GNU/Linux, iOS, watchOS, tvOS, Android, FreeBSD, and QNX","url":"https://frida.re/docs/frida-trace/","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <script src="../../js/modernizr-2.5.3.min.js"></script>
+</head>
+
+
+<body class="wrap">
+  <header>
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid">
+    <div class="logotype unit one-third center-on-mobiles">
+      <a href="../../index.html">
+        <span>FЯIDA</span>
+        <img src="../../img/logotype.svg" width="205" height="39" alt="">
+      </a>
+    </div>
+    <nav class="main-nav unit two-thirds hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="../../index.html">Overview</a>
+  </li>
+  <li class="current">
+    <a href="../home/index.html">Docs</span></a>
+  </li>
+  <li class="">
+    <a href="../../news/index.html">News</a>
+  </li>
+  <li class="">
+    <a href="https://github.com/frida/frida">Code</a>
+  </li>
+  <li class="">
+    <a href="../../contact/index.html">Contact</a>
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    
+    <optgroup label="Getting Started">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/home/">Welcome</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/quickstart/">Quick-start guide</option>
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/installation/">Installation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/modes/">Modes of Operation</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gadget/">Gadget</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/hacking/">Hacking</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/stalker/">Stalker</option>
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/presentations/">Presentations</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tutorials">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/functions/">Functions</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/messages/">Messages</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+      <option value="/docs/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Examples">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/windows/">Windows</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/macos/">macOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/linux/">Linux</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/ios/">iOS</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/android/">Android</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/examples/javascript/">JavaScript</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Tools">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-cli/">Frida CLI</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ps/">frida-ps</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-trace/">frida-trace</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-discover/">frida-discover</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-ls-devices/">frida-ls-devices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/frida-kill/">frida-kill</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gum-graft/">gum-graft</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="API Reference">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/javascript-api/">JavaScript API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/c-api/">C API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/swift-api/">Swift API</option>
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/go-api/">Go API</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Miscellaneous">
+      
+
+
+  
+
+  
+    
+  
+    
+      <option value="/docs/best-practices/">Best Practices</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/troubleshooting/">Troubleshooting</option>
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+      <option value="/docs/building/">Building</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/footprint/">Footprint</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Meta">
+      
+
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsoc-ideas-2015/">GSoC Ideas 2015</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/gsod-ideas-2023/">GSoD Ideas 2023</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <option value="/docs/history/">History</option>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+    </optgroup>
+    
+  </select>
+</div>
+
+      <div class="docs-nav-desktop unit one-quarter hide-on-mobiles">
+  <aside>
+    
+    <h4>Getting Started</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../home/index.html">Welcome</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../quickstart/index.html">Quick-start guide</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../installation/index.html">Installation</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../modes/index.html">Modes of Operation</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gadget/index.html">Gadget</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../hacking/index.html">Hacking</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../stalker/index.html">Stalker</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../presentations/index.html">Presentations</a></li>
+
+
+</ul>
+
+    
+    <h4>Tutorials</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../functions/index.html">Functions</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../messages/index.html">Messages</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../android/index.html">Android</a></li>
+
+
+</ul>
+
+    
+    <h4>Examples</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/windows/index.html">Windows</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/macos/index.html">macOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/linux/index.html">Linux</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/ios/index.html">iOS</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/android/index.html">Android</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../examples/javascript/index.html">JavaScript</a></li>
+
+
+</ul>
+
+    
+    <h4>Tools</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-cli/index.html">Frida CLI</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-ps/index.html">frida-ps</a></li>
+
+
+  
+
+  
+
+  
+  <li class="current"><a href="index.html">frida-trace</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-discover/index.html">frida-discover</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-ls-devices/index.html">frida-ls-devices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../frida-kill/index.html">frida-kill</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gum-graft/index.html">gum-graft</a></li>
+
+
+</ul>
+
+    
+    <h4>API Reference</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../javascript-api/index.html">JavaScript API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../c-api/index.html">C API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../swift-api/index.html">Swift API</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../go-api/index.html">Go API</a></li>
+
+
+</ul>
+
+    
+    <h4>Miscellaneous</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="../best-practices/index.html">Best Practices</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../troubleshooting/index.html">Troubleshooting</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../building/index.html">Building</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../footprint/index.html">Footprint</a></li>
+
+
+</ul>
+
+    
+    <h4>Meta</h4>
+    
+
+<ul>
+
+  
+
+  
+
+  
+  <li class=""><a href="index.html"></a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gsoc-ideas-2015/index.html">GSoC Ideas 2015</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../gsod-ideas-2023/index.html">GSoD Ideas 2023</a></li>
+
+
+  
+
+  
+
+  
+  <li class=""><a href="../history/index.html">History</a></li>
+
+
+</ul>
+
+    
+  </aside>
+</div>
+
+
+      <div class="docs-articles unit three-quarters">
+        <article>
+          <div class="improve right hide-on-mobiles">
+            <a href="https://github.com/frida/frida-website/edit/main/_i18n/en/_docs/frida-trace.md">
+              <i class="fa fa-pencil"></i>Improve this page</a>
+          </div>
+          <h1>frida-trace</h1>
+          <p>frida-trace is a tool for dynamically tracing function calls.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Trace recv* and send* APIs in Safari, insert library names</span>
+<span class="c"># in logging</span>
+<span class="nv">$ </span>frida-trace <span class="nt">--decorate</span> <span class="nt">-i</span> <span class="s2">"recv*"</span> <span class="nt">-i</span> <span class="s2">"send*"</span> Safari
+
+<span class="c"># Trace ObjC method calls in Safari</span>
+<span class="nv">$ </span>frida-trace <span class="nt">-m</span> <span class="s2">"-[NSView drawRect:]"</span> Safari
+
+<span class="c"># Launch SnapChat on your iPhone and trace crypto API calls</span>
+<span class="nv">$ </span>frida-trace <span class="se">\</span>
+    <span class="nt">-U</span> <span class="se">\</span>
+    <span class="nt">-f</span> com.toyopagroup.picaboo <span class="se">\</span>
+    <span class="nt">-I</span> <span class="s2">"libcommonCrypto*"</span>
+
+<span class="c"># Launch YouTube on your Android device and trace Java methods</span>
+<span class="c"># with “certificate” in their signature (s), ignoring case (i)</span>
+<span class="c"># and only searching in user-defined classes (u)</span>
+<span class="nv">$ </span>frida-trace <span class="se">\</span>
+    <span class="nt">-U</span> <span class="se">\</span>
+    <span class="nt">-f</span> com.google.android.youtube <span class="se">\</span>
+    <span class="nt">--runtime</span><span class="o">=</span>v8 <span class="se">\</span>
+    <span class="nt">-j</span> <span class="s1">'*!*certificate*/isu'</span>
+
+<span class="c"># Trace all JNI functions in Samsung FaceService app on Android</span>
+<span class="nv">$ </span>frida-trace <span class="nt">-U</span> <span class="nt">-i</span> <span class="s2">"Java_*"</span> com.samsung.faceservice
+
+<span class="c"># Trace a Windows process's calls to "mem*" functions in msvcrt.dll</span>
+<span class="nv">$ </span>frida-trace <span class="nt">-p</span> 1372 <span class="nt">-i</span> <span class="s2">"msvcrt.dll!*mem*"</span>
+
+<span class="c"># Trace all functions matching "*open*" in the process except</span>
+<span class="c"># in msvcrt.dll</span>
+<span class="nv">$ </span>frida-trace <span class="nt">-p</span> 1372 <span class="nt">-i</span> <span class="s2">"*open*"</span> <span class="nt">-x</span> <span class="s2">"msvcrt.dll!*open*"</span>
+
+<span class="c"># Trace an unexported function in libjpeg.so</span>
+<span class="nv">$ </span>frida-trace <span class="nt">-p</span> 1372 <span class="nt">-a</span> <span class="s2">"libjpeg.so!0x4793c"</span></code></pre></figure>
+
+<h2 id="full-list-of-options">Full List of Options</h2>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">@&gt;frida-trace <span class="nt">--help</span>
+Usage: frida-trace <span class="o">[</span>options] target
+
+Options:
+  <span class="nt">--version</span>             show program<span class="s1">'s version number and exit
+  -h, --help            show this help message and exit
+  -D ID, --device=ID    connect to device with the given ID
+  -U, --usb             connect to USB device
+  -R, --remote          connect to remote frida-server
+  -H HOST, --host=HOST  connect to remote frida-server on HOST
+  -f FILE, --file=FILE  spawn FILE
+  -F, --attach-frontmost
+                        attach to frontmost application
+  -n NAME, --attach-name=NAME
+                        attach to NAME
+  -p PID, --attach-pid=PID
+                        attach to PID
+  --stdio=inherit|pipe  stdio behavior when spawning (defaults
+                        to “inherit”)
+  --aux=option          set aux option when spawning, such as
+                        “uid=(int)42” (supported types are:
+                        string, bool, int)
+  --runtime=duk|v8      script runtime to use
+  --debug               enable the Node.js compatible script debugger
+  --squelch-crash       if enabled, will not dump crash report
+                        to console
+  -O FILE, --options-file=FILE
+                        pass command line options via text file
+  -I MODULE, --include-module=MODULE
+                        include MODULE
+  -X MODULE, --exclude-module=MODULE
+                        exclude MODULE
+  -i FUNCTION, --include=FUNCTION
+                        include [MODULE]![FUNCTION]
+  -x FUNCTION, --exclude=FUNCTION
+                        exclude [MODULE]![FUNCTION]
+  -a MODULE!OFFSET, --add=MODULE!OFFSET
+                        add MODULE!OFFSET
+  -T, --include-imports
+                        include program'</span>s imports
+  <span class="nt">-t</span> MODULE, <span class="nt">--include-module-imports</span><span class="o">=</span>MODULE
+                        include MODULE imports
+  <span class="nt">-m</span> OBJC_METHOD, <span class="nt">--include-objc-method</span><span class="o">=</span>OBJC_METHOD
+                        include OBJC_METHOD
+  <span class="nt">-M</span> OBJC_METHOD, <span class="nt">--exclude-objc-method</span><span class="o">=</span>OBJC_METHOD
+                        exclude OBJC_METHOD
+  <span class="nt">-j</span> JAVA_METHOD, <span class="nt">--include-java-method</span><span class="o">=</span>JAVA_METHOD
+                        include JAVA_METHOD
+  <span class="nt">-J</span> JAVA_METHOD, <span class="nt">--exclude-java-method</span><span class="o">=</span>JAVA_METHOD
+                        exclude JAVA_METHOD
+  <span class="nt">-s</span> DEBUG_SYMBOL, <span class="nt">--include-debug-symbol</span><span class="o">=</span>DEBUG_SYMBOL
+                        include DEBUG_SYMBOL
+  <span class="nt">-q</span>, <span class="nt">--quiet</span>           <span class="k">do </span>not format output messages
+  <span class="nt">-d</span>, <span class="nt">--decorate</span>        add module name to generated onEnter
+                        log statement
+  <span class="nt">-S</span> PATH, <span class="nt">--init-session</span><span class="o">=</span>PATH
+                        path to JavaScript file used to initialize
+                        the session
+  <span class="nt">-P</span> PARAMETERS_JSON, <span class="nt">--parameters</span><span class="o">=</span>PARAMETERS_JSON
+                        parameters as JSON, exposed as a global named
+                        <span class="s1">'parameters'</span>
+  <span class="nt">-o</span> OUTPUT, <span class="nt">--output</span><span class="o">=</span>OUTPUT
+                        dump messages to file</code></pre></figure>
+
+<h2 id="-u-usb-connect-to-usb-device">-U, –usb: connect to USB device</h2>
+
+<p>This option tells <code class="language-plaintext highlighter-rouge">frida-trace</code> to perform tracing on a remote device
+connected via the host machine’s USB connection.</p>
+
+<p>Example: You want to trace an application running on an Android device
+from your host Windows machine.  If you specify <code class="language-plaintext highlighter-rouge">-U / --usb</code>,
+frida-trace will perform the necessary work to transfer all data to
+and from the remote device and trace accordingly.</p>
+
+<div class="note">
+  <h5>Copy frida-server binary to remote device</h5>
+  <p>When tracing a remote device, remember to copy the
+  <a href="https://github.com/frida/frida/releases">platform-appropriate frida-server binary</a>
+  to the remote device.  Once copied, be sure to run the frida-server binary before
+  beginning the tracing session.</p>
+  <p>For example, to trace a remote Android application, you might copy the
+  'frida-server-12.8.0-android-arm' binary to the Android's /data/local/tmp
+  folder.  Using adb shell, you would run the server in the background
+  (e.g. "frida-server-12.8.0-android-arm &amp;").</p>
+</div>
+
+<h2 id="-o-pass-command-line-options-via-text-file">-O: pass command line options via text file</h2>
+
+<p>Using this option, you can pass any number of command line options via one or
+more text files.  The options in the text file can be on one or more lines, with
+any number of options per line, including other <code class="language-plaintext highlighter-rouge">-O</code> command options.</p>
+
+<p>This feature is useful for handling a large number of command line options, and
+solves the problem when the command line exceeds the operating system maximum
+command line length.</p>
+
+<p>For example:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">$</span><span class="w"> </span>frida-trace <span class="nt">-p</span> 9753 <span class="nt">--decorate</span> <span class="nt">-O</span> additional-options.txt</code></pre></figure>
+
+<p>where additional-options.txt is:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">-i "gdi32full.dll!ExtTextOutW"
+-S core.js -S ms-windows.js
+-O module-offset-options.txt</span></code></pre></figure>
+
+<p>and module-offset-options.txt is:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">-a "gdi32full.dll!0x3918DC" -a "gdi32full.dll!0xBE7458"
+-a "gdi32full.dll!0xBF9904"</span></code></pre></figure>
+
+<h2 id="-i--x-includeexclude-module">-I, -X: include/exclude module</h2>
+
+<p>These options allow you to include or exclude, in one single option, <strong>all</strong>
+functions in a particular module (e.g., *.so, *.dll) in one, single option.
+The option expects a filename glob for matching one or more modules.  Any
+module that matches the glob pattern will be either included or excluded in its
+entirety.</p>
+
+<p><code class="language-plaintext highlighter-rouge">frida-trace</code> will generate a JavaScript handler file for each function matched
+by the <code class="language-plaintext highlighter-rouge">-I</code> option.</p>
+
+<p>To exclude specific functions after including an entire module, see the <code class="language-plaintext highlighter-rouge">-x</code>
+option.</p>
+
+<h2 id="-i--x-includeexclude-function-glob-based">-i, -x: include/exclude function (glob-based)</h2>
+
+<p>These options enable you to include or exclude matching functions according to
+your needs.  These are flexible options, allowing a granularity ranging from
+<strong>all</strong> functions in <strong>all</strong> modules down to a single function in a specific module.</p>
+
+<p><code class="language-plaintext highlighter-rouge">frida-trace</code> will generate a JavaScript handler file for each function matched
+by the <code class="language-plaintext highlighter-rouge">-i</code> option.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">-i / -x</code> options differ syntactically from their uppercase counterparts
+in that they accept any of the following forms (MODULE and FUNCTION are both
+glob patterns):</p>
+
+<pre style="font-family: monospace;">
+- MODULE!FUNCTION
+- FUNCTION
+- !FUNCTION
+- MODULE!
+</pre>
+
+<p>Here are some examples and their descriptions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-i “msvcrt.dll!<em>cpy</em>”</td>
+      <td>Matches all functions with ‘cpy’ in its name, ONLY in msvcrt.dll</td>
+    </tr>
+    <tr>
+      <td>-i “<em>free</em>”</td>
+      <td>Matches all functions with ‘free’ in its name in ALL modules</td>
+    </tr>
+    <tr>
+      <td>-i “!<em>free</em>”</td>
+      <td>Identical to -i “<em>free</em>”</td>
+    </tr>
+    <tr>
+      <td>-i “gdi32.dll!”</td>
+      <td>Trace all functions in gdi32.dll (identical to -I “gdi32.dll”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note info">
+  <h5>frida-trace's working set and the order of inclusions and exclusions</h5>
+  <p>frida-trace has an internal concept of a "working set", i.e., a set of
+  "module:function" pairs whose handlers will be traced at runtime.  The
+  contents of the working set can be changed by an include / exclude command
+  line option (-I / -X / -i / -x).</p>
+  <p>It is important to understand that the order of the include / exclude
+  options is important.  Each such option works on the current state of the
+  working set, and different orderings of options can lead to
+  different results.  In other words, the include/exclude options are procedural
+  (i.e., order counts) rather than simply declarative.</p>
+  <p>For example, suppose we want to trace all "str*" and "mem*" functions in
+  all modules in a running process.  In our example, these functions are found
+  in  three modules: <i>ucrtbase.dll, ntdll.dll, and msvcrt.dll</i>.  To reduce the
+  noise, however, we do not want to trace any functions found in the msvcrt.dll
+  module.</p>
+  <p>We will describe three different option orders on the command line and
+  show that they produce different results.</p>
+  <ul>
+    <li><div style="font-family: monospace">-i "str*" -i "mem*" -X "msvcrt.dll"
+        </div></li>
+      <ul>
+        <li><div style="font-family: monospace">'-i "str*"'</div> matches 80
+            functions in 3 modules, working set has 80 entries</li>
+        <li><div style="font-family: monospace">'-i "mem*"'</div> matches 18
+            functions in 3 modules, working set has 98 entries</li>
+        <li><div style="font-family: monospace">'-X "msvcrt.dll"'</div> removes
+            the 28 "str" and 6 "mem" functions originating in msvcrt.dll,
+            <b>final working set has 64 entries</b>.</li>
+      </ul>
+    <li><div style="font-family: monospace">-i "str*" -X "msvcrt.dll" -i "mem*"
+        </div></li>
+      <ul>
+        <li><div style="font-family: monospace">'-i "str*"'</div> matches 80
+            functions in 3 modules, working set has 80 entries</li>
+        <li><div style="font-family: monospace">'-X "msvcrt.dll"'</div> removes
+            the 28 "str" functions originating in msvcrt.dll, working set has 52
+            entries.</li>
+        <li><div style="font-family: monospace">'-i "mem*"'</div> matches 18
+            functions in 3 modules including msvcrt.dll, <b>final working set
+            has 70 entries</b></li>
+      </ul>
+    <li><div style="font-family: monospace">-X "msvcrt.dll" -i "str*" -i "mem*"
+        </div></li>
+      <ul>
+        <li><div style="font-family: monospace">'-X "msvcrt.dll"'</div> tries to
+            remove the 28 "str" and 6 "mem" functions originating in msvcrt.dll.
+            Since the working set is empty, there is nothing to remove, working
+            set has 0 entries.</li>
+        <li><div style="font-family: monospace">'-i "str*"'</div> matches 80
+            functions in 3 modules, working set has 80 entries</li>
+        <li><div style="font-family: monospace">'-i "mem*"'</div> matches 18
+            functions in 3 modules, <b>final working set has 98 entries</b></li>
+      </ul>
+  </ul>
+</div>
+
+<h2 id="-a-include-function-offset-based">-a: include function (offset-based)</h2>
+
+<p>This option enables tracing functions whose names are not exported by their
+parent modules (e.g., a static C/C++ function).  This should not prevent you
+from tracing such functions, so long as you know the absolute offset of that
+function’s entry point.</p>
+
+<p>Example: <code class="language-plaintext highlighter-rouge">-a "libjpeg.so!0x4793c"</code></p>
+
+<p>In this example, the option’s value provides both the full name of the module
+(i.e., <code class="language-plaintext highlighter-rouge">libjpeg.so</code>) and the hex offset (<code class="language-plaintext highlighter-rouge">0x4793c</code>) of the function entry point
+within the module.</p>
+
+<p><code class="language-plaintext highlighter-rouge">frida-trace</code> will generate a JavaScript handler file for each function matched
+by the <code class="language-plaintext highlighter-rouge">-a</code> option.</p>
+
+<h2 id="-p-initialize-frida-trace-session-with-a-globally-accessible-json-object">-P: Initialize frida-trace session with a globally-accessible JSON object</h2>
+
+<p>This option enables assigning a JSON object to the <code class="language-plaintext highlighter-rouge">parameters</code> global variable.
+Your handlers can access this global variable, enabling you to dynamically
+change the handlers’ behavior by modifying the value of <code class="language-plaintext highlighter-rouge">-P</code> passed on the
+command line.</p>
+
+<p>The JSON object passed can be as complicated or extensive as you wish, so long
+as it is valid JSON.</p>
+
+<div class="note">
+  <h5>Example</h5>
+  <p>
+    In your session, you are tracing many functions.  At times you want all
+    handlers to print out their process ID.  Using the `-P` option, you can
+    enable a handler to decide whether or not to print the process ID.
+  </p>
+  <p>
+    First, decide on the JSON object format that notifies a handler whether it
+    should display the process ID.  Let's use the following format:
+
+    <br />
+    <br />
+    <div style="font-family: monospace; text-indent: 40px">
+      -P '{"displayPid": true}'
+    </div>
+    <br />
+
+    Note that this form is the one you might use under Linux (i.e., you can use
+    both single- and double-quotes on the command line).  Under Windows you can
+    only use double quotes, so you should escape the inner double quotes by
+    inserting <b>two</b> double quotes, like this:
+
+    <br />
+    <br />
+    <div style="font-family: monospace; text-indent: 40px">
+      -P "{""displayPid"": true}"
+    </div>
+    <br />
+
+    Frida-trace will assign your JSON object to the global JavaScript variable
+    "<i>parameters</i>".  Now, your handler can check the parameters.displayPid
+    variable to decide whether to print the process ID:
+
+    <br />
+    <br />
+
+    <code>{
+  onEnter(log, args, state) {
+    log('memcpy() [msvcrt.dll]');
+    if (parameters.displayPid) {
+      log(`Process ID: ${Process.id}`);
+    }
+  },
+
+  onLeave(log, retval, state) {
+  }
+}
+</code>
+
+    <br />
+  </p>
+</div>
+
+<h2 id="-s-initialize-frida-trace-session-with-javascript-code">-S: Initialize frida-trace session with JavaScript code</h2>
+
+<p>This option initializes your frida-trace session by executing one or more
+JavaScript code files of your choice, which may declare globally visible
+functions and add arbitrary data to the global “state” object.  When the “state”
+object is passed to any of your handlers, you have immediate access to anything
+you saved to it during session initialization.</p>
+
+<p>Uses of this powerful feature include initializing the frida-trace running
+environment before the session begins, and sharing finely-tuned and debugged
+JavaScript functions and data that can be invoked across different handlers and
+development projects.</p>
+
+<p>For a detailed explanation of how to use this powerful feature, consult the
+<a href="session-initialization-primer/index.html">session initialization primer</a>.</p>
+
+<h2 id="-d-decorate-add-module-name-to-log-tracing">-d, –decorate: add module name to log tracing</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">--decorate</code> option is relevant when <code class="language-plaintext highlighter-rouge">frida-trace</code> auto-generates JavaScript
+handler scripts.  By default, a handler’s <code class="language-plaintext highlighter-rouge">onEnter</code> function looks like this:</p>
+
+<p><code>onEnter(log, args, state) {
+  log('memcpy()');
+},
+</code></p>
+
+<p>The drawback is that, if the same function name exists in multiple modules,
+it will be difficult to differentiate between function traces.  The <code class="language-plaintext highlighter-rouge">--decorate</code>
+function instructs <code class="language-plaintext highlighter-rouge">frida-trace</code> to insert the module name in the default
+<code class="language-plaintext highlighter-rouge">onEnter</code> trace instruction:</p>
+
+<p><code>onEnter(log, args, state) {
+  log('memcpy() [msvcrt.dll]');
+},
+</code></p>
+
+          
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="section-nav">
+      <div class="left align-right">
+          
+            
+            
+            <a href="../frida-ps/index.html" class="prev">Back</a>
+          
+      </div>
+      <div class="right align-left">
+          
+            
+            
+            <a href="../frida-discover/index.html" class="next">Next</a>
+          
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+  <div class="grid">
+    <div class="unit whole align-right center-on-mobiles">
+      <div class="sponsored-by">
+        <h5>Sponsored by:</h5>
+        <a href="https://www.nowsecure.com">
+          <img src="../../img/nowsecure-logo.png" alt="NowSecure">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46880695-1']);
+    _gaq.push(['_setDomainName', 'https://frida.re']); // Multiple sub-domains
+    _gaq.push(['_setAllowLinker', true]); // Multiple TLDs
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+</body>
+</html>
