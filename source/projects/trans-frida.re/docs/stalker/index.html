@@ -3467,66 +3467,54 @@
               <i class="fa fa-pencil"></i>Improve this page</a>
           </div>
           <h1>Stalker</h1>
-          <h2 id="introduction">Introduction</h2>
+          <h2 id="introduction">介绍</h2>
 
-<p>Stalker is Frida’s code tracing engine. It allows threads to be followed,
-capturing every function, every block, even every instruction which is executed.
-A very good overview of the Stalker engine is provided
-<a href="https://medium.com/@oleavr/anatomy-of-a-code-tracer-b081aadb0df8">here</a> and we
-recommend that you read it carefully first. Obviously, the implementation is
-somewhat architecture specific, although there is much in common between them.
-Stalker currently supports the AArch64 architecture commonly found on mobile
-phones and tablets running Android or iOS, as well as the Intel 64 and IA-32
-architectures commonly found on desktops and laptops. This page intends to take
-things to the next level of detail, it dissects the ARM64 implementation of
-Stalker and explains in more detail exactly how it works. It is hoped that this
-may help future efforts to port Stalker to other hardware architectures.</p>
+<p>Stalker 是Frida的核心追踪引擎。它使得追踪线程，捕获所有函数，所有代码块，甚至执行的每个指令。
+  <a href="https://medium.com/@oleavr/anatomy-of-a-code-tracer-b081aadb0df8">这里</a>提供了一个不错的概览。我们强烈建议你先仔细阅读一遍。
+  很显然，其实现是很依赖具体架构的，不过也是有不少相同之处的。
+  Stalker 目前对 AArch64 有广泛的支持。该架构广泛应用于运行着Android或iOS的移动端手机和平板上。这就像Intel 64 和 IA-32架构更广泛的
+  应用于桌面端和笔记本端。而本篇文章会更详细的叙述这些细节，仔细剖析 ARM64 结构上 Stalker 的具体实现，并解释其究竟是如何运作的。
+  希望这篇文章对未来Stalker移植到其他硬件架构有所帮助。
+</p>
 
-<h2 id="disclaimer">Disclaimer</h2>
+<h2 id="disclaimer">声明</h2>
 
-<p>Whilst this article will cover a lot of the details of the inner workings of
-Stalker, it won’t cover back-patching in real detail. It is intended as a
-starting point to help others understand the technology and Stalker is
-fiendishly complicated enough without this! To be fair though, this complexity
-isn’t there without reason, it is there to minimize the overhead of what is an
-inherently expensive operation. Lastly, while this article will cover the key
-concepts of the implementation and will extract some critical parts of the
-implementation for a line-by-line analysis, there will be some last details of
-the implementation left for the reader to discover by reading the <a href="https://github.com/frida/frida-gum/blob/master/gum/backend-arm64/gumstalker-arm64.c">source
-code</a>.
-However, it is hoped it will prove to be a very useful head-start.</p>
+<p>本篇文章会讲到很多Stalker内部工作的细节，但并不会包含修补代码的具体细节。
+  本文章意图作为一个帮助你理解这项技术，而单单一个Stalker就足够复杂了。不过这种复杂并不是毫无来由的，正是这些复杂才极大降低了哪些昂贵的操作。
+  最后，这篇文章会讲解一些关键的概念，在一些重要逻辑上会逐行讲解代码。还有一些具体的细节，你可能需要阅读<a href="https://github.com/frida/frida-gum/blob/master/gum/backend-arm64/gumstalker-arm64.c">源码</a>。
+  总之，希望这篇文章能对你有帮助。</p>
 
-<h2 id="table-of-contents">Table of contents</h2>
+<h2 id="table-of-contents">目录</h2>
 
 <ol>
-  <li><a href="index.html#introduction">Introduction</a></li>
-  <li><a href="index.html#disclaimer">Disclaimer</a></li>
-  <li><a href="index.html#use-cases">Use Cases</a></li>
-  <li><a href="index.html#following">Following</a>
+  <li><a href="index.html#introduction">介绍</a></li>
+  <li><a href="index.html#disclaimer">声明</a></li>
+  <li><a href="index.html#use-cases">案例</a></li>
+  <li><a href="index.html#following">追踪</a>
     <ol>
       <li><a href="index.html#gum_stalker_follow_me">gum_stalker_follow_me</a></li>
       <li><a href="index.html#gum_stalker_follow">gum_stalker_follow</a></li>
     </ol>
   </li>
-  <li><a href="index.html#basic-operation">Basic Operation</a></li>
-  <li><a href="index.html#options">Options</a></li>
-  <li><a href="index.html#terminology">Terminology</a>
+  <li><a href="index.html#basic-operation">基础操作</a></li>
+  <li><a href="index.html#options">选项</a></li>
+  <li><a href="index.html#terminology">技术栈</a>
     <ol>
-      <li><a href="index.html#probes">Probes</a></li>
-      <li><a href="index.html#trust-threshold">Trust Threshold</a></li>
-      <li><a href="index.html#excluded-ranges">Excluded Ranges</a></li>
-      <li><a href="index.html#freezethaw">Freeze/Thaw</a></li>
-      <li><a href="index.html#call-instructions">Call Instructions</a></li>
-      <li><a href="index.html#frames">Frames</a></li>
-      <li><a href="index.html#transformer">Transformer</a></li>
-      <li><a href="index.html#callouts">Callouts</a></li>
-      <li><a href="index.html#eobeoi">EOB/EOI</a></li>
-      <li><a href="index.html#prologuesepilogues">Prologues/Epilogues</a></li>
-      <li><a href="index.html#counters">Counters</a></li>
+      <li><a href="index.html#probes">检测</a></li>
+      <li><a href="index.html#trust-threshold">信任阈值</a></li>
+      <li><a href="index.html#excluded-ranges">排除范围</a></li>
+      <li><a href="index.html#freezethaw">冻结/解冻</a></li>
+      <li><a href="index.html#call-instructions">调用指令</a></li>
+      <li><a href="index.html#frames">帧</a></li>
+      <li><a href="index.html#transformer">转换器</a></li>
+      <li><a href="index.html#callouts">标注</a></li>
+      <li><a href="index.html#eobeoi">结束符/结束指令</a></li>
+      <li><a href="index.html#prologuesepilogues">序言/尾声</a></li>
+      <li><a href="index.html#counters">计数器</a></li>
     </ol>
   </li>
-  <li><a href="index.html#slabs">Slabs</a></li>
-  <li><a href="index.html#blocks">Blocks</a></li>
+  <li><a href="index.html#slabs">内存块</a></li>
+  <li><a href="index.html#blocks">块</a></li>
   <li><a href="index.html#instrumenting-blocks">Instrumenting Blocks</a></li>
   <li><a href="index.html#helpers">Helpers</a>
     <ol>
@@ -3534,104 +3522,86 @@ However, it is hoped it will prove to be a very useful head-start.</p>
       <li><a href="index.html#last_stack_pop_and_go">last_stack_pop_and_go</a></li>
     </ol>
   </li>
-  <li><a href="index.html#context">Context</a></li>
+  <li><a href="index.html#context">上下文</a></li>
   <li><a href="index.html#context-helpers">Context Helpers</a></li>
-  <li><a href="index.html#readingwriting-context">Reading/Writing Context</a></li>
-  <li><a href="index.html#control-flow">Control flow</a></li>
+  <li><a href="index.html#readingwriting-context">读/写 上下文</a></li>
+  <li><a href="index.html#control-flow">控制流</a></li>
   <li><a href="index.html#gates">Gates</a></li>
-  <li><a href="index.html#virtualize-functions">Virtualize functions</a>
+  <li><a href="index.html#virtualize-functions">函数虚拟化</a>
     <ol>
       <li><a href="index.html#gum_exec_block_virtualize_branch_insn">gum_exec_block_virtualize_branch_insn</a></li>
       <li><a href="index.html#gum_exec_block_virtualize_ret_insn">gum_exec_block_virtualize_ret_insn</a></li>
     </ol>
   </li>
   <li><a href="index.html#emitting-events">Emitting events</a></li>
-  <li><a href="index.html#unfollow-and-tidy-up">Unfollow and tidy up</a></li>
-  <li><a href="index.html#miscellaneous">Miscellaneous</a>
+  <li><a href="index.html#unfollow-and-tidy-up">取消追踪与清理</a></li>
+  <li><a href="index.html#miscellaneous">杂项</a>
     <ol>
       <li><a href="index.html#exclusive-store">Exclusive Store</a></li>
       <li><a href="index.html#exhausted-blocks">Exhausted Blocks</a></li>
-      <li><a href="index.html#syscall-virtualization">Syscall Virtualization</a></li>
-      <li><a href="index.html#pointer-authentication">Pointer Authentication</a></li>
+      <li><a href="index.html#syscall-virtualization">系统调用虚拟化</a></li>
+      <li><a href="index.html#pointer-authentication">指针验证</a></li>
     </ol>
   </li>
 </ol>
 
-<h2 id="use-cases">Use Cases</h2>
+<h2 id="use-cases">案例</h2>
 
-<p>To start to understand the implementation of Stalker, we must first understand
-in detail what it offers to the user. Whilst Stalker can be invoked directly
-through its native Gum interface, most users will instead call it via the
-<a href="../javascript-api/index.html#stalker">JavaScript API</a> which will call
-these Gum methods on their behalf. The <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/frida-gum/index.d.ts">TypeScript type
-definitions</a>
-for Gum are well commented and provide a little more detail still.</p>
+<p>为了更好的理解Stalker的实现，我们首先要理解它提供给使用者的接口。Stalker可以从原生Gum接口直接调用，但大多数用户还是更习惯通过
+  <a href="../javascript-api/index.html#stalker">JavaScript接口</a>调用Gum方法。这里很推荐Gum的<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/frida-gum/index.d.ts">TypeScript 的类型定义 </a>。
+</p>
 
-<p>The main API to Stalker from JavaScript is:</p>
+<p>JavaScript 调用 Stalker 的主要接口是：</p>
 
 <figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">Stalker</span><span class="p">.</span><span class="nx">follow</span><span class="p">([</span><span class="nx">threadId</span><span class="p">,</span> <span class="nx">options</span><span class="p">])</span></code></pre></figure>
 
 <blockquote>
-  <p>start stalking <code class="language-plaintext highlighter-rouge">threadId</code> (or the current thread if omitted)</p>
+  <p>stalking起始线程id <code class="language-plaintext highlighter-rouge">threadId</code> (默认为当前线程id)</p>
 </blockquote>
 
-<p>Let’s consider when these calls may be used. Stalking where you provide a thread
-ID is likely to be used where you have a thread of interest and are wondering
-what it is doing. Perhaps it has an interesting name? Thread names can be found
-using <code class="language-plaintext highlighter-rouge">cat /proc/PID/tasks/TID/comm</code>. Or perhaps you walked the threads in your
-process using the Frida JavaScript API <code class="language-plaintext highlighter-rouge">Process.enumerateThreads()</code> and then
-used a NativeFunction to call:</p>
+<p>我们先思考一下什么时候会使用这些调用。通常会因为你对某个线程感到好奇，想知道它在干啥。也许是单纯这个进程的名字很有意思？线程名可以使用
+<code class="language-plaintext highlighter-rouge">cat /proc/PID/tasks/TID/comm</code>查看。
+又或者你在使用 Frida 的 JavaScript 接口<code class="language-plaintext highlighter-rouge">Process.enumerateThreads()</code>
+遍历线程的时候，调用了一个原生函数：
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">pthread_getname_np</span><span class="p">(</span><span class="n">pthread_t</span> <span class="kr">thread</span><span class="p">,</span>
                        <span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">);</span></code></pre></figure>
 
-<p>Using this along with the
-<a href="../javascript-api/index.html#thread">Thread.backtrace()</a> to dump
-thread stacks can give you a really good overview of what a process is doing.</p>
+<p>这个函数和
+<a href="../javascript-api/index.html#thread">Thread.backtrace()</a> 一起用来转储线程堆栈，分析这个堆栈，你可以很好的知晓这个进程在干啥。
+</p>
 
-<p>The other scenario where you might call <code class="language-plaintext highlighter-rouge">Stalker.follow()</code> is perhaps from a
-function which has been
-<a href="../javascript-api/index.html#interceptor">intercepted</a> or replaced. In
-this scenario, you have found a function of interest and you want to understand
-how it behaves, you want to see which functions or perhaps even code blocks the
-thread takes after a given function is called. Perhaps you want to compare the
-direction the code takes with different input, or perhaps you want to modify the
-input to see if you can get the code to take a particular path.</p>
+<p>另一个可能需要调用<code class="language-plaintext highlighter-rouge">Stalker.follow()</code> 的场景是，
+  你已经 <a href="../javascript-api/index.html#interceptor">植入</a> 或替换了目标函数。
+  在这个场景里，你已经找到了你感兴趣的函数，想知道该函数是如何运作的。你想查看某个函数调用后，哪些函数，甚至哪些代码块被调用了。
+  也许你想比较代码在接受不同输入后的不同反应，也许你想修改输入来看看是否能让代码按照特定的逻辑运行。
+  </p>
 
-<p>In either of these scenarios, although Stalker has to work slightly differently
-under the hood, it is all managed by the same simple API for the user,
+<p>在这些场景里，Stalker工作的方式会有些许的不同，但他们的调用方式都是一致的，
 <code class="language-plaintext highlighter-rouge">Stalker.follow()</code>.</p>
 
-<h2 id="following">Following</h2>
+<h2 id="following">追踪</h2>
 
-<p>When the user calls <code class="language-plaintext highlighter-rouge">Stalker.follow()</code>, under the hood, the JavaScript engine
-calls through to either <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code> to follow the current thread,
-or <code class="language-plaintext highlighter-rouge">gum_stalker_follow(thread_id)</code> to follow another thread in the process.</p>
+<p>当用户调用<code class="language-plaintext highlighter-rouge">Stalker.follow()</code>时, 在代码之下, JavaScript 引擎
+会通过调用 <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code> 来追踪当前线程，
+或调用 <code class="language-plaintext highlighter-rouge">gum_stalker_follow(thread_id)</code> 来追踪当前进程的其他线程。</p>
 
 <h3 id="gum_stalker_follow_me">gum_stalker_follow_me</h3>
 
-<p>In the case of <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code>, the Link Register is used to determine
-the instruction at which to start stalking. In AArch64 architecture, the Link
-Register (LR) is set to the address of the instruction to continue execution
-following the return from a function call, it is set to the address of the next
-instruction by instructions such as BL and BLR. As there is only one link
-register, if the called function is to call another routine, then the value of
-LR must be stored (typically this will be on the stack). This value will
-subsequently be loaded back from the stack into a register and the RET
-instruction used to return control back to the caller.</p>
+<p>使用 <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code>时,
+  链接寄存器会决定从哪里开始追踪。在 AArch64 架构里，链接寄存器 (LR) 用于设置继续执行的指令的地址。由于只有一个链接寄存器，当另一个函数被调用时，
+  原先的LR的值需要暂存下来(通常存在栈上)。当RET指令执行后，这些暂存的值会随着函数返回，逐步从栈上加载回来。
+</p>
 
-<p>Let’s look at the code for <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code>. This is the function
-prototype:</p>
+<p>先看 <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code>的代码。代码原型如下：</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">GUM_API</span> <span class="kt">void</span> <span class="nf">gum_stalker_follow_me</span> <span class="p">(</span><span class="n">GumStalker</span> <span class="o">*</span> <span class="n">self</span><span class="p">,</span>
     <span class="n">GumStalkerTransformer</span> <span class="o">*</span> <span class="n">transformer</span><span class="p">,</span> <span class="n">GumEventSink</span> <span class="o">*</span> <span class="n">sink</span><span class="p">);</span></code></pre></figure>
 
-<p>So we can see the function is called by the QuickJS or V8 runtime passing 3
-arguments. The first is the Stalker instance itself. Note that there may be
-multiple of these if multiple scripts are loaded at once. The second is a
-transformer, this can be used to transform the instrumented code as it is being
-written (more on this later). The last parameter is the event sink, this is
-where the generated events are passed as the Stalker engine runs.</p>
+<p>我们可以看到QuickJS或V8运行时在调用该函数时传递了三个参数。第一个参数是 Stalker 实例本身。需要注意的是，若果有多个脚本同时注入，那么可能会有多个 Stalker 实例存在。第二个参数是一个转换器，该转换器用来将注入代码转换为如同原先写上去的一样（这个后面会讨论）
+  最后一个参数是一个时间接收器，当Stalker引擎运行时，生成的事件会传递到这里。
+</p>
 
 <figure class="highlight"><pre><code class="language-asm" data-lang="asm">#ifdef __APPLE__
   .globl _gum_stalker_follow_me
@@ -3652,37 +3622,33 @@ gum_stalker_follow_me:
   ldp x29, x30, [sp], 16
   br x0</code></pre></figure>
 
-<p>We can see that the first instruction STP stores a pair of registers onto the
-stack. We can notice the expression <code class="language-plaintext highlighter-rouge">[sp, -16]!</code>. This is a
-<a href="https://thinkingeek.com/2017/05/29/exploring-aarch64-assembler-chapter-8/">pre-decrement</a>
-which means that the stack is advanced first by 16 bytes, then the two 8 byte
-register values are stored. We can see the corresponding instruction
-<code class="language-plaintext highlighter-rouge">ldp x29, x30, [sp], 16</code> at the bottom of the function. This is restoring these
-two register values from the stack back into the registers. But what are these
-two registers?</p>
+<p>我们可以看到，第一个指令 STP 将一组寄存器的值存储到了栈上。注意表达式<code class="language-plaintext highlighter-rouge">[sp, -16]!</code>. 
+  这是一个
+<a href="https://thinkingeek.com/2017/05/29/exploring-aarch64-assembler-chapter-8/">自减操作</a>，也就是栈顶先压进去16字节的空间，再存储2个8字节的寄存器值。
+我们可以在函数底部看到相对的指令:
+<code class="language-plaintext highlighter-rouge">ldp x29, x30, [sp], 16</code>。这里是将原本存储在栈上的连个寄存器值重新恢复到寄存器上。
+不过这俩寄存器是干啥用的？
+</p>
 
-<p>Well, <code class="language-plaintext highlighter-rouge">X30</code> is the Link Register and <code class="language-plaintext highlighter-rouge">X29</code> is the Frame Pointer register. Recall
-that we must store the link register to the stack if we wish to call another
-function as this will cause it to be overwritten and we need this value in order
-that we can return to our caller.</p>
+<p><code class="language-plaintext highlighter-rouge">X30</code> 是链接寄存器，而 <code class="language-plaintext highlighter-rouge">X29</code> 
+  是帧指针寄存器。回想一下，在调用另一个函数之前，我们必须先把链接寄存器原先的值存储到栈上，在函数调用结束并返回调用者那里后，我们还需要恢复该值。
+</p>
 
-<p>The frame pointer is used to point to the top of the stack at the point a
-function was called so that all the stack passed arguments and the stack based
-local variables can be access at a fixed offset from the frame pointer. Again we
-need to save and restore this as each function will have its value for this
-register, so we need to store the value which our caller put in there and
-restore it before we return. Indeed you can see in the next instruction
-<code class="language-plaintext highlighter-rouge">mov x29, sp</code> that we set the frame pointer to the current stack pointer.</p>
+<p>帧指针用来指明函数调用时的栈顶，而所有函数调用时传递的参数和栈变量都会以此为基准，分配一个固定的偏移量。
+  和前面类似，我们同样需要保存，并在必要的时候恢复这个值，原因是每个函数调用里，该寄存器的值都不一样。我们需要在开始调用时，将其值保存起来，并在返回后恢复。
+  你可以看到接下来的指令
+<code class="language-plaintext highlighter-rouge">mov x29, sp</code>
+  ，我们设置当前栈指针的值为帧指针值。
+</p>
 
-<p>We can see the next instruction <code class="language-plaintext highlighter-rouge">mov x3, x30</code>, puts the value of the link
-register into X3. The first 8 arguments on AArch64 are passed in the registers
-X0-X7. So this is being put into the register used for the fourth argument. We
-then call (branch with link) the function <code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code>. So we
-can see that we pass the first three arguments in X0-X2 untouched, so that
-<code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code> receives the same values we were called with.
-Finally, we can see after this function returns, we branch to the address we
-receive as its return value. (In AArch64 the return value of a function is
-returned in X0).</p>
+<p>继续往下看，下条指令 <code class="language-plaintext highlighter-rouge">mov x3, x30</code>, 将链接寄存器的值存储到 X3内。
+调用函数时，前8个参数会分别保存到 X0-X7 这8个寄存器内。因此这里是使用了前4个寄存器保存参数。然后我们调用(branch with link)了函数
+<code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code>. 
+可以发现，前三个用 X0-X2 传递的三个参数没有任何修改，因此
+<code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code>
+接受的参数和之前的那个完全相同。
+最后，该函数返回时，我们让其返回到作为第四个参数的位置上。(在 AArch64 上，函数返回值存储在X0上)。
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">gpointer</span>
 <span class="n">_gum_stalker_do_follow_me</span> <span class="p">(</span><span class="n">GumStalker</span> <span class="o">*</span> <span class="n">self</span><span class="p">,</span>
@@ -3692,10 +3658,11 @@ returned in X0).</p>
 
 <h3 id="gum_stalker_follow">gum_stalker_follow</h3>
 
-<p>This routine has a very similar prototype to <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code>, but has
-the additional <code class="language-plaintext highlighter-rouge">thread_id</code> parameter. Indeed, if asked to follow the current
-thread, then it will call that function. Let’s look at the case when another
-thread ID is specified though.</p>
+<p>该函数原型和 <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code>类似,
+  但拥有一个额外的参数
+<code class="language-plaintext highlighter-rouge">thread_id</code>。 若该值为当前线程id，那么就会调用前面的那个函数。
+现在看一下另一个线程id提供时会发生什么。
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">gum_stalker_follow</span> <span class="p">(</span><span class="n">GumStalker</span> <span class="o">*</span> <span class="n">self</span><span class="p">,</span>
@@ -3719,14 +3686,13 @@ thread ID is specified though.</p>
   <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
-<p>We can see that this calls the function <code class="language-plaintext highlighter-rouge">gum_process_modify_thread()</code>. This
-isn’t part of Stalker, but part of Gum itself. This function takes a callback
-with a context parameter to call passing the thread context structure. This
-callback can then modify the <code class="language-plaintext highlighter-rouge">GumCpuContext</code> structure and
-<code class="language-plaintext highlighter-rouge">gum_process_modify_thread()</code> will then write the changes back. We can see the
-context structure below, as you can see it contains fields for all of the
-registers in the AArch64 CPU. We can also see below the function prototype of
-our callback.</p>
+<p>我们可以看到首先调用了函数 <code class="language-plaintext highlighter-rouge">gum_process_modify_thread()</code>.
+  这个函数不属于 Stalker ，而是 Gum 自己的函数。这个函数接受一个回调函数作为其参数，而该回调函数接受一个上下文参数来传递线程上下文。
+  该回调函数可以修改
+<code class="language-plaintext highlighter-rouge">GumCpuContext</code> 结构，紧接着
+<code class="language-plaintext highlighter-rouge">gum_process_modify_thread()</code> 会将变动写回。
+我们会在后面看到这个上下文结构，该结构包含了 AArch64 CPU 全部寄存器值。后面我们还会进一步介绍回调函数的原型。
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="n">GumArm64CpuContext</span> <span class="n">GumCpuContext</span><span class="p">;</span>
 
@@ -3746,17 +3712,16 @@ our callback.</p>
                     <span class="n">GumCpuContext</span> <span class="o">*</span> <span class="n">cpu_context</span><span class="p">,</span>
                     <span class="n">gpointer</span> <span class="n">user_data</span><span class="p">)</span></code></pre></figure>
 
-<p>So, how does <code class="language-plaintext highlighter-rouge">gum_process_modify_thread()</code> work? Well it depends on the
-platform. On Linux (and Android) it uses the <code class="language-plaintext highlighter-rouge">ptrace</code> API (the same one used by
-GDB) to attach to the thread and read and write registers. But there are a host
-of complexities. On Linux, you cannot ptrace your own process (or indeed any in
-the same process group), so Frida creates a clone of the current process in its
-own process group and shares the same memory space. It communicates with it
-using a UNIX socket. This cloned process acts as a debugger, reading the
-registers of the original target process and storing them in the shared memory
-space and then writing them back to the process on demand. Oh and then there is
-<code class="language-plaintext highlighter-rouge">PR_SET_DUMPABLE</code> and <code class="language-plaintext highlighter-rouge">PR_SET_PTRACER</code> which control the permissions of who is
-allowed to ptrace our original process.</p>
+<p>所以，函数 <code class="language-plaintext highlighter-rouge">gum_process_modify_thread()</code> 究竟是怎么工作的?
+  这取决于具体的平台。
+  在 Linux (和 Android) 上，该函数使用 <code class="language-plaintext highlighter-rouge">ptrace</code> 接口 
+  (也就是 GDB 用的那个) 来附加到线程并读写寄存器。不过还是有一些其他麻烦。
+   But there are a host of complexities.
+   在 Linux上，你不能 ptrace 自己的进程（更准确的说不能ptrace相同进程组的进程），因此Frida会创建一个当前进程的克隆进程，将该克隆进程放到Frida的进程组中，然后共享内存空间。
+   他们之间使用 UNIX 套接字进行交流。这个克隆进程就相当于一个调试器，从原始的目标进程中读取寄存器，然后将其保存到共享的内存空间内，并在需要的时候写回进程。对了，有两个环境变量
+<code class="language-plaintext highlighter-rouge">PR_SET_DUMPABLE</code> 和 <code class="language-plaintext highlighter-rouge">PR_SET_PTRACER</code>
+用来控制ptrace原进程的权限。
+</p>
 
 <p>Now you will see that the functionality of <code class="language-plaintext highlighter-rouge">gum_stalker_infect()</code> is actually
 quite similar to that of <code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code> we mentioned earlier.
