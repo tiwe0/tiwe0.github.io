@@ -2,6 +2,8 @@
 title: 理解Flask架构
 date: 2023-11-27 14:42:25
 tags:
+categories:
+- 笔记
 ---
 
 ## WSGI 协议

@@ -3723,19 +3723,20 @@ gum_stalker_follow_me:
 用来控制ptrace原进程的权限。
 </p>
 
-<p>Now you will see that the functionality of <code class="language-plaintext highlighter-rouge">gum_stalker_infect()</code> is actually
-quite similar to that of <code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code> we mentioned earlier.
-Both function carry out essentially the same job, although
-<code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code> is running on the target thread, but
-<code class="language-plaintext highlighter-rouge">gum_stalker_infect()</code> is not, so it must write some code to be called by the
+<p>现在你可以看出来函数<code class="language-plaintext highlighter-rouge">gum_stalker_infect()</code> 的功能和我们早前提到的
+<code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code> 很相似。
+两个函数都做着相同的工作，不过
+<code class="language-plaintext highlighter-rouge">_gum_stalker_do_follow_me()</code> 
+运行在目标线程上，而
+<code class="language-plaintext highlighter-rouge">gum_stalker_infect()</code> 不是,
+ so it must write some code to be called by the
 target thread using the
 <a href="https://github.com/frida/frida-gum/blob/master/gum/arch-arm64/gumarm64writer.c">GumArm64Writer</a>
 rather than calling functions directly.</p>
 
-<p>We will cover these functions in more detail shortly, but first we need a little
-more background.</p>
+<p>我们稍后回更详细的介绍这些函数的细节，在此之前，我们先做一些必要的背景说明。 </p>
 
-<h2 id="basic-operation">Basic Operation</h2>
+<h2 id="basic-operation">基础操作</h2>
 
 <p>Code can be thought of as a series of blocks of instructions (also known as
 basic blocks). Each block starts with an optional series of instructions (we may

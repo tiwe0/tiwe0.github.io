@@ -2,6 +2,8 @@
 title: 理解pandas架构
 date: 2023-11-27 14:48:02
 tags:
+categories:
+- 笔记
 ---
 
 ## 前言

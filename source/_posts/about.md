@@ -16,7 +16,7 @@ Github: [tiwe0](https://tiwe0.github.com)
 邮箱: contact@ivory.cafe
 
 编码: 精通python, 熟悉R, C, js, lisp, java, 单片机, 逆向分析以及hook
-框架: 熟悉flask, fastapi等web框架；熟悉scrapy爬虫框架；熟悉vue前段框架。
+框架: 熟悉flask, fastapi等web框架；熟悉scrapy爬虫框架；熟悉vue前端框架。
 工程: web 前后端, 垂直爬虫
 数学: 机器学习, 统计机器学习, 深度学习算法
 英语: 六级

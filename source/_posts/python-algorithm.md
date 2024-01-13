@@ -2,6 +2,8 @@
 title: 基于python的算法实现
 date: 2023-11-27 14:14:59
 tags:
+categories:
+- 笔记
 ---
 
 # 定式

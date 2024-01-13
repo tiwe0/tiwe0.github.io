@@ -3,6 +3,8 @@ title: 理解汇编
 date: 2023-12-31 16:32:00
 tags:
 published: false
+categories:
+- 笔记
 ---
 
 基于 Mac + gcc + clang
