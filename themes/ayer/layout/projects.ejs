@@ -1,0 +1,16 @@
+<section class="outer">
+    <% if (config.projects.length){ %>
+        <h1 calss="page-type-title">项目</h1>
+        <div class="projects-container" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <% for (let i=0; i < config.projects.length; i++){ %>
+            <div class="project-box" style="display: flex; margin: 5px; flex-direction: column; justify-content: center; align-items: center; flex: 1 0 calc(50% - 10px); box-sizing: content-box;">
+                <iframe class="project-url" src="<%= config.projects[i].url %>"></iframe>
+                <a href="<%= config.projects[i].url %>">
+                    <%= config.projects[i].name %>
+                </a>
+            </div>
+            <% } %>
+        <% } %>
+
+        </div>
+</section>
