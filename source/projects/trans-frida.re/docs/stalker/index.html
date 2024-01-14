@@ -3738,234 +3738,149 @@ rather than calling functions directly.</p>
 
 <h2 id="basic-operation">基础操作</h2>
 
-<p>Code can be thought of as a series of blocks of instructions (also known as
-basic blocks). Each block starts with an optional series of instructions (we may
-have two consecutive branch statements) which run in sequence and ends when we
-encounter an instruction which causes (or can cause) execution to continue with
-an instruction other than the one immediately following it in memory.</p>
+<p>代码的本质是一系列的指令块。每个块通常会以某种特定的指令序列作为开始（比如两个连续的分支跳转语句），然后逐条指令按顺序执行，
+  直到遇到某些跳转指令。</p>
 
-<p>Stalker works on one block at a time. It starts with either the block after the
-return to the call to <code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code> or the block of code to which
-the instruction pointer of the target thread is pointing when
-<code class="language-plaintext highlighter-rouge">gum_stalker_follow()</code> is called.</p>
+<p>Stalker 每次以一个代码块为单位进行工作。Stalker 会在调用<code class="language-plaintext highlighter-rouge">gum_stalker_follow_me()</code>返回后的位置上的代码块上工作，
+  或在<code class="language-plaintext highlighter-rouge">gum_stalker_follow()</code>调用后，在目标线程的指令寄存器指向的代码块上工作。 </p>
 
-<p>Stalker works by allocating some memory and writing to it a new instrumented
-copy of the original block. Instructions may be added to generate events, or
-carry out any of the other features the Stalker engine offers. Stalker must also
-relocate instructions as necessary. Consider the following instruction:</p>
+<p>Stalker 先拷贝原始代码块，插桩后，将插桩代码写入新分配的内存中。插入指令时可能会生成一些事件，或者其他Stalker引擎提供的特性。
+  必要时，Stalker需要重定位指令。比如下面的指令：
+</p>
 
 <blockquote>
   <p>ADR
-Address of label at a PC-relative offset.</p>
+代码块标签相对 PC寄存器 的地址</p>
 
   <p>ADR  Xd, label</p>
 
-  <p>Xd
-Is the 64-bit name of the general-purpose destination
-register, in the range 0 to 31.</p>
+  <p>Xd 用来指代 64 位计算机上的通用寄存器，范围从0到31.</p>
 
-  <p>label
-Is the program label whose address is to be calculated.
-It is an offset from the address of this instruction,
-in the range ±1MB.</p>
+  <p>label (标签) 是程序标签，其地址是相对当前指令的偏移量，范围是±1MB。</p>
 </blockquote>
 
-<p>If this instruction is copied to a different location in memory and executed,
-then because the address of the label is calculated by adding an offset to the
-current instruction pointer, then the value would be different. Fortunately, Gum
-has a
-<a href="https://github.com/frida/frida-gum/blob/master/gum/arch-arm64/gumarm64relocator.c">Relocator</a>
-for just this purpose which is capable of modifying the instruction given its
-new location so that the correct address is calculated.</p>
+<p>若该指令被拷贝到内存的其他位置并执行，那么由于标签的地址是由当前地址加上偏移量计算得来，那么拷贝后的代码计算出来的地址和原始值必定不同。
+  不过没关系，Gum提供了一个重定位器<a href="https://github.com/frida/frida-gum/blob/master/gum/arch-arm64/gumarm64relocator.c">Relocator</a>。
+  重定位器的就是用来修复类似地址的专用程序。
+</p>
 
-<p>Now, recall we said that Stalker works one block at a time. How, then do we
-instrument the next block? We remember also that each block also ends with a
-branch instruction, well if we modify this branch to instead branch back into
-the Stalker engine, but ensure we store the destination of where the branch was
-intending to end up, we can instrument the next block and re-direct execution
-there instead. This same simple process can continue with one block after the
-next.</p>
+<p>我们前面提到，Stalker每次以一个代码块为单位工作。那么，我们如何给下一个代码块进行插桩呢？前面我们提到了，每个代码块都是以
+  一个分支跳转指令作为结束。那么也就是说，如果我们现将原先的分支保存下来，然后用一个新的跳转回Stalker引擎的分支跳转来替换掉之前的分支。
+  这样我们就可以给下一个代码块进行插桩。同样的，这个过程可以不断追踪下去。
+</p>
 
-<p>Now, this process can be a little slow, so there are a few optimizations which
-we can apply. First of all, if we execute the same block of code more than once
-(e.g. a loop, or maybe just a function called multiple times) we don’t have to
-re-instrument it all over again. We can just re-execute the same instrumented
-code. For this reason, a hashtable is kept of all of the blocks which we have
-encountered before and where we put the instrumented copy of the block.</p>
+<p>不过这个过程会有一些慢，在有些情况下，我们可以做一些优化。首先，如果我们需要反复运行同一个代码块（比如循环，或单纯的多次调用同一个代码块）时，
+  我们不用每次都重新插桩再运行。我们可以只插桩一次，然后反复执行插桩后的代码。因此，我们需要一个记录所有遇到的代码块的哈希表，当我们进入一个代码块时，
+  我们会首先查询该表，尝试寻找已经插桩的代码。
+</p>
 
-<p>Secondly, when a call instruction is encountered, after emitting the
-instrumented call, we then emit a landing pad which we can return to without
-having to re-enter Stalker. Stalker builds a side-stack, using <code class="language-plaintext highlighter-rouge">GumExecFrame</code>
-structures which record the true return address (<code class="language-plaintext highlighter-rouge">real_address</code>) and this
-landing pad (<code class="language-plaintext highlighter-rouge">code_address</code>). When a function returns, we emit code that will
-check the return address in the side-stack against the <code class="language-plaintext highlighter-rouge">real_address</code> and if it
-matches, it can simply return to the <code class="language-plaintext highlighter-rouge">code_address</code> without re-entering the
-runtime. This landing pad initially will contain code which enters the Stalker
-engine to instrument the next block, but it can later be backpatched to branch
-directly to this block. This means that the entire return sequence can be
-handled without the expense of entering and leaving Stalker.</p>
+<p>其次，当我们遇到一个调用指令时，在发射一个插桩后的调用后，我们还会发出一个降落点，这样我们可以在不返回Stalker的情况下返回调用。
+  Stalker内置了一个辅助栈，使用<code class="language-plaintext highlighter-rouge">GumExecFrame</code>结构来记录返回地址(<code class="language-plaintext highlighter-rouge">real_address</code>)
+  和降落地址(<code class="language-plaintext highlighter-rouge">code_address</code>)。
+  当函数返回后，我们会将返回地址与辅助栈里的<code class="language-plaintext highlighter-rouge">real_address</code>进行比对，如果匹配，那么
+  函数就直接返回到对应的<code class="language-plaintext highlighter-rouge">code_address</code>，而不用重新进入运行时。
+  该降落点包含进入Stalker引擎，继续插桩下一块代码块的代码，同时该降落点后续可以修复，使其直接返回原代码块。
+  换句话说，整个函数返回地址序列在处理的时候，都可以避免进入和离开Stalker的开销。
+</p>
 
-<p>If the return address doesn’t match that stored the <code class="language-plaintext highlighter-rouge">real_address</code> of the
-<code class="language-plaintext highlighter-rouge">GumExecFrame</code>, or we run out of space in the side-stack, we simply start
-building a new one again from scratch. We need to preserve the value of LR
-whilst the application code is executing so that the application cannot use this
-to detect the presence of Stalker (anti-debugging) or in case it is using it for
-any other purpose besides simply returning (e.g. to reference inline data in the
-code section). Also, we want Stalker to be able to unfollow at any time, so we
-don’t want to be having to go back up our stack correcting LR values which we
-have modified along the way.</p>
+<p>若返回地址不匹配任何存储在<code class="language-plaintext highlighter-rouge">GumExecFrame</code>的<code class="language-plaintext highlighter-rouge">real_address</code>，
+  或者我们用光了辅助栈的空间，我们就直接构建一个新的辅助栈即可。我们需要再程序代码执行时保存LR的值，以防止程序检测到Stalker（反调试）的存在，或者
+  是其他非常规返回（比如代码节中对內联数据的饮用）。此外，我们还想让Stalker可以在任何时刻停止追踪，我们不想一路备份回我们修改的LR值。
+</p>
 
-<p>Finally, whilst we always replace branches with calls back to Stalker to
-instrument the next block, depending on the configuration of
-<code class="language-plaintext highlighter-rouge">Stalker.trustThreshold</code>, we may <em>backpatch</em> such instrumented code to replace
-the call with a direct branch to the next instrumented block instead.
-Deterministic branches (e.g. the destination is fixed and the branch is not
-conditional) are simple, we can just replace the branch to Stalker with one to
-the next block. But we can deal with conditional branches too, if we instrument
-both blocks of code (the one if the branch is taken and the one if it isn’t).
-Then we can replace the original conditional branch with one conditional branch
-which directs control flow to instrumented version of the block encountered when
-the branch was taken, followed by an unconditional branch to the other
-instrumented block. We can also deal partially with branches where the target is
-not static. Say our branch is something like:</p>
+<p>最后一点，前面我们会将每个分支跳转指令替换为返回Stalker的代码，以便对下一个代码块进行插桩。但是现在，我们会根据
+<code class="language-plaintext highlighter-rouge">Stalker.trustThreshold</code>的配置，尝试<em>修补</em>已插桩的代码，
+将其直接分支跳转替换成下一个插桩代码块。确定性的分支跳转（比如跳转点是固定值，而且跳转是非条件性的）比较简单，我们直接将跳转回Stalker的分支替换为跳转到下一个代码块的分支。
+不过，我们也可以处理条件分支，比如我们可以同时给两个分支插桩（其中一个会跳转，另一个不会）。然后我们将原始的条件分支替换为另一个条件分支，
+这个新的条件分支直接控制代码流，将其跳转到已遇到的代码的插桩版本。另一个分支同样也是插桩后的版本。当目标分支不是静态分支时，我们也可以进行部分处理。
+比如这样的分支：
+</p>
 
 <figure class="highlight"><pre><code class="language-asm" data-lang="asm">br x0</code></pre></figure>
 
-<p>This sort of instruction is common when calling a function pointer, or class
-method. Whilst the value of X0 can change, quite often it will actually always
-be the same. In this case, we can replace the final branch instruction with code
-which compares the value of X0 against our known function, and if it matches
-branches to the address of the instrumented copy of the code. This can then be
-followed by an unconditional branch back to the Stalker engine if it doesn’t
-match. So if the value of the function pointer say is changed, then the code
-will still work and we will re-enter Stalker and instrument wherever we end up.
-However, if as we expect it remains unchanged then we can bypass the Stalker
-engine altogether and go straight to the instrumented function.</p>
+<p>调用函数指针或者类方法时，这种形式的指令非常常见。理论上来说 X0 的值时变化的，但实际情况下大多数时候其值是不变的。
+  这种情况下，我们可以根据运行时实际的分支指令将 X0 值 和我们已知的函数进行对比，如果匹配，那么直接跳转到对应的已插桩代码地址。
+如果不匹配，那么直接跳转回Stalker引擎。因此，若函数指针发生了变化，那么代码依旧可以正常运行，因为此时我们重新返回Stalker，然后插桩。
+不过如果函数指针按照我们设想的，没有变化，那么就可以直接跳过Stalker引擎，直接运行已插桩代码。</p>
 
-<h2 id="options">Options</h2>
+<h2 id="options">可选项</h2>
 
-<p>Now let’s look at the options when we follow a thread with Stalker. Stalker
-generates events when a followed thread is being executed, these are placed onto
-a queue and flushed either periodically or manually by the user. This isn’t done
-by Stalker itself, but the <code class="language-plaintext highlighter-rouge">EventSink::process</code> vfunc as re-entering the
-JavaScript runtime to process events one at a time would be prohibitively
-expensive. The size and time period can be configured by the options. Events can
-be generated on a per-instruction basis either for calls, returns or all
-instructions. Or they can be generated on a block basis, either when a block is
-executed, or when it is instrumented by the Stalker engine.</p>
+<p>现在我们看一下使用Stalker跟踪线程时的一些可选配置。当被追踪线程执行时，Stalker会生成一系列事件，这些事件会放到一个队列中，然后周期性地，或由用户手动的冲刷。
+  这个工作不属于Stalker，而是由<code class="language-plaintext highlighter-rouge">EventSink::process</code>虚函数在重新进入JavaScript运行时，
+  处理事件时负责的，而这一行为的开销很大。该队列的大小和刷新周期可以通过选项进行配置。以指令为基础，事件会在每个指令的调用和返回时产生；以代码块为基础，事件会在每个代码块执行时，
+  或者插桩时，由Stalker引擎产生。
+</p>
 
-<p>We can also provide one of two callbacks <code class="language-plaintext highlighter-rouge">onReceive</code> or <code class="language-plaintext highlighter-rouge">onCallSummary</code>. The
-former will quite simply deliver a binary blob containing the raw events
-generated by Stalker, with events in the order that they were generated in.
-(<code class="language-plaintext highlighter-rouge">Stalker.parse()</code> can be used to turn it into a JS array of tuples representing
-the events.). The second aggregates these results simply returning a count of
-times each function was called. This is more efficient than <code class="language-plaintext highlighter-rouge">onReceive</code>, but the
-data is much less granular.</p>
+<p>我们可以提供两个回调函数<code class="language-plaintext highlighter-rouge">onReceive</code> 和 <code class="language-plaintext highlighter-rouge">onCallSummary</code>中的一个。
+  前者相对来说更简单，单纯按顺序传递一个包含原始事件的二进制块。
+  (<code class="language-plaintext highlighter-rouge">Stalker.parse()</code>可以用来将该二进制块转换为一个JS数组，该数组中包含用于表示事件的元组。)
+  第二个函数汇集了一些统计结果，比如每个函数调用次数等等。这个函数通常比<code class="language-plaintext highlighter-rouge">onReceive</code>效率更高，
+  但数据没那么精准。
+</p>
 
-<h2 id="terminology">Terminology</h2>
+<h2 id="terminology">术语一览</h2>
 
-<p>Before we can carry on with describing the detailed implementation of Stalker,
-we first need to understand some key terminology and concepts that are used in
-the design.</p>
+<p>在更详细的介绍Stalker实现之前，我们需要理解一些关键的术语和概念，这些稍后会有帮助。</p>
 
 <h3 id="probes">Probes</h3>
 
-<p>Whilst a thread is running outside of Stalker, you may be familiar with using
-<code class="language-plaintext highlighter-rouge">Interceptor.attach()</code> to get a callback when a given function is called. When a
-thread is running in Stalker, however, these interceptors may not work. These
-interceptors work by patching the first few instructions (prologue) of the
-target function to re-direct execution into Frida. Frida copies and relocates
-these first few instructions somewhere else so that after the <code class="language-plaintext highlighter-rouge">onEnter</code> callback
-has been completed, it can re-direct control flow back to the original function.</p>
+<p>你可能已经对<code class="language-plaintext highlighter-rouge">Interceptor.attach()</code>的使用很熟悉了。当线程运行在Stalker外部时，该函数可以在指定函数调用时触发一个回调函数。
+  但若线程运行在Stalker内部，那么这个拦截器可能没办法正常工作。这些拦截器的工作原理是修补目标函数的前几个指令（序言）来将控制权重定向到Frida手里。
+  Frida拷贝并重定位这些前几个指令，在<code class="language-plaintext highlighter-rouge">onEnter</code>回调实现的前提下，执行回调并重定向控制权回到原始函数中。
+</p>
 
-<p>The reasons these may not work within Stalker is simple, the original function
-is never called. Each block, before it is executed is instrumented elsewhere in
-memory and it is this copy which is executed. Stalker supports the API function
-<code class="language-plaintext highlighter-rouge">Stalker.addCallProbe(address, callback[, data])</code> to provide this functionality
-instead. If our <code class="language-plaintext highlighter-rouge">Interceptor</code> has been attached before the block is
-instrumented, or Stalker’s <code class="language-plaintext highlighter-rouge">trustThreshold</code> is configured so that our block will
-be re-instrumented then our <code class="language-plaintext highlighter-rouge">Interceptor</code> will work (as the patched instructions
-will be copied across to the new instrumented block). Otherwise it won’t. Of
-course, we want to be able to support hooking functions when these conditions
-aren’t met. The average user of the API might not be familiar with this level
-of detail of the design and so call probes solve this problem.</p>
+<p>拦截器在Stalker内部没法正常运作的原因很简单，那就是原始的函数没有被调用。每个代码块，在执行前会被插桩，然后拷贝到内存的某个地方，再运行。因此实际执行的是这部分指令，而不是原始的指令。
+  Stalker提供了接口函数<code class="language-plaintext highlighter-rouge">Stalker.addCallProbe(address, callback[, data])</code>来处理这个问题。
+  若我们的<code class="language-plaintext highlighter-rouge">Interceptor(拦截器)</code>在目标代码插桩前就已经依附，或Stalker的<code class="language-plaintext highlighter-rouge">trustThreshold</code>
+  被合理配置，让我们的代码块重新插桩，那么我们的<code class="language-plaintext highlighter-rouge">Interceptor</code>就可以正常运作（因为修补过的指令
+  会被拷贝并重新插桩）。当然，我们希望这些条件不满足的时候也能正常hook函数。多数API用户可能对这个层级的设计细节并不熟悉，而probes就是用来解决这个问题的。
+</p>
 
-<p>The optional data parameter is passed when the probe callback is
-registered and will be passed to the callback routine when executed. This
-pointer, therefore needs to be stored in the Stalker engine. Also the address
-needs to be stored, so that when an instruction is encountered which calls the
-function, the code can instead be instrumented to call the function first. As
-multiple functions may call the one to which you add the probe, many
-instrumented blocks may contain additional instructions to call the probe
-function. Thus whenever a probe is added or removed, the cached instrumented
-blocks are all destroyed and so all code has to be re-instrumented. Note that
-this data parameter is only used if the <code class="language-plaintext highlighter-rouge">callback</code> is a C callback – e.g.
-implemented using <code class="language-plaintext highlighter-rouge">CModule</code> – as when JavaScript is used, it is simpler to use
-a closure to capture any required state.</p>
+<p>当probe回调注册时，会有一个可选的数据参数被传递给该回调函数。这个指针，也因此需要存储在Stalker引擎里。地址也需要存储起来，这样当调用函数的指令运行时，
+  目标代码可以被插桩，先运行函数。由于可能存在多个函数会调用你增加probe的函数，因此很多以插桩代码块都会包函额外的指令，用来调用probe函数。
+  因此每当一个probe增加或移除，已缓存的代码块就会被销毁，然后重新插桩。需要注意的是，只有在该<code class="language-plaintext highlighter-rouge">callback</code>是C回调的时候，
+  才会传递该数据参数。比如使用<code class="language-plaintext highlighter-rouge">CModule</code>实现的C回调。使用JavaScript时，使用闭包来捕获需要的状态。
+</p>
 
-<h3 id="trust-threshold">Trust Threshold</h3>
+<h3 id="trust-threshold">信任阈值</h3>
 
-<p>Recall that one of the simple optimizations we apply is that if we attempt to
-execute a block more than once, on subsequent occasions, we can simply call the
-instrumented block we created last time around? Well, that only works if the
-code we are instrumenting hasn’t changed. In the case of self-modifying code
-(which is quite often used as an anti-debugging/anti-disassembly technique to
-attempt to frustrate analysis of security critical code) the code may change,
-and hence the instrumented block cannot be re-used. So, how do we detect if a
-block has changed? We simply keep a copy of the original code in the
-data-structure along with the instrumented version. Then when we encounter a
-block again, we can compare the code we are going to instrument with the version
-we instrumented last time and if they match, we can re-use the block. But
-performing the comparison every time a block runs may slow things down. So
-again, this is an area where Stalker can be customized.</p>
+<p>之前我们提到了一个简单的优化，在我们尝试多次调用同一个代码块时，我们只是简单的重复调用对应的已插桩代码块。这个优化工作的前提是，
+  这段时间内我们插桩的原代码没有发生变化。在一些自修改代码（通常用来对抗反调试/反编译的安全代码）中，代码经常回自我变异，从而导致我们插桩过的代码失去作用。
+  那我们怎么检测原代码是否发生变化了呢？我们的处理方法很简单，将原始代码的插桩版本保存在数据结构里。那么当我们再次遇到一个代码块时，我们会将需要插桩的代码的版本
+  和我们上次插桩的时间和版本进行对比，如果匹配，那么我们可以重用该块。但是每次都比对代码会拖累代码运行。因此，这里设定了一个参数用于调优。
+</p>
 
 <blockquote>
-  <p><code class="language-plaintext highlighter-rouge">Stalker.trustThreshold</code>: an integer specifying how many times a piece of code
-needs to be executed before it is assumed it can be trusted to not mutate.
-Specify -1 for no trust (slow), 0 to trust code from the get-go, and N to
-trust code after it has been executed N times. Defaults to 1.</p>
+  <p><code class="language-plaintext highlighter-rouge">Stalker.trustThreshold</code>: 一个整型数，用来指明，运行多少次后信任代码。
+    -1表示不信任代码（慢），0表示完全信任代码，N表示在执行N此后信任。默认值是1。
+</p>
 </blockquote>
 
-<p>In actual fact, the value of N is the number of times the block needs to be
-re-executed and match the previously instrumented block (e.g. be unchanged)
-before we stop performing the comparison. Note that the original copy of the
-code block is still stored even when the trust threshold is set to <code class="language-plaintext highlighter-rouge">-1</code> or <code class="language-plaintext highlighter-rouge">0</code>.
-Whilst it is not actually needed for these values, it has been retained to keep
-things simple. In any case, neither of these is the default setting.</p>
+<p>实际上，信任代码前，代码每次重执行都要与之前的插桩版本做对比。若 N 此执行后，原代码若一直没问题，则信任该代码，并不再做对比。
+  需要注意的是，原始版本的代码会始终保存起来，不论信任阈值是<code class="language-plaintext highlighter-rouge">-1</code> 还是 <code class="language-plaintext highlighter-rouge">0</code>。
+  信任阈值是这俩值的时候，这个保存的原始代码实际上并没有什么用，这么做仅仅是为了保持代码简单一致。
+</p>
 
-<h3 id="excluded-ranges">Excluded Ranges</h3>
+<h3 id="excluded-ranges">排除范围</h3>
 
-<p>Stalker also has the API <code class="language-plaintext highlighter-rouge">Stalker.exclude(range)</code> that’s passed a base and limit
-used to prevent Stalker from instrumenting code within these regions. Consider,
-for example, your thread calls <code class="language-plaintext highlighter-rouge">malloc()</code> inside <code class="language-plaintext highlighter-rouge">libc</code>. You most likely don’t
-care about the inner workings of the heap and this is not only going to slow
-down performance, but also generate a whole lot of extraneous events you don’t
-care about. One thing to consider, however, is that as soon as a call is made to
-an excluded range, stalking of that thread is stopped until it returns. That
-means, if that thread were to call a function which is not inside a restricted
-range, a callback perhaps, then this would not be captured by Stalker. Just as
-this can be used to stop the stalking of a whole library, it can be used to stop
-stalking a given function (and its callees) too. This can be particularly useful
-if your target application is statically linked. Here, was cannot simply ignore
-all calls to <code class="language-plaintext highlighter-rouge">libc</code>, but we can find the symbol for <code class="language-plaintext highlighter-rouge">malloc()</code> using
-<code class="language-plaintext highlighter-rouge">Module.enumerateSymbols()</code> and ignore that single function.</p>
+<p>Stalker 还提供了接口 <code class="language-plaintext highlighter-rouge">Stalker.exclude(range)</code>，提供基础地址和偏移范围，
+用来阻止Stalker对该范围内的代码进行插桩。举个例子，你的线程调用了<code class="language-plaintext highlighter-rouge">libc</code>库内的<code class="language-plaintext highlighter-rouge">malloc()</code>函数，
+那么通常来说你不会想关心这个堆里的工作细节，而且追踪这部分代码还会降低代码效率，还会生成一大堆你不关心的事件。需要考虑的一件事是，当调用排除范围内的函数时，Stalker会
+会停止工作，直到其返回。也就是说，如果该线程调用了一个不在规定范围内的函数，比如一个回调，那么这件事不会被Stalker捕获。正如其可以用来阻止追踪整个库，这个接口也可以用来
+阻止追中某个特定的函数。当你的目标应用使用静态链接时，这个功能非常有用。有时我们不能简单的跳过 <code class="language-plaintext highlighter-rouge">libc</code>中的所有调用，
+我们可以使用<code class="language-plaintext highlighter-rouge">Module.enumerateSymbols()</code>来查找<code class="language-plaintext highlighter-rouge">malloc()</code>的符号，
+然后忽略该单个函数。</p>
 
-<h3 id="freezethaw">Freeze/Thaw</h3>
+<h3 id="freezethaw">冻结/解冻</h3>
 
-<p>As an extension to DEP, some systems prevent pages from being marked writable
-and executable at the same time. Thus Frida must toggle the page permissions
-between writable and executable to write instrumented code, and allow that code
-to execute respectively. When pages are executable, they are said to be frozen
-(as they cannot be changed) and when they are made writeable again, they are
-considered thawed.</p>
+<p>有些系统中有DEP，用来标记页的写权限和执行权限。因此，Frida必须在写入插桩代码时装换页的权限，并让插入的代码有执行权限。当页具有可执行权限时，
+  我们称其被冻结（此时它们不能改变），而当它们可写时，我们称其解冻。
+</p>
 
-<h3 id="call-instructions">Call Instructions</h3>
+<h3 id="call-instructions">调用指令</h3>
 
-<p>AArch64, unlike Intel doesn’t have an single explicit <code class="language-plaintext highlighter-rouge">CALL</code> instruction, which
-has different forms to cope with all supported scenarios. Instead, it uses a
-number of different instructions to offer support for function calls. These
-instructions all branch to a given location and update the Link register, <code class="language-plaintext highlighter-rouge">LR</code>,
-with the return address:</p>
+<p>AArch64 和 Intel 不同，没有 Intel 里显式的 <code class="language-plaintext highlighter-rouge">CALL</code> 函数调用指令。
+而是有一堆不同的，用来应对不同情况的函数调用。这些指令都会分支跳转到一个指定的位置，然后更新链接寄存器，<code class="language-plaintext highlighter-rouge">LR</code>,</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">BL</code></li>
@@ -3976,16 +3891,13 @@ with the return address:</p>
   <li><code class="language-plaintext highlighter-rouge">BLRABZ</code></li>
 </ul>
 
-<p>For simplicity, in the remainder of this article, we will refer to this
-collection of instructions as “call instructions”.</p>
+<p>简单起见，在本篇文章的余下部分，我们会将这些指令都称为"调用指令"</p>
 
-<h3 id="frames">Frames</h3>
+<h3 id="frames">帧</h3>
 
-<p>Whenever Stalker encounters a call, it stores the return address and the address
-of the instrumented return block forwarder in a structure and adds these to a
-stack stored in a data-structure of its own. It uses this as a speculative
-optimization, and also as a heuristic to approximate the call depth when
-emitting call and return events.</p>
+<p>当Stalker遇到一个调用时，Stalker会将返回地址，插桩代码的地址，放到一个数据结构中，然后存入Stalker自身维护的栈里。
+  Stalker使用该栈做一些优化，并在发出调用和返回事件时，有一些启发式的估计。
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_GumExecFrame</span> <span class="n">GumExecFrame</span><span class="p">;</span>
 
@@ -3995,10 +3907,11 @@ emitting call and return events.</p>
   <span class="n">gpointer</span> <span class="n">code_address</span><span class="p">;</span>
 <span class="p">};</span></code></pre></figure>
 
-<h3 id="transformer">Transformer</h3>
+<h3 id="transformer">转换器</h3>
 
-<p>A <code class="language-plaintext highlighter-rouge">GumStalkerTransformer</code> type is used to generate the instrumented code. The
-implementation of the default transformer looks like this:</p>
+<p><code class="language-plaintext highlighter-rouge">GumStalkerTransformer</code> 用来生成已插桩代码。
+  默认的转换器实现看起来类似这样：
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span>
 <span class="nf">gum_default_stalker_transformer_transform_block</span> <span class="p">(</span>
@@ -4012,30 +3925,23 @@ implementation of the default transformer looks like this:</p>
   <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
 
-<p>It is called by the function responsible for generating instrumented code,
-<code class="language-plaintext highlighter-rouge">gum_exec_ctx_obtain_block_for()</code> and its job is to generate the instrumented
-code. We can see that it does this using a loop to process one instruction at a
-time. First retrieving an instruction from the iterator, then telling Stalker to
-instrument the instruction as is (without modification). These two functions are
-implemented inside Stalker itself. The first is responsible for parsing a
-<code class="language-plaintext highlighter-rouge">cs_insn</code> and updating the internal state. This <code class="language-plaintext highlighter-rouge">cs_insn</code> type is a datatype
-used by the internal <a href="http://www.capstone-engine.org/">Capstone</a> disassembler to
-represent an instruction. The second is responsible for writing out the
-instrumented instruction (or set of instructions). We will cover these in more
-detail later.</p>
+<p>该函数由负责生成插桩代码的函数调用，
+<code class="language-plaintext highlighter-rouge">gum_exec_ctx_obtain_block_for()</code>
+和该函数的工作都是生成插桩代码。我们可以看到，该函数使用一个循环，然后在每个循环里处理一个指令。
+首先从迭代器中获取指令，然后（不加修改的）通知Stalker。这两个函数是由Stalker自身实现的。
+第一个函数负责解析<code class="language-plaintext highlighter-rouge">cs_insn</code>和更新内部状态。
+<code class="language-plaintext highlighter-rouge">cs_insn</code>是内部由<a href="http://www.capstone-engine.org/">Capstone</a>提供的表示指令的反汇编器。
+第二个函数负责写出已插桩代码（或代码集）。我们后面会更详细的介绍。
 
-<p>Rather than using the default transformer, the user can instead provide a custom
-implementation which can replace and insert instructions at will. A good example
-is provided in the <a href="../javascript-api/index.html#stalker">API
-documentation</a>.</p>
+<p>
+  除了默认的转换器，用户也可以提供定制的转换器实现。<a href="../javascript-api/index.html#stalker">这里</a>有一个不错的例子。
+</p>
 
-<h3 id="callouts">Callouts</h3>
+<h3 id="callouts">调用</h3>
 
-<p>Transformers can also make callouts. That is they instruct Stalker to emit
-instructions to make a call to a JavaScript function – or plain C callback,
-e.g. implemented using CModule – passing the CPU context and an optional
-context parameter. This function is then able to modify or inspect registers at
-will. This information is stored in a <code class="language-plaintext highlighter-rouge">GumCallOutEntry</code>.</p>
+<p>转换器也可以创建调用。转换器指导Stalker发出指令，用来调用一个JavaScript函数，或者C回调，比如使用 CModule实现的回调函数。同时会给函数传递 表示 CPU 状态的上下文和
+  一个可选的上下文参数。该函数可以按需求修改或检视寄存器。这些信息都被存储在<code class="language-plaintext highlighter-rouge">GumCallOutEntry</code>里。
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">GumStalkerCallout</span><span class="p">)</span> <span class="p">(</span><span class="n">GumCpuContext</span> <span class="o">*</span> <span class="n">cpu_context</span><span class="p">,</span>
     <span class="n">gpointer</span> <span class="n">user_data</span><span class="p">);</span>
@@ -4055,50 +3961,33 @@ will. This information is stored in a <code class="language-plaintext highlighte
 
 <h3 id="eobeoi">EOB/EOI</h3>
 
-<p>Recall that the
-<a href="https://github.com/frida/frida-gum/blob/master/gum/arch-arm64/gumarm64relocator.c">Relocator</a>
-is heavily involved in generating the instrumented code. It has two important
-properties which control its state.</p>
+<p>回想一下，<a href="https://github.com/frida/frida-gum/blob/master/gum/arch-arm64/gumarm64relocator.c">Relocator</a>，
+在生成插桩代码时非常重要。Relocator有两个重要的属性来控制其状态。</p>
 
-<p>End of Block (EOB) indicates that the end of a block has been reached. This
-occurs when we encounter <em>any</em> branch instruction. A branch, a call, or a return
-instruction.</p>
+<p>块结束（EOB）指明Relocator遇到了代码块的结尾。当遇到<em>任何</em>分支指令，就是块结束（EOB）状态。任何分支跳转，
+调用，或者返回指令。</p>
 
-<p>End of Input (EOI) indicates that not only have we reached the end of a block,
-but we have possibly reached the end of the input, i.e. what follows this
-instruction may not be another instruction. Whilst this is not the case for a
-call instruction as code control will (typically) pass back when the callee
-returns and so more instructions must follow. (Note that a compiler will
-typically generate a branch instruction for a call to a non-returning function
-like <code class="language-plaintext highlighter-rouge">exit()</code>.) Whilst there is no guarantee of valid instructions following
-call instructions, we can speculatively optimize for this being the case. If we
-encounter a non-conditional branch instruction, or a return instruction, it is
-quite possible that there will be no code following afterwards.</p>
+<p>输入结束（EOI）指明Relocator不仅遇到了代码块结尾，而且可能遇到了输入的结尾，也就是紧跟着当前指令的下一条未必是指令。
+  这种情况通常不是调用指令，因为代码控制通常会在调用返回时，继续执行紧跟其后的若干指令。（注意，编译器通常会给无返回函数生成一个分支跳转指令，比如<code class="language-plaintext highlighter-rouge">exit()</code>）
+  由于调用指令后面不一定紧跟着其他合法指令，我么这里可以做一些特殊的优化。
+  如果我们遇到一个非条件分支跳转指令，或者遇到一个返回指令，很有可能在这之后就不再有代码了。
 
-<h3 id="prologuesepilogues">Prologues/Epilogues</h3>
+</p>
 
-<p>When control flow is redirected from the program into the Stalker engine, the
-registers of the CPU must be saved so that Stalker can run and make use of the
-registers and restore them before control is passed back to the program so that
-no state is lost.</p>
+<h3 id="prologuesepilogues">序言/尾声</h3>
 
-<p>The <a href="https://static.docs.arm.com/den0024/a/DEN0024A_v8_architecture_PG.pdf">Procedure Call
-Standard</a>
-for AArch64 states that some registers (notably X19 to X29) are callee saved
-registers. This means that when the compiler generates code which makes use of
-these registers, it must store them first. Hence it is not strictly necessary to
-save these registers to the context structure, since they will be restored if
-they are used by the code within the Stalker engine. This <em>“minimal”</em> context is
-sufficient for most purposes.</p>
+<p>当控制流从程序跳转到Stalker引擎时，CPU的寄存器必须保存，以使得Stalker可以运行以及利用寄存器，
+  并在控制权返还给程序时恢复，以防止原程序上下文信息丢失。
+</p>
 
-<p>However, if the Stalker engine is to call a probe registered by
-<code class="language-plaintext highlighter-rouge">Stalker.addCallProbe()</code>, or a callout created by <code class="language-plaintext highlighter-rouge">iterator.putCallout()</code>
-(called by a Transformer), then these callbacks will expect to receive the full
-CPU context as an argument. And they will expect to be able to modify this
-context and for the changes to take effect when control is passed back to the
-application code. Thus for these instances, we must write a <em>“full”</em> context and
-its layout must match the expected format dictated by the structure
-<code class="language-plaintext highlighter-rouge">GumArm64CpuContext</code>.</p>
+AArch64 的<p><a href="https://static.docs.arm.com/den0024/a/DEN0024A_v8_architecture_PG.pdf">函数调用标准</a>
+  规定了一些寄存器（比较有名的是 X19 到 X29）是由被调用者存储使用的寄存器。也就是说，编译器生成使用这些寄存器的代码时，必须先把它们保存起来。
+  因此没必要严格的讲这些寄存器存储在上下文结构中，因为如果Stalker引擎需要的话，可以直接恢复。因此一个<em>"极小"</em>的上下文就足够大多时候的需求。
+
+<p>然而，如果Stalker引擎是要调用由<code class="language-plaintext highlighter-rouge">Stalker.addCallProbe()</code>注册的prob，
+或者由<code class="language-plaintext highlighter-rouge">iterator.putCallout()</code>创建的调用</p>（由转换器调用），
+那么这些回调将会期待接受全部的CPU上下文作为参数。而且它们会期待可以修改该上下文，以便控制权交回后发挥作用。因此在这里情况里，我们必须要写一个
+<em>"完全"</em>上下文，而且其值一定要和<code class="language-plaintext highlighter-rouge">GumArm64CpuContext</code>指明的格式相同。
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_GumArm64CpuContext</span> <span class="n">GumArm64CpuContext</span><span class="p">;</span>
 
@@ -4112,15 +4001,10 @@ its layout must match the expected format dictated by the structure
   <span class="n">guint8</span> <span class="n">q</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span> <span class="cm">/* FPU, NEON (SIMD), CRYPTO regs */</span>
 <span class="p">};</span></code></pre></figure>
 
-<p>Note however, that the code necessary to write out the necessary CPU registers
-(the prologue) in either case is quite long (tens of instructions). And the code
-to restore them afterwards (the epilogue) is similar in length. We don’t want to
-write these at the beginning and end of every block we instrument. Therefore we
-write these (in the same way we write the instrumented blocks) into a common
-memory location and simply emit call instructions at the beginning and end of
-each instrumented block to call these functions. These common memory locations
-are referred to as <em>helpers</em>. The following functions create these prologues and
-epilogues.</p>
+<p>另外需要注意的是，前面提到的那些需要写入必要CPU寄存器的必要代码（序言），实际上是相当长的（大概数十行指令）。而之后恢复他们的代码（尾声）实际上也差不多长。
+  我们不想每次插桩时，都在代码的开始和结尾都插上这么两段长指令。因此我们会将这些指令写到一个公共的内存里（和我们写插桩代码的方式类似），然后需要时，我们只要直接
+  调用。这些公共内存称之为<em>helpers</em>。下面的函数就是用来创建这些序言和尾声：
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">gum_exec_ctx_write_minimal_prolog_helper</span> <span class="p">(</span>
     <span class="n">GumExecCtx</span> <span class="o">*</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">GumArm64Writer</span> <span class="o">*</span> <span class="n">cw</span><span class="p">);</span>
@@ -4134,26 +4018,21 @@ epilogues.</p>
 <span class="k">static</span> <span class="kt">void</span> <span class="nf">gum_exec_ctx_write_full_epilog_helper</span> <span class="p">(</span>
     <span class="n">GumExecCtx</span> <span class="o">*</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">GumArm64Writer</span> <span class="o">*</span> <span class="n">cw</span><span class="p">);</span></code></pre></figure>
 
-<p>Finally, note that in the AArch64 architecture, it is only possible to make a
-direct branch to code within ±128 MB of the caller, and using an indirect branch
-is more expensive (both in terms of code size and performance). Therefore, as we
-write more and more instrumented blocks, we will get further and further away
-from the shared prologue and epilogue. If we get more than 128 MB away, we
-simply write out another copy of these prologues and epilogues to use. This
-gives us a very reasonable tradeoff.</p>
+<p>最后需要注意的是，在AArch64架构下，直接分支跳转的范围是调用者的±128 MB偏移范围，而间接分支跳转的开销更加昂贵（内存开销以及时间开销）。
+  因此，随着我们插桩代码块的增加，我们会距离共享的序言和尾声代码越来越远。当我们超过128MB范围后，我们会直接再拷贝一个序言和尾声来使用。
+  这个交易非常划得来。
+</p>
 
-<h3 id="counters">Counters</h3>
+<h3 id="counters">计数器</h3>
 
-<p>Finally, there are a series of counters which you can see kept recording the
-number of each type of instructions encountered at the end of an instrumented
-block. These are only used by the test-suite to guide the developer during
-performance tuning, indicating which branch types most commonly require a full
-context-switch into Stalker to resolve the target.</p>
+<p>最后，你会在插桩代码块的后面，看到一些计数器，这些计数器保记录了遇到的每种指令的数量。
+  这些东西只是用于单元测试和性能调优，指明哪些分支类型需要完整的上下文切换。</p>
 
 <h2 id="slabs">Slabs</h2>
 
-<p>Let’s now take a look at where Stalker stores its instrumented code, in slabs.
-Below are the data-structures used to hold it all:</p>
+<p>接下来我们介绍Stalker存储其插桩代码的地方——slabs。
+  下面的数据结构用来处理所有细节。
+</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="n">guint8</span> <span class="n">GumExecBlockFlags</span><span class="p">;</span>
 <span class="k">typedef</span> <span class="k">struct</span> <span class="n">_GumExecBlock</span> <span class="n">GumExecBlock</span><span class="p">;</span>
@@ -4190,8 +4069,7 @@ Below are the data-structures used to hold it all:</p>
   <span class="n">GUM_EXEC_ACTIVATION_TARGET</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">),</span>
 <span class="p">};</span></code></pre></figure>
 
-<p>Now let’s look at some code when Stalker is initialized which configures their
-size:</p>
+<p>我们先看一些在初始化阶段，Stalker配置的大小：</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define GUM_CODE_SLAB_MAX_SIZE  (4 * 1024 * 1024)
 #define GUM_EXEC_BLOCK_MIN_SIZE 1024
@@ -4212,16 +4090,11 @@ size:</p>
   <span class="p">...</span>
 <span class="p">}</span></code></pre></figure>
 
-<p>So we can see that each slab is 4 MB in size. A 12th of this slab is reserved
-for its header, the <code class="language-plaintext highlighter-rouge">GumSlab</code> structure itself including its <code class="language-plaintext highlighter-rouge">GumExecBlock</code>
-array. Note that this is defined as a zero length array at the end of the
-<code class="language-plaintext highlighter-rouge">GumSlab</code> structure, but the actual number of these which can fit in the header
-of the slab is calculated and stored in <code class="language-plaintext highlighter-rouge">slab_max_blocks</code>.</p>
+<p>我们可以看到，每个slab的大小是 4MB。slab个数的整数倍数存在了其头部，而the <code class="language-plaintext highlighter-rouge">GumSlab</code> 结构本身包含了
+其自身的<code class="language-plaintext highlighter-rouge">GumExecBlock</code>数组。注意该数组在<code class="language-plaintext highlighter-rouge">GumSlab</code>结构中定义时长度为0，
+但其实际可存储的容量是在 <code class="language-plaintext highlighter-rouge">slab_max_blocks</code> 内计算并存储的。</p>
 
-<p>So what is the remainder of the slab used for? Whilst the header of the slab is
-used for all the accounting information, the remainder (henceforth referred to
-as the tail) of the slab is used for the instrumented instructions themselves
-(they are stored inline in the slab).</p>
+<p>所以slab余下的部分用来做什么呢？slab的头部用来存储所有的"会计信息"，余下部分（也就是尾部）用来存储插桩指令（在slab中內联存储）。</p>
 
 <p>So why is a 12th of the slab allocated for the header and the remainder for the
 instructions? Well the length of each block to be instrumented will vary
@@ -4231,7 +4104,7 @@ each block this might be a reasonable ratio to ensure we didn’t run out of spa
 for new <code class="language-plaintext highlighter-rouge">GumExecBlock</code> entries before we ran out of space for new instrumented
 blocks in the tail and vice versa.</p>
 
-<p>Let’s now look at the code which creates them:</p>
+<p>我们下面看一下用于创建这些结构的代码：</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">GumSlab</span> <span class="o">*</span>
 <span class="nf">gum_exec_ctx_add_slab</span> <span class="p">(</span><span class="n">GumExecCtx</span> <span class="o">*</span> <span class="n">ctx</span><span class="p">)</span>
